@@ -8,4 +8,3 @@ export const environment = {
   smcAppUser: 'app-web',
   smcAppPass: 'password123',
 };
-  

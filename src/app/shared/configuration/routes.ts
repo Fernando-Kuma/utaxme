@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from 'src/app/components/home/home.component';
 import { NAV } from './navegacion';
+import { DashboardComponent } from 'src/app/components/home/dashboard/dashboard.component';
 
 export const appRoutes: Routes = [
   {
@@ -24,25 +25,18 @@ export const appRoutes: Routes = [
     component: HomeComponent,
   },
   {
-    path: NAV.proceso,
-    pathMatch: 'full',
-    component: HomeComponent,
-    outlet: 'home',
-  },
-  {
     path: NAV.activation,
     pathMatch: 'full',
     component: HomeComponent,
   },
   {
-    path: NAV.dashboard,
-    pathMatch: 'full',
+    path: NAV.proceso,
+    pathMatch: 'prefix',
     component: HomeComponent,
-    outlet: 'home',
   },
-
   {
-    path: '**',
-    redirectTo: NAV.login,
-  },
+    path: NAV.dashboard,
+    pathMatch: 'prefix',
+    component: DashboardComponent,
+  }
 ];

@@ -12,6 +12,11 @@ export class HeaderHomeComponent implements OnInit {
   @Input() color: string = '#122D4F';
   @Input() logo: string = 'image-toolbar';
 
+  user: any = {
+    name: 'José Martínez',
+    rol: 'act. empresarial' 
+  }
+
   constructor(public router: Router) { }
 
   ngOnInit(): void {

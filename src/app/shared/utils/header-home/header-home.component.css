@@ -8,11 +8,58 @@ mat-toolbar{
   flex-wrap: wrap;
 }
 
+.home-user-name{
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: #FFFFFF;
+  padding: 0;
+  margin-right: 5px;
+}
+
+.home-user-rol{
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 16px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #7B8AA0;
+
+  
+}
+
 .home-menu{
   height: 50px; 
   border-radius: 8px 8px 0px 0px;
   padding: 0;
   padding-left: 10px;
+  width: 145px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.home-header-user{
+  background-color: #E6EDF6; 
+  width: 40px; 
+  height: 40px; 
+  margin-top: 10px; 
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-header-icon{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #E6EDF6;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
 }
 
 .menu-ico{
@@ -20,9 +67,10 @@ mat-toolbar{
   height: 30px; 
   background-color: #7B8AA0; 
   border-radius: 8px; 
-  position: relative; 
-  top: 10px; 
-  left: 0px;
+  margin-left: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .menu-active{
@@ -31,26 +79,25 @@ mat-toolbar{
 
 .menu-title-active{
   position: relative; 
-  top: -20px; 
-  left: 35px; 
   font-size: 14px; 
   font-weight: 600;
   width: fit-content;
+  color:#0B112A;
+  margin-left: 10px;
 }
 
 .menu-title{
   position: relative; 
-  top: -20px; 
-  left: 35px; 
   font-size: 14px; 
   font-weight: 500;
   color:#7B8AA0;
   width: fit-content;
+  padding-top: 2px;
+  margin-left: 10px;
 }
 
 .menu-user{
   width: fit-content; 
-  max-width: 250px; 
   /* background-color: red; */
   margin-top: -10px; 
   padding: 0;
@@ -62,7 +109,6 @@ mat-toolbar{
   margin: 0; 
   padding: 0; 
   width: fit-content;
-  max-width: 180px; 
   height: 40px; 
   margin-top: 10px; 
   margin-left: 5px;

@@ -9,6 +9,9 @@ body {
   font-family: "Montserrat", sans-serif;
 }
 
+.width-completo{
+  width: 100vw;
+}
 
 .page-wrapper {
   height: 100vh;
@@ -46,5 +49,110 @@ body {
   background-position: center;
   background-repeat: no-repeat;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.display-align-center{
+  display: flex;
+  align-items: center;
+}
+
+
+
+.content {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer {
+  flex-grow: 0;
+}
+
+.w100m0p0 {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.img-inicio-home {
+  background-image: url("src\assets\icon\home.svg");
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  background-position: left;
+}
+
+
+/* Iconos */
+
+
+.image-home {
+  background-image: url("src\assets\icon\home.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.image-home-black{
+  background-image: url("src\assets\icon\home-black.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.image-home-user {
+  background-image: url("src\assets\icon\home-user.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.image-home-down {
+  background-image: url("src\assets\icon\home-down.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.image-home-notificacion {
+  background-image: url("src\assets\icon\home-notificacion.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.image-home-ayuda {
+  background-image: url("src\assets\icon\home-ayuda.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.image-home-logout {
+  background-image: url("src\assets\icon\home-logout.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.image-home-version {
+  background-image: url("src\assets\icon\home-version.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.image-invert-color {
+  filter: invert(100%);
+}
+
+.image-size-22 {
+  background-size: 22px 22px;
+}
+
+.image-size-20 {
+  background-size: 20px 20px;
+}
+
+.image-size-14 {
+  background-size: 14px 14px;
+}

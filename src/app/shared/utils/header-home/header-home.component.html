@@ -1,15 +1,15 @@
 <mat-toolbar [ngStyle]="{'background-color': color}">
-  <div class="row">
-    <div class="col-2">
+  <div class="row width-completo">
+    <div class="col-4">
       <div [ngClass]="logo"></div>
     </div>
-    <div class="col-5">
-      <div class="home-menu" [ngClass]="this.router.url === '/administrator' ? 'menu-active':''" style="width: 125px; cursor: pointer;" (click)="cambiarMenu(1)">
-        <div class="menu-ico" 
-        [ngStyle]="{'background-color': this.router.url === '/administrator' ? '#7B8AA0':'#3B4559'}" 
-        [ngClass]="this.router.url === '/administrator' ? 'img-header-home':'img-header-home-active'" style="margin-left: 5px;"></div>
-        <div [ngClass]="this.router.url === '/administrator' ? 'menu-title-active':'menu-title'" style="margin-left: 10px;">
-            Inicio
+    <div class="col-4 d-flex align-items-end">
+      <div class="home-menu" [ngClass]="this.router.url === '/dashboard' ? 'menu-active':''" (click)="cambiarMenu(1)">
+        <div class="menu-ico" [ngStyle]="{'background-color': this.router.url === '/dashboard' ? '#7B8AA0':'#122d4f'}" >
+          <mat-icon [ngClass]="this.router.url === '/dashboard' ? 'image-home-black image-invert-color' : 'image-home'" class="image-size-20"></mat-icon>
+        </div>
+        <div [ngClass]="this.router.url === '/dashboard' ? 'menu-title-active':'menu-title'">
+          Dashboard
         </div>
       </div>
       <!--
@@ -23,43 +23,49 @@
         </div>
       -->
     </div>
-    <div class="col-3">
-      <div class="menu-user" [matMenuTriggerFor]="userMenu" style="margin-left: 60px; margin-right: 40px;">
-        <div class="container" style="width: 100%; margin: 0; padding: 0;">
-            <div class="row" style="width: 100%; margin: 0; padding: 0;">
-                <div class="img-header-user" style="margin: 0; padding: 0; background-color: #E6EDF6; width: 40px; height: 40px; margin-top: 10px; border-radius: 50%;">
-
+    <div class="col-2 display-align-center">
+      <div class="menu-user" [matMenuTriggerFor]="userMenu">
+        <div class="container">
+            <div class="row">
+              <div class="col-3">
+                <div class="home-header-user">
+                  <mat-icon class="image-home-user image-size-22"></mat-icon>
                 </div>
+              </div>
+              <div class="col-9">
                 <div class="menu-user-container">
-                    <div class="row" style="margin: 0; padding: 0; line-height: 22px; font-size: 14px; color: #FFFFFF; font-weight: 600; width: fit-content; text-align: left;">
-                        <div class="col" style="padding: 0; margin: 0;">
+                    <div class="row">
+                        <div class="col home-user-name">
+                          {{ user.name }}
                           <!--
                             {{ (username.length>15) ? (username | slice:0:15 | titlecase) + '...' : username | titlecase }}
                           -->
                         </div>
-                        <div class="col img-header-select" style="margin-left: 5px;"></div>
+                        <div class="col image-home-down image-size-14"></div>
                     </div>
-                    <div class="row" style="margin: 0; padding: 0; line-height: 18px; font-size: 9px; color: #7B8AA0; font-weight: 600; width: fit-content; letter-spacing: 2px">
+                    <div class="row home-user-rol">
+                      {{ user.rol }}
                       <!--
                         {{ (role | uppercase) }}
                       -->
                     </div>
                 </div>
+              </div>
             </div>
         </div>
         <mat-menu class="header-menu" #userMenu="matMenu" xPosition="before">
             <button mat-menu-item style="font-size: 14px; font-weight: 400;" (click)="salir()">
-                <mat-icon class="img-header-logout"></mat-icon>
+                <mat-icon class="image-home-logout image-size-20"></mat-icon>
                 <span>CERRAR SESIÓN</span>
             </button>
             <button mat-menu-item style="font-size: 14px; font-weight: 400; text-align: left;" disabled>
-                <mat-icon class="img-header-version"></mat-icon>
+                <mat-icon class="image-home-version image-size-20"></mat-icon>
                 <span>VERSIÓN 2.0.0.1</span>
             </button>
         </mat-menu>
       </div>
     </div>
-    <div class="col-2">
+    <div class="col-2 display-align-center justify-content-evenly">
       <!--
         <div class="img-header-notification" style="margin-top: 1px; margin-left: 20px; width: 40px; height: 40px; cursor: pointer;" #menuTriggerNotification="matMenuTrigger" [matMenuTriggerFor]="notificacion" (click)="openMenu()">
           <div class="badged-notification" *ngIf="numNotificaciones != '0'">
@@ -97,7 +103,12 @@
         </mat-menu>
 
       -->
-      <div class="img-header-support" style="margin-top: 1px; margin-left: 30px; width: 40px; height: 40px; margin-right: 30px; cursor: pointer;" (click)="abrirModuloAyuda()"></div>
+      <div class="home-header-icon" (click)="abrirModuloAyuda()">
+        <mat-icon class="image-home-notificacion image-size-20"></mat-icon>
+      </div>
+      <div class="home-header-icon" (click)="abrirModuloAyuda()">
+        <mat-icon class="image-home-ayuda image-size-20"></mat-icon>
+      </div>
     </div>
   </div>
 

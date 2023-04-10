@@ -8,7 +8,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import * as d3 from 'd3';
-//import d3Tip from "d3-tip";
+import d3Tip from "d3-tip";
 import { Observable } from 'rxjs';
 
 //import { ES_MX_LOCALE } from '../../../shared/const/es-mx-locale';

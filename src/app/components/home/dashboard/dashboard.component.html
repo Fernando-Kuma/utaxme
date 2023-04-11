@@ -38,13 +38,18 @@
                 </div>
               </div>
               <div class="col d-flex justify-content-end" style="align-items: center; width: 299px; height: 98px; ">
-                <button mat-button class="btn-totalplay"
-                  style=" text-align: right; max-width: 170px; font-size: 14px; width: 158px; height: 48px; line-height: 40px;">
-                  2023 - 01
-                </button>
+                <mat-form-field appearance="outline" style="font-size: 13px; height: 80px;" >
+                  <mat-label>Periodo fiscal</mat-label>
+                  <input readonly formControlName="inicial" matInput [matDatepicker]="picker"  >
+                  <mat-hint>DD/MM/AAAA</mat-hint>
+                  <mat-datepicker-toggle matSuffix [for]="picker" >
+                      <mat-icon matDatepickerToggleIcon class="image-calendar-date-picker" ></mat-icon>
+                  </mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
               </div>
             </div>
-
+            
             <div class="row" style="margin-top: 49px;">
               <div class="col d-flex justify-content-left"
                 style="background-color: #FFFFFF; align-items: center; width: 299px; height: 98px; margin-bottom: 39px; font-size: 18px; margin-right: 39px; border-radius: 8px; padding: 15px 12px;">

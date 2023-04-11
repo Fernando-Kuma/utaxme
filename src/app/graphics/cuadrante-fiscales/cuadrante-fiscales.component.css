@@ -1,0 +1,10 @@
+.btn-datos-fiscales{
+  background: #FFFFFF;
+  border: 1px solid #285CED;
+  color: #285CED;
+  border-radius: 20px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

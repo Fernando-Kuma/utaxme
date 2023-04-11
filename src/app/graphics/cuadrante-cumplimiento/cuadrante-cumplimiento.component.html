@@ -1,1 +1,49 @@
-<p>cuadrante-cumplimiento works!</p>
+<div class="row">
+  <div class="col-12 titulo-cumplimiento">
+    Cumplimiento Fiscal
+  </div>
+
+  <div class="col-12 d-flex justify-content-between" style="margin-top: 19px;">
+    <div class="texto-cuadrante">Tipo declaración:</div>
+    <div class="respuesta-cuadrante">{{ datosFiscales.tipoDec }}</div>
+  </div>
+  <div class="col-12 d-flex justify-content-between" style="margin-top: 20px;">
+    <div class="texto-cuadrante">Mes:</div>
+    <div class="respuesta-cuadrante">{{ datosFiscales.mes }}</div>
+  </div>
+  <div class="col-12 d-flex justify-content-between" style="margin-top: 20px;">
+    <div class="texto-cuadrante">Año:</div>
+    <div class="respuesta-cuadrante">{{ datosFiscales.fechaA }}</div>
+  </div>
+  <div class="col-12 d-flex justify-content-between" style="margin-top: 20px;">
+    <div class="texto-cuadrante">Estatus:</div>
+    <div class="respuesta-cuadrante">{{ datosFiscales.estatus }}</div>
+  </div>
+  <div class="col-12" style="margin-top: 18px;">
+    <mat-divider></mat-divider>
+  </div>
+  <div class="col-12 d-flex justify-content-between" style="margin-top: 20px;">
+    <div class="texto-cuadrante">Monto a pagar:</div>
+    <div class="respuesta-cuadrante">${{ datosFiscales.montoPagar }}</div>
+  </div>
+  <div class="col-12 d-flex justify-content-between" style="margin-top: 19px;">
+    <div class="texto-cuadrante">Recargos/multas:</div>
+    <div class="respuesta-cuadrante">${{ datosFiscales.recargosMultas }}</div>
+  </div>
+
+  <div class="col-12 d-flex justify-content-between" style="margin-top: 26px;">
+    <div class="">
+      <button mat-fab extended class="btn-cumplimiento" style="width: 191px;">
+        <div class="image-ver-acuse" style="padding-right: 22px; padding-left: 6px;">&nbsp; </div>
+        Ver acuse
+      </button>
+    </div>
+    <div class="">
+      <button mat-fab extended class="btn-cumplimiento" style="width: 144px;">
+        <div class="image-ver-opinion" style="padding-right: 22px; padding-left: 6px;">&nbsp; </div>  
+        Ver opinión
+      </button>
+    </div>
+  </div>
+
+</div>

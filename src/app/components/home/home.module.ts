@@ -15,10 +15,12 @@ import { MatIconModule } from '@angular/material/icon';
 
 
 
+
 @NgModule({
   declarations: [
     DashboardComponent,
-    HomeComponent
+    HomeComponent,
+    
   ],
   imports: [
     CommonModule,
@@ -31,6 +33,12 @@ import { MatIconModule } from '@angular/material/icon';
     MatNativeDateModule,
     MatInputModule,
     MatIconModule
+  ],
+  exports: [
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule, 
+    MatInputModule
   ]
 })
 export class HomeModule { }

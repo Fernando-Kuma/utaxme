@@ -7,6 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CuadranteFiscalesComponent implements OnInit {
 
+  datosFiscales:any = {
+    regimen: 'Actividades Empresariales con Ingresos a través de Plataformas Tecnológicas',
+    razon: 'Alix Perez Perez',
+    rfc: 'Alix Perez Perez',
+    correo: 'alezrr@mailito.com',
+    direccion: 'Constitución 401, San Pablo Chimalpa C.P. 09455, Cuajimalpa de Morelos, CDMX'
+  }
+
   constructor() { }
 
   ngOnInit(): void {

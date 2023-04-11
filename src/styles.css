@@ -74,16 +74,17 @@ body {
   padding: 0 !important;
 }
 
+
+
+
+/* Iconos */
+
 .img-inicio-home {
   background-image: url("src\assets\icon\home.svg");
   background-size: 20px 20px;
   background-repeat: no-repeat;
   background-position: left;
 }
-
-
-/* Iconos */
-
 
 .image-home {
   background-image: url("src\assets\icon\home.svg");
@@ -141,6 +142,49 @@ body {
   background-position: center;
 }
 
+.image-edit-doc {
+  background-image: url("src\assets\icon\edit.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.image-user-call {
+  background-image: url("src\assets\icon\user-call.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.image-cancel-doc {
+  background-image: url("src\assets\icon\cancelar-doc.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.image-ver-acuse {
+  background-image: url("src\assets\icon\fact.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.image-ver-opinion {
+  background-image: url("src\assets\icon\opinion.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+
+.image-download {
+  background-image: url("src\assets\icon\download.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 .image-invert-color {
   filter: invert(100%);
 }
@@ -162,6 +206,12 @@ body {
 .titulo-cuadrante{
   font-weight: 700;
   font-size: 18px;
+  color: #0B112A;
+}
+
+.respuesta-cuadrante{
+  font-weight: 600;
+  font-size: 16px;
   color: #0B112A;
 }
 

@@ -10,6 +10,8 @@ import { CuadranteCumplimientoComponent } from './cuadrante-cumplimiento/cuadran
 import { CuadranteFiscalesComponent } from './cuadrante-fiscales/cuadrante-fiscales.component';
 
 import {MatDividerModule} from '@angular/material/divider';
+import {MatTableModule} from '@angular/material/table';
+import { PagerModule } from '../shared/utils/pager';
 
 
 
@@ -26,7 +28,9 @@ import {MatDividerModule} from '@angular/material/divider';
   ],
   imports: [
     CommonModule,
-    MatDividerModule
+    MatDividerModule,
+    MatTableModule,
+    PagerModule
   ],
   exports: [
     BarrasEmitidasComponent,

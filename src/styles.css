@@ -142,6 +142,19 @@ body {
   background-position: center;
 }
 
+.image-dashboard-descargar {
+  background-image: url("src\assets\icon\dashboard-descargar.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.image-dashboard-info {
+  background-image: url("src\assets\icon\dashboard-info.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 .image-edit-doc {
   background-image: url("src\assets\icon\edit.svg");
   background-size: 100% 100%;

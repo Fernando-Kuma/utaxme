@@ -13,6 +13,10 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatTableModule} from '@angular/material/table';
 import { PagerModule } from '../shared/utils/pager';
 
+import {MatButtonModule} from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { ThousandsPipe } from '../shared/pipe/thousands.pipe';
+
 
 
 @NgModule({
@@ -24,13 +28,16 @@ import { PagerModule } from '../shared/utils/pager';
     CuadranteGastosComponent,
     CuadranteDeduccionesComponent,
     CuadranteCumplimientoComponent,
-    CuadranteFiscalesComponent
+    CuadranteFiscalesComponent,
+    ThousandsPipe
   ],
   imports: [
     CommonModule,
     MatDividerModule,
     MatTableModule,
-    PagerModule
+    PagerModule,
+    MatButtonModule,
+    MatIconModule
   ],
   exports: [
     BarrasEmitidasComponent,

@@ -1,46 +1,62 @@
 <div class="container">
   <div class="row">
-    <div class="col-5">
-      <div class="row">
+    <div class="col-4">
+      <div class="row" style="margin-right: -55px;">
         <div class="col-12 titulo-cuadrante">
           Gastos del periodo
         </div>
 
-        <div class="col-12 d-flex justify-content-between" style="margin-top: 45px;">
-          <div class="texto-cuadrante">Subtotal de gastos</div>
-          <div class="texto-cuadrante">${{ ingresos.subtotal }}</div>
+        <div class="row">
+          <div class="col-7 inicio-texto">
+            <div class="texto-cuadrante" style="margin-top: 45px;">Subtotal de ingresos</div>
+            <div class="texto-cuadrante" style="margin-top: 29px;">IVA</div>
+          </div>
+          <div class="col-5 final-texto m0p0">
+            <div class="texto-cuadrante weight600" style="margin-top: 45px;">${{ gastos.subtotal | thousandsPipe }}</div>
+            <div class="texto-cuadrante weight600" style="margin-top: 29px;">${{ gastos.iva | thousandsPipe }}</div>
+          </div>
         </div>
-        <div class="col-12 d-flex justify-content-between" style="margin-top: 29px;">
-          <div class="texto-cuadrante">IVA</div>
-          <div class="texto-cuadrante">${{ ingresos.iva }}</div>
-        </div>
-        <div class="col-12" style="margin-top: 22px;" >
+
+        <div class="col-12" style="margin-top: 22px !important;">
           <mat-divider></mat-divider>
         </div>
-        <div class="col-12 d-flex justify-content-between" style="margin-top: 29px;">
-          <div class="titulo-cuadrante">Total de Ingresos</div>
-          <div class="texto-cuadrante">${{ ingresos.total }}</div>
+        <div class="row">
+          <div class="col-7 inicio-texto">
+            <div class="texto-total" style="margin-top: 29px;">Total de Gastos</div>
+          </div>
+          <div class="col-5 final-texto m0p0">
+            <div class="texto-cuadrante weight600" style="margin-top: 29px;">${{ gastos.total | thousandsPipe }}</div>
+          </div>
         </div>
-        <div class="col-12" style="margin-top: 56px;">
 
+        <div class="col-12 boton-factura">
+          <button type="button" class="btn btn-outline-primary btn-factura">
+            <mat-icon class="image-dashboard-descargar image-size-22"></mat-icon>
+            Descargar gastos
+          </button>
         </div>
+
+
       </div>
     </div>
     <div class="col-1 d-flex justify-content-end">
       <mat-divider vertical style="height: 100%;"></mat-divider>
     </div>
-    <div class="col-6">
+    <div class="col-7">
       <div class="row">
         <div class="col-12 titulo-cuadrante">
-          Facturas emitidas
+          Facturas recibidas
         </div>
-        <div class="col-12 d-flex justify-content-between" style="margin-top: 29px;">
-          <div class="texto-cuadrante"><span>{{ ingresos.facturas }}</span> facturas</div>
-          <div class="texto-hipertexto">Ver más</div>
+        <div class="col-12 d-flex justify-content-start" style="margin-top: 29px;">
+          <div class="texto-factura"><span class="titulo-cuadrante">{{ gastos.facturas }}</span> facturas</div>
         </div>
       </div>
       <div class="row">
-
+        <app-barras-emitidas 
+        [sizex]="550" [sizey]="230" [data]="dateValueWeek" color="#1D2640" [xposition]="20" 
+        [showDomain]="true" [barWidth]="20" [showLimits]="false" [showXLabels]="true" 
+        [showYLabels]="true" [border]="true" [margin]="marginBarChart" [general]="true" 
+        [isDynamicRange]="false" unit="$" [scale]="scale"></app-barras-emitidas>
       </div>
     </div>
   </div>

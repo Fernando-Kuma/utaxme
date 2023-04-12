@@ -29,14 +29,36 @@
         Descargar constancia
       </button>
   </div>
-  <div class="col-12" style="margin-top: 18px;">
+  <div class="col-12" style="margin-top: 30px;">
     <mat-divider></mat-divider>
   </div>
 </div>
-
 <div class="row">
-  <div class="col-12 titulo-cuadrante">
+  <div class="col-12 titulo-cuadrante" style="margin-top: 30px;">
     Base Gravable
   </div>
 
+  <div class="col-12 titulo-gatos">
+    Egresos vs Ingresos
+  </div>
+
+  <div class="col-12 texto-gatos">
+    ${{ ingresos.egresos | thousandsPipe }}<span style="color: #838383"> / ${{ ingresos.ingresos | thousandsPipe }}</span> 
+  </div>
+
+  <div class="col-12" style="margin-top: 10px;">
+    <app-velocimetro 
+    [sizex]="310" [size]="300" [sizey]="180" [ringWidth]="40" 
+    fontSize="14px"  [_value]="speedValue"
+    color="#0B112A" secondary="#EEF1F8" color-label="#0B112A" 
+    
+    ></app-velocimetro>
+  </div>
+
+  <div class="col-12">
+    <div class="cuadro-informacion">
+      <mat-icon class="image-dashboard-info image-size-22"></mat-icon>
+      Estas gastando el 60% del total de tu ingresos facturados
+    </div>
+  </div>
 </div>

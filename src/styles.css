@@ -177,13 +177,42 @@ body {
   background-position: center;
 }
 
-
 .image-download {
   background-image: url("src\assets\icon\download.svg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
 }
+
+.image-info {
+  background-image: url("src\assets\icon\info.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.image-document {
+  background-image: url("src\assets\icon\document.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.image-paginator-start-enabled {
+  background-image: url("src\assets\icon\paginator-end-enabled.svg");
+  background-size: 24px 24px;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: rotate(180deg);
+}
+
+.image-paginator-end-enabled {
+  background-image: url("src\assets\icon\paginator-end-enabled.svg");
+  background-size: 24px 24px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 
 .img-calendar{
   background-image: url("src\assets\icon\calendar-voz.svg");

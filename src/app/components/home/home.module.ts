@@ -6,12 +6,14 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { HeaderHomeModule } from 'src/app/shared/utils/header-home';
 import { HomeComponent } from './home.component';
 import { GraphicsModule } from 'src/app/graphics/graphics.module';
-import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
-/* import {MatNativeDateModule} from '@angular/material';
-import { MatMomentDateModule } from "@angular/material/datepicker"; */
+import { MatIconModule } from '@angular/material/icon';
+
+
 
 
 @NgModule({
@@ -25,10 +27,12 @@ import { MatMomentDateModule } from "@angular/material/datepicker"; */
     RouterModule,
     GraphicsModule,
     HeaderHomeModule,
-    MatDatepickerModule,
     MatFormFieldModule,
-    MatNativeDateModule, 
-    MatInputModule
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatIconModule
   ],
   exports: [
     MatDatepickerModule,

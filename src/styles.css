@@ -185,6 +185,20 @@ body {
   background-position: center;
 }
 
+.img-calendar{
+  background-image: url("src\assets\icon\calendar-voz.svg");
+  background-size: 15px 15px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.image-calendar-date-picker {
+  background-image: url("src\assets\icon\datepicker-calendar.svg");
+  background-size: 20px 20px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .image-invert-color {
   filter: invert(100%);
 }

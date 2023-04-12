@@ -157,7 +157,6 @@ export class BarrasEmitidasComponent implements AfterViewInit, OnInit, OnDestroy
 
   private create() {    
     this.removeTooltips();
-    console.log('xposition',this.xposition);
     this.X = d3.map(this.data, (d: DateValue) => d.date);
     this.Y = d3.map(this.data, (d: DateValue) => d.value);
     this.I = d3.range(this.X.length);
@@ -180,7 +179,6 @@ export class BarrasEmitidasComponent implements AfterViewInit, OnInit, OnDestroy
       yDomain = this.range; 
       //yDomain = [0, 110];
     }
-    console.log("Rango Barra:",this.range);
 
     const xType = d3.scaleTime;
     const yType = d3.scaleLinear;
@@ -536,7 +534,6 @@ export class BarrasEmitidasComponent implements AfterViewInit, OnInit, OnDestroy
     let widthSize
     this.svg.call(tip);
     if((this._scale == 'day' || this._scale == 'hour' || this.scale == 'minute') && !this.full){
-      console.log(this._scale)
       widthSize = 10
     }else{
       widthSize = this.barWidth

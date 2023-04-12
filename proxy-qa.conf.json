@@ -1,8 +1,0 @@
-{
-  "/smc-business-api": {
-    "target": "https://smc2devapi.suma2.mx:8080/smc-business-api",
-    "secure": false,
-    "changeOrigin": true,
-    "pathRewrite": { "^/smc-business-api": "" }
-  }
-}

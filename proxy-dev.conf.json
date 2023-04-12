@@ -1,0 +1,8 @@
+{
+  "/billerTicket-mobile": {
+    "target": "https://utaxon.com/billerTicket-mobile",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": { "^/billerTicket-mobile": "" }
+  }
+}

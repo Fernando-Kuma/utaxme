@@ -2,7 +2,13 @@ import { environment } from 'src/environments/environment';
 
 export const API = {
 
-  getWord: environment.api + 'wordwise/entries?limit=1&headword=',
+  datosFiscales: environment.apiFull + 'DatosFiscalesForm.htm',
+  cumplimiento: environment.apiFull + 'CumplimientoFiscalForm.htm',
+  ingresosEgresos: environment.apiFull + 'ReporteIngresosEgresosForm.htm',
+  CfdiGeneradosFilter: environment.apiFull+ 'CfdiGeneradosFilter.htm',
+  validaCliente: environment.apiFull + 'ValidaClienteUtaxmeForm.htm',
+
+  /* getWord: environment.api + 'wordwise/entries?limit=1&headword=',
   login: environment.api + 'utaxon/admin/find',
   dataBank: environment.api + 'utaxon/admin/dataBank',
   transaccion: environment.api + 'utaxon/pago/transaccion',
@@ -13,11 +19,7 @@ export const API = {
   catalogosProductos: environment.api + 'utaxon/catalogs/paquetes',
   register: environment.api + 'utaxon/admin/register',
     
-  CfdiGeneradosFilter: environment.apiDashboard+ 'CfdiGeneradosFilter.htm?',
-  datosFiscales: environment.apiDashboard + 'DatosFiscalesForm.htm?',
-  cumplimiento: environment.apiDashboard + 'CumplimientoFiscalForm.htm',
-  ingresosEgresos: environment.apiDashboard + 'ReporteIngresosEgresosForm.htm',
-  validaCliente: environment.apiDashboard + 'ValidaClienteUtaxmeForm.htm',
+  
   
   CfdiGeneradosForm: environment.apiCfdi + 'CfdiGeneradosForm.htm',
   catalogosSatForm: environment.apiCfdi + 'CatalogosSatForm.htm',
@@ -34,7 +36,7 @@ export const API = {
   getClientesList: environment.apiCfdiRest + 'clientes/frecuentes/list',
   saveClientes: environment.apiCfdiRest + 'clientes/frecuentes/save',
   deleteClientes: environment.apiCfdiRest + 'clientes/frecuentes/delete',
-  downloadReporteValidacionFacturasForm: environment.apiCfdiRest + 'DownloadReporteValidacionFacturasForm.htm',
+  downloadReporteValidacionFacturasForm: environment.apiCfdiRest + 'DownloadReporteValidacionFacturasForm.htm', */
   
 
 }

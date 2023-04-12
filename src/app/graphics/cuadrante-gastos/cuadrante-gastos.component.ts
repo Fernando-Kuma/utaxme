@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { DateValue } from 'src/app/shared/model/date-value';
 import { MarginConf } from 'src/app/shared/model/margin-conf';
+import { DashboardService } from 'src/app/shared/service/dashboard.service';
 
 @Component({
   selector: 'app-cuadrante-gastos',
@@ -42,10 +43,26 @@ export class CuadranteGastosComponent implements OnInit {
 
   scale: 'week' | 'day'  = 'week' ;
 
-  constructor() { }
+  constructor(private dashboardService: DashboardService) { }
 
   ngOnInit(): void {
-    console.log(this.gastos)
+    this.obtenerDato()
+  }
+
+  obtenerDato(){
+    let request = {
+      "rfc": "OATP9611061C4",
+      "anio": "2023",
+      "mes": "04"
+    }
+    this.dashboardService.obtenerIngresosGastos(request).subscribe({
+      next: (result) => {
+        console.log(result)
+      },
+      error: (_) => {
+        console.log(_)
+      }
+    });
   }
 
 }

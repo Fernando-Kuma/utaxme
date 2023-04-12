@@ -7,6 +7,8 @@ export const environment = {
   apiExcel: '/billerTicket-mobile/',
   api: '/',
 
+  apiFull: '/billerTicket-mobile/',
+
   smcAppUser: 'app-web',
   smcAppPass: 'password123',
 };

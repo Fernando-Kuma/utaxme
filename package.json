@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "~12.1.0",
     "@angular/router": "~12.1.0",
     "@popperjs/core": "^2.11.7",
+    "array-paginator": "^2.0.0",
     "boostrap": "^2.0.0",
     "bootstrap": "^5.2.3",
     "d3": "^7.8.4",

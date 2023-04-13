@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DashboardService } from 'src/app/shared/service/dashboard.service';
 
 @Component({
   selector: 'app-cuadrante-fiscales',
@@ -7,14 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CuadranteFiscalesComponent implements OnInit {
 
-
-datosFiscales:any = {
-    regimen: 'Actividades Empresariales con Ingresos a través de Plataformas Tecnológicas',
-    razon: 'Alix Perez Perez',
-    rfc: 'Alix Perez Perez',
-    correo: 'alezrr@mailito.com',
-    direccion: 'Constitución 401, San Pablo Chimalpa C.P. 09455, Cuajimalpa de Morelos, CDMX'
-  }
+  response: any;
+  datFiscal: any = {
+    rfc: 'OATP9611061C4',
+  };
+  
   
   ingresos:any = {
     egresos: 1990,
@@ -25,12 +23,25 @@ datosFiscales:any = {
     }]
   }
 
-
   speedValue: number = 6;
 
-  constructor() { }
+  constructor(
+    private dashboardService: DashboardService,
+  ) { }
 
   ngOnInit(): void {
+    this.getDatosFiscales();
+  }
+
+  getDatosFiscales(): void {
+    this.dashboardService.obtenerDatosFiscales(this.datFiscal).subscribe((resp) => {
+      this.response = resp;
+      /* console.log('::RESP Datos Fiscales', this.response); */
+    },
+        (_error) => {
+          console.log("::Entro al error Datos fiscales");
+        }
+        );
   }
 
 }

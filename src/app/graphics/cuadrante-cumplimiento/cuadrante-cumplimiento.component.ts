@@ -15,6 +15,7 @@ export class CuadranteCumplimientoComponent implements OnInit {
     mes: 4
   };
 
+  public tipoDeclaracion: string = 'Mensual';
   public response: any;
    
 

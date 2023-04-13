@@ -50,6 +50,15 @@ body {
   background-repeat: no-repeat;
 }
 
+.image-toolbar-second{
+  height: 60px;
+  width: 140px;
+  background-image: url("src\assets\img\Logo-UtaxBlue.png");
+  background-size: 140px 45px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .display-align-center{
   display: flex;
   align-items: center;
@@ -74,8 +83,85 @@ body {
   padding: 0 !important;
 }
 
+/* Botones */
 
+.btn-utaxme {
+  background-color: #285ced;
+  border: 1px solid #285ced;
+  border-radius: 2px !important;
+  font-size: 1rem;
+  color: #ffffff;
+  width: 100%;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
 
+.btn-utaxme:disabled {
+  background-color: #b1b3b3;
+  border: 1px solid #b1b3b3;
+  border-radius: 2px !important;
+  font-size: 1rem;
+  color: #ffffff !important;
+  width: 100%;
+}
+
+.btn-utaxme:disabled:active {
+  outline-color: none !important;
+  box-shadow: none !important;
+}
+
+.btn-utaxme-secondary:active,
+.btn-utaxme-secondary:focus,
+.btn-utaxme-secondary:focus:active {
+  outline-color: #285ced !important;
+  opacity: 0.7;
+}
+
+.btn-utaxme:hover {
+  color: #ffffff !important;
+}
+
+.btn-utaxme:active,
+.btn-utaxme:focus,
+.btn-utaxme:focus:active {
+  outline-color: #285ced;
+  box-shadow: 0px 5px 7px #285ced;
+}
+
+.btn-utaxme-secondary {
+  background-color: #ffffff;
+  border: 2px solid #285ced;
+  border-radius: 2px !important;
+  font-size: 1rem;
+  color: #285ced;
+  width: 100%;
+  /*box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);*/
+}
+
+.btn-utaxme-secondary:hover {
+  color: #285ced !important;
+}
+
+.btn-utaxme-secondary:disabled {
+  border: 1px solid #b1b3b3;
+  color: #b1b3b3 !important;
+}
+
+.btn-utaxme-danger {
+  background-color: #ffffff;
+  border: 2px solid #f95a36 !important;
+  border-radius: 2px !important;
+  font-size: 1rem;
+  color: #f95a36;
+  width: 100%;
+}
+
+.btn-utaxme-danger:hover {
+  background-color: #ffffff;
+  color: #f95a36 !important;
+}
+.btn-utaxme-danger:focus {
+  box-shadow: 0 0 0 0.25rem rgb(249 90 54 / 25%);
+}
 
 /* Iconos */
 

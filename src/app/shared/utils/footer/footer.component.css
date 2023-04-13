@@ -1,0 +1,55 @@
+mat-toolbar{
+    position: absolute;    
+    bottom: 0;
+    z-index: 1000;
+    height: 60px;
+    display: flex;
+    background-color: #122D4F!important;
+    justify-content: space-between; 
+}
+
+.ml30{
+    margin-left: 30px;
+}
+
+.ml10{
+    margin-left: 10px;
+}
+
+.ml30{
+    margin-right: 30px;
+}
+
+@media(max-width: 767px){
+    mat-toolbar{
+        flex-flow: column;
+        height: 40px;
+    }
+
+    .ml30{
+        display: none;
+    }
+}
+
+
+
+.image-headphones {
+    background-image: url("src\assets\icon\headphones.svg");
+    background-size: 17px 23px;
+  }
+
+.btn-default-totalplay {
+    background-color: #122D4F;
+    color: #ffffff;
+    border-radius: 1px !important;
+    border: 2px solid #7b8aa0 !important;
+    font-size: 12px;
+  }
+  
+  .btn-help-totalplay {
+    background-color: #122D4F;
+    color: #ffffff;
+    font-size: 11px;
+    font-style: normal;
+    letter-spacing: 2px;
+  }

@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from 'src/app/components/home/home.component';
 import { NAV } from './navegacion';
 import { DashboardComponent } from 'src/app/components/home/dashboard/dashboard.component';
+import { LoginComponent } from 'src/app/components/auth/login/login.component';
 
 export const appRoutes: Routes = [
   {
@@ -22,7 +23,7 @@ export const appRoutes: Routes = [
   {
     path: NAV.login,
     pathMatch: 'full',
-    component: HomeComponent,
+    component: LoginComponent,
   },
   {
     path: NAV.activation,

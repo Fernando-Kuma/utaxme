@@ -8,14 +8,6 @@ import { DashboardService } from 'src/app/shared/service/dashboard.service';
 })
 export class CuadranteCumplimientoComponent implements OnInit {
 
-  datosFiscales:any = {
-    tipoDec: 'Mensual',
-    mes: 'Marzo',
-    fechaA: 2023,
-    estatus: 'Presentada',
-    montoPagar: 648.00,
-    recargosMultas: 0
-  }
 
   datFiscal: any = {
     rfc: 'OATP9611061C4',
@@ -37,7 +29,7 @@ export class CuadranteCumplimientoComponent implements OnInit {
   getCumplimientoFiscal(): void {
     this.dashboardService.obtenerCumplimientoFiscal(this.datFiscal).subscribe((resp) => {
       this.response = resp;
-      console.log('::RESP Cumplimiento', this.response);
+      /* console.log('::RESP Cumplimiento', this.response); */
     },
         (_error) => {
           console.log("::Entro al error Cumplimiento");

@@ -11,6 +11,7 @@ import { CuadranteFiscalesComponent } from './cuadrante-fiscales/cuadrante-fisca
 
 import {MatDividerModule} from '@angular/material/divider';
 import {MatTableModule} from '@angular/material/table';
+import {MatTabsModule} from '@angular/material/tabs';
 import { PagerModule } from '../shared/utils/pager';
 
 import {MatButtonModule} from '@angular/material/button';
@@ -37,7 +38,8 @@ import { ThousandsPipe } from '../shared/pipe/thousands.pipe';
     MatTableModule,
     PagerModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatTabsModule
   ],
   exports: [
     BarrasEmitidasComponent,

@@ -14,10 +14,14 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
+import { RecuperacionContrasenaComponent } from './recuperacion-contrasena/recuperacion-contrasena.component';
+import { NuevaContrasenaComponent } from './nueva-contrasena/nueva-contrasena.component';
 
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent,
+    RecuperacionContrasenaComponent,
+    NuevaContrasenaComponent
   ],
   imports: [
     CommonModule,

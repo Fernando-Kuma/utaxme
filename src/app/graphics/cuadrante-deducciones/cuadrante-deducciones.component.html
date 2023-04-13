@@ -7,15 +7,9 @@
     </div>
 
     <div class="col-12 d-flex " style="margin-top: 10px;">
-      <div class="respuesta-cuadrante" style="padding-right: 20px;">Personales </div>
-      <div class="texto-cuadrante">Autorizadas</div>
-    </div>
-
-    <div class="col-12" style="margin-top: 13px;">
-      <mat-divider></mat-divider>
-    </div>
-
-    <table mat-table [dataSource]="listaResultado" class="table table-responsive table-bordered table-striped"
+      <mat-tab-group animationDuration="0ms">
+        <mat-tab label="Personales">
+          <table mat-table [dataSource]="listaResultado" class="table table-responsive table-bordered table-striped"
       style="border: solid 1px #ffffff; table-layout:fixed; padding: 0; margin: 0;">
       <ng-container matColumnDef="clave">
         <th mat-header-cell *matHeaderCellDef class="subtitulo-cuadrante center-text" style="width: 96px;"> Clave </th>
@@ -48,30 +42,26 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-
-
-
     <div class="col-12" style="margin-top: 13px;">
       <mat-divider></mat-divider>
     </div>
-
-
-
     <div class="col-12" *ngIf="listaResultado?.length> 0">
-
       <div class="col-6"
         style="margin: 0; padding: 0; font-weight: 600; font-size: 10px; letter-spacing: 3px; color: #7B8AA0; padding-top: 7px;">
         Mostrando pág {{ this.pager?.current }} de {{ this.pager?.total }} de
         {{ this.pager?.data.length }} resultados
       </div>
-
       <div class="col 6">
         <app-pager [pageModel]="pager" (paged)="onPaged($event)" style="float: right;"></app-pager>
       </div>
-
     </div>
+        </mat-tab>
+        
 
+        <mat-tab label="Autorizadas">
 
-
+        </mat-tab>
+      </mat-tab-group>
+    </div>
   </div>
 </div>

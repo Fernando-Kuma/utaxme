@@ -5,6 +5,8 @@ import { DashboardComponent } from 'src/app/components/home/dashboard/dashboard.
 import { LoginComponent } from 'src/app/components/auth/login/login.component';
 import { NuevaContrasenaComponent } from 'src/app/components/auth/recuperacion/nueva-contrasena/nueva-contrasena.component';
 import { RecuperacionContrasenaComponent } from 'src/app/components/auth/recuperacion/recuperacion-contrasena/recuperacion-contrasena.component';
+import { CodigoRecuperacionComponent } from 'src/app/components/auth/recuperacion/codigo-recuperacion/codigo-recuperacion.component';
+
 
 export const appRoutes: Routes = [
   {
@@ -21,6 +23,11 @@ export const appRoutes: Routes = [
     path: NAV.recuperarContrasena,
     pathMatch: 'full',
     component: RecuperacionContrasenaComponent,
+  },
+  {
+    path: NAV.codigoRecuperacion,
+    pathMatch: 'full',
+    component: CodigoRecuperacionComponent,
   },
   {
     path: NAV.nuevaContrasena,

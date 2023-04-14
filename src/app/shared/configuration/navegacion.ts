@@ -3,6 +3,7 @@ export const NAV = {
   descargas: 'descargas',
   login: 'login',
   recuperarContrasena: 'recuperar-contrasena',
+  codigoRecuperacion: 'codigo-recuperacion',
   nuevaContrasena: 'nueva-contrasena',
   proceso: 'proceso',
   activation: 'activation',

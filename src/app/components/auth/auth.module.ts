@@ -16,12 +16,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { RecuperacionContrasenaComponent } from './recuperacion/recuperacion-contrasena/recuperacion-contrasena.component';
 import { NuevaContrasenaComponent } from './recuperacion/nueva-contrasena/nueva-contrasena.component';
+import { CodigoRecuperacionComponent } from './recuperacion/codigo-recuperacion/codigo-recuperacion.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
     LoginComponent,
     RecuperacionContrasenaComponent,
-    NuevaContrasenaComponent
+    NuevaContrasenaComponent,
+    CodigoRecuperacionComponent,
+    
   ],
   imports: [
     CommonModule,
@@ -37,7 +41,9 @@ import { NuevaContrasenaComponent } from './recuperacion/nueva-contrasena/nueva-
     MatInputModule,
     MatStepperModule,
     MatRadioModule,
-    MatDialogModule
+    MatDialogModule,
+    SharedModule
   ]
+  
 })
 export class AuthModule { }

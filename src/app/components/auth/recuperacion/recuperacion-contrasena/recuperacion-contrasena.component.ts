@@ -29,7 +29,7 @@ export class RecuperacionContrasenaComponent implements OnInit {
 
   createForm() {
     this.form = this.formBuilder.group({
-      email: [null, [Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9._-]+\.[a-z]{2,4}$")]]
+    email: [null, [Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9._-]+\.[a-z]{1,4}$")]]
     });
   }
 
@@ -43,6 +43,15 @@ export class RecuperacionContrasenaComponent implements OnInit {
 
   cancel() {
     this.router.navigateByUrl(NAV.nuevaContrasena); 
+  }
+
+
+  getError(value: string){
+    if (this.form.get(value).errors?.required) {
+      return 'Este campo es requerido';
+    } else if(this.form.get(value).errors?.pattern){
+      return 'El formato del correo no es valido';
+    } 
   }
 
 }

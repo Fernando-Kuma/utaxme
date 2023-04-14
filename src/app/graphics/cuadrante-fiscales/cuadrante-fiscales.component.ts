@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { DatosFiscales } from 'src/app/shared/model/dashboard.mode';
 import { AuthService } from 'src/app/shared/service/auth.service';
 import { DashboardService } from 'src/app/shared/service/dashboard.service';
 
@@ -9,31 +10,20 @@ import { DashboardService } from 'src/app/shared/service/dashboard.service';
 })
 export class CuadranteFiscalesComponent implements OnInit {
 
-  _consultaFecha: any;
-  @Input() set consultaFecha(val: any) {
-    this._consultaFecha = val;
-    this.request.anio= this._consultaFecha?.anio,
-    this.request.mes= this._consultaFecha?.mes,
+  _consultaRequest: any;
+  @Input() set consultaRequest(val: any) {
+    this._consultaRequest = val;
     this.obtenerIngresosEngresos();
   }
-  request: any;
 
-  response: any;
-  datFiscal: any = {
-    rfc: 'OATP9611061C4',
-  };
+  response: DatosFiscales;
   
-  
-  ingresos:any = {
-    egresos: 1990,
-    ingresos: 14697,
-    data: [{
-      egresos: 40,
-      ingresos: 60,
-    }]
+  baseGravable:any = {
+    egresos: 0,
+    ingresos: 0,
   }
 
-  speedValue: number = 6;
+  speedValue: any;
 
   constructor(
     private dashboardService: DashboardService,
@@ -41,33 +31,49 @@ export class CuadranteFiscalesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.request = {
-        rfc: 'OATP9611061C4',
-        anio: this._consultaFecha?.anio,
-        mes: this._consultaFecha?.mes
-    }
-    this.obtenerDatosFiscales();
-    this.obtenerIngresosEngresos();
+    this.calcularSpeed()
+    this.obtenerDatosFiscales()
   }
 
   obtenerDatosFiscales(): void {
-    this.dashboardService.obtenerDatosFiscales(this.datFiscal).subscribe((resp) => {
-      this.response = resp;
+    this.dashboardService.obtenerDatosFiscales(this._consultaRequest).subscribe((resp) => {
+      this.response = resp.datosFiscales;
       /* console.log('::RESP Datos Fiscales', this.response); */
-    },
-        (_error) => {
-          console.log("::Entro al error Datos fiscales");
-        }
-        );
+    },(_error) => {
+      console.log("::Entro al error Datos fiscales");
+    }
+    );
   }
 
   obtenerIngresosEngresos(): void {
-    this.dashboardService.obtenerIngresosGastos(this.request).subscribe(
+    this.dashboardService.obtenerIngresosGastos(this._consultaRequest).subscribe(
       (response) => {
         console.log('Res gatos: ', response);
+        this.baseGravable.egresos = 0
+        this.baseGravable.ingresos = 0
+        if(response.listaReporteIngresosEgresosBean.find((element) => element.tipoComprobante === 'GASTOS')){
+          this.baseGravable.egresos = response.listaReporteIngresosEgresosBean.find((element) => element.tipoComprobante === 'GASTOS').total
+        }
+        if(response.listaReporteIngresosEgresosBean.find((element) => element.tipoComprobante === 'INGRESOS')){
+          this.baseGravable.ingresos = response.listaReporteIngresosEgresosBean.find((element) => element.tipoComprobante === 'INGRESOS').total
+        }
+
+        this.calcularSpeed()
       },(_error) => {
         console.log("Error: ", _error);
-      });
+    });
+      
+  }
+
+  calcularSpeed(){
+    if(this.baseGravable.ingresos > this.baseGravable.egresos){
+      console.log('true')
+      this.speedValue = Number(((this.baseGravable.egresos / this.baseGravable.ingresos) * 10).toFixed(3))
+    }else{
+      console.log('false')
+      this.speedValue = 0 
+    }
+    console.log(Number(this.speedValue))
   }
 
 }

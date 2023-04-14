@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { NAV } from 'src/app/shared/configuration/navegacion';
 import { Auth, User } from 'src/app/shared/model/auth-model';
 import { AuthService } from 'src/app/shared/service/auth.service';
+import { DashboardService } from 'src/app/shared/service/dashboard.service';
 
 
 @Component({
@@ -31,7 +32,8 @@ export class LoginComponent implements OnInit {
     private dialog: MatDialog,
     private formBuilder: FormBuilder, 
     private router: Router,
-    private authService: AuthService) {}
+    private authService: AuthService,
+    private dashboardService: DashboardService) {}
 
   ngOnInit(): void {
     this.authService.getIp();
@@ -82,8 +84,8 @@ export class LoginComponent implements OnInit {
             this.authService.getIp()
             response.nombre = response.nombre.toLowerCase()
             response.apellidos = response.apellidos.toLowerCase()
-            sessionStorage.setItem('admin-user', JSON.stringify(response));
-            this.router.navigateByUrl(NAV.dashboard);
+            //response.email = this._user.email
+            this.validarCliente(response)
           }else{
             this.selectMessageError("El usuario no se encuentra registrado en el sistema");
           }
@@ -98,6 +100,37 @@ export class LoginComponent implements OnInit {
       });
       
     } 
+  }
+
+  validarCliente(usuario: any){
+    let email = {
+      username: this._user.email
+    }
+    this.authService.payment(email).subscribe({
+      next: (response) => {
+        console.log(response)
+      },
+      error: (_) => {
+          console.log("Error: ", _)
+      }
+    });
+
+    let request = {
+      folio: usuario.folio
+    }
+    this.dashboardService.validarCliente(request).subscribe({
+      next: (response) => {
+        if(response != null ){
+          usuario.cliente = response
+          //sessionStorage.setItem('cliente', JSON.stringify(response));
+          this.router.navigateByUrl(NAV.dashboard);
+          sessionStorage.setItem('admin-user', JSON.stringify(usuario));
+        }
+      },
+      error: (_) => {
+        console.log("Error: ", _)
+      }
+    });
   }
 
   enterContrato(){

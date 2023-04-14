@@ -11,6 +11,8 @@ export class Usuario {
   originId?: string;
   folio?: string;
   databank?: Databank;
+  
+  cliente?: Cliente;
 }
 
 export class Databank {
@@ -20,4 +22,14 @@ export class Databank {
   mesExpira?: number;
   cvt?: string;
   token?: string
+}
+
+export class Cliente{
+    rfc?: string;
+    folioUtaxme?: string;
+    clientId?: number;
+    razonSocial?: string;
+    userName?: string;
+    celular?: number;
+
 }

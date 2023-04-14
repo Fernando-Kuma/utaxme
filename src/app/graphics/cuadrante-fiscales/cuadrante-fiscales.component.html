@@ -5,23 +5,23 @@
 
   <div class="col-12" style="margin-top: 45px;">
     <div class="subtitulo-cuadrante">REGIMEN FISCAL</div>
-    <div class="respuesta-cuadrante">{{ response.datosFiscales.regimenFiscal }}</div>
+    <div class="respuesta-cuadrante">{{ response?.regimenFiscal }}</div>
   </div>
   <div class="col-12" style="margin-top: 29px;">
     <div class="subtitulo-cuadrante">RAZÓN SOCIAL</div>
-    <div class="respuesta-cuadrante">{{ response.datosFiscales.razonSocial }}</div>
+    <div class="respuesta-cuadrante">{{ response?.razonSocial }}</div>
   </div>
   <div class="col-12" style="margin-top: 29px;">
     <div class="subtitulo-cuadrante">RFC</div>
-    <div class="respuesta-cuadrante">{{ response.datosFiscales.rfc }}</div>
+    <div class="respuesta-cuadrante">{{ response?.rfc }}</div>
   </div>
   <div class="col-12" style="margin-top: 29px;">
     <div class="subtitulo-cuadrante">CORREO ELECTRÓNICO</div>
-    <div class="respuesta-cuadrante">{{ response.datosFiscales.emailPrincipal }}</div>
+    <div class="respuesta-cuadrante">{{ response?.emailPrincipal }}</div>
   </div>
   <div class="col-12" style="margin-top: 29px;">
     <div class="subtitulo-cuadrante">DIRECCIÓN FISCAL</div>
-    <div class="respuesta-cuadrante">{{ response.datosFiscales.calle}} {{response.datosFiscales.numeroExterior}}, {{response.datosFiscales.colonia}} C.P. {{response.datosFiscales.cp}}, {{response.datosFiscales.municipio}}, {{response.datosFiscales.ciudad}}</div>
+    <div class="respuesta-cuadrante">{{ response?.calle}} {{response?.numeroExterior}}, {{response?.colonia}} C.P. {{response?.cp}}, {{response?.municipio}}, {{response?.ciudad}}</div>
   </div>
   <div class="col-12 d-flex justify-content-center" style="margin-top: 29px;">
       <button mat-fab extended class="btn-datos-fiscales" style="width: 283px;">
@@ -43,13 +43,13 @@
   </div>
 
   <div class="col-12 texto-gatos">
-    ${{ ingresos.egresos | thousandsPipe }}<span style="color: #838383"> / ${{ ingresos.ingresos | thousandsPipe }}</span> 
+    ${{ baseGravable.egresos | thousandsPipe }}<span style="color: #838383"> / ${{ baseGravable.ingresos | thousandsPipe }}</span> 
   </div>
 
   <div class="col-12" style="margin-top: 10px;">
     <app-velocimetro 
     [sizex]="310" [size]="300" [sizey]="180" [ringWidth]="40" 
-    fontSize="14px"  [_value]="speedValue"
+    fontSize="14px"  [value]="speedValue"
     color="#0B112A" secondary="#EEF1F8" color-label="#0B112A" 
     
     ></app-velocimetro>

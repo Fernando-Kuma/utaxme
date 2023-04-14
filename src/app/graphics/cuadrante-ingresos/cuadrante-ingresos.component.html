@@ -15,10 +15,38 @@
             <div class="texto-cuadrante" style="margin-top: 29px;">ISR Retenido</div>
           </div>
           <div class="col-5 final-texto m0p0">
-            <div class="texto-cuadrante weight600" style="margin-top: 45px;">${{ ingresos.subtotal | thousandsPipe }}</div>
-            <div class="texto-cuadrante weight600" style="margin-top: 29px;">${{ ingresos.ivaT | thousandsPipe }}</div>
-            <div class="texto-cuadrante weight600" style="margin-top: 29px;">${{ ingresos.ivaR | thousandsPipe }}</div>
-            <div class="texto-cuadrante weight600" style="margin-top: 29px;">${{ ingresos.isrR | thousandsPipe }}</div>
+            <div class="texto-cuadrante weight600" style="margin-top: 45px;">
+              <ng-container *ngIf="ingresosPeriodo?.subtotal == 0">
+                ${{ ingresosPeriodo?.subtotal }}
+              </ng-container>
+              <ng-container *ngIf="ingresosPeriodo?.subtotal > 0">
+                ${{ ingresosPeriodo?.subtotal | thousandsPipe }}
+              </ng-container>
+            </div>
+            <div class="texto-cuadrante weight600" style="margin-top: 29px;">
+              <ng-container *ngIf="ingresosPeriodo?.iva == 0">
+                ${{ ingresosPeriodo?.iva }}
+              </ng-container>
+              <ng-container *ngIf="ingresosPeriodo?.iva > 0">
+                ${{ ingresosPeriodo?.iva | thousandsPipe }}
+              </ng-container>
+            </div>
+            <div class="texto-cuadrante weight600" style="margin-top: 29px;">
+              <ng-container *ngIf="ingresosPeriodo?.ivaRetenido == 0">
+                ${{ ingresosPeriodo?.ivaRetenido }}
+              </ng-container>
+              <ng-container *ngIf="ingresosPeriodo?.ivaRetenido > 0">
+                ${{ ingresosPeriodo?.ivaRetenido | thousandsPipe }}
+              </ng-container>
+            </div>
+            <div class="texto-cuadrante weight600" style="margin-top: 29px;">
+              <ng-container *ngIf="ingresosPeriodo?.isrRetenido == 0">
+                ${{ ingresosPeriodo?.isrRetenido }}
+              </ng-container>
+              <ng-container *ngIf="ingresosPeriodo?.isrRetenido > 0">
+                ${{ ingresosPeriodo?.isrRetenido | thousandsPipe }}
+              </ng-container>
+            </div>
           </div>
         </div>
 
@@ -31,7 +59,14 @@
             <div class="texto-total" style="margin-top: 26px;">Total de Ingresos</div>
           </div>
           <div class="col-5 final-texto m0p0">
-            <div class="texto-cuadrante weight600" style="margin-top: 26px;">${{ingresos.total | thousandsPipe}}</div>
+            <div class="texto-cuadrante weight600" style="margin-top: 26px;">
+              <ng-container *ngIf="ingresosPeriodo?.total == 0">
+                ${{ingresosPeriodo?.total}}
+              </ng-container>
+              <ng-container *ngIf="ingresosPeriodo?.total > 0">
+                ${{ingresosPeriodo?.total | thousandsPipe}}
+              </ng-container>
+            </div>
           </div>
         </div>
 
@@ -46,7 +81,7 @@
           Facturas emitidas
         </div>
         <div class="col-12 d-flex justify-content-between" style="margin-top: 29px;">
-          <div class="texto-factura"><span class="titulo-cuadrante">{{ ingresos.facturas }}</span> facturas</div>
+          <div class="texto-factura"><span class="titulo-cuadrante">{{ ingresosPeriodo?.facturas }}</span> facturas</div>
           <div class="texto-hipertexto">Ver más</div>
         </div>
       </div>

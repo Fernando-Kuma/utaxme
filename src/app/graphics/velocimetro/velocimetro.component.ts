@@ -25,13 +25,10 @@ export class VelocimetroComponent implements AfterViewInit, OnInit {
   @Input() pointerLengthPercent: number = 0.2;
   @Input() positionText: number[]= [230, 155, 48, 155];
   @Input() fontSize: string = "17px";
-
-  @Input() _value: number = 0;
-
-  //_value: number = 5.7;
+  _value: number = 0;
   @Input() set value(val: number) {
-    //this._value = val;
-    //this.update();
+    this._value = val;
+    this.update();
   }
 
   @Input() margin?: MarginConf = {
@@ -247,7 +244,7 @@ export class VelocimetroComponent implements AfterViewInit, OnInit {
           let pg = this.svg?.append('g').data([lineData])
             .attr('class', 'pointer')
             .style("fill", this.color)
-            .attr('transform', 'translate(' + (r+2) + ',' + (r-15) + ')');
+            .attr('transform', 'translate(' + (r) + ',' + (r-10) + ')');
 
 
           this.svg

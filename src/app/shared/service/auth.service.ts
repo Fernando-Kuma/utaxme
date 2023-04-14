@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { API } from '../configuration/endpoints';
-import { Constantes } from '../configuration/date-graph';
+import { Constantes } from '../helper/date-graph';
 import { Usuario } from '../model/usuario.model';
 import { Router } from '@angular/router';
 import { NAV } from '../configuration/navegacion';
@@ -20,6 +20,16 @@ export class AuthService {
   login(request: any): Observable<any> {
     return this.http
       .post<any>(`${API.login}`, request)
+      .pipe(
+        catchError((e) => {
+          return throwError(e);
+        })
+      );
+  }
+
+  payment(request: any): Observable<any> {
+    return this.http
+      .post<any>(`${API.payment}`, request)
       .pipe(
         catchError((e) => {
           return throwError(e);

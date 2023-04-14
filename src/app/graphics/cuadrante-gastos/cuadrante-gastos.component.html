@@ -12,8 +12,14 @@
             <div class="texto-cuadrante" style="margin-top: 29px;">IVA</div>
           </div>
           <div class="col-5 final-texto m0p0">
-            <div class="texto-cuadrante weight600" style="margin-top: 45px;">${{ gastos.subtotal | thousandsPipe }}</div>
-            <div class="texto-cuadrante weight600" style="margin-top: 29px;">${{ gastos.iva | thousandsPipe }}</div>
+            <div class="texto-cuadrante weight600" style="margin-top: 45px;">$
+              <ng-container *ngIf="gastosPeriodo?.subtotal == 0">{{ gastosPeriodo?.subtotal }}</ng-container>
+              <ng-container *ngIf="gastosPeriodo?.subtotal > 0">{{ gastosPeriodo?.subtotal | thousandsPipe }}</ng-container>
+            </div>
+            <div class="texto-cuadrante weight600" style="margin-top: 29px;">$
+              <ng-container *ngIf="gastosPeriodo?.iva == 0">{{ gastosPeriodo?.iva }}</ng-container>
+              <ng-container *ngIf="gastosPeriodo?.iva > 0">{{ gastosPeriodo?.iva | thousandsPipe }}</ng-container>
+            </div>
           </div>
         </div>
 
@@ -25,7 +31,10 @@
             <div class="texto-total" style="margin-top: 29px;">Total de Gastos</div>
           </div>
           <div class="col-5 final-texto m0p0">
-            <div class="texto-cuadrante weight600" style="margin-top: 29px;">${{ gastos.total | thousandsPipe }}</div>
+            <div class="texto-cuadrante weight600" style="margin-top: 29px;">$
+              <ng-container *ngIf="gastosPeriodo?.total == 0">{{ gastosPeriodo?.total }}</ng-container>
+              <ng-container *ngIf="gastosPeriodo?.total > 0">{{ gastosPeriodo?.total | thousandsPipe }}</ng-container>
+            </div>
           </div>
         </div>
 
@@ -48,7 +57,7 @@
           Facturas recibidas
         </div>
         <div class="col-12 d-flex justify-content-start" style="margin-top: 29px;">
-          <div class="texto-factura"><span class="titulo-cuadrante">{{ gastos.facturas }}</span> facturas</div>
+          <div class="texto-factura"><span class="titulo-cuadrante">{{ gastosPeriodo?.facturas }}</span> facturas</div>
         </div>
       </div>
       <div class="row">

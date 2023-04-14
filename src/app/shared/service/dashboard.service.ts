@@ -12,6 +12,16 @@ export class DashboardService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
+  validarCliente(request: any): Observable<any> {
+    return this.http
+      .post<any>(`${API.validaCliente}?folioUtaxme=${request.folio}`, request)
+      .pipe(
+        catchError((e) => {
+          return throwError(e);
+        })
+      );
+  }
+  
   obtenerDatosFiscales(request: any): Observable<any> {
     return this.http
       .post<any>(`${API.datosFiscales}?rfc=${request.rfc}`, request)

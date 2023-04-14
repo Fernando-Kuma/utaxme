@@ -46,7 +46,7 @@ export class HeaderHomeComponent implements OnInit {
   }
 
   abrirModuloAyuda(){
-    this.router.navigateByUrl(NAV.login);
+    //this.router.navigateByUrl(NAV.login);
   }
 
 }

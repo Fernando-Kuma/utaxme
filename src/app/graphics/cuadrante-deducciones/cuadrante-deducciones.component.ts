@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Paginator } from 'array-paginator';
 
 export interface PeriodicElement {
@@ -123,6 +123,15 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./cuadrante-deducciones.component.css'],
 })
 export class CuadranteDeduccionesComponent implements OnInit {
+
+  _consultaRequest: any;
+  @Input() set consultaRequest(val: any) {
+    this._consultaRequest = val;
+    //this.obtenerIngresosEngresos();
+  }
+
+  request: any;
+
   listaResultado = ELEMENT_DATA;
   displayedColumns: string[] = ['clave', 'deduccion', 'requisitos', 'detalle'];
   public pager: any;
@@ -130,6 +139,7 @@ export class CuadranteDeduccionesComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
+    
     this.paginador(this.listaResultado);
   }
 

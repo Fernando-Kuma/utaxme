@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import * as moment from 'moment';
+import { ComprobantePeriodo } from 'src/app/shared/model/dashboard.mode';
 import { DateValue } from 'src/app/shared/model/date-value';
 import { MarginConf } from 'src/app/shared/model/margin-conf';
 import { DashboardService } from 'src/app/shared/service/dashboard.service';
@@ -11,27 +12,27 @@ import { DashboardService } from 'src/app/shared/service/dashboard.service';
 })
 export class CuadranteGastosComponent implements OnInit {
 
-  gastos:any = {
-    subtotal: 1715.00,
-    iva: 274.00,
-    total: 1990.00,
-    facturas: 6,
-    data: []
+  _consultaRequest: any;
+  @Input() set consultaRequest(val: any) {
+    this._consultaRequest = val;
+    this.obtenerDato();
   }
 
+  gastosPeriodo: ComprobantePeriodo;
+
   dateValueWeek: Array<DateValue> = [
-    { date: new Date(moment().set({ 'minute': 0, 'second': 0, 'millisecond': 0}).format()), value: 20 },
-    { date: new Date(moment().set({'minute': 0, 'second': 0, 'millisecond': 0}).subtract(1, 'days').format()), value: 350 },
-    { date: new Date(moment().set({'minute': 0, 'second': 0, 'millisecond': 0}).subtract(2, 'days').format()), value: 830 },
-    { date: new Date(moment().set({ 'minute': 0, 'second': 0, 'millisecond': 0}).subtract(3, 'days').format()), value: 530 },
-    { date: new Date(moment().set({ 'minute': 0, 'second': 0, 'millisecond': 0}).subtract(4, 'days').format()), value: 360 },
-    { date: new Date(moment().set({ 'minute': 0, 'second': 0, 'millisecond': 0}).subtract(5, 'days').format()), value: 830 },
-    { date: new Date(moment().set({ 'minute': 0, 'second': 0, 'millisecond': 0}).subtract(6, 'days').format()), value: 230 },
-    { date: new Date(moment().set({ 'minute': 0, 'second': 0, 'millisecond': 0}).subtract(7, 'days').format()), value: 200 },
-    { date: new Date(moment().set({ 'minute': 0, 'second': 0, 'millisecond': 0}).subtract(8, 'days').format()), value: 400 },
-    { date: new Date(moment().set({ 'minute': 0, 'second': 0, 'millisecond': 0}).subtract(9, 'days').format()), value: 500 },
-    { date: new Date(moment().set({ 'minute': 0, 'second': 0, 'millisecond': 0}).subtract(10, 'days').format()), value: 200 },
-    { date: new Date(moment().set({ 'minute': 0, 'second': 0, 'millisecond': 0}).subtract(11, 'days').format()), value: 100 },
+    { date: new Date(moment().set({ 'minute': 0, 'second': 0, 'millisecond': 0}).format()), value: 0 },
+    { date: new Date(moment().set({'minute': 0, 'second': 0, 'millisecond': 0}).subtract(1, 'days').format()), value: 0 },
+    { date: new Date(moment().set({'minute': 0, 'second': 0, 'millisecond': 0}).subtract(2, 'days').format()), value: 0 },
+    { date: new Date(moment().set({ 'minute': 0, 'second': 0, 'millisecond': 0}).subtract(3, 'days').format()), value: 0 },
+    { date: new Date(moment().set({ 'minute': 0, 'second': 0, 'millisecond': 0}).subtract(4, 'days').format()), value: 0 },
+    { date: new Date(moment().set({ 'minute': 0, 'second': 0, 'millisecond': 0}).subtract(5, 'days').format()), value: 0 },
+    { date: new Date(moment().set({ 'minute': 0, 'second': 0, 'millisecond': 0}).subtract(6, 'days').format()), value: 0 },
+    { date: new Date(moment().set({ 'minute': 0, 'second': 0, 'millisecond': 0}).subtract(7, 'days').format()), value: 0 },
+    { date: new Date(moment().set({ 'minute': 0, 'second': 0, 'millisecond': 0}).subtract(8, 'days').format()), value: 0 },
+    { date: new Date(moment().set({ 'minute': 0, 'second': 0, 'millisecond': 0}).subtract(9, 'days').format()), value: 0 },
+    { date: new Date(moment().set({ 'minute': 0, 'second': 0, 'millisecond': 0}).subtract(10, 'days').format()), value: 0 },
+    { date: new Date(moment().set({ 'minute': 0, 'second': 0, 'millisecond': 0}).subtract(11, 'days').format()), value: 0 },
   ];
 
   marginBarChart?: MarginConf = {
@@ -46,18 +47,16 @@ export class CuadranteGastosComponent implements OnInit {
   constructor(private dashboardService: DashboardService) { }
 
   ngOnInit(): void {
-    this.obtenerDato()
+    
   }
 
   obtenerDato(){
-    let request = {
-      "rfc": "OATP9611061C4",
-      "anio": "2023",
-      "mes": "04"
-    }
-    this.dashboardService.obtenerIngresosGastos(request).subscribe({
+    this.dashboardService.obtenerIngresosGastos(this._consultaRequest).subscribe({
       next: (result) => {
-        console.log(result)
+        this.gastosPeriodo = new ComprobantePeriodo;
+        if(result.listaReporteIngresosEgresosBean.find((element) => element.tipoComprobante === 'GASTOS')){
+          this.gastosPeriodo = result.listaReporteIngresosEgresosBean.find((element) => element.tipoComprobante === 'GASTOS');
+        }
       },
       error: (_) => {
         console.log(_)

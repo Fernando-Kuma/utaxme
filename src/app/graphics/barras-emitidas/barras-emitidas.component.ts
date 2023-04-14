@@ -10,7 +10,7 @@ import {
 import * as d3 from 'd3';
 import d3Tip from "d3-tip";
 import { Observable } from 'rxjs';
-import { ES_MX_LOCALE } from 'src/app/shared/configuration/es-mx-locale';
+import { ES_MX_LOCALE } from 'src/app/shared/helper/es-mx-locale';
 import { DateValue } from 'src/app/shared/model/date-value';
 import { MarginConf } from 'src/app/shared/model/margin-conf';
 

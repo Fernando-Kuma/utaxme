@@ -79,19 +79,19 @@
             <div class="row">
               <div class="col"
                 style="background-color: #FFFFFF; width: 975px; height: 351px; margin-bottom: 39px;  border-radius: 15px; padding: 15px 12px;">
-                <app-cuadrante-ingresos></app-cuadrante-ingresos>
+                <app-cuadrante-ingresos [consultaRequest]="requestDashboard"></app-cuadrante-ingresos>
               </div>
             </div>
             <div class="row">
               <div class="col"
                 style="background-color: #FFFFFF; width: 975px; height: 351px; margin-bottom: 39px; border-radius: 15px; padding: 15px 12px;">
-                <app-cuadrante-gastos></app-cuadrante-gastos>
+                <app-cuadrante-gastos [consultaRequest]="requestDashboard"></app-cuadrante-gastos>
               </div>
             </div>
             <div class="row">
               <div class="col"
                 style="background-color: #FFFFFF; width: 975px; height: 546px; margin-bottom: 39px; border-radius: 15px; padding: 15px 12px;">
-                <app-cuadrante-deducciones></app-cuadrante-deducciones>
+                <app-cuadrante-deducciones [consultaRequest]="requestDashboard"></app-cuadrante-deducciones>
               </div>
             </div>
           </div>
@@ -100,13 +100,13 @@
             <div class="row">
               <div class="col"
                 style="background-color: #FFFFFF; width: 489px; height: 424px; margin-bottom: 39px; border-radius: 15px; padding: 15px 12px;">
-                <app-cuadrante-cumplimiento></app-cuadrante-cumplimiento>
+                <app-cuadrante-cumplimiento [consultaRequest]="requestDashboard"></app-cuadrante-cumplimiento>
               </div>
             </div>
             <div class="row">
               <div class="col"
                 style="background-color: #FFFFFF; width: 489px; height: 1147px; margin-bottom: 39px; border-radius: 15px; padding: 15px 12px;">
-                <app-cuadrante-fiscales [consultaFecha]="fechaActual"></app-cuadrante-fiscales>
+                <app-cuadrante-fiscales [consultaRequest]="requestDashboard"></app-cuadrante-fiscales>
               </div>
             </div>
           </div>

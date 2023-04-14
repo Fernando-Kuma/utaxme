@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import * as moment from 'moment';
+import { ES_MX_LOCALE } from 'src/app/shared/helper/es-mx-locale';
+import { CumplimientoFiscal } from 'src/app/shared/model/dashboard.mode';
 import { DashboardService } from 'src/app/shared/service/dashboard.service';
 
 @Component({
@@ -8,15 +11,15 @@ import { DashboardService } from 'src/app/shared/service/dashboard.service';
 })
 export class CuadranteCumplimientoComponent implements OnInit {
 
+  _consultaRequest: any;
+  @Input() set consultaRequest(val: any) {
+    this._consultaRequest = val;
+    this.getCumplimientoFiscal();
+  }
 
-  datFiscal: any = {
-    rfc: 'OATP9611061C4',
-    anio: 2022,
-    mes: 4
-  };
 
   public tipoDeclaracion: string = 'Mensual';
-  public response: any;
+  response: CumplimientoFiscal;
    
 
   constructor(
@@ -24,13 +27,19 @@ export class CuadranteCumplimientoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getCumplimientoFiscal();
+    
   }
 
   getCumplimientoFiscal(): void {
-    this.dashboardService.obtenerCumplimientoFiscal(this.datFiscal).subscribe((resp) => {
-      this.response = resp;
+    this.dashboardService.obtenerCumplimientoFiscal(this._consultaRequest).subscribe((resp) => {
       /* console.log('::RESP Cumplimiento', this.response); */
+      let mes = moment(resp.anio + '-' + resp.mes)
+      mes.locale('es')
+      let mesString = mes.format('MMMM');
+      resp.mes = mesString
+      resp.estatus = resp.estatus.toLowerCase()
+      this.response = resp;
+
     },
         (_error) => {
           console.log("::Entro al error Cumplimiento");

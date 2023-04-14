@@ -2,69 +2,77 @@
   <div class="sticky-header">
     <app-header-home></app-header-home>
   </div>
-  <div class="content-wrapper" style="background-color: #F4F4F4">
+  <div class="content-wrapper disable-scrollbars" style="background-color: #F4F4F4; overflow: scroll;">
     <div class="content-home">
       <div class="home-container-accesos" style="margin-top: 30px;">
         <div class="row w100m0p0">
-          <div class="col-5">
-            <div class="row w100m0p0">
-              <div class="col-1" style="width: 22px; margin: 0; padding: 0;">
+          <div class="col-12">
+            <div class="row">
+              <div class="col-1" style="width: 45px;">
                 <div class="img-inicio-home">&nbsp;</div>
               </div>
-              <div class="col"
-                style="margin: 0; padding: 0; padding-top: 1px; padding-left: 5px; font-weight: 500; font-size: 22px; color: #0B112A;">
-                | CONTABILIDAD
-              </div>
-
-              <div class="row">
-                <div class="col" style="margin: 0; padding: 0; color: #7B8AA0; font-weight: 400;">
-                  Última actualización: 27 feb 05:49 pm
-                </div>
+              <div class="col-11 m0p0">
+                <span style="font-weight: 400; font-size: 18px; color: #0B112A;">| CONTABILIDAD</span> 
+                <br>
+                <span style="font-weight: 600; font-size: 11px; color: #838383; margin-left: 10px;">Última actualización: 27 feb 05:49 pm</span>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="d-flex flex-row" style="margin-top: 51px;">
-          <div class="" style="width: 75%; padding: 0px 27px;">
+        <div class="d-flex flex-row disable-scrollbars" style="margin-top: 50px;">
+          <div class="columna-cuadrante1">
+            <div class="container">
+              <div class="row cuadrante1">
+                <div class="col-8">
+                  <span style="font-weight: 500; font-size: 40px; color: #0B112A; line-height: 50px; text-transform: capitalize;">Bienvenido, {{usuario.nombre + '' + usuario.apellidos}}</span>
+                  <br>
+                  <span style="color: #838383; font-weight: 500; font-size: 16; line-height: 20px;">Gestiona tus actividades:</span>
+                </div>
+                <div class="col-4 calendario-dashboard">
 
-            <div class="row">
-              <div class="col" style="width: 299px; height: 98px; ">
-                <div class="row" style="margin: 0; padding: 0; font-weight: 600; font-size: 40px; color: #0B112A;">
-                  Bienvenido, Raúl Borunda
+                  <mat-form-field appearance="outline">
+                    <mat-label>Periodo fiscal</mat-label>
+                    <input matInput [matDatepicker]="dp" [formControl]="date" [max]="maxDate">
+                    <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                    <mat-datepicker #dp
+                                    startView="multi-year"
+                                    (yearSelected)="chosenYearHandler($event)"
+                                    (monthSelected)="chosenMonthHandler($event, dp)"
+                                    panelClass="example-month-picker">
+                    </mat-datepicker>
+                  </mat-form-field>
+
                 </div>
-                <div class="row " style="margin: 0; padding: 0; color: #7B8AA0; font-weight: 400; font-size: 19;">
-                  Gestiona tus actividades:
+              </div>
+              <div class="row" style="margin: 45px 0 35px;">
+                <div class="col-4">
+                  <div class="row boton-enlace m0p0">
+                    <div class="col-3">
+                      <mat-icon class="image-edit-doc image-size-22"></mat-icon>
+                    </div>
+                    <div class="col-9">Crear Factura</div>
+                  </div>
                 </div>
-              </div>
-              <div class="col d-flex justify-content-end" style="align-items: center; width: 299px; height: 98px; ">
-                <mat-form-field appearance="outline" style="font-size: 13px; height: 80px;" >
-                  <mat-label>Periodo fiscal</mat-label>
-                  <input readonly formControlName="inicial" matInput [matDatepicker]="picker"  >
-                  <mat-hint>DD/MM/AAAA</mat-hint>
-                  <mat-datepicker-toggle matSuffix [for]="picker" >
-                      <mat-icon matDatepickerToggleIcon class="image-calendar-date-picker" ></mat-icon>
-                  </mat-datepicker-toggle>
-                  <mat-datepicker #picker></mat-datepicker>
-                </mat-form-field>
-              </div>
-            </div>
-            
-            <div class="row" style="margin-top: 49px;">
-              <div class="col d-flex justify-content-left"
-                style="background-color: #FFFFFF; align-items: center; width: 299px; height: 98px; margin-bottom: 39px; font-size: 18px; margin-right: 39px; border-radius: 8px; padding: 15px 12px;">
-                  <div class="image-edit-doc" style="padding-right: 22px; padding-left: 37px;">&nbsp; </div>
-                  <div ><P style="margin-bottom: 0; padding-left: 20px;">Crear Factura</P></div>
-              </div>
-              <div class="col d-flex justify-content-center"
-                style="background-color: #FFFFFF; align-items: center; width: 299px; height: 98px; margin-bottom: 39px; font-size: 18px; margin-right: 39px; border-radius: 8px; padding: 15px 12px;">
-                <div class="image-user-call" style="padding-right: 22px; padding-left: 37px;">&nbsp;</div>
-                <div><P style="margin-bottom: 0; padding-left: 20px;">Contactar Contador</P></div>
-              </div>
-              <div class="col d-flex justify-content-center"
-                style="background-color: #FFFFFF; align-items: center; width: 299px; height: 98px; font-size: 18px; border-radius: 8px; padding: 15px 12px;">
-                <div class="image-cancel-doc" style="padding-right: 22px; padding-left: 37px;">&nbsp;</div>
-                <div><P style="margin-bottom: 0; padding-left: 20px;">Cancelar Factura</P></div>
+  
+                <div class="col-4">
+                  <div class="row boton-enlace m0p0">
+                    <div class="col-3">
+                      <mat-icon class="image-user-call image-size-22"></mat-icon>
+                    </div>
+                    <div class="col-9">Contactar Contador</div>
+                  </div>
+                </div>
+                
+                <div class="col-4">
+                  <div class="row boton-enlace m0p0">
+                    <div class="col-3">
+                      <mat-icon class="image-cancel-doc image-size-22"></mat-icon>
+                    </div>
+                    <div class="col-9">Cancelar Factura</div>
+                  </div>
+                </div>
+  
               </div>
             </div>
 
@@ -87,7 +95,8 @@
               </div>
             </div>
           </div>
-          <div class="" style="width: 25%; padding: 0px 27px;">
+
+          <div class="columna-cuadrante2">
             <div class="row">
               <div class="col"
                 style="background-color: #FFFFFF; width: 489px; height: 424px; margin-bottom: 39px; border-radius: 15px; padding: 15px 12px;">
@@ -97,7 +106,7 @@
             <div class="row">
               <div class="col"
                 style="background-color: #FFFFFF; width: 489px; height: 1147px; margin-bottom: 39px; border-radius: 15px; padding: 15px 12px;">
-                <app-cuadrante-fiscales></app-cuadrante-fiscales>
+                <app-cuadrante-fiscales [consultaFecha]="fechaActual"></app-cuadrante-fiscales>
               </div>
             </div>
           </div>

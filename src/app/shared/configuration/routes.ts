@@ -13,16 +13,6 @@ export const appRoutes: Routes = [
     redirectTo: NAV.login,
   },
   {
-    path: NAV.registro,
-    pathMatch: 'full',
-    component: HomeComponent,
-  },
-  {
-    path: NAV.descargas,
-    pathMatch: 'full',
-    component: HomeComponent,
-  },
-  {
     path: NAV.login,
     pathMatch: 'full',
     component: LoginComponent,
@@ -36,16 +26,6 @@ export const appRoutes: Routes = [
     path: NAV.nuevaContrasena,
     pathMatch: 'full',
     component: NuevaContrasenaComponent,
-  },
-  {
-    path: NAV.activation,
-    pathMatch: 'full',
-    component: HomeComponent,
-  },
-  {
-    path: NAV.proceso,
-    pathMatch: 'prefix',
-    component: HomeComponent,
   },
   {
     path: NAV.dashboard,

@@ -4,8 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatInput } from '@angular/material/input';
 import { Router } from '@angular/router';
 import { NAV } from 'src/app/shared/configuration/navegacion';
-import { Auth } from 'src/app/shared/model/auth-model';
-import { LoginService } from 'src/app/shared/service/login.service';
+import { Auth, User } from 'src/app/shared/model/auth-model';
+import { AuthService } from 'src/app/shared/service/auth.service';
 
 
 @Component({
@@ -21,8 +21,7 @@ export class LoginComponent implements OnInit {
   title: string = 'BIENVENIDO';
   titleAlert: string = 'Este campo es requerido';
   form: FormGroup;
-  post: any;
-  imgLoad: boolean = false;
+
   _auth: any;
   _codigo: any;
   _user: any;
@@ -32,16 +31,16 @@ export class LoginComponent implements OnInit {
     private dialog: MatDialog,
     private formBuilder: FormBuilder, 
     private router: Router,
-    private loginService: LoginService) {}
+    private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.loginService.getIp();
+    this.authService.getIp();
     let first = localStorage.getItem('first');
     if(!first){
       localStorage.setItem('first','1');
       setTimeout(() => {
         window.location.reload();
-      }, 750);
+      }, 100);
     }else{
       localStorage.setItem('first','1');
     }
@@ -50,7 +49,7 @@ export class LoginComponent implements OnInit {
 
   createForm() {
     this.form = this.formBuilder.group({
-      email: [null, [Validators.required]],
+      email: [null, [Validators.required, Validators.pattern(".+@.+\..+")]],
       password: [null, [Validators.required]],
     });
   }
@@ -63,14 +62,6 @@ export class LoginComponent implements OnInit {
       : null; */
   }
 
-  getErrorPassword() {
-    return this.form.get('password').hasError('required')
-      ? 'Este campo es requerido'
-      : this.form.get('password').hasError('requirements')
-      ? 'La contraseña debe contener al menos 8 caracteres, una mayúscula y un número'
-      : '';
-  }
-
   login(): void{
     if(this.form.invalid){
       Object.keys(this.form.controls).forEach((field) => {
@@ -81,42 +72,32 @@ export class LoginComponent implements OnInit {
       });
     }
     if(this.form.valid){
-      this._auth = new Auth();
-      this._auth.email = this.form.controls['email'].value;
-      this._auth.password = this.form.controls['password'].value;
+      this._user = new User();
+      this._user.email = this.form.controls['email'].value;
+      this._user.password = this.form.controls['password'].value;
       // this.spinner.show();
-      this.continueLogin();
+      this.authService.login(this._user).subscribe({
+        next: (response) => {
+          if(response != null ){
+            this.authService.getIp()
+            response.nombre = response.nombre.toLowerCase()
+            response.apellidos = response.apellidos.toLowerCase()
+            sessionStorage.setItem('admin-user', JSON.stringify(response));
+            this.router.navigateByUrl(NAV.dashboard);
+          }else{
+            this.selectMessageError("El usuario no se encuentra registrado en el sistema");
+          }
+        },
+        error: (_) => {
+          if(_.error.response === "No coinciden las credenciales"){
+            this.selectMessageError(_.error.response);
+          }else{
+            console.log("Error: ", _)
+          }
+        }
+      });
       
     } 
-  }
-
-  continueLogin() {
-    /* this.adminService.login(this._auth).subscribe({
-      next: ({httpStatus, message}) => {
-        if (httpStatus === 200) {
-          this.spinner.hide();
-          if(this.adminService.getPerfi()?.descripcion == 'Ejecutivo' || this.adminService.getPerfi()?.descripcion == 'Operador'){
-            localStorage.removeItem('dashboard')
-            this.registrarBitacora();
-            
-          }
-          else{
-            this.selectMessageError('El usuario no se encuentra registrado en el sistema.');
-          }
-        } else {
-          this.selectMessageError(message);
-        }
-      },
-      error: (_) => {
-        this.openDialog();
-        this.spinner.hide();
-      }
-    }); */
-    this.router.navigateByUrl(NAV.dashboard);
-  }
-
-  loadImage() {
-    this.imgLoad = true;
   }
 
   enterContrato(){
@@ -128,17 +109,19 @@ export class LoginComponent implements OnInit {
       return 'Este campo es requerido';
     } else if (value == 'email') {
       return this.form.get('email').hasError('contrato')
-      ? 'Este email no está asociado a una cuenta'
+      ? 'Las credenciales ingresadas no existen'
+      : this.form.get('email').hasError('pattern')
+      ? 'Correo electrónico inválido'
       : this.form.get('email').hasError('minlength')
       ? 'El contrato debe contener al menos 3 caracteres'
-      : this.form.get('email').hasError('activo')
-      ? 'Este email no está activo'
       : '';
     } else if (value == 'password') {
       return this.form.get('password').hasError('requirements')
       ? 'La contraseña debe contener al menos 8 caracteres, una mayúscula y un número'
+      : this.form.get('password').hasError('minlength')
+      ? 'La contraseña debe contener al menos 8 caracteres'
       : this.form.get('password').hasError('invalid')
-      ? 'La contraseña no coincide con el correo electrónico'
+      ? 'Credenciales inválidas'
       : '' ;
     }
   }
@@ -149,16 +132,14 @@ export class LoginComponent implements OnInit {
   }
 
   selectMessageError(message:string) {
-    if(message.startsWith('La contrase')){
+    if(message === 'No coinciden las credenciales'){
+      //Credenciales inválidas
       this.form.get('password')?.setErrors({ invalid: true });
       this.getError('password');
     }
-    if(message === 'El usuario no se encuentra registrado en el sistema.'){
+    if(message === 'El usuario no se encuentra registrado en el sistema'){
+      //Las credenciales ingresadas no existen
       this.form.get('email')?.setErrors({ contrato: true });
-      this.getError('email');
-    }
-    if(message === 'El usuario no se encuentra ACTIVO.'){
-      this.form.get('email')?.setErrors({ activo: true });
       this.getError('email');
     }
   }
@@ -186,7 +167,6 @@ export class LoginComponent implements OnInit {
   }
 
   paste(event){
-    console.log(event.target.value);
     let texto = event.target.value;
     this.form.get('email').setValue(texto.trim());
   }

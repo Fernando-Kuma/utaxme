@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NAV } from '../../configuration/navegacion';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-header-home',
@@ -17,9 +18,12 @@ export class HeaderHomeComponent implements OnInit {
     rol: 'act. empresarial' 
   }
 
-  constructor(public router: Router) { }
+  constructor(public router: Router, private auth: AuthService) { }
 
   ngOnInit(): void {
+    this.auth
+    this.user.name = this.auth.usuario.nombre + '' + this.auth.usuario.apellidos
+    this.user.rol = 'Act. empresarial'
   }
 
   cambiarMenu(numeroMenu:number){
@@ -38,8 +42,7 @@ export class HeaderHomeComponent implements OnInit {
   }
 
   salir(){
-    localStorage.clear();
-    this.router.navigateByUrl(NAV.login);
+    this.auth.logout()
   }
 
   abrirModuloAyuda(){

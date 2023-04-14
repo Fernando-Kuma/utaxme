@@ -44,3 +44,41 @@
   left: 4px;
   right: 0px;
 }
+
+.columna-cuadrante1{
+  width: 74%; padding: 0px 30px;
+}
+
+.columna-cuadrante2{
+  width: 25%; padding: 0px 30px;
+}
+
+.example-month-picker .mat-calendar-period-button {
+  pointer-events: none;
+}
+
+.example-month-picker .mat-calendar-arrow {
+  display: none;
+}
+
+.calendario-dashboard{
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.boton-enlace{
+  background-color: #FFFFFF; 
+ /*  width: 299px; */ 
+  height: 98px;  
+  border-radius: 8px; 
+  font-size: 18px; 
+  font-weight: 500;
+  color: #0B112A;
+  
+  display: flex;
+  align-items: center;
+
+  cursor: pointer;
+
+}

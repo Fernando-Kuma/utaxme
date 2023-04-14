@@ -4,5 +4,12 @@
     "secure": false,
     "changeOrigin": true,
     "pathRewrite": { "^/billerTicket-mobile": "" }
+  },
+
+  "/utaxon": {
+    "target": "https://utaxon.com/utaxon",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": { "^/utaxon": "" }
   }
 }

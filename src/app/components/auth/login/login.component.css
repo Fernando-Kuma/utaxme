@@ -93,3 +93,7 @@ mat-form-field {
   background-position: left;
   background-repeat: no-repeat;
 }
+
+mat-card {
+  font-family: "Montserrat", sans-serif;
+}

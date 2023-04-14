@@ -8,10 +8,9 @@
           <div class="d-flex justify-content-center">
             <mat-card class="utaxme-card margin-top">
               <mat-card-content class="utaxme-card-container">
-                <div class="img-preload" *ngIf="!imgLoad">&nbsp;</div>
-                <img mat-card-image (load)="loadImage()" width="224px" height="385px" 
-                style="border-radius: 3px 0px 0px 3px;"
-                [hidden]="imgLoad === false" src="assets/img/img-signup.png" alt="Inicio Login">
+                <div class="img-preload">&nbsp;</div>
+                <img mat-card-image width="224px" height="385px" 
+                style="border-radius: 3px 0px 0px 3px;" src="assets/img/img-signup.png" alt="Inicio Login">
                 <div class="utaxme-card-content">
                   <mat-card class="card-content">
                     <mat-card-title class="text-left" style="font-size: 24px;">
@@ -47,7 +46,7 @@
                               <mat-icon matPrefix class="ico-password"></mat-icon>
                               <mat-label>CONTRASEÑA</mat-label>
                               <input
-                                matInput
+                                matInput minlength="8"
                                 [type]="hide ? 'password' : 'text'" (keydown.enter)="$event.preventDefault()" (keydown.enter)="login()"
                                 formControlName="password" #password="matInput" maxlength="40" style="font-size: 15px!important;"
                               />

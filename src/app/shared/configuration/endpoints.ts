@@ -2,11 +2,13 @@ import { environment } from 'src/environments/environment';
 
 export const API = {
 
-  datosFiscales: environment.apiFull + 'DatosFiscalesForm.htm',
-  cumplimiento: environment.apiFull + 'CumplimientoFiscalForm.htm',
-  ingresosEgresos: environment.apiFull + 'ReporteIngresosEgresosForm.htm',
-  CfdiGeneradosFilter: environment.apiFull+ 'CfdiGeneradosFilter.htm',
-  validaCliente: environment.apiFull + 'ValidaClienteUtaxmeForm.htm',
+  login: environment.apiAuth + 'admin/find',
+
+  datosFiscales: environment.apiDashboard + 'DatosFiscalesForm.htm',
+  cumplimiento: environment.apiDashboard + 'CumplimientoFiscalForm.htm',
+  ingresosEgresos: environment.apiDashboard + 'ReporteIngresosEgresosForm.htm',
+  CfdiGeneradosFilter: environment.apiDashboard+ 'CfdiGeneradosFilter.htm',
+  validaCliente: environment.apiDashboard + 'ValidaClienteUtaxmeForm.htm',
 
   /* getWord: environment.api + 'wordwise/entries?limit=1&headword=',
   login: environment.api + 'utaxon/admin/find',

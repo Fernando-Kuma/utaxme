@@ -14,8 +14,8 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
-import { RecuperacionContrasenaComponent } from './recuperacion-contrasena/recuperacion-contrasena.component';
-import { NuevaContrasenaComponent } from './nueva-contrasena/nueva-contrasena.component';
+import { RecuperacionContrasenaComponent } from './recuperacion/recuperacion-contrasena/recuperacion-contrasena.component';
+import { NuevaContrasenaComponent } from './recuperacion/nueva-contrasena/nueva-contrasena.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,7 @@ import { NuevaContrasenaComponent } from './nueva-contrasena/nueva-contrasena.co
     MatInputModule,
     MatStepperModule,
     MatRadioModule,
-    MatDialogModule,
+    MatDialogModule
   ]
 })
 export class AuthModule { }

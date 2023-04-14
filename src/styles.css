@@ -312,6 +312,19 @@ body {
   background-repeat: no-repeat;
 }
 
+.ico-password {
+  background-image: url("src\assets\icon\password.svg");
+  background-size: 21px 21px;
+  background-position: left;
+  background-repeat: no-repeat;
+}
+
+.ico-login {
+  background-image: url("src\assets\icon\contrato.svg");
+  background-size: 20px 20px;
+  background-position: left;
+  background-repeat: no-repeat;
+}
 
 .img-calendar{
   background-image: url("src\assets\icon\calendar-voz.svg");

@@ -144,8 +144,8 @@ export class LoginComponent implements OnInit {
   }
 
   changePassword() {
-    /* localStorage.setItem('back-return', NAV.login);
-    this.router.navigateByUrl(NAV.registro); */
+    /* localStorage.setItem('back-return', NAV.login); */
+    this.router.navigateByUrl(NAV.recuperarContrasena); 
   }
 
   selectMessageError(message:string) {

@@ -1,0 +1,70 @@
+<div class="page-wrapper">
+  <div class="sticky-header">
+    <smc-simple-toolbar color="#122D4F" logo="image-toolbar"></smc-simple-toolbar>
+  </div>
+  <div class="content-wrapper">
+      <div class="content">
+        <div class="">
+          <div class="d-flex justify-content-center">
+            <mat-card class="utaxme-card margin-top">
+              <mat-card-content class="utaxme-card-container">
+                <div class="img-preload" *ngIf="!imgLoad">&nbsp;</div>
+                <img mat-card-image (load)="loadImage()" width="224px" height="385px" 
+                style="border-radius: 3px 0px 0px 3px;"
+                [hidden]="imgLoad === false" src="assets/img/img-recov.png" alt="Inicio Login">
+                <div class="utaxme-card-content">
+                  <mat-card class="card-content">
+                    <mat-card-title class="text-left" style="font-size: 24px;">
+                      {{ title }}
+                    </mat-card-title>
+                    <mat-card-subtitle class="text-left mt-2" style="font-size: 16px; min-width: 350px;">
+                      Ingresa tu correo electrónico empresarial para verificar tu identidad
+                    </mat-card-subtitle>
+                    <mat-card-content>
+                      <form [formGroup]="form" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                        <div class="row d-flex justify-content-center">
+                          <div class="col-sm-12" style="margin-top: 10px;">
+                            <mat-form-field appearance="outline"  color="primary">
+                              <mat-icon matPrefix class="ico-login"></mat-icon>
+                              <mat-label>CORREO ELECTRÓNICO</mat-label>
+                              <input matInput formControlName="email" #contrato="matInput" maxlength="100" minlength="3"
+                               style="font-size: 15px!important;"/>
+                              <mat-error
+                                *ngIf="
+                                  !form.controls['email'].valid &&
+                                  form.controls['email'].touched
+                                "
+                              >
+                              </mat-error>
+                            </mat-form-field>
+                          </div>
+                        </div>
+                
+                        <div class="row mt-4 d-flex justify-content-center mb-3">
+                          <div class="col-md-7 d-flex align-items-end justify-content-end">
+                            <a style="color: #285CED; cursor: pointer; padding-left: 0px; text-decoration: underline; margin-bottom: 10px;" (click)="cancel()">
+                              Cancelar</a>
+                          </div>
+                          <div class="col-md-5 d-flex justify-content-end">
+                            <button class="btn-utaxme" 
+                              id="btnsend" style="height: 45px; font-size: 14px; line-height: 25px;"
+                              (click)="send()"
+                              [disabled]="!form.valid">
+                              Verificar
+                            </button>
+                          </div>
+                        </div>
+                      </form>
+                    </mat-card-content>
+                  </mat-card>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <smc-footer></smc-footer>
+      </div>
+  </div>
+</div>

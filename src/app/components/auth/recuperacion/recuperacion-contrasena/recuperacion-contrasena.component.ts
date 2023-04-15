@@ -29,7 +29,7 @@ export class RecuperacionContrasenaComponent implements OnInit {
 
   createForm() {
     this.form = this.formBuilder.group({
-    email: [null, [Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9._-]+\.[a-z]{1,4}$")]]
+    email: [null, [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9._-]+\.[a-z]{2,4}$")]]
     });
   }
 
@@ -38,11 +38,11 @@ export class RecuperacionContrasenaComponent implements OnInit {
   }
 
   send(){
-    
+    this.router.navigateByUrl(NAV.codigoRecuperacion); 
   }
 
   cancel() {
-    this.router.navigateByUrl(NAV.nuevaContrasena); 
+    
   }
 
 

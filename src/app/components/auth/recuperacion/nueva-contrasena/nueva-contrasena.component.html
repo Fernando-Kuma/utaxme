@@ -33,7 +33,7 @@
                                 <mat-icon>{{ hideMainPassword ? "visibility_off" : "visibility" }}</mat-icon>
                               </button>
                               <mat-error *ngIf="!form.controls['password'].valid && form.controls['password'].touched">
-                                <!-- {{ getErrorPassword() }} -->
+                                {{ getErrorPassword() }}
                               </mat-error>
                             </mat-form-field>
                           </div>
@@ -51,7 +51,7 @@
                               </button>
                               <mat-error
                                 *ngIf="!form.controls['confirmPassword'].valid && form.controls['confirmPassword'].touched">
-                                <!-- {{ getErrorPasswordConf() }} -->
+                                {{ getErrorPasswordConf() }}
                               </mat-error>
                             </mat-form-field>
                           </div>

@@ -1,8 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatInput } from '@angular/material/input';
 import { Router } from '@angular/router';
 import { NAV } from 'src/app/shared/configuration/navegacion';
+import { ConfirmDialogComponent } from 'src/app/shared/utils/confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogService } from 'src/app/shared/utils/confirm-dialog/confirm-dialog.service';
 
 @Component({
   selector: 'app-nueva-contrasena',
@@ -20,6 +23,8 @@ export class NuevaContrasenaComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
+    private dialog: MatDialog,
+    private dialogService: ConfirmDialogService,
   ) { }
 
   ngOnInit(): void {
@@ -29,20 +34,23 @@ export class NuevaContrasenaComponent implements OnInit {
   createForm() {
     this.form = this.formBuilder.group(
       {
-        password: [null, [Validators.required, this.checkPassword]],
+        password: [null, [
+          Validators.required, 
+          /* this.checkPassword */
+        ]],
         confirmPassword: [null, [Validators.required]],
       },
       { validators: this.mustMatch('password', 'confirmPassword') }
     );
   }
 
-  checkPassword(control) {
+  /* checkPassword(control) {
     let enteredPassword = control.value;
     let passwordCheck = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/;
     return !passwordCheck.test(enteredPassword) && enteredPassword
       ? { requirements: true }
       : null;
-  }
+  } */
 
   mustMatch(controlName: string, matchingControlName: string) {
     return (formGroup: FormGroup) => {
@@ -67,8 +75,41 @@ export class NuevaContrasenaComponent implements OnInit {
     this.imgLoad = true;
   }
 
+  getErrorPassword() {
+    return this.form.get('password').hasError('required')
+      ? 'Este campo es requerido'
+      : this.form.get('password').hasError('requirements')
+      ? 'La contraseña debe contener al menos 8 caracteres, una mayúscula y un número.'
+      : '';
+  }
+
+  getErrorPasswordConf() {
+    return this.form.get('confirmPassword').hasError('required')
+      ? 'Este campo es requerido'
+      : this.form.get('confirmPassword').hasError('mustMatch')
+      ? 'Las contraseñas no coinciden'
+      : '';
+  }
+
+  openConfirmDialog() {
+    const dialogRef = this.dialog.open(
+      ConfirmDialogComponent, 
+      this.dialogService.leavingBeforeSubmit()
+    );
+    dialogRef.afterClosed().subscribe(
+      data => {
+        console.log("Registrado")
+        setTimeout(() => {
+          this.router.navigateByUrl(NAV.login); 
+          /* this.router.navigateByUrl(localStorage.getItem('back-return'));
+          localStorage.removeItem('back-return') */
+        }, 500);
+      }
+    );
+  }
+
   send(){
-    this.router.navigateByUrl(NAV.recuperarContrasena); 
+    this.openConfirmDialog();
   }
 
 }

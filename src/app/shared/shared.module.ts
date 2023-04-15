@@ -7,6 +7,8 @@ import { PincodeComponent } from './utils/pincode/pincode.component';
 import { TimerComponent } from './utils/timer/timer.component';
 import { PincodeModule } from './utils/pincode';
 import { TimerModule } from './utils/timer';
+import { ConfirmDialogComponent } from './utils/confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogModule } from './utils/confirm-dialog/confirm-dialog.module';
 
 
 
@@ -14,20 +16,21 @@ import { TimerModule } from './utils/timer';
   declarations: [
     SafePipe, 
     MaskPipe, 
-    
 ],
   imports: [
     CommonModule,
     HomeModule,
     PincodeModule,
-    TimerModule
+    TimerModule,
+    ConfirmDialogModule
     
   ],
   exports: [
     SafePipe,
     MaskPipe,
     PincodeComponent,
-    TimerComponent
+    TimerComponent,
+    ConfirmDialogComponent
   ],
 })
 export class SharedModule { }

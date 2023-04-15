@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { NAV } from 'src/app/shared/configuration/navegacion';
 
 @Component({
   selector: 'app-codigo-recuperacion',
@@ -12,7 +14,9 @@ export class CodigoRecuperacionComponent implements OnInit {
   timeOut: boolean = false;
   btnControl: boolean = true;
 
-  constructor() { }
+  constructor(
+    private router: Router,
+  ) { }
 
   ngOnInit(): void {
   }
@@ -34,6 +38,6 @@ export class CodigoRecuperacionComponent implements OnInit {
   }
 
   validarCodigo(){
-
+    this.router.navigateByUrl(NAV.nuevaContrasena); 
   }
 }

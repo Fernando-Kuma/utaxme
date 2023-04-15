@@ -33,13 +33,18 @@
   }
 }
 
+.boton-factura{
+  display: flex;
+  justify-content: center;
+  margin: 40px 0 10px;
+}
+
 .btn-datos-fiscales{
-  background: #FFFFFF;
-  border: 1px solid #285CED;
-  color: #285CED;
-  border-radius: 20px;
-  height: 48px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
+  min-width: 283px;
+  min-height: 45px;
+  border-radius: 25px;
+  padding: 0 29px;
 }

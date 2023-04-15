@@ -45,7 +45,7 @@ body {
   height: 60px;
   width: 140px;
   background-image: url("src\assets\img\Logo-Utax.png");
-  background-size: 140px 35px;
+  background-size: 158px 53px;
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -377,6 +377,16 @@ body {
   background-size: 20px 20px;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.image-check {
+  background-image: url("src\assets\icon\check.svg");
+  background-size: 22px 24px;
+}
+
+.image-warn {
+  background-image: url("src\assets\icon\warn.svg");
+  background-size: 22px 24px;
 }
 
 .image-invert-color {

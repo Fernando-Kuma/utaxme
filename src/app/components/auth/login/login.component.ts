@@ -103,17 +103,7 @@ export class LoginComponent implements OnInit {
   }
 
   validarCliente(usuario: any){
-    let email = {
-      username: this._user.email
-    }
-    this.authService.payment(email).subscribe({
-      next: (response) => {
-        console.log(response)
-      },
-      error: (_) => {
-          console.log("Error: ", _)
-      }
-    });
+    
 
     let request = {
       folio: usuario.folio
@@ -122,9 +112,21 @@ export class LoginComponent implements OnInit {
       next: (response) => {
         if(response != null ){
           usuario.cliente = response
-          //sessionStorage.setItem('cliente', JSON.stringify(response));
-          this.router.navigateByUrl(NAV.dashboard);
           sessionStorage.setItem('admin-user', JSON.stringify(usuario));
+          //sessionStorage.setItem('cliente', JSON.stringify(response));
+          let email = {
+            username: this._user.email
+          }
+          this.authService.payment(email).subscribe({
+            next: (resp) => {
+              console.log(resp)
+            },
+            error: (_) => {
+                console.log("Error: ", _)
+            }
+          });
+          this.router.navigateByUrl(NAV.dashboard);
+          
         }
       },
       error: (_) => {

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
@@ -13,8 +13,13 @@ export class DashboardService {
   constructor(private http: HttpClient, private router: Router) { }
 
   validarCliente(request: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Accept': '*/*',
+      'Content-Type': 'text/plain'});
+    const options = { headers: headers };
+    
     return this.http
-      .post<any>(`${API.validaCliente}?folioUtaxme=${request.folio}`, request)
+      .post<any>(`${API.validaCliente}?folioUtaxme=${request.folio}`, request, options)
       .pipe(
         catchError((e) => {
           return throwError(e);

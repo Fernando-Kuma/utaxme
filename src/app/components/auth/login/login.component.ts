@@ -103,36 +103,47 @@ export class LoginComponent implements OnInit {
   }
 
   validarCliente(usuario: any){
-    
-
-    let request = {
-      folio: usuario.folio
+    let email = {
+      username: this._user.email
     }
-    this.dashboardService.validarCliente(request).subscribe({
-      next: (response) => {
-        if(response != null ){
-          usuario.cliente = response
-          sessionStorage.setItem('admin-user', JSON.stringify(usuario));
-          //sessionStorage.setItem('cliente', JSON.stringify(response));
-          let email = {
-            username: this._user.email
+    this.authService.payment(email).subscribe({
+      next: (resp) => {
+        if (resp.payment == true) {
+          let request = {
+            folio: usuario.folio
           }
-          this.authService.payment(email).subscribe({
-            next: (resp) => {
-              console.log(resp)
+          this.dashboardService.validarCliente(request).subscribe({
+            next: (response) => {
+              if(response != null ){
+                if(response.rfc != ""){
+                  usuario.cliente = response
+                  sessionStorage.setItem('admin-user', JSON.stringify(usuario));
+                  //sessionStorage.setItem('cliente', JSON.stringify(response));
+                  this.router.navigateByUrl(NAV.dashboard);
+                }else{
+                  //this.router.navigateByUrl(NAV.dashboard);
+                }
+                
+              }
             },
             error: (_) => {
-                console.log("Error: ", _)
+              console.log("Error: ", _)
             }
           });
-          this.router.navigateByUrl(NAV.dashboard);
-          
+        } else {
+          //nuevo proceso. Flujo normal
+          //this.$store.state.sesion.step = "proceso";
+          //this.router.navigateByUrl(NAV.dashboard);
         }
+        
+        
       },
       error: (_) => {
-        console.log("Error: ", _)
+          console.log("Error: ", _)
       }
     });
+
+    
   }
 
   enterContrato(){

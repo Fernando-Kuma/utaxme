@@ -66,14 +66,16 @@ export class CuadranteFiscalesComponent implements OnInit {
   }
 
   calcularSpeed(){
+    this.speedValue = 0 
     if(this.baseGravable.ingresos > this.baseGravable.egresos){
       console.log('true')
       this.speedValue = Number(((this.baseGravable.egresos / this.baseGravable.ingresos) * 10).toFixed(3))
-    }else{
-      console.log('false')
-      this.speedValue = 0 
     }
     console.log(Number(this.speedValue))
   }
 
+  public get width() {
+    return window.innerWidth;
+  }
+  
 }

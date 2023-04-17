@@ -17,7 +17,7 @@ export class CuadranteGastosComponent implements OnInit {
     this._consultaRequest = val;
     this.obtenerDato();
   }
-
+  gastosIngresos: any;
   gastosPeriodo: ComprobantePeriodo;
 
   dateValueWeek: Array<DateValue> = [
@@ -53,9 +53,52 @@ export class CuadranteGastosComponent implements OnInit {
   obtenerDato(){
     this.dashboardService.obtenerIngresosGastos(this._consultaRequest).subscribe({
       next: (result) => {
+        this.gastosIngresos = result.listaReporteIngresosEgresosBean
         this.gastosPeriodo = new ComprobantePeriodo;
         if(result.listaReporteIngresosEgresosBean.find((element) => element.tipoComprobante === 'GASTOS')){
           this.gastosPeriodo = result.listaReporteIngresosEgresosBean.find((element) => element.tipoComprobante === 'GASTOS');
+        }
+      },
+      error: (_) => {
+        console.log(_)
+      }
+    });
+  }
+
+  descargarExcel(){
+    if(this.gastosIngresos[0].total == 0 && this.gastosIngresos[1].total == 0 ){
+      console.log("No hay ingresos ni egresos en este periodo.")
+    }else{
+      this.descargarExcelPeticion()
+    }
+    
+  }
+
+  descargarExcelPeticion(){
+    this.dashboardService.obtenerReporte(this._consultaRequest).subscribe({
+      next: (response) => {
+        if(response != null){
+          console.log(response);
+
+          /* const url = window.URL.createObjectURL(new Blob([response.data], {type:'application/vnd.ms-excel'}));
+          const link = document.createElement('a');
+          link.href = url;
+
+          link.setAttribute('download', 'Reporte_Contable_'+this.$store.state.cliente.rfc+"_"+ this.mes+"_"+this.anio+".xls");
+          document.body.appendChild(link);
+          link.click(); */
+          //console.log(response.data)
+
+          const timeStamp = moment().format('YYYYMMDDHHmmss');
+          const linkDescarga = document.createElement('a');
+          const url = window.URL.createObjectURL(response);
+          document.body.appendChild(linkDescarga);
+          linkDescarga.setAttribute('style', 'display: none');
+          linkDescarga.href = url;
+          linkDescarga.download = 'Reporte_Contable_'+this._consultaRequest.rfc+"_"+ this._consultaRequest.mes+"_"+this._consultaRequest.anio+".xls";
+          linkDescarga.click();
+          window.URL.revokeObjectURL(url);
+          linkDescarga.remove();
         }
       },
       error: (_) => {

@@ -14,7 +14,7 @@ export class DashboardService {
 
   validarCliente(request: any): Observable<any> {
     const headers = new HttpHeaders({
-      'Accept': '*/*',
+      'Access-Control-Allow-Origin':'*',
       'Content-Type': 'text/plain'});
     const options = { headers: headers };
     
@@ -57,6 +57,21 @@ export class DashboardService {
       );
   }
 
+  obtenerReporte(request: any): Observable<any> {
+    const options: any = {
+      responseType: 'blob' as const,
+    };
+    return this.http
+      .post<any>(`${API.reporteFacturas}?rfc=${request.rfc}&anio=${request.anio}&mes=${request.mes}`, request, options)
+      .pipe(
+        catchError((e) => {
+          return throwError(e);
+        })
+      );
+  }
+
+
+  
 
 
 }

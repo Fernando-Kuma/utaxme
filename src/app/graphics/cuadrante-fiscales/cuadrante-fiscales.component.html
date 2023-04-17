@@ -48,11 +48,14 @@
 
   <div class="col-12" style="margin-top: 10px;">
     <app-velocimetro 
-    [sizex]="310" [size]="300" [sizey]="180" [ringWidth]="40" 
+    [sizex]="width > 1440 ? 410 : 310" [size]="width > 1440 ? 400 : 300"  [sizey]="width > 1440 ? 235 : 180" 
+    [ringWidth]="width > 1440 ? 60 : 40" 
     fontSize="14px"  [value]="speedValue"
+    [proportion]="width > 1440 ? 1.3 : 1" [positionText]="width > 1440 ? [35, 205, 325, 205] : [226, 155, 45, 155]" 
     color="#0B112A" secondary="#EEF1F8" color-label="#0B112A" 
     
     ></app-velocimetro>
+
   </div>
 
   <div class="col-12">

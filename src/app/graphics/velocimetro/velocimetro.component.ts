@@ -268,7 +268,7 @@ export class VelocimetroComponent implements AfterViewInit, OnInit {
             .style("font-weight", "600") 
             .style("font-family","sans-serif")
             .style("fill", this.colorLabel)
-            .text(100 - (this._value * 10) + '%');
+            .text((100 - (this._value * 10)).toFixed(2) + '%');
 
           
           this.svg.append("text")
@@ -278,7 +278,7 @@ export class VelocimetroComponent implements AfterViewInit, OnInit {
             .style("font-weight", "600") 
             .style("font-family","sans-serif")
             .style("fill", this.colorLabel)
-            .text((this._value * 10) + '%');
+            .text((this._value * 10).toFixed(2) + '%');
 
         pointer = pg.append('path')
           .attr('d', pointerLine)

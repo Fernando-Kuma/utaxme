@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <div class="titulo-grafica-full">
+        Factura emitidas
+      </div>
+      <div class="texto-grafica-full">
+        24
+      </div>
+    </div>
+    <div class="col-6">
+      <mat-icon class="img-expandir"></mat-icon>
+    </div>
+  </div>
+  <div class="row">
+    <ng-container *ngIf="true">
+      <app-cuadrante-ingresos [isFull]="true"></app-cuadrante-ingresos>
+    </ng-container>
+  </div>
+</div>

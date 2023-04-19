@@ -12,6 +12,7 @@ import { DashboardService } from 'src/app/shared/service/dashboard.service';
 })
 export class CuadranteIngresosComponent implements OnInit {
 
+  @Input() isFull: boolean = false;
 
   _consultaRequest: any;
   @Input() set consultaRequest(val: any) {
@@ -59,6 +60,13 @@ export class CuadranteIngresosComponent implements OnInit {
         console.log(_)
       }
     });
+  }
+
+  fullSize(){
+    localStorage.setItem('dashboard','CUADRANTE-INGRESOS');
+    localStorage.setItem('titulo-dashboard','Factura emitidas');
+    localStorage.setItem('texto-dashboard',String(this.ingresosPeriodo.facturas));
+    /* NAV */
   }
 
 }

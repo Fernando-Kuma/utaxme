@@ -7,59 +7,104 @@
     </div>
 
     <div class="col-12 d-flex " style="margin-top: 10px;">
-      <mat-tab-group animationDuration="0ms">
+      <mat-tab-group animationDuration="0ms" (selectedTabChange)="cambiarTabla($event)">
         <mat-tab label="Personales">
           <table mat-table [dataSource]="listaResultado" class="table table-responsive table-bordered table-striped"
-      style="border: solid 1px #ffffff; table-layout:fixed; padding: 0; margin: 0;">
-      <ng-container matColumnDef="clave">
-        <th mat-header-cell *matHeaderCellDef class="subtitulo-cuadrante center-text" style="width: 96px;"> Clave </th>
-        <td mat-cell *matCellDef="let element" style="width: 96px; text-align: center; padding: 8px;"> {{element.clave}}
-        </td>
-      </ng-container>
-      <ng-container matColumnDef="deduccion">
-        <th mat-header-cell *matHeaderCellDef class="subtitulo-cuadrante center-text" style="width: 320px;"> Deducción
-        </th>
-        <td mat-cell *matCellDef="let element" style="width: 320px; text-align: center;  padding: 8px;">
-          {{element.deduccion}} </td>
-      </ng-container>
-      <ng-container matColumnDef="requisitos">
-        <th mat-header-cell *matHeaderCellDef class="subtitulo-cuadrante center-text" style="width: 200px;"> Requisitos
-        </th>
-        <td mat-cell *matCellDef="let element" style="width: 200px; text-align: center;  padding: 8px;">
-          {{element.requisitos}} </td>
-      </ng-container>
-      <ng-container matColumnDef="detalle">
-        <th mat-header-cell *matHeaderCellDef class="subtitulo-cuadrante center-text" style="width: 88px;"> Detalle
-        </th>
-        <td mat-cell *matCellDef="let element" style="width: 88px; text-align: -webkit-center;  padding: 8px;">
-          <div class="icon-detalle">
-            <div class="image-document" style="padding-right: 22px; padding-left: 6px;">&nbsp; </div>
+            style="border: solid 1px #ffffff; table-layout:fixed; padding: 0; margin: 0;">
+            <ng-container matColumnDef="clave">
+              <th mat-header-cell *matHeaderCellDef class="subtitulo-cuadrante center-text" style="width: 96px;"> Clave </th>
+              <td mat-cell *matCellDef="let element" style="width: 96px; text-align: center; padding: 8px;"> {{element.clave}}
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="deduccion">
+              <th mat-header-cell *matHeaderCellDef class="subtitulo-cuadrante center-text" style="width: 320px;"> Deducción
+              </th>
+              <td mat-cell *matCellDef="let element" style="width: 320px; text-align: center;  padding: 8px;">
+                {{element.deduccion}} </td>
+            </ng-container>
+            <ng-container matColumnDef="requisitos">
+              <th mat-header-cell *matHeaderCellDef class="subtitulo-cuadrante center-text" style="width: 200px;"> Requisitos
+              </th>
+              <td mat-cell *matCellDef="let element" style="width: 200px; text-align: center;  padding: 8px;">
+                {{element.requisitos}} </td>
+            </ng-container>
+            <ng-container matColumnDef="detalle">
+              <th mat-header-cell *matHeaderCellDef class="subtitulo-cuadrante center-text" style="width: 88px;"> Detalle
+              </th>
+              <td mat-cell *matCellDef="let element" style="width: 88px; text-align: -webkit-center;  padding: 8px;">
+                <div class="icon-detalle">
+                  <div class="image-document" style="padding-right: 22px; padding-left: 6px;">&nbsp; </div>
+                </div>
+
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          <div class="col-12" style="margin-top: 13px;">
+            <mat-divider></mat-divider>
           </div>
-
-        </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-    <div class="col-12" style="margin-top: 13px;">
-      <mat-divider></mat-divider>
-    </div>
-    <div class="col-12" *ngIf="listaResultado?.length> 0">
-      <div class="col-6"
-        style="margin: 0; padding: 0; font-weight: 600; font-size: 10px; letter-spacing: 3px; color: #7B8AA0; padding-top: 7px;">
-        Mostrando pág {{ this.pager?.current }} de {{ this.pager?.total }} de
-        {{ this.pager?.data.length }} resultados
-      </div>
-      <div class="col 6">
-        <app-pager [pageModel]="pager" (paged)="onPaged($event)" style="float: right;"></app-pager>
-      </div>
-    </div>
+          <div class="col-12" *ngIf="listaResultado?.length> 0">
+            <div class="col-6"
+              style="margin: 0; padding: 0; font-weight: 600; font-size: 10px; letter-spacing: 3px; color: #7B8AA0; padding-top: 7px;">
+              Mostrando pág {{ this.pager?.current }} de {{ this.pager?.total }} de
+              {{ this.pager?.data.length }} resultados
+            </div>
+            <div class="col 6">
+              <app-pager [pageModel]="pager" (paged)="onPaged($event)" style="float: right;"></app-pager>
+            </div>
+          </div>
         </mat-tab>
         
 
         <mat-tab label="Autorizadas">
+          <table mat-table [dataSource]="listaResultado" class="table table-responsive table-bordered table-striped"
+            style="border: solid 1px #ffffff; table-layout:fixed; padding: 0; margin: 0;">
+            <ng-container matColumnDef="clave">
+              <th mat-header-cell *matHeaderCellDef class="subtitulo-cuadrante center-text" style="width: 96px;"> Clave </th>
+              <td mat-cell *matCellDef="let element" style="width: 96px; text-align: center; padding: 8px;"> {{element.clave}}
+              </td>
+            </ng-container>
+            <ng-container matColumnDef="deduccion">
+              <th mat-header-cell *matHeaderCellDef class="subtitulo-cuadrante center-text" style="width: 320px;"> Deducción
+              </th>
+              <td mat-cell *matCellDef="let element" style="width: 320px; text-align: center;  padding: 8px;">
+                {{element.deduccion}} </td>
+            </ng-container>
+            <ng-container matColumnDef="requisitos">
+              <th mat-header-cell *matHeaderCellDef class="subtitulo-cuadrante center-text" style="width: 200px;"> Requisitos
+              </th>
+              <td mat-cell *matCellDef="let element" style="width: 200px; text-align: center;  padding: 8px;">
+                {{element.requisitos}} </td>
+            </ng-container>
+            <ng-container matColumnDef="detalle">
+              <th mat-header-cell *matHeaderCellDef class="subtitulo-cuadrante center-text" style="width: 88px;"> Detalle
+              </th>
+              <td mat-cell *matCellDef="let element" style="width: 88px; text-align: -webkit-center;  padding: 8px;">
+                <div class="icon-detalle">
+                  <div class="image-document" style="padding-right: 22px; padding-left: 6px;">&nbsp; </div>
+                </div>
 
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          <div class="col-12" style="margin-top: 13px;">
+            <mat-divider></mat-divider>
+          </div>
+          <div class="col-12" *ngIf="listaResultado?.length> 0">
+            <div class="col-6"
+              style="margin: 0; padding: 0; font-weight: 600; font-size: 10px; letter-spacing: 3px; color: #7B8AA0; padding-top: 7px;">
+              Mostrando pág {{ this.pager?.current }} de {{ this.pager?.total }} de
+              {{ this.pager?.data.length }} resultados
+            </div>
+            <div class="col 6">
+              <app-pager [pageModel]="pager" (paged)="onPaged($event)" style="float: right;"></app-pager>
+            </div>
+          </div>
         </mat-tab>
       </mat-tab-group>
     </div>

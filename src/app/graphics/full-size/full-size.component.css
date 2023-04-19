@@ -1,0 +1,20 @@
+.titulo-grafica-full{
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 37px;
+  color: #0B112A;
+}
+
+.texto-grafica-full{
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 35px;
+  color: #292D3F;
+}
+
+.img-expandir {
+  background-image: url("src\assets\icon\img-extraer.svg");
+  background-size: 20px 20px;
+  background-position: left;
+  background-repeat: no-repeat;
+}

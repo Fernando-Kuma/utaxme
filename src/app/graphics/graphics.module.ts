@@ -17,6 +17,7 @@ import { PagerModule } from '../shared/utils/pager';
 import {MatButtonModule} from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ThousandsPipe } from '../shared/pipe/thousands.pipe';
+import { FullSizeComponent } from './full-size/full-size.component';
 
 
 
@@ -30,7 +31,8 @@ import { ThousandsPipe } from '../shared/pipe/thousands.pipe';
     CuadranteDeduccionesComponent,
     CuadranteCumplimientoComponent,
     CuadranteFiscalesComponent,
-    ThousandsPipe
+    ThousandsPipe,
+    FullSizeComponent
   ],
   imports: [
     CommonModule,

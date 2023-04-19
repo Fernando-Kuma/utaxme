@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { NAV } from 'src/app/shared/configuration/navegacion';
 
 @Component({
   selector: 'app-espacio-trabajo',
@@ -7,9 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EspacioTrabajoComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router,
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  nuevaFactura(){
+    this.router.navigateByUrl(NAV.generarCfdi);
+  }
+
+  cancelarFactura(){
+    this.router.navigateByUrl(NAV.cancelarCfdi);
+  }
+
+  crearProdServ(){
+    this.router.navigateByUrl(NAV.crearProdServ);
+  }
+
+  clientesFrecuentes(){
+    this.router.navigateByUrl(NAV.clientesFrecuentes);
   }
 
 }

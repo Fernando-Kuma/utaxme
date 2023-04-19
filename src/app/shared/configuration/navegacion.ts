@@ -9,4 +9,8 @@ export const NAV = {
   activation: 'activation',
   dashboard: 'dashboard',
   cancelarCfdi: 'cancelar-cfdi',
+  generarCfdi: 'generar-cfdi',
+  clientesFrecuentes: 'clientes-frecuentes',
+  crearProdServ: 'crear-produc-serv',
+  espacioTrabajo: 'espacio-trabajo',
 };

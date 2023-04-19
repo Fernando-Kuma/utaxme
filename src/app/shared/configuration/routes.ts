@@ -7,6 +7,10 @@ import { NuevaContrasenaComponent } from 'src/app/components/auth/recuperacion/n
 import { RecuperacionContrasenaComponent } from 'src/app/components/auth/recuperacion/recuperacion-contrasena/recuperacion-contrasena.component';
 import { CodigoRecuperacionComponent } from 'src/app/components/auth/recuperacion/codigo-recuperacion/codigo-recuperacion.component';
 import { CancelarCfdiComponent } from 'src/app/components/home/espacio-trabajo/cancelar-cfdi/cancelar-cfdi.component';
+import { GenerarCfdiComponent } from 'src/app/components/home/espacio-trabajo/generar-cfdi/generar-cfdi.component';
+import { ClientesFrecuentesComponent } from 'src/app/components/home/espacio-trabajo/clientes-frecuentes/clientes-frecuentes.component';
+import { CrearProdServComponent } from 'src/app/components/home/espacio-trabajo/crear-prod-serv/crear-prod-serv.component';
+import { EspacioTrabajoComponent } from 'src/app/components/home/espacio-trabajo/espacio-trabajo.component';
 
 
 export const appRoutes: Routes = [
@@ -44,5 +48,25 @@ export const appRoutes: Routes = [
     path: NAV.cancelarCfdi,
     pathMatch: 'full',
     component: CancelarCfdiComponent,
+  },
+  {
+    path: NAV.generarCfdi,
+    pathMatch: 'full',
+    component: GenerarCfdiComponent,
+  },
+  {
+    path: NAV.clientesFrecuentes,
+    pathMatch: 'full',
+    component: ClientesFrecuentesComponent,
+  },
+  {
+    path: NAV.crearProdServ,
+    pathMatch: 'full',
+    component: CrearProdServComponent,
+  },
+  {
+    path: NAV.espacioTrabajo,
+    pathMatch: 'full',
+    component: EspacioTrabajoComponent,
   }
 ];

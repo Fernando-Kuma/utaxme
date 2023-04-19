@@ -6,7 +6,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { HeaderHomeModule } from 'src/app/shared/utils/header-home';
 import { HomeComponent } from './home.component';
 import { GraphicsModule } from 'src/app/graphics/graphics.module';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
@@ -18,6 +18,7 @@ import { GenerarCfdiComponent } from './espacio-trabajo/generar-cfdi/generar-cfd
 import { ClientesFrecuentesComponent } from './espacio-trabajo/clientes-frecuentes/clientes-frecuentes.component';
 import { CrearProdServComponent } from './espacio-trabajo/crear-prod-serv/crear-prod-serv.component';
 import { EspacioTrabajoComponent } from './espacio-trabajo/espacio-trabajo.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 
 
@@ -44,6 +45,7 @@ import { EspacioTrabajoComponent } from './espacio-trabajo/espacio-trabajo.compo
     MatNativeDateModule,
     MatInputModule,
     MatIconModule,
+    MatTabsModule,
     FormsModule,
     ReactiveFormsModule
   ],

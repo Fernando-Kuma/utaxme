@@ -389,6 +389,41 @@ body {
   background-size: 22px 24px;
 }
 
+.image-administrator-workspace {
+  background-image: url("src\assets\icon\administrator-workspace.svg");
+  background-size: 20px 20px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.image-nueva-factura {
+  background-image: url("src\assets\icon\nuevaFactura.svg");
+  background-size: 36px 37px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.image-crear-prod-serv {
+  background-image: url("src\assets\icon\crearProdServ.svg");
+  background-size: 38px 33px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.image-cliente-frecuente {
+  background-image: url("src\assets\icon\clienteFrecuente.svg");
+  background-size: 30px 30px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.image-cancelar-factura {
+  background-image: url("src\assets\icon\cancelarFactura.svg");
+  background-size: 33px 38px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .image-invert-color {
   filter: invert(100%);
 }

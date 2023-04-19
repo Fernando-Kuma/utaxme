@@ -147,16 +147,16 @@ export class CuadranteDeduccionesComponent implements OnInit {
     this.onPaged(1);
   }
 
-   /*  openDetalleDialog() {
+     openDetalleDialog() {
     const dialogRef = this.dialog.open(
       DetalleDeducPersonalComponent,
       this.dialogService.detalleDeducPersonal()
     );
     
-  } */
+  } 
 
   send(){
-   /*  this.openDetalleDialog(); */
+    this.openDetalleDialog(); 
   }
 
   cambiarTabla(event){

@@ -98,7 +98,6 @@ export class NuevaContrasenaComponent implements OnInit {
     );
     dialogRef.afterClosed().subscribe(
       data => {
-        console.log("Registrado")
         setTimeout(() => {
           this.router.navigateByUrl(NAV.login); 
           /* this.router.navigateByUrl(localStorage.getItem('back-return'));

@@ -34,14 +34,13 @@
   <div class="col-12" style="margin-top: 26px;">
     <div class="row d-flex" style="justify-content: space-around;">
       <div class="col-5 boton-cumplimiento">
-        <button type="button" class="btn btn-outline-primary btn-cumplimiento">
+        <button type="button" class="btn btn-outline-primary btn-cumplimiento" (click)="openSnackBar()">
           <div class="image-ver-acuse image-size-22" style="padding-right: 22px;">&nbsp; </div>
           Ver acuse
         </button>
       </div>
-      <!-- <div class="col-2"></div> -->
       <div class="col-5 boton-cumplimiento">
-        <button type="button" class="btn btn-outline-primary btn-cumplimiento">
+        <button type="button" class="btn btn-outline-primary btn-cumplimiento" (click)="verOpinion()">
           <div class="image-ver-opinion image-size-22" style="padding-right: 22px;">&nbsp; </div>  
           Ver opinión
         </button>
@@ -50,3 +49,15 @@
   </div>
 
 </div>
+  
+  
+<!-- <div>
+  <iframe id="inlineFrameExample"
+  title="Inline Frame Example"
+  width="300"
+  height="200"
+  type="application/pdf"
+  src="http://www.billerticket.com/store/OATP9611061C4/OPINION_CUMPLIMIENTO_OATP9611061C4_27112020.pdf">
+</iframe>
+</div> -->
+

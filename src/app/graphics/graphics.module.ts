@@ -39,7 +39,8 @@ import { ThousandsPipe } from '../shared/pipe/thousands.pipe';
     PagerModule,
     MatButtonModule,
     MatIconModule,
-    MatTabsModule
+    MatTabsModule,
+    
   ],
   exports: [
     BarrasEmitidasComponent,

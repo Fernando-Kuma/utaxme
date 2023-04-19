@@ -34,7 +34,7 @@ export class HeaderHomeComponent implements OnInit {
         break;
       case 2:
           localStorage.setItem('menu', '2');
-          this.router.navigateByUrl(NAV.proceso);
+          this.router.navigateByUrl(NAV.espacioTrabajo);
         break;
       default:
         break;

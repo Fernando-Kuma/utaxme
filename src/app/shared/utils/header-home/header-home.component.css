@@ -76,6 +76,7 @@ mat-toolbar{
 
 .menu-active{
   background-color: #F4F4F4;
+  padding-top: 12px;
 }
 
 .menu-title-active{

@@ -21,6 +21,10 @@ body {
   flex-direction: column;
 }
 
+.page-background{
+  background: #F4F4F4;
+  }
+
 .sticky-header {
   flex-grow: 0;
 }
@@ -422,6 +426,20 @@ body {
   background-size: 33px 38px;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.img-header-work {
+  background-image: url("src\assets\icon\header-work.svg");
+  background-size: 19px 19px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.img-header-work-active {
+  background-image: url("src\assets\icon\header-work-active.svg");
+  background-size: 19px 19px;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .image-invert-color {

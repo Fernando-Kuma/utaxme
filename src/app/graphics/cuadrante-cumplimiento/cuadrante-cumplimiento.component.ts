@@ -4,6 +4,7 @@ import { ES_MX_LOCALE } from 'src/app/shared/helper/es-mx-locale';
 import { CumplimientoFiscal } from 'src/app/shared/model/dashboard.mode';
 import { DashboardService } from 'src/app/shared/service/dashboard.service';
 
+
 @Component({
   selector: 'app-cuadrante-cumplimiento',
   templateUrl: './cuadrante-cumplimiento.component.html',
@@ -20,7 +21,9 @@ export class CuadranteCumplimientoComponent implements OnInit {
 
   public tipoDeclaracion: string = 'Mensual';
   response: CumplimientoFiscal;
-   
+
+  urlOpinion: any;
+  urlConstancia: any;
 
   constructor(
     private dashboardService: DashboardService,
@@ -32,14 +35,15 @@ export class CuadranteCumplimientoComponent implements OnInit {
 
   getCumplimientoFiscal(): void {
     this.dashboardService.obtenerCumplimientoFiscal(this._consultaRequest).subscribe((resp) => {
-      /* console.log('::RESP Cumplimiento', this.response); */
       let mes = moment(resp.anio + '-' + resp.mes)
       mes.locale('es')
       let mesString = mes.format('MMMM');
       resp.mes = mesString
       resp.estatus = resp.estatus.toLowerCase()
       this.response = resp;
-
+      this.urlOpinion = this.response.listDocumentos[0].url;
+      this.urlConstancia = this.response.listDocumentos[1].url;
+      localStorage.Constancia = this.response.listDocumentos[1].url;
     },
         (_error) => {
           console.log("::Entro al error Cumplimiento");
@@ -48,5 +52,15 @@ export class CuadranteCumplimientoComponent implements OnInit {
   }
 
 
+  verOpinion(){
+    window.open(this.urlOpinion, "_blank");
+  }
 
+  verConstancia(){
+  window.open(this.urlConstancia, "_blank");
+  }
+
+  openSnackBar() {
+    alert('No se encontro el acuse');
+  }
 }

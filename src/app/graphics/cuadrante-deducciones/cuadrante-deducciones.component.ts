@@ -1,5 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Paginator } from 'array-paginator';
+import { ConfirmDialogComponent } from 'src/app/shared/utils/confirm-dialog/confirm-dialog.component';
+import { DetalleDeducPersonalComponent } from 'src/app/shared/utils/detalle-deduc-personal';
+import { DetalleDeducPersonalService } from 'src/app/shared/utils/detalle-deduc-personal/detalle-deduc-personal.service';
 
 export interface PeriodicElement {
   deduccion: string;
@@ -124,7 +128,10 @@ export class CuadranteDeduccionesComponent implements OnInit {
   displayedColumns: string[] = ['clave', 'deduccion', 'requisitos', 'detalle'];
   public pager: any;
 
-  constructor() {}
+  constructor(
+    private dialogService: DetalleDeducPersonalService,
+    private dialog: MatDialog,
+  ) {}
 
   ngOnInit(): void {
     
@@ -138,6 +145,18 @@ export class CuadranteDeduccionesComponent implements OnInit {
   paginador(value: any) {
     this.pager = new Paginator(value, 4, 1);
     this.onPaged(1);
+  }
+
+   /*  openDetalleDialog() {
+    const dialogRef = this.dialog.open(
+      DetalleDeducPersonalComponent,
+      this.dialogService.detalleDeducPersonal()
+    );
+    
+  } */
+
+  send(){
+   /*  this.openDetalleDialog(); */
   }
 
   cambiarTabla(event){

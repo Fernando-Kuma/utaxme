@@ -41,7 +41,8 @@ import { FullSizeComponent } from './full-size/full-size.component';
     PagerModule,
     MatButtonModule,
     MatIconModule,
-    MatTabsModule
+    MatTabsModule,
+    
   ],
   exports: [
     BarrasEmitidasComponent,

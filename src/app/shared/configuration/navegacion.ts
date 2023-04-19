@@ -8,4 +8,5 @@ export const NAV = {
   proceso: 'proceso',
   activation: 'activation',
   dashboard: 'dashboard',
+  cancelarCfdi: 'cancelar-cfdi',
 };

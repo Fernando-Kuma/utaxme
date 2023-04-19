@@ -9,6 +9,8 @@ import { PincodeModule } from './utils/pincode';
 import { TimerModule } from './utils/timer';
 import { ConfirmDialogComponent } from './utils/confirm-dialog/confirm-dialog.component';
 import { ConfirmDialogModule } from './utils/confirm-dialog/confirm-dialog.module';
+import { DetalleDeducPersonalComponent } from './utils/detalle-deduc-personal/detalle-deduc-personal.component';
+import { DetalleDeducPersonalModule } from './utils/detalle-deduc-personal';
 
 
 
@@ -22,7 +24,8 @@ import { ConfirmDialogModule } from './utils/confirm-dialog/confirm-dialog.modul
     HomeModule,
     PincodeModule,
     TimerModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    DetalleDeducPersonalModule
     
   ],
   exports: [
@@ -30,7 +33,8 @@ import { ConfirmDialogModule } from './utils/confirm-dialog/confirm-dialog.modul
     MaskPipe,
     PincodeComponent,
     TimerComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    DetalleDeducPersonalComponent
   ],
 })
 export class SharedModule { }

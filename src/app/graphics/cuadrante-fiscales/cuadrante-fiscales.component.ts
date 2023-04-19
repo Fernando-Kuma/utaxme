@@ -17,6 +17,9 @@ export class CuadranteFiscalesComponent implements OnInit {
   }
 
   response: DatosFiscales;
+  urlConstancia: any;
+
+ 
   
   baseGravable:any = {
     egresos: 0,
@@ -78,4 +81,8 @@ export class CuadranteFiscalesComponent implements OnInit {
     return window.innerWidth;
   }
   
+  verConstancia(){
+    this.urlConstancia  = localStorage.Constancia;
+    window.open(this.urlConstancia, "_blank");
+    }
 }

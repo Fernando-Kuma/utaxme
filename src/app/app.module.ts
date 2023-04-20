@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HomeModule } from './components/home/home.module';
 import { AuthModule } from './components/auth/auth.module';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -21,8 +22,11 @@ import { AuthModule } from './components/auth/auth.module';
     BrowserAnimationsModule,
     HomeModule,
     AuthModule,
+    NgxSpinnerModule,
     HttpClientModule,
     SharedModule,
+  ],
+  exports: [
   ],
   providers: [],
   bootstrap: [AppComponent]

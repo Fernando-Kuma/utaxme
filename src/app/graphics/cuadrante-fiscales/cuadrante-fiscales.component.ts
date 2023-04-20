@@ -18,6 +18,7 @@ export class CuadranteFiscalesComponent implements OnInit {
 
   response: DatosFiscales;
   urlConstancia: any;
+  spinnerLoading: boolean = true;
 
  
   
@@ -40,6 +41,7 @@ export class CuadranteFiscalesComponent implements OnInit {
 
   obtenerDatosFiscales(): void {
     this.dashboardService.obtenerDatosFiscales(this._consultaRequest).subscribe((resp) => {
+      this.spinnerLoading = false;
       this.response = resp.datosFiscales;
       /* console.log('::RESP Datos Fiscales', this.response); */
     },(_error) => {
@@ -51,6 +53,7 @@ export class CuadranteFiscalesComponent implements OnInit {
   obtenerIngresosEngresos(): void {
     this.dashboardService.obtenerIngresosGastos(this._consultaRequest).subscribe(
       (response) => {
+        this.spinnerLoading = false;
         console.log('Res gatos: ', response);
         this.baseGravable.egresos = 0
         this.baseGravable.ingresos = 0

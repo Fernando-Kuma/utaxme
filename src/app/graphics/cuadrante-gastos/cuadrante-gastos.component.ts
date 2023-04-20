@@ -19,6 +19,7 @@ export class CuadranteGastosComponent implements OnInit {
   }
   gastosIngresos: any;
   gastosPeriodo: ComprobantePeriodo;
+  spinnerLoading: boolean = true;
 
   dateValueWeek: Array<DateValue> = [
     { date: new Date(moment().set({ 'minute': 0, 'second': 0, 'millisecond': 0}).format()), value: 0 },
@@ -53,6 +54,7 @@ export class CuadranteGastosComponent implements OnInit {
   obtenerDato(){
     this.dashboardService.obtenerIngresosGastos(this._consultaRequest).subscribe({
       next: (result) => {
+        this.spinnerLoading = false;
         this.gastosIngresos = result.listaReporteIngresosEgresosBean
         this.gastosPeriodo = new ComprobantePeriodo;
         if(result.listaReporteIngresosEgresosBean.find((element) => element.tipoComprobante === 'GASTOS')){

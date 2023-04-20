@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="!spinnerLoading">
   <div class="row" *ngIf="!isFull">
     <div class="col-4">
       <div class="row" style="margin-right: -55px;">
@@ -102,4 +102,8 @@
         [showYLabels]="true" [border]="true" [margin]="marginBarChart" [general]="true" 
         [isDynamicRange]="false" unit="$" scale="week"></app-barras-emitidas>
   </div>
+</div>
+
+<div *ngIf="spinnerLoading" class="d-flex justify-content-center col-xs-12 col-sm-6 col-md-8 spinner">
+  <mat-spinner [diameter]="30"></mat-spinner>
 </div>

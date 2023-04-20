@@ -7,6 +7,7 @@ import { NAV } from 'src/app/shared/configuration/navegacion';
 import { Auth, User } from 'src/app/shared/model/auth-model';
 import { AuthService } from 'src/app/shared/service/auth.service';
 import { DashboardService } from 'src/app/shared/service/dashboard.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -33,7 +34,9 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder, 
     private router: Router,
     private authService: AuthService,
-    private dashboardService: DashboardService) {}
+    private dashboardService: DashboardService,
+    public spinner: NgxSpinnerService
+    ) {}
 
   ngOnInit(): void {
     this.authService.getIp();
@@ -77,7 +80,7 @@ export class LoginComponent implements OnInit {
       this._user = new User();
       this._user.email = this.form.controls['email'].value;
       this._user.password = this.form.controls['password'].value;
-      // this.spinner.show();
+       this.spinner.show();
       this.authService.login(this._user).subscribe({
         next: (response) => {
           if(response != null ){
@@ -109,6 +112,7 @@ export class LoginComponent implements OnInit {
     this.authService.payment(email).subscribe({
       next: (resp) => {
         if (resp.payment == true) {
+          this.spinner.hide();
           let request = {
             folio: usuario.folio
           }

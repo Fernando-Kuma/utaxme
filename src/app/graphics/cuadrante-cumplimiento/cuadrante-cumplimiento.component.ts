@@ -24,6 +24,7 @@ export class CuadranteCumplimientoComponent implements OnInit {
 
   urlOpinion: any;
   urlConstancia: any;
+  spinnerLoading: boolean = true;
 
   constructor(
     private dashboardService: DashboardService,
@@ -34,6 +35,7 @@ export class CuadranteCumplimientoComponent implements OnInit {
   }
 
   getCumplimientoFiscal(): void {
+    this.spinnerLoading = true
     this.dashboardService.obtenerCumplimientoFiscal(this._consultaRequest).subscribe((resp) => {
       let mes = moment(resp.anio + '-' + resp.mes)
       mes.locale('es')
@@ -44,6 +46,7 @@ export class CuadranteCumplimientoComponent implements OnInit {
       this.urlOpinion = this.response.listDocumentos[0].url;
       this.urlConstancia = this.response.listDocumentos[1].url;
       localStorage.Constancia = this.response.listDocumentos[1].url;
+      this.spinnerLoading = false
     },
         (_error) => {
           console.log("::Entro al error Cumplimiento");

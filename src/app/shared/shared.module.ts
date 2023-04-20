@@ -11,13 +11,14 @@ import { ConfirmDialogComponent } from './utils/confirm-dialog/confirm-dialog.co
 import { ConfirmDialogModule } from './utils/confirm-dialog/confirm-dialog.module';
 import { DetalleDeducPersonalComponent } from './utils/detalle-deduc-personal/detalle-deduc-personal.component';
 import { DetalleDeducPersonalModule } from './utils/detalle-deduc-personal';
+import { ContactoComponent } from './utils/contacto/contacto.component';
 
 
 
 @NgModule({
   declarations: [
     SafePipe, 
-    MaskPipe, 
+    MaskPipe, ContactoComponent, 
 ],
   imports: [
     CommonModule,

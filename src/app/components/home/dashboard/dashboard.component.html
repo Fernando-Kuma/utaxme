@@ -49,7 +49,7 @@
                 <div class="col-4">
                   <div class="row boton-enlace m0p0">
                     <div class="col-3">
-                      <mat-icon class="image-edit-doc image-size-22"></mat-icon>
+                      <mat-icon class="image-edit-doc image-size-22" (click)="crearFactura()"></mat-icon>
                     </div>
                     <div class="col-9">Crear Factura</div>
                   </div>
@@ -79,13 +79,13 @@
             <div class="row">
               <div class="col"
                 style="background-color: #FFFFFF; width: 975px; height: 351px; margin-bottom: 39px;  border-radius: 15px; padding: 15px 12px;">
-                <app-cuadrante-ingresos [consultaRequest]="requestDashboard"></app-cuadrante-ingresos>
+                <app-cuadrante-ingresos [data]="ingresosPeriodo"></app-cuadrante-ingresos>
               </div>
             </div>
             <div class="row">
               <div class="col"
                 style="background-color: #FFFFFF; width: 975px; height: 351px; margin-bottom: 39px; border-radius: 15px; padding: 15px 12px;">
-                <app-cuadrante-gastos [consultaRequest]="requestDashboard"></app-cuadrante-gastos>
+                <app-cuadrante-gastos [consultaRequest]="requestDashboard" [data]="gastosPeriodo"></app-cuadrante-gastos>
               </div>
             </div>
             <div class="row">
@@ -100,13 +100,13 @@
             <div class="row">
               <div class="col"
                 style="background-color: #FFFFFF; width: 489px; height: 424px; margin-bottom: 39px; border-radius: 15px; padding: 15px 12px;">
-                <app-cuadrante-cumplimiento [consultaRequest]="requestDashboard"></app-cuadrante-cumplimiento>
+                <app-cuadrante-cumplimiento [data]="cumplimientoFiscal"></app-cuadrante-cumplimiento>
               </div>
             </div>
             <div class="row">
               <div class="col"
                 style="background-color: #FFFFFF; width: 489px; height: 1147px; margin-bottom: 39px; border-radius: 15px; padding: 15px 12px;">
-                <app-cuadrante-fiscales [consultaRequest]="requestDashboard"></app-cuadrante-fiscales>
+                <app-cuadrante-fiscales [consultaRequest]="requestDashboard" [data]="baseGravable"></app-cuadrante-fiscales>
               </div>
             </div>
           </div>

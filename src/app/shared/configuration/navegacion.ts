@@ -13,4 +13,6 @@ export const NAV = {
   clientesFrecuentes: 'clientes-frecuentes',
   crearProdServ: 'crear-produc-serv',
   espacioTrabajo: 'espacio-trabajo',
+  crearCfdi: 'crear-cfdi',
+  fullSize: 'full-size',
 };

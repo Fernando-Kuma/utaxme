@@ -15,10 +15,12 @@ export class CuadranteGastosComponent implements OnInit {
   _consultaRequest: any;
   @Input() set consultaRequest(val: any) {
     this._consultaRequest = val;
-    this.obtenerDato();
   }
-  gastosIngresos: any;
-  gastosPeriodo: ComprobantePeriodo;
+
+  gastosPeriodo: ComprobantePeriodo = new ComprobantePeriodo;
+  @Input() set data(val: any) {
+    this.gastosPeriodo = val;
+  }
 
   dateValueWeek: Array<DateValue> = [
     { date: new Date(moment().set({ 'minute': 0, 'second': 0, 'millisecond': 0}).format()), value: 0 },
@@ -53,7 +55,6 @@ export class CuadranteGastosComponent implements OnInit {
   obtenerDato(){
     this.dashboardService.obtenerIngresosGastos(this._consultaRequest).subscribe({
       next: (result) => {
-        this.gastosIngresos = result.listaReporteIngresosEgresosBean
         this.gastosPeriodo = new ComprobantePeriodo;
         if(result.listaReporteIngresosEgresosBean.find((element) => element.tipoComprobante === 'GASTOS')){
           this.gastosPeriodo = result.listaReporteIngresosEgresosBean.find((element) => element.tipoComprobante === 'GASTOS');
@@ -66,7 +67,7 @@ export class CuadranteGastosComponent implements OnInit {
   }
 
   descargarExcel(){
-    if(this.gastosIngresos[0].total == 0 && this.gastosIngresos[1].total == 0 ){
+    if(this.gastosPeriodo.total == 0){
       console.log("No hay ingresos ni egresos en este periodo.")
     }else{
       this.descargarExcelPeticion()
@@ -78,17 +79,6 @@ export class CuadranteGastosComponent implements OnInit {
     this.dashboardService.obtenerReporte(this._consultaRequest).subscribe({
       next: (response) => {
         if(response != null){
-          console.log(response);
-
-          /* const url = window.URL.createObjectURL(new Blob([response.data], {type:'application/vnd.ms-excel'}));
-          const link = document.createElement('a');
-          link.href = url;
-
-          link.setAttribute('download', 'Reporte_Contable_'+this.$store.state.cliente.rfc+"_"+ this.mes+"_"+this.anio+".xls");
-          document.body.appendChild(link);
-          link.click(); */
-          //console.log(response.data)
-
           const timeStamp = moment().format('YYYYMMDDHHmmss');
           const linkDescarga = document.createElement('a');
           const url = window.URL.createObjectURL(response);

@@ -11,6 +11,7 @@ import { GenerarCfdiComponent } from 'src/app/components/home/espacio-trabajo/ge
 import { ClientesFrecuentesComponent } from 'src/app/components/home/espacio-trabajo/clientes-frecuentes/clientes-frecuentes.component';
 import { CrearProdServComponent } from 'src/app/components/home/espacio-trabajo/crear-prod-serv/crear-prod-serv.component';
 import { EspacioTrabajoComponent } from 'src/app/components/home/espacio-trabajo/espacio-trabajo.component';
+import { FullSizeComponent } from 'src/app/graphics/full-size/full-size.component';
 
 
 export const appRoutes: Routes = [
@@ -68,5 +69,14 @@ export const appRoutes: Routes = [
     path: NAV.espacioTrabajo,
     pathMatch: 'full',
     component: EspacioTrabajoComponent,
-  }
+  },{
+    path: NAV.fullSize,
+    pathMatch: 'full',
+    component: FullSizeComponent,
+  },{
+    path: NAV.crearCfdi,
+    pathMatch: 'full',
+    component: GenerarCfdiComponent,
+  },
+
 ];

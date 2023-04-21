@@ -1,0 +1,121 @@
+<div class="confirm">
+  <mat-dialog-content>
+      <div class="container" style="width: 100%; margin: 0; padding: 0; overflow: hidden;">
+          <div class="row" style="width: 100%; margin: 0; padding: 0;">
+              <div class="col-10"  style="padding: 0; display: flex; align-items: center;">
+                <span class="dialog-titulo">Agregar concepto</span> 
+              </div>
+              <div class="col-2">
+                  <button mat-icon-button style="float: right; position: relative;" (click)="closeDialog()">
+                      <mat-icon class="img-close"></mat-icon>
+                  </button>
+              </div>
+          </div>
+      </div>
+  </mat-dialog-content>
+  
+  <mat-dialog-actions>
+      <div class="container" style="margin: 0; padding: 20px 30px;">  
+        <div class="row w100m0p0" style="margin-top: 3% !important;">
+          <div class="col-8 dialog-texto">
+            Para ingresar servicios y montos a tu factura, selecciona tus conceptos y haz clic en ¨Agregar conceptos¨
+          </div>
+          <div class="col-4"></div>
+        </div>
+
+        <div class="row w100m0p0" style="margin-top: 3% !important;">
+          <form [formGroup]="form" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+            <div class="col-12 d-flex justify-content-end align-items-center">
+              <mat-form-field appearance="outline" style="min-width: 280px; font-size: 12px; height: 48px;">
+                <mat-label>Buscar concepto</mat-label>
+                <input matInput formControlName="busqueda" id="busqueda" name="busqueda" minlength="3"/>
+                <!-- <mat-error *ngIf="!form.controls['metodoPago'].valid && form.controls['metodoPago'].touched">
+                  {{ getError() }}
+                </mat-error> -->
+              </mat-form-field>
+              <button type="button" class="btn-utaxme-secondary" style="max-width: 260px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 0 20px;">
+                Cancelar
+              </button>
+            </div>
+          </form> 
+        </div>
+
+        <div class="row w100m0p0" style="margin-top: 3% !important;">
+          <div class="col-12 tableFixHead">
+            <table aria-describedby="tabla" class="table table-responsive table-striped " style="" >
+              <thead style="margin-bottom: 10px;">
+                  <tr class="textoM">
+                      <th class="punta-tittle" style="text-align: center;">
+
+                      </th>
+                      <th class="punta-tittle" style="text-align: center;">
+                          <span style="cursor:default!important;">
+                            clave
+                          </span>
+                      </th>
+                      <th class="punta-tittle" style="text-align: center;">
+                          <span style="cursor:default!important;">
+                            nombre
+                          </span>
+                      </th>
+                      <th class="punta-tittle" style="text-align: center;">
+                          <span style="cursor:default!important;">
+                            unidad
+                          </span>
+                      </th>
+                      <th class="punta-tittle" style="text-align: center;">
+                          <span style="cursor:default!important;">
+                            unitario
+                          </span>
+                      </th>
+                      <th class="punta-tittle" style="text-align: center;">
+                          <span style="width: 70px; cursor:default!important;">
+                            acciones
+                          </span>
+                      </th>
+                  </tr>
+              </thead>
+              <tbody class="table-scroll" style="border: solid 1px #ffffff; ">
+                <tr>
+                  <td style="text-align: center;">
+                    <mat-checkbox class="example-margin" [(ngModel)]="checked"></mat-checkbox>
+                  </td>
+                  <td style="text-align: center;">
+                    260
+                  </td>
+                  <td style="text-align: center;">
+                    SERVICIOS DE HOSPEDAJE AIRBNB 
+                  </td>
+                  <td style="text-align: center;">
+                    NO APLICA
+                  </td>
+                  <td style="text-align: center;">
+                    $4,441.10
+                  </td>
+                  <td class="d-flex justify-content-center">
+                    <div class="card-accion">
+                      <mat-icon class="img-accion-editar"></mat-icon>
+                    </div>
+                    <div class="card-accion">
+                      <mat-icon class="img-accion-borrar"></mat-icon>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+          </table>
+          </div>
+        </div>
+
+        <div class="row" style="margin: 40px 0px 0px !important; width: 100%; padding: 0;">
+          <div class="col-12 d-flex justify-content-end">
+            <button type="button" class="btn-utaxme-secondary" (click)="closeDialog()" style="max-width: 120px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;">
+              Cancelar
+            </button>
+            <button type="button" class="btn-utaxme" (click)="closeDialog()" style="max-width: 225px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;">
+              Agregar conceptos
+            </button>
+          </div>
+        </div>
+      </div>
+  </mat-dialog-actions>
+</div>

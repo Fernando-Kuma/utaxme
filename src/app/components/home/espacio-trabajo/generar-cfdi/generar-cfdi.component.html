@@ -1,1 +1,354 @@
-<p>generar-cfdi works!</p>
+<div class="page-wrapper" style="margin: 0; padding: 0;">
+  <div class="sticky-header">
+    <app-header-home></app-header-home>
+  </div>
+  <div class="content-wrapper disable-scrollbars" style="background-color: #F4F4F4; overflow: scroll;">
+    <div class="content-home">
+      <div class="home-container-accesos" style="margin-top: 30px;">
+        <div class="row w100m0p0">
+          <div class="col-1" style="margin: 0; padding: 0;">
+            <div class="image-workspace-back" style="width: 30px; height: 20px; float: right; cursor: pointer;" (click)="regresar()"></div>
+          </div> 
+          <div class="col-11">
+            <div class="row w100m0p0">
+              <div class="col-8">
+                <div class="titulo-proceso">
+                  {{ tituloProceso }}
+                </div>
+                <div class="subtitulo-proceso">
+                  Selecciona las características de la factura
+                </div>
+              </div>
+
+              <div class="col-4 bienvenida-cliente">
+                ¡Buen día, {{ nombreCliente }}!
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="home-container-accesos" style="margin-top: 30px;">
+        <div class="row w100m0p0">
+          <div class="col-1"></div>
+          <div class="col-10 px-4 p-4" style="background-color: #FFFFFF; min-height: 350px;">
+            <div class="titulo-formulario">
+              Datos del cfdi 4.0
+            </div>
+
+            <form [formGroup]="form" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+              <div class="row">
+                <div class="col-12">
+                  <mat-accordion multi>
+                    <mat-expansion-panel class="border-panel-expansion expansion-panel-secondary" [expanded]="true">
+                      <mat-expansion-panel-header class="expansion-panel-header-title-secondary">
+                        <mat-panel-title class="titulo-panel-expansion">
+                          Datos del Emisor
+                        </mat-panel-title>
+                      </mat-expansion-panel-header>
+                        <div class="row" style="margin-top: 3%;">
+                          <div class="col-5">
+                            <div class="card-datos">
+                              <div class="card-titulo">
+                                Datos Fiscales
+                              </div>
+                              <div class="card-texto">
+                                {{ response?.razonSocial }}
+                                <br>
+                                {{ response?.rfc }}
+                              </div>
+                            </div>  
+                          </div>
+                          <div class="col-2"></div>
+                          <div class="col-5">
+                            <div class="card-datos">
+                              <div class="card-titulo">
+                                Dirección Fiscal
+                              </div>
+                              <div class="card-texto">
+                                {{ response?.calle}} {{response?.numeroExterior}}, {{response?.colonia}} C.P. {{response?.cp}}, {{response?.municipio}}, {{response?.ciudad}}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row" style="margin: 2% 0 1%;">
+                          <div class="col-5 card-titulo">
+                              Datos del CFDI
+                          </div>
+                          <div class="col-2"></div>
+                          <div class="col-5 texto-hipervinculo" style="text-align: end;" (click)="configuracionAvanzada()">
+                              Configuración avanzada
+                          </div>
+                        </div>
+
+                        <div class="row" style="margin-top: 2%;">
+                          <div class="col-5">
+                            <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
+                              <mat-label>Número de orden (Mínimo 3 caracteres)</mat-label>
+                              <input matInput formControlName="numeroOrden" id="tituloPaquete" name="tituloPaquete" minlength="3"/>
+                              <!-- <mat-error *ngIf="!form.controls['tituloPaquete'].valid && form.controls['tituloPaquete'].touched">
+                                {{ getError() }}
+                              </mat-error> -->
+                            </mat-form-field>
+                          </div>
+                          <div class="col-2"></div>
+                          <div class="col-5">
+                            <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
+                              <mat-label>Selecciona un Régimen Fiscal</mat-label>
+                              <mat-select formControlName="regimenFiscal" id="sector" name="sector">
+                              </mat-select>
+                              <!-- <mat-error *ngIf="!form.controls['tituloPaquete'].valid && form.controls['tituloPaquete'].touched">
+                                {{ getError() }}
+                              </mat-error> -->
+                            </mat-form-field>
+                          </div>
+                        </div>
+
+                        <div class="row" style="margin-top: 2%;">
+                          <div class="col-5">
+                            <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
+                              <mat-label>Selecciona Uso de CFDI</mat-label>
+                              <mat-select formControlName="usoCFDI" id="sector" name="sector">
+                              </mat-select>
+                              <!-- <mat-error *ngIf="!form.controls['tituloPaquete'].valid && form.controls['tituloPaquete'].touched">
+                                {{ getError() }}
+                              </mat-error> -->
+                            </mat-form-field>
+                          </div>
+                          <div class="col-2"></div>
+                          <div class="col-5">
+                            <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
+                              <mat-label>Selecciona una Forma de Pago</mat-label>
+                              <mat-select formControlName="formaPago" id="sector" name="sector">
+                              </mat-select>
+                              <!-- <mat-error *ngIf="!form.controls['tituloPaquete'].valid && form.controls['tituloPaquete'].touched">
+                                {{ getError() }}
+                              </mat-error> -->
+                            </mat-form-field>
+                          </div>
+                        </div>
+
+                    </mat-expansion-panel>
+
+                    <mat-expansion-panel class="border-panel-expansion expansion-panel-secondary" [expanded]="true">
+                      <mat-expansion-panel-header class="expansion-panel-header-title-secondary">
+                        <mat-panel-title class="titulo-panel-expansion">
+                          Datos del Cliente
+                        </mat-panel-title>
+                      </mat-expansion-panel-header>
+                      <div class="row" style="margin-top: 3%;">
+                        <div class="col-5">
+                          <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
+                            <mat-label>Escribe el RFC Receptor</mat-label>
+                            <mat-select formControlName="rfc" id="sector" name="sector">
+                            </mat-select>
+                            <!-- <mat-error *ngIf="!form.controls['tituloPaquete'].valid && form.controls['tituloPaquete'].touched">
+                              {{ getError() }}
+                            </mat-error> -->
+                          </mat-form-field>
+                        </div>
+                        <div class="col-2"></div>
+                        <div class="col-5">
+                          <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
+                            <mat-label>Escribe la Razón Social Receptor (Sin espacios)</mat-label>
+                            <input matInput formControlName="razonSocial" id="tituloPaquete" name="tituloPaquete" minlength="3"/>
+                            <!-- <mat-error *ngIf="!form.controls['tituloPaquete'].valid && form.controls['tituloPaquete'].touched">
+                              {{ getError() }}
+                            </mat-error> -->
+                          </mat-form-field>
+                        </div>
+                      </div>
+
+                      <div class="row" style="margin-top: 2%;">
+                        <div class="col-5">
+                          <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
+                            <mat-label class="textoM">régimen fiscal receptor</mat-label>
+                            <mat-select formControlName="regimenFiscalCliente" id="sector" name="sector">
+                            </mat-select>
+                            <!-- <mat-error *ngIf="!form.controls['tituloPaquete'].valid && form.controls['tituloPaquete'].touched">
+                              {{ getError() }}
+                            </mat-error> -->
+                          </mat-form-field>
+                        </div>
+                        <div class="col-2"></div>
+                        <div class="col-5">
+                          <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
+                            <mat-label class="textoM">código postal</mat-label>
+                            <input matInput formControlName="codigoPostal" id="tituloPaquete" name="tituloPaquete" minlength="3"/>
+                            <!-- <mat-error *ngIf="!form.controls['tituloPaquete'].valid && form.controls['tituloPaquete'].touched">
+                              {{ getError() }}
+                            </mat-error> -->
+                          </mat-form-field>
+                        </div>
+                      </div>
+
+                      <div class="row" style="margin-top: 2%;">
+                        <div class="col-5">
+                          <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
+                            <mat-label class="textoM">correo electrónico</mat-label>
+                            <input matInput formControlName="correo" id="tituloPaquete" name="tituloPaquete" minlength="3"/>
+                            <!-- <mat-error *ngIf="!form.controls['tituloPaquete'].valid && form.controls['tituloPaquete'].touched">
+                              {{ getError() }}
+                            </mat-error> -->
+                          </mat-form-field>
+                        </div>
+                        <div class="col-2"></div>
+                        <div class="col-5">
+                          <div style="width: 100%; font-size: 16px; min-height: 80px;">
+                            <span class="texto-hipervinculo" style="color: #0B112A !important; ">¿Es un cliente frecuente? </span><span class="texto-hipervinculo">Haz clic para guardar como cliente fecuente</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row" style="margin-top: 2%;">
+                        <div class="col-12">
+                          <div class="texto-card" style="width: 100%; text-align: center;" >
+                            <span style="font-weight: 600;"> 
+                              ¿Deseas crear una factura al Público en General? 
+                            </span>
+                            <span>
+                              Recuerda que las facturas al publico en general es un comprobante fiscal que reúne las operaciones con los clientes que no solicitaron un CFDI. 
+                            </span>
+                            <span style="color: #5179EF; text-decoration-line: underline; cursor: pointer;">
+                              Haz clic aquí para autocompletar los campos y crear una Factura al Publico en General.
+                            </span>
+                             
+                          </div>
+                        </div>
+                      </div>
+                    </mat-expansion-panel>
+
+                    <mat-expansion-panel class="border-panel-expansion expansion-panel-secondary" [expanded]="true">
+                      <mat-expansion-panel-header class="expansion-panel-header-title-secondary">
+                        <mat-panel-title class="titulo-panel-expansion">
+                          Conceptos del CFDI
+                        </mat-panel-title>
+                      </mat-expansion-panel-header>
+                        <div class="row" style="margin-top: 3%;">
+                          <div class="col-12">
+                            <div class="row d-flex align-items-center">
+                              <div class="col-8 texto-agregar">
+                                Haz clic en ¨Agregar concepto¨ para ingresar servicios y montos a tu factura
+                              </div>
+                              <div class="col-4">
+                                <button mat-button class="btn-utaxme" style="min-width: 229px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center;" 
+                                (click)="listaConcepto()">
+                                  <mat-icon class="img-inicio-acceso"></mat-icon>
+                                  Agregar concepto
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-12" style="margin-top: 3%;">
+                            <div class="row tableFixHead" style="width: 100%; margin: 0; padding: 0;">
+                              <table aria-describedby="tabla" class="table table-responsive table-striped " style="" >
+                                  <thead style="margin-bottom: 10px;">
+                                      <tr class="textoM">
+                                          <th class="punta-tittle" style="text-align: center;">
+                                              <span style="cursor:default!important;">
+                                                descripción
+                                              </span>
+                                          </th>
+                                          <th class="punta-tittle" style="text-align: center;">
+                                              <span style="cursor:default!important;">
+                                                cantidad
+                                              </span>
+                                          </th>
+                                          <th class="punta-tittle" style="text-align: center;">
+                                              <span style="cursor:default!important;">
+                                                descuento
+                                              </span>
+                                          </th>
+                                          <th class="punta-tittle" style="text-align: center;">
+                                              <span style="cursor:default!important;">
+                                                unitario
+                                              </span>
+                                          </th>
+                                          <th class="punta-tittle" style="text-align: center;">
+                                              <span style="cursor:default!important;">
+                                                importe
+                                              </span>
+                                          </th>
+                                          <th class="punta-tittle" style="text-align: center;">
+                                              <span style="width: 70px; cursor:default!important;">
+                                                acciones
+                                              </span>
+                                          </th>
+                                      </tr>
+                                  </thead>
+                                  <tbody class="table-scroll" style="border: solid 1px #ffffff; ">
+                                    <tr>
+                                      <td style="text-align: center;">
+                                        SERVICIOS DE HOSPEDAJE AIRBNB
+                                      </td>
+                                      <td style="text-align: center;">
+                                        2.00
+                                      </td>
+                                      <td style="text-align: center;">
+                                        0.00  
+                                      </td>
+                                      <td style="text-align: center;">
+                                        $4,441.10
+                                      </td>
+                                      <td style="text-align: center;">
+                                        $8,882.20
+                                      </td>
+                                      <td class="d-flex justify-content-center ">
+                                        <div class="card-accion">
+                                          <mat-icon class="img-accion-borrar"></mat-icon>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                              </table>
+                            </div>
+                          </div>
+
+                          <div class="col-12" style="margin-top: 2%;">
+                            <div class="row total-conceptos">
+                              <div class="col-9"></div>
+                              <div class="col-1">
+                                Subtotal:
+                                <br>
+                                IVA Tras.:
+                                <br>
+                                <span style="font-weight: 600;">Total:</span>
+                                
+                              </div>
+                              <div class="col-2" style="text-align: end;">
+                                $19,7749.08
+                                <br>
+                                $3,1639.85
+                                <br>
+                                <span style="font-weight: 600;">$22,844.93</span>
+                                
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+                    </mat-expansion-panel>
+                  </mat-accordion>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-12 d-flex justify-content-end">
+                  <button mat-button class="btn-utaxme-secondary" style="max-width: 120px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;">
+                    Cancelar
+                  </button>
+                  <button mat-button class="btn-utaxme" style="max-width: 160px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;">
+                    Generar CFDI
+                  </button>
+                </div>
+              </div>
+            </form>
+
+          </div>
+          <div class="col-1"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

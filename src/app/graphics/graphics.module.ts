@@ -18,6 +18,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ThousandsPipe } from '../shared/pipe/thousands.pipe';
 import { FullSizeComponent } from './full-size/full-size.component';
+import { HeaderHomeModule } from '../shared/utils/header-home';
 
 
 
@@ -42,7 +43,7 @@ import { FullSizeComponent } from './full-size/full-size.component';
     MatButtonModule,
     MatIconModule,
     MatTabsModule,
-    
+    HeaderHomeModule
   ],
   exports: [
     BarrasEmitidasComponent,

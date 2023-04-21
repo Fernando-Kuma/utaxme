@@ -95,6 +95,10 @@ export class BarrasEmitidasComponent implements AfterViewInit, OnInit, OnDestroy
 
   _data: Array<DateValue> = [];
   @Input() set data(val: Array<any>) {
+    val.forEach((element, index) => {
+      this._data.push({id: index, total: Number(element.total) })
+    });
+    /* 
     if (val.length > 0 && typeof val[0].date == 'string') {
       this._data = val.map((dt) => {
         let dateValue: DateValue = {
@@ -105,7 +109,7 @@ export class BarrasEmitidasComponent implements AfterViewInit, OnInit, OnDestroy
       });
     } else {
       this._data = val;
-    }
+    } */
     this.update();
   }
   get data() {
@@ -157,8 +161,8 @@ export class BarrasEmitidasComponent implements AfterViewInit, OnInit, OnDestroy
 
   private create() {    
     this.removeTooltips();
-    this.X = d3.map(this.data, (d: DateValue) => d.date);
-    this.Y = d3.map(this.data, (d: DateValue) => d.value);
+    this.X = d3.map(this.data, (d: DateValue) => d.id);
+    this.Y = d3.map(this.data, (d: DateValue) => d.total);
     this.I = d3.range(this.X.length);
 
     const xDomain = d3.extent(this.X);
@@ -195,7 +199,7 @@ export class BarrasEmitidasComponent implements AfterViewInit, OnInit, OnDestroy
     this.xAxis = d3
       .axisBottom(this.xScale)
       .tickSize(0)
-      .tickFormat((d: Date) => formatShort(new Date(d.toString())))
+      .tickFormat((d: any) => (d.toString()))
       .tickSizeInner(this.margin.top + this.margin.bottom - this.height)
       .tickSizeOuter(0)
       .tickPadding(5);
@@ -523,10 +527,10 @@ export class BarrasEmitidasComponent implements AfterViewInit, OnInit, OnDestroy
     let tip = d3Tip()
     .offset([-10, 6])
     .html((d)=> {
-      let fecha = new Date(d.target.__data__.date);
+      let fecha = d.target.__data__.total
       let fechaTool = fecha.getDate() + '/' + (fecha.getMonth() + 1) + '/' + fecha.getFullYear();
       if(this.viewTooltip){
-        return " <div class='TooltipGenerated' style='width: "+ width +"px; height: "+ height +"px; border-radius: 3px; line-height: "+ lineHeight +"px; text-align: center; padding-top: 5px; font-size: "+ fontSize +"px; font-weight: "+ fontWeight +"; opacity: .8; background: #4e5d87;        '><span style='color: #FFFFFF !important'>"+formatShort(new Date(d.target.__data__.date))+"</span><br><span style='font-size: "+ (fontSize+1) +"px; font-weight: "+ (fontWeight+100) +"; color: #dbdbdb !important'><b>"+ this.unit + '' + d.target.__data__.value +''+ (this.tickets ? this.tooltipLabel : '') + "</b></span></div>";
+        return " <div class='TooltipGenerated' style='width: "+ width +"px; height: "+ height +"px; border-radius: 3px; line-height: "+ lineHeight +"px; text-align: center; padding-top: 5px; font-size: "+ fontSize +"px; font-weight: "+ fontWeight +"; opacity: .8; background: #4e5d87;        '><span style='color: #FFFFFF !important'>"+fecha+"</span><br><span style='font-size: "+ (fontSize+1) +"px; font-weight: "+ (fontWeight+100) +"; color: #dbdbdb !important'><b>"+ this.unit + '' + d.target.__data__.total +''+ (this.tickets ? this.tooltipLabel : '') + "</b></span></div>";
       }
     });
 

@@ -10,6 +10,9 @@ import * as moment from 'moment';
 import { MatDatepicker } from '@angular/material/datepicker';
 import { Moment} from 'moment';
 import { DashboardService } from 'src/app/shared/service/dashboard.service';
+import { Router } from '@angular/router';
+import { NAV } from 'src/app/shared/configuration/navegacion';
+import { ComprobantePeriodo, CumplimientoFiscal } from 'src/app/shared/model/dashboard.mode';
 export const MY_FORMATS = {
   parse: {
     dateInput: 'LL', 
@@ -37,6 +40,15 @@ export const MY_FORMATS = {
 })
 export class DashboardComponent implements OnInit {
 
+
+  cumplimientoFiscal: CumplimientoFiscal
+  gastosPeriodo: ComprobantePeriodo = new ComprobantePeriodo;
+  ingresosPeriodo: ComprobantePeriodo = new ComprobantePeriodo;
+  baseGravable:any = {
+    egresos: 0,
+    ingresos: 0,
+  }
+
   usuario: Usuario;
   datosCliente: Cliente;
   date = new FormControl(moment());
@@ -44,7 +56,7 @@ export class DashboardComponent implements OnInit {
   requestDashboard: any;
   
   
-  constructor(private auth: AuthService, private dashboardService: DashboardService) { }
+  constructor(private auth: AuthService, private dashboardService: DashboardService, public router: Router) { }
 
   ngOnInit(): void {
     this.usuario = this.auth.usuario 
@@ -76,6 +88,63 @@ export class DashboardComponent implements OnInit {
       mes: moment(this.date.value).format("M"),
       anio: moment(this.date.value).format("YYYY")
     }
+
+    this.obtenerIngresosEngresos()
+    this.obtenerCumplimientoFiscal()
+  }
+
+  crearFactura(){
+    this.router.navigateByUrl(NAV.crearCfdi)
+  }
+
+  obtenerIngresosEngresos(): void {
+    this.dashboardService.obtenerIngresosGastos(this.requestDashboard).subscribe(
+      (response) => {
+        console.log('Res gatos: ', response);
+        this.baseGravable.egresos = 0
+        this.baseGravable.ingresos = 0
+        this.ingresosPeriodo = new ComprobantePeriodo
+        this.gastosPeriodo = new ComprobantePeriodo
+        if(response.listaReporteIngresosEgresosBean != null){
+          if(response.listaReporteIngresosEgresosBean.find((element) => element.tipoComprobante === 'INGRESOS')){
+            this.ingresosPeriodo = response.listaReporteIngresosEgresosBean.find((element) => element.tipoComprobante === 'INGRESOS');
+            this.baseGravable.ingresos = this.ingresosPeriodo.total
+          }
+          if(response.listaReporteIngresosEgresosBean.find((element) => element.tipoComprobante === 'GASTOS')){
+            this.gastosPeriodo = response.listaReporteIngresosEgresosBean.find((element) => element.tipoComprobante === 'GASTOS');
+            this.baseGravable.egresos = this.gastosPeriodo.total
+          }
+        }
+      },(_error) => {
+        console.log("Error: ", _error);
+    });
+      
+  }
+
+  obtenerCumplimientoFiscal(): void {
+    this.dashboardService.obtenerCumplimientoFiscal(this.requestDashboard).subscribe((resp) => {
+      let mes = moment(resp.anio + '-' + resp.mes)
+      mes.locale('es')
+      let mesString = mes.format('MMMM');
+      resp.mes = mesString
+      resp.estatus = resp.estatus.toLowerCase()
+      this.cumplimientoFiscal = resp;
+      this.cumplimientoFiscal.listDocumentos.forEach(element => {
+        if(element.tipo === 'OPINION'){ 
+          localStorage.Opinion = element.url;
+        }
+        if(element.tipo === 'CONSTANCIA'){ 
+          localStorage.Constancia = element.url;
+        }
+        if(element.tipo === 'ACUSE'){ 
+          localStorage.Acuse = element.url;
+        }
+      });
+    },
+        (_error) => {
+          console.log("::Entro al error Cumplimiento");
+        }
+      );
   }
 
 

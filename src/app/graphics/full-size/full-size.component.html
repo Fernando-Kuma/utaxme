@@ -1,20 +1,29 @@
-<div class="container">
-  <div class="row">
-    <div class="col-6">
-      <div class="titulo-grafica-full">
-        Factura emitidas
-      </div>
-      <div class="texto-grafica-full">
-        24
-      </div>
-    </div>
-    <div class="col-6">
-      <mat-icon class="img-expandir"></mat-icon>
-    </div>
+<div class="page-wrapper" style="margin: 0; padding: 0;">
+  <div class="sticky-header">
+    <app-header-home></app-header-home>
   </div>
-  <div class="row">
-    <ng-container *ngIf="true">
-      <app-cuadrante-ingresos [isFull]="true"></app-cuadrante-ingresos>
-    </ng-container>
+  <div class="content-wrapper disable-scrollbars" style="background-color: #F4F4F4; overflow: scroll;">
+    <div class="container">
+      <div class="row" style="margin-top: 50px;">
+        <div class="col-6">
+          <div class="titulo-grafica-full">
+            {{ tituloDashboard }}
+          </div>
+          <div class="texto-grafica-full">
+            {{ textoDashboard }}
+          </div>
+        </div>
+        <div class="col-6" style="display: flex; justify-content: flex-end;">
+          <mat-icon class="img-expandir" (click)="regresar()"></mat-icon>
+        </div>
+      </div>
+      <div class="row" style="margin-top: 50px;">
+        <ng-container *ngIf="true">
+          <app-cuadrante-ingresos [isFull]="true"></app-cuadrante-ingresos>
+        </ng-container>
+      </div>
+    </div>
   </div>
 </div>
+
+

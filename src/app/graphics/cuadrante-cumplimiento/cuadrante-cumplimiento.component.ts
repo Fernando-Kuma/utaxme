@@ -12,18 +12,12 @@ import { DashboardService } from 'src/app/shared/service/dashboard.service';
 })
 export class CuadranteCumplimientoComponent implements OnInit {
 
-  _consultaRequest: any;
-  @Input() set consultaRequest(val: any) {
-    this._consultaRequest = val;
-    this.getCumplimientoFiscal();
-  }
-
-
-  public tipoDeclaracion: string = 'Mensual';
   response: CumplimientoFiscal;
+  @Input() set data(val: any) {
+    this.response = val;
+  }
+  public tipoDeclaracion: string = 'Mensual';
 
-  urlOpinion: any;
-  urlConstancia: any;
 
   constructor(
     private dashboardService: DashboardService,
@@ -33,31 +27,23 @@ export class CuadranteCumplimientoComponent implements OnInit {
     
   }
 
-  getCumplimientoFiscal(): void {
-    this.dashboardService.obtenerCumplimientoFiscal(this._consultaRequest).subscribe((resp) => {
-      let mes = moment(resp.anio + '-' + resp.mes)
-      mes.locale('es')
-      let mesString = mes.format('MMMM');
-      resp.mes = mesString
-      resp.estatus = resp.estatus.toLowerCase()
-      this.response = resp;
-      this.urlOpinion = this.response.listDocumentos[0].url;
-      this.urlConstancia = this.response.listDocumentos[1].url;
-      localStorage.Constancia = this.response.listDocumentos[1].url;
-    },
-        (_error) => {
-          console.log("::Entro al error Cumplimiento");
-        }
-        );
-  }
-
 
   verOpinion(){
-    window.open(this.urlOpinion, "_blank");
+    let urlOpinion = localStorage.Opinion;
+    if(urlOpinion != null){
+      window.open(urlOpinion, "_blank");
+    }else{
+      this.openSnackBar()
+    }
   }
 
-  verConstancia(){
-  window.open(this.urlConstancia, "_blank");
+  verAcuse(){
+    let urlAcuse = localStorage.Acuse;
+    if(urlAcuse != null){
+      window.open(urlAcuse, "_blank");
+    }else{
+      this.openSnackBar()
+    }
   }
 
   openSnackBar() {

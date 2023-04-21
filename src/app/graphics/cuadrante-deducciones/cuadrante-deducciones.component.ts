@@ -119,7 +119,6 @@ export class CuadranteDeduccionesComponent implements OnInit {
   _consultaRequest: any;
   @Input() set consultaRequest(val: any) {
     this._consultaRequest = val;
-    //this.obtenerIngresosEngresos();
   }
 
   request: any;

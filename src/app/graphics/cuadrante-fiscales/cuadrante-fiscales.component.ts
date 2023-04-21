@@ -13,18 +13,23 @@ export class CuadranteFiscalesComponent implements OnInit {
   _consultaRequest: any;
   @Input() set consultaRequest(val: any) {
     this._consultaRequest = val;
-    this.obtenerIngresosEngresos();
+    //this.obtenerIngresosEngresos();
+  }
+
+  baseGravable: any = {
+    egresos: 0,
+    ingresos: 0,
+  }
+
+  @Input() set data(val: any) {
+    this.baseGravable = val;
+    this.calcularSpeed()
+    //this.obtenerDato();
   }
 
   response: DatosFiscales;
   urlConstancia: any;
 
- 
-  
-  baseGravable:any = {
-    egresos: 0,
-    ingresos: 0,
-  }
 
   speedValue: any;
 
@@ -34,7 +39,6 @@ export class CuadranteFiscalesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.calcularSpeed()
     this.obtenerDatosFiscales()
   }
 

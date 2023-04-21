@@ -19,6 +19,13 @@ import { ClientesFrecuentesComponent } from './espacio-trabajo/clientes-frecuent
 import { CrearProdServComponent } from './espacio-trabajo/crear-prod-serv/crear-prod-serv.component';
 import { EspacioTrabajoComponent } from './espacio-trabajo/espacio-trabajo.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { ConfiguracionAvanzadaComponent } from './espacio-trabajo/generar-cfdi/configuracion-avanzada/configuracion-avanzada.component';
+import { ConceptosComponent } from './espacio-trabajo/generar-cfdi/conceptos/conceptos.component';
+import { CrearConceptoComponent } from './espacio-trabajo/generar-cfdi/crear-concepto/crear-concepto.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 
@@ -33,6 +40,9 @@ import { MatTabsModule } from '@angular/material/tabs';
     ClientesFrecuentesComponent,
     CrearProdServComponent,
     EspacioTrabajoComponent,
+    ConfiguracionAvanzadaComponent,
+    ConceptosComponent,
+    CrearConceptoComponent,
   ],
   imports: [
     CommonModule,
@@ -47,7 +57,11 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatIconModule,
     MatTabsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatExpansionModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatCheckboxModule
   ],
   exports: [
     MatDatepickerModule,

@@ -1,6 +1,6 @@
 {
   "/billerTicket-mobile": {
-    "target": "https://utaxon.com/billerTicket-mobile",
+    "target": "http://3.16.240.122:8080/billerTicket-mobile",
     "secure": false,
     "changeOrigin": true,
     "pathRewrite": { "^/billerTicket-mobile": "" }

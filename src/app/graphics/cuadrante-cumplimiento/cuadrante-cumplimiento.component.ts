@@ -24,6 +24,7 @@ export class CuadranteCumplimientoComponent implements OnInit {
 
   urlOpinion: any;
   urlConstancia: any;
+  urlAcuse: any;
   spinnerLoading: boolean = true;
 
   constructor(
@@ -63,7 +64,8 @@ export class CuadranteCumplimientoComponent implements OnInit {
   window.open(this.urlConstancia, "_blank");
   }
 
-  openSnackBar() {
-    alert('No se encontro el acuse');
+  verAcuse() {
+    window.open('https://www.billerticket.com/store/OATP9611061C4/ACUSE_RECIBO_OATP9611061C4_ENE_FEB_2023_IVA.pdf', "_blank");
+    /* alert('No se encontro el acuse'); */
   }
 }

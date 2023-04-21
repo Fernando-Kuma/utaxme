@@ -46,30 +46,37 @@
                 </div>
               </div>
               <div class="row" style="margin: 45px 0 35px;">
-                <div class="col-4">
+                <div class="col-4" (click)="nuevaFactura()">
                   <div class="row boton-enlace m0p0">
+                    <div class="internal">
                     <div class="col-3">
                       <mat-icon class="image-edit-doc image-size-22"></mat-icon>
                     </div>
                     <div class="col-9">Crear Factura</div>
+                    </div>
                   </div>
                 </div>
   
-                <div class="col-4" (click)="contacto()">
+                <div class="col-4 " (click)="contacto()">
                   <div class="row boton-enlace m0p0">
-                    <div class="col-3">
-                      <mat-icon class="image-user-call image-size-22"></mat-icon>
+                    <div class="internal">
+                      <div class="col-3 " >
+                        <mat-icon class="image-user-call image-size-22"></mat-icon>
+                      </div>
+                      <div class="col-9">Contactar Contador</div>
                     </div>
-                    <div class="col-9">Contactar Contador</div>
+                     
                   </div>
                 </div>
                 
-                <div class="col-4">
+                <div class="col-4" (click)="cancelarFactura()">
                   <div class="row boton-enlace m0p0">
+                    <div class="internal">
                     <div class="col-3">
                       <mat-icon class="image-cancel-doc image-size-22"></mat-icon>
                     </div>
                     <div class="col-9">Cancelar Factura</div>
+                    </div>
                   </div>
                 </div>
   

@@ -13,6 +13,8 @@ import { DashboardService } from 'src/app/shared/service/dashboard.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ContactoComponent } from 'src/app/shared/utils/contacto';
 import { ContactoService } from 'src/app/shared/utils/contacto/contacto.service';
+import { Router } from '@angular/router';
+import { NAV } from 'src/app/shared/configuration/navegacion';
 export const MY_FORMATS = {
   parse: {
     dateInput: 'LL', 
@@ -47,7 +49,12 @@ export class DashboardComponent implements OnInit {
   requestDashboard: any;
   
   
-  constructor(private auth: AuthService, private dashboardService: DashboardService, private dialog: MatDialog, private dialogService: ContactoService) { }
+  constructor(
+    private auth: AuthService, 
+    private dashboardService: DashboardService, 
+    private dialog: MatDialog, 
+    private dialogService: ContactoService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.usuario = this.auth.usuario 
@@ -89,7 +96,15 @@ export class DashboardComponent implements OnInit {
     
   }
 
+  nuevaFactura(){
+    this.router.navigateByUrl(NAV.generarCfdi);
+  }
+  
   contacto(){
     this.openDetalleDialog(); 
+  }
+
+  cancelarFactura(){
+    this.router.navigateByUrl(NAV.cancelarCfdi);
   }
 }

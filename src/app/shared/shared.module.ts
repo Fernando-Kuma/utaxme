@@ -13,13 +13,16 @@ import { DetalleDeducPersonalComponent } from './utils/detalle-deduc-personal/de
 import { DetalleDeducPersonalModule } from './utils/detalle-deduc-personal';
 import { ContactoComponent } from './utils/contacto/contacto.component';
 import { ContactoModule } from './utils/contacto';
+import { ServiceErrorDialogComponent } from './utils/service-error-dialog/service-error-dialog.component';
+import { ServiceErrorDialogModule } from './utils/service-error-dialog/service-error-dialog.module';
 
 
 
 @NgModule({
   declarations: [
     SafePipe, 
-    MaskPipe,  
+    MaskPipe,
+    
 ],
   imports: [
     CommonModule,
@@ -28,7 +31,8 @@ import { ContactoModule } from './utils/contacto';
     TimerModule,
     ConfirmDialogModule,
     DetalleDeducPersonalModule,
-    ContactoModule
+    ContactoModule,
+    ServiceErrorDialogModule
   ],
   exports: [
     SafePipe,
@@ -37,7 +41,8 @@ import { ContactoModule } from './utils/contacto';
     TimerComponent,
     ConfirmDialogComponent,
     DetalleDeducPersonalComponent,
-    ContactoComponent
+    ContactoComponent,
+    ServiceErrorDialogComponent
   ],
 })
 export class SharedModule { }

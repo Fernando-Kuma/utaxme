@@ -69,16 +69,32 @@
 
 .boton-enlace{
   background-color: #FFFFFF; 
- /*  width: 299px; */ 
   height: 98px;  
   border-radius: 8px; 
   font-size: 18px; 
   font-weight: 500;
   color: #0B112A;
-  
   display: flex;
   align-items: center;
-
   cursor: pointer;
-
 }
+
+
+.internal {
+  height: 98px;
+  background-color: #FFFFFF;
+  transition: 1s;
+  border-radius: 8px; 
+  font-size: 18px; 
+  font-weight: 500;
+  color: #0B112A;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+
+.internal:hover {
+  background-color: rgb(200, 200, 204);
+}
+

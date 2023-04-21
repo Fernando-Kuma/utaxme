@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HomeModule } from './components/home/home.module';
 import { AuthModule } from './components/auth/auth.module';
+import { NgxSpinnerModule } from 'ngx-spinner';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
@@ -22,8 +23,11 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     BrowserAnimationsModule,
     HomeModule,
     AuthModule,
+    NgxSpinnerModule,
     HttpClientModule,
     SharedModule,
+  ],
+  exports: [
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },

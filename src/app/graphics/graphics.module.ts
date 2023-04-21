@@ -12,6 +12,7 @@ import { CuadranteFiscalesComponent } from './cuadrante-fiscales/cuadrante-fisca
 import {MatDividerModule} from '@angular/material/divider';
 import {MatTableModule} from '@angular/material/table';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { PagerModule } from '../shared/utils/pager';
 
 import {MatButtonModule} from '@angular/material/button';
@@ -19,6 +20,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { ThousandsPipe } from '../shared/pipe/thousands.pipe';
 import { FullSizeComponent } from './full-size/full-size.component';
 import { HeaderHomeModule } from '../shared/utils/header-home';
+
 
 
 
@@ -43,6 +45,7 @@ import { HeaderHomeModule } from '../shared/utils/header-home';
     MatButtonModule,
     MatIconModule,
     MatTabsModule,
+    MatProgressSpinnerModule,
     HeaderHomeModule
   ],
   exports: [

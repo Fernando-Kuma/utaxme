@@ -13,3 +13,9 @@
   min-height: 45px;
   border-radius: 25px;
 }
+
+.spinner{
+  margin-left: 220px; 
+  height: 351px; 
+  align-items: center;
+}

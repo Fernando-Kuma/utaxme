@@ -11,13 +11,18 @@ import { ConfirmDialogComponent } from './utils/confirm-dialog/confirm-dialog.co
 import { ConfirmDialogModule } from './utils/confirm-dialog/confirm-dialog.module';
 import { DetalleDeducPersonalComponent } from './utils/detalle-deduc-personal/detalle-deduc-personal.component';
 import { DetalleDeducPersonalModule } from './utils/detalle-deduc-personal';
+import { ContactoComponent } from './utils/contacto/contacto.component';
+import { ContactoModule } from './utils/contacto';
+import { ServiceErrorDialogComponent } from './utils/service-error-dialog/service-error-dialog.component';
+import { ServiceErrorDialogModule } from './utils/service-error-dialog/service-error-dialog.module';
 
 
 
 @NgModule({
   declarations: [
     SafePipe, 
-    MaskPipe, 
+    MaskPipe,
+    
 ],
   imports: [
     CommonModule,
@@ -25,8 +30,9 @@ import { DetalleDeducPersonalModule } from './utils/detalle-deduc-personal';
     PincodeModule,
     TimerModule,
     ConfirmDialogModule,
-    DetalleDeducPersonalModule
-    
+    DetalleDeducPersonalModule,
+    ContactoModule,
+    ServiceErrorDialogModule
   ],
   exports: [
     SafePipe,
@@ -34,7 +40,9 @@ import { DetalleDeducPersonalModule } from './utils/detalle-deduc-personal';
     PincodeComponent,
     TimerComponent,
     ConfirmDialogComponent,
-    DetalleDeducPersonalComponent
+    DetalleDeducPersonalComponent,
+    ContactoComponent,
+    ServiceErrorDialogComponent
   ],
 })
 export class SharedModule { }

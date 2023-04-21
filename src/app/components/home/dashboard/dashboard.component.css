@@ -93,8 +93,6 @@
   cursor: pointer;
 }
 
-
-.internal:hover {
+::ng-deep .internal:hover {
   background-color: rgb(200, 200, 204);
 }
-

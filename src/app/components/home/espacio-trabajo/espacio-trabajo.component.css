@@ -104,6 +104,8 @@
   border: 2px solid #E6EDF6; 
   box-shadow: 8px 16px 32px #E6EDF6; 
   border-radius: 4px;
+  transition: 1s;
+  cursor: pointer;
 }
 
 .background-icon{
@@ -111,4 +113,23 @@
   width: 53px; 
   height: 53px; 
   border-radius: 8px;
+}
+
+
+/* .internal {
+  height: 98px;
+  background-color: #FFFFFF;
+  transition: 1s;
+  border-radius: 8px; 
+  font-size: 18px; 
+  font-weight: 500;
+  color: #0B112A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+} */
+
+::ng-deep .btn-accion:hover {
+  background-color: rgb(200, 200, 204);
 }

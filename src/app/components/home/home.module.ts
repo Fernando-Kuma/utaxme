@@ -26,6 +26,7 @@ import { CrearConceptoComponent } from './espacio-trabajo/generar-cfdi/crear-con
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 
@@ -61,7 +62,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatExpansionModule,
     MatDialogModule,
     MatButtonModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     MatDatepickerModule,

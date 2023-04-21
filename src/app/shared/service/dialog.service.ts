@@ -4,7 +4,7 @@ import { MatDialogConfig } from '@angular/material/dialog';
 @Injectable({
   providedIn: 'root'
 })
-export class ConceptosService {
+export class DialogService {
 
   private dialogConfig = new MatDialogConfig();
 
@@ -16,5 +16,4 @@ export class ConceptosService {
         }
         return this.dialogConfig;
     }
-
 }

@@ -6,10 +6,9 @@ import { DatosFiscales } from 'src/app/shared/model/dashboard.mode';
 import { AuthService } from 'src/app/shared/service/auth.service';
 import { DashboardService } from 'src/app/shared/service/dashboard.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { ConfiguracionAvanzadaService } from './configuracion-avanzada/configuracion-avanzada.service';
 import { ConfiguracionAvanzadaComponent } from './configuracion-avanzada/configuracion-avanzada.component';
-import { ConceptosService } from './conceptos/conceptos.service';
 import { ConceptosComponent } from './conceptos/conceptos.component';
+import { DialogService } from 'src/app/shared/service/dialog.service';
 
 
 @Component({
@@ -27,8 +26,7 @@ export class GenerarCfdiComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,  
-    private dialogService: ConfiguracionAvanzadaService,
-    private dialogServiceConcepto: ConceptosService,
+    private dialogService: DialogService,
     public router: Router, 
     private auth: AuthService, 
     private formBuilder: FormBuilder, 
@@ -82,7 +80,7 @@ export class GenerarCfdiComponent implements OnInit {
   listaConcepto(){
     const dialogRef = this.dialog.open(
       ConceptosComponent, 
-      this.dialogServiceConcepto.detalle()
+      this.dialogService.detalle()
     );
     dialogRef.afterClosed().subscribe(
       data => {

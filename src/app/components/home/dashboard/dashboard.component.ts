@@ -57,6 +57,9 @@ export class DashboardComponent implements OnInit {
   date = new FormControl(moment());
   maxDate: Date;
   requestDashboard: any;
+
+  spinnerLoadingIngresos: boolean = false;
+  spinnerLoadingCumplimiento: boolean = false;
   
   
   constructor(
@@ -106,6 +109,7 @@ export class DashboardComponent implements OnInit {
   }
 
   obtenerIngresosEngresos(): void {
+    this.spinnerLoadingIngresos = true;
     this.dashboardService.obtenerIngresosGastos(this.requestDashboard).subscribe(
       (response) => {
         console.log('Res gatos: ', response);
@@ -123,13 +127,16 @@ export class DashboardComponent implements OnInit {
             this.baseGravable.egresos = this.gastosPeriodo.total
           }
         }
+        this.spinnerLoadingIngresos = false;
       },(_error) => {
+        this.spinnerLoadingIngresos = false;
         console.log("Error: ", _error);
     });
       
   }
 
   obtenerCumplimientoFiscal(): void {
+    this.spinnerLoadingCumplimiento = true;
     this.dashboardService.obtenerCumplimientoFiscal(this.requestDashboard).subscribe((resp) => {
       let mes = moment(resp.anio + '-' + resp.mes)
       mes.locale('es')
@@ -148,8 +155,10 @@ export class DashboardComponent implements OnInit {
           localStorage.Acuse = element.url;
         }
       });
+      this.spinnerLoadingCumplimiento = false;
     },
         (_error) => {
+          this.spinnerLoadingCumplimiento = false;
           console.log("::Entro al error Cumplimiento");
         }
       );

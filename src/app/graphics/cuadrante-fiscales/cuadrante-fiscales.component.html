@@ -1,4 +1,4 @@
-<div class="row" *ngIf="!spinnerLoading">
+<div class="row">
   <div class="col-12 titulo-cuadrante">
     Datos Fiscales
   </div>
@@ -33,7 +33,7 @@
     <mat-divider></mat-divider>
   </div>
 </div>
-<div class="row" *ngIf="!spinnerLoading">
+<div class="row">
   <div class="col-12 titulo-cuadrante" style="margin-top: 30px;">
     Base Gravable
   </div>
@@ -64,8 +64,4 @@
       Estas gastando el 60% del total de tu ingresos facturados
     </div>
   </div>
-</div>
-
-<div *ngIf="spinnerLoading" class="d-flex justify-content-center col-xs-12 col-sm-6 col-md-8 spinner">
-  <mat-spinner [diameter]="30"></mat-spinner>
 </div>

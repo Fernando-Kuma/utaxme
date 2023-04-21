@@ -1,1 +1,82 @@
-<p>crear-concepto works!</p>
+<div class="confirm">
+  <mat-dialog-content>
+      <div class="container" style="width: 100%; margin: 0; padding: 0; overflow: hidden;">
+          <div class="row" style="width: 100%; margin: 0; padding: 0;">
+              <div class="col-10"  style="padding: 0; display: flex; align-items: center;">
+                <span class="dialog-titulo">Configuración avanzada</span> 
+              </div>
+              <div class="col-2">
+                  <button mat-icon-button style="float: right; position: relative;" (click)="closeDialog()">
+                      <mat-icon class="img-close"></mat-icon>
+                  </button>
+              </div>
+          </div>
+      </div>
+  </mat-dialog-content>
+  
+  <mat-dialog-actions>
+      <div class="container" style="margin: 0; padding: 20px 30px;">
+        <form [formGroup]="form" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+          <div class="row w100m0p0" style="margin-top: 2%;">
+            <div class="col-8 dialog-texto">
+              Configura los detalles de tu factura, puedes cambiarlos las veces que sean necesarias antes de generar tu factura
+            </div>
+            <div class="col-4"></div>
+          </div>
+          <div class="row w100m0p0" style="margin-top: 1%;">
+            <div class="col-6 textoM" style="margin-top: 3%;">
+              <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
+                <mat-label>método de pago</mat-label>
+                <input matInput formControlName="metodoPago" id="metodoPago" name="metodoPago" minlength="3"/>
+                <!-- <mat-error *ngIf="!form.controls['metodoPago'].valid && form.controls['metodoPago'].touched">
+                  {{ getError() }}
+                </mat-error> -->
+              </mat-form-field>
+            </div>
+            <div class="col-6 textoM" style="margin-top: 3%;">
+              <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
+                <mat-label>moneda</mat-label>
+                <mat-select formControlName="moneda" id="moneda" name="moneda">
+                </mat-select>
+                <!-- <mat-error *ngIf="!form.controls['tituloPaquete'].valid && form.controls['tituloPaquete'].touched">
+                  {{ getError() }}
+                </mat-error> -->
+              </mat-form-field>
+            </div>
+            <div class="col-6 textoM" style="margin-top: 3%;">
+              <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
+                <mat-label>condiciones de pago</mat-label>
+                <mat-select formControlName="condicionesPago" id="condicionesPago" name="condicionesPago">
+                </mat-select>
+                <!-- <mat-error *ngIf="!form.controls['tituloPaquete'].valid && form.controls['tituloPaquete'].touched">
+                  {{ getError() }}
+                </mat-error> -->
+              </mat-form-field>
+            </div>
+            <div class="col-6 textoM" style="margin-top: 3%;">
+              <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
+                <mat-label>días de crédito</mat-label>
+                <mat-select formControlName="diasCredito" id="diasCredito" name="diasCredito">
+                </mat-select>
+                <!-- <mat-error *ngIf="!form.controls['tituloPaquete'].valid && form.controls['tituloPaquete'].touched">
+                  {{ getError() }}
+                </mat-error> -->
+              </mat-form-field>
+            </div>
+          </div>
+
+
+          <div class="row" style="margin: 40px 0px 0px !important; width: 100%; padding: 0;">
+            <div class="col-12 d-flex justify-content-end">
+              <button type="button" class="btn-utaxme-secondary" (click)="closeDialog()" style="max-width: 120px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;">
+                Cancelar
+              </button>
+              <button type="button" class="btn-utaxme" (click)="closeDialog()" style="max-width: 225px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;">
+                Generar CFDI
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+  </mat-dialog-actions>
+</div>

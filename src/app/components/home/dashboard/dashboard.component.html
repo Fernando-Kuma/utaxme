@@ -86,13 +86,23 @@
             <div class="row">
               <div class="col"
                 style="background-color: #FFFFFF; width: 975px; height: 351px; margin-bottom: 39px;  border-radius: 15px; padding: 15px 12px;">
-                <app-cuadrante-ingresos [data]="ingresosPeriodo"></app-cuadrante-ingresos>
+                <ng-container *ngIf="!spinnerLoadingIngresos">
+                  <app-cuadrante-ingresos [data]="ingresosPeriodo"></app-cuadrante-ingresos>
+                </ng-container>
+                <div *ngIf="spinnerLoadingIngresos" style="min-height: 350px;" class="d-flex justify-content-center align-items-center">
+                  <mat-spinner [diameter]="30"></mat-spinner>
+                </div>
               </div>
             </div>
             <div class="row">
               <div class="col"
                 style="background-color: #FFFFFF; width: 975px; height: 351px; margin-bottom: 39px; border-radius: 15px; padding: 15px 12px;">
-                <app-cuadrante-gastos [consultaRequest]="requestDashboard" [data]="gastosPeriodo"></app-cuadrante-gastos>
+                <ng-container *ngIf="!spinnerLoadingIngresos">
+                  <app-cuadrante-gastos [data]="ingresosPeriodo"></app-cuadrante-gastos>
+                </ng-container>
+                <div *ngIf="spinnerLoadingIngresos" style="min-height: 350px;" class="d-flex justify-content-center align-items-center">
+                  <mat-spinner [diameter]="30"></mat-spinner>
+                </div>
               </div>
             </div>
             <div class="row">
@@ -107,13 +117,23 @@
             <div class="row">
               <div class="col"
                 style="background-color: #FFFFFF; width: 489px; height: 424px; margin-bottom: 39px; border-radius: 15px; padding: 15px 12px;">
-                <app-cuadrante-cumplimiento [data]="cumplimientoFiscal"></app-cuadrante-cumplimiento>
+                <ng-container *ngIf="!spinnerLoadingCumplimiento">
+                  <app-cuadrante-cumplimiento [data]="cumplimientoFiscal"></app-cuadrante-cumplimiento>
+                </ng-container>
+                <div *ngIf="spinnerLoadingCumplimiento" style="min-height: 400px;" class="d-flex justify-content-center align-items-center">
+                  <mat-spinner [diameter]="30"></mat-spinner>
+                </div>
               </div>
             </div>
             <div class="row">
               <div class="col"
                 style="background-color: #FFFFFF; width: 489px; height: 1147px; margin-bottom: 39px; border-radius: 15px; padding: 15px 12px;">
-                <app-cuadrante-fiscales [consultaRequest]="requestDashboard" [data]="baseGravable"></app-cuadrante-fiscales>
+                <ng-container *ngIf="!spinnerLoadingIngresos">
+                  <app-cuadrante-fiscales [consultaRequest]="requestDashboard" [data]="baseGravable"></app-cuadrante-fiscales>
+                </ng-container>
+                <div *ngIf="spinnerLoadingIngresos" style="min-height: 1000px;" class="d-flex justify-content-center align-items-center">
+                  <mat-spinner [diameter]="30"></mat-spinner>
+                </div>
               </div>
             </div>
           </div>

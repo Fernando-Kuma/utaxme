@@ -442,6 +442,13 @@ body {
   background-position: center;
 }
 
+.img-whatsapp{
+  background-image: url("src\assets\icon\whatsapp.svg");
+  background-size: 19px 19px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 .image-invert-color {
   filter: invert(100%);
 }

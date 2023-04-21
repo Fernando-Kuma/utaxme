@@ -10,6 +10,9 @@ import * as moment from 'moment';
 import { MatDatepicker } from '@angular/material/datepicker';
 import { Moment} from 'moment';
 import { DashboardService } from 'src/app/shared/service/dashboard.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ContactoComponent } from 'src/app/shared/utils/contacto';
+import { ContactoService } from 'src/app/shared/utils/contacto/contacto.service';
 export const MY_FORMATS = {
   parse: {
     dateInput: 'LL', 
@@ -44,7 +47,7 @@ export class DashboardComponent implements OnInit {
   requestDashboard: any;
   
   
-  constructor(private auth: AuthService, private dashboardService: DashboardService) { }
+  constructor(private auth: AuthService, private dashboardService: DashboardService, private dialog: MatDialog, private dialogService: ContactoService) { }
 
   ngOnInit(): void {
     this.usuario = this.auth.usuario 
@@ -78,5 +81,15 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+  openDetalleDialog() {
+    const dialogRef = this.dialog.open(
+      ContactoComponent,
+      this.dialogService.contacto()
+    );
+    
+  }
 
+  contacto(){
+    this.openDetalleDialog(); 
+  }
 }

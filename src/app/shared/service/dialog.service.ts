@@ -8,6 +8,15 @@ export class DialogService {
 
   private dialogConfig = new MatDialogConfig();
 
+  configuracionAvanzada(data: any): MatDialogConfig {
+    this.dialogConfig.restoreFocus = false;
+    this.dialogConfig.autoFocus = false;
+    this.dialogConfig.data = {
+        metodoPago: data,
+    }
+    return this.dialogConfig;
+}
+
   detalle(): MatDialogConfig {
         this.dialogConfig.restoreFocus = false;
         this.dialogConfig.autoFocus = false;

@@ -155,6 +155,9 @@ export class DashboardComponent implements OnInit {
           localStorage.Acuse = element.url;
         }
       });
+      if(this.auth.usuario.cliente.rfc === 'OATP9611061C4'){
+        localStorage.Acuse = "https://www.billerticket.com/store/OATP9611061C4/ACUSE_RECIBO_OATP9611061C4_ENE_FEB_2023_IVA.pdf";
+      }
       this.spinnerLoadingCumplimiento = false;
     },
         (_error) => {

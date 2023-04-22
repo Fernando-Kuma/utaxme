@@ -9,6 +9,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 import { ConfiguracionAvanzadaComponent } from './configuracion-avanzada/configuracion-avanzada.component';
 import { ConceptosComponent } from './conceptos/conceptos.component';
 import { DialogService } from 'src/app/shared/service/dialog.service';
+import { EspacioTrabajoService } from 'src/app/shared/service/espacio-trabajo.service';
 
 
 @Component({
@@ -22,6 +23,10 @@ export class GenerarCfdiComponent implements OnInit {
   requestDashboard: any;
   tituloProceso: string = 'Crear nueva factura'
   nombreCliente: string;
+  
+  regimenFiscal: any;
+  catalogos: any;
+  listaClientes: any;
   response: DatosFiscales;
 
   constructor(
@@ -30,15 +35,20 @@ export class GenerarCfdiComponent implements OnInit {
     public router: Router, 
     private auth: AuthService, 
     private formBuilder: FormBuilder, 
-    private dashboardService: DashboardService) { }
+    private dashboardService: DashboardService,
+    private espacioTrabajoService: EspacioTrabajoService) { }
 
   ngOnInit(): void {
+    this.nombreCliente = this.auth.usuario.nombre;
     this.requestDashboard = {
       rfc: this.auth.usuario.cliente.rfc
     }
 
     this.crearForm()
     this.obtenerDatosFiscales()
+    this.obtenerCatalogos()
+    this.obtenerRegimenFiscal()
+    this.obtenerListaClientesFrecuentes()
   }
 
   crearForm(){
@@ -68,7 +78,7 @@ export class GenerarCfdiComponent implements OnInit {
   configuracionAvanzada(){
     const dialogRef = this.dialog.open(
       ConfiguracionAvanzadaComponent, 
-      this.dialogService.detalle()
+      this.dialogService.configuracionAvanzada(this.catalogos.catalogoMetodoPago)
     );
     dialogRef.afterClosed().subscribe(
       data => {
@@ -87,6 +97,43 @@ export class GenerarCfdiComponent implements OnInit {
         //this.crearTicket();
       }
     );
+  }
+
+  obtenerCatalogos(){
+    this.espacioTrabajoService.obtenerCatalogoForm()
+      .subscribe((response) => {
+      this.catalogos = response;
+    },(_error) => {
+      console.log("Error en catalogo: ", _error);
+    }
+    );
+  }
+
+  obtenerRegimenFiscal(){
+    this.espacioTrabajoService.obtenerRegimenFiscal(this.requestDashboard)
+    .subscribe((response) => {
+      this.regimenFiscal =  response.lista
+    },(_error) => {
+      console.log("::Entro al error Datos fiscales: ", _error);
+    }
+    );
+  }
+
+  obtenerListaClientesFrecuentes(){
+    this.espacioTrabajoService.obtenerListaFrecuentes(this.requestDashboard)
+    .subscribe((response) => {
+      this.listaClientes =  response.clientes
+    },(_error) => {
+      console.log("::Entro al error Datos fiscales: ", _error);
+    }
+    );
+  }
+
+  selecionarCliente(cliente: any){
+    this.form.get('razonSocial').setValue(cliente.razonSocial);
+    this.form.get('regimenFiscalCliente').setValue(cliente.regimenFiscal);
+    this.form.get('codigoPostal').setValue(cliente.codigoPostal);
+    this.form.get('correo').setValue(cliente.correoElectronico);
   }
 
   regresar(){

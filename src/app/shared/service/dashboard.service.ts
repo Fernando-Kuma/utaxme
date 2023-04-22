@@ -70,6 +70,35 @@ export class DashboardService {
       );
   }
 
+  obtenerClieteCount(request: any): Observable<any> {
+    return this.http
+      .post<any>(`${API.clientesCount}?rfc=${request.rfc}&anio=${request.anio}&mes=${request.mes}`, request)
+      .pipe(
+        catchError((e) => {
+          return throwError(e);
+        })
+      );
+  }
+
+  obtenerDeduccionesFiscales(): Observable<any> {
+    return this.http
+      .get<any>(`${API.deduccionesFiscales}`,)
+      .pipe(
+        catchError((e) => {
+          return throwError(e);
+        })
+      );
+  }
+
+  obtenerSaludFiscal(request: any): Observable<any> {
+    return this.http
+      .post<any>(`${API.saludFiscal}?rfc=${request.rfc}&anio=${request.anio}&mes=${request.mes}`, request)
+      .pipe(
+        catchError((e) => {
+          return throwError(e);
+        })
+      );
+  }
 
   
 

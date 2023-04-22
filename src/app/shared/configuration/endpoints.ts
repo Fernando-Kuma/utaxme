@@ -4,12 +4,23 @@ export const API = {
 
   login: environment.apiAuth + 'admin/find',
   payment: environment.apiAuth + 'admin/find/payment',
-  
   validaCliente: environment.apiDashboard + 'ValidaClienteUtaxmeForm.htm',
+
   datosFiscales: environment.apiDashboard + 'DatosFiscalesForm.htm',
   cumplimiento: environment.apiDashboard + 'CumplimientoFiscalForm.htm',
   ingresosEgresos: environment.apiDashboard + 'ReporteIngresosEgresosForm.htm',
-  
+
+  deduccionesFiscales: environment.apiDashboard + 'DeduccionesFiscalesForm.htm',
+  saludFiscal: environment.apiDashboard + 'BaseGravableForm.htm',
+
+
+  catalogoSat: environment.apiDashboard + 'CatalogosSatForm.htm',
+  listaFrecuentes: environment.apiDashboard + 'clientes/frecuentes/list',
+  clientesCount: environment.apiDashboard + 'cfdis/clientes/count',
+  regimenFiscal: environment.apiDashboard + 'cfdi/regimenfiscal',
+  listaConceptos: environment.apiDashboard + 'conceptos/clientes/consultar',
+
+
   cfdiGeneradosFilter: environment.apiDashboard+ 'CfdiGeneradosFilter.htm',
   reporteFacturas: environment.apiDashboard + 'DownloadReporteValidacionFacturasForm.htm',
 
@@ -20,7 +31,6 @@ export const API = {
   questionary: environment.api + 'utaxon/questionary/',
   paidOff: environment.api + 'utaxon/proposal/paidOff',
   pending: environment.api + 'utaxon/proposal/pending',
-  findPayment: environment.api + 'utaxon/admin/find/payment',
   catalogosProductos: environment.api + 'utaxon/catalogs/paquetes',
   register: environment.api + 'utaxon/admin/register',
     

@@ -24,10 +24,22 @@ export class CrearConceptoComponent {
 
   crearForm(){
     this.form = this.formBuilder.group({      
-      metodoPago: [''],
-      moneda: [''],
-      condicionesPago: [''],
-      diasCredito: ['']
+      buscar: [''],
+      nombreProducto: [''],
+      clavaProducto: [''],
+      unidad: [''],
+      clavaUnidad: [''],
+      valorUnitario: [''],
+      descripcion: [''],
+      impuestoT: [''],
+      impuestoR: [''],
+      impuestoL: [''],
+      iva: [''],
+      ieps: [''],
+      isr: [''],
+      iepsISR: [''],
+      impuestoLocal: [''],
+      tasaLocal: [''],
     });
   }
 

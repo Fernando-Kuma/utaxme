@@ -57,6 +57,12 @@
   color: #7B8AA0;
 }
 
+.dialog-texto-titulo{
+  font-weight: 600;
+  font-size: 20px;
+  color: #0B112A;
+}
+
 .textoM{
   text-transform: uppercase;
 }

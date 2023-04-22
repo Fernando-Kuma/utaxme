@@ -20,19 +20,6 @@ mat-toolbar{
     margin-right: 30px;
 }
 
-@media(max-width: 767px){
-    mat-toolbar{
-        flex-flow: column;
-        height: 40px;
-    }
-
-    .ml30{
-        display: none;
-    }
-}
-
-
-
 .image-headphones {
     background-image: url("src\assets\icon\headphones.svg");
     background-size: 17px 23px;
@@ -53,3 +40,22 @@ mat-toolbar{
     font-style: normal;
     letter-spacing: 2px;
   }
+
+@media(max-width: 767px){
+    mat-toolbar{
+        flex-flow: column;
+        height: 40px;
+    }
+
+    .ml30{
+        display: none;
+    }
+}
+
+
+@media(max-width: 425px){
+    mat-toolbar{
+       display: none;
+    }
+  }
+

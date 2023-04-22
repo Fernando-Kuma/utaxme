@@ -12,12 +12,18 @@
                 style="border-radius: 3px 0px 0px 3px;" src="assets/img/img-signup.png" alt="Inicio Login">
                 <div class="utaxme-card-content">
                   <mat-card class="card-content">
-                    <mat-card-title class="text-left" style="font-size: 24px;">
-                      {{ title }}
-                    </mat-card-title>
-                    <mat-card-subtitle class="text-left mt-2" style="font-size: 16px; min-width: 350px;">
-                      Ingresa los siguientes datos
-                    </mat-card-subtitle>
+                    <div class="tituloMobile"> 
+                      <mat-card-title class="text-left" style="font-size: 24px;">
+                        {{ title }}
+                      </mat-card-title>
+                      <mat-card-subtitle class="text-left mt-2" style="font-size: 16px; min-width: 350px;">
+                        Ingresa los siguientes datos
+                      </mat-card-subtitle>
+                    </div>
+                    <div class=" d-flex justify-content-center">
+                      <mat-icon matPrefix class="image-toolbar-second logoMobile" style="padding: 50px 100px;"></mat-icon>
+                      
+                    </div>
                     <mat-card-content>
                       <form [formGroup]="form" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
                         <div class="row d-flex justify-content-center">
@@ -73,11 +79,15 @@
                         </div>
                 
                         <div class="row mt-4 d-flex justify-content-center mb-3">
-                          <div class="col-md-7 d-flex align-items-end">
-                            <a (click)="changePassword()" 
+                          <div class="col-md-7 d-flex align-items-end " style="justify-content: flex-end;">
+                            <a (click)="changePassword()" class="forgetPass"
                               style="color: #285CED; cursor: pointer; padding-left: 0px; text-decoration: underline; margin-bottom: 10px;">
                               Olvidé la contraseña</a>
+                              <a (click)="changePassword()" class="recoverPass"
+                              style="color: #020202; cursor: pointer; padding-left: 0px; text-decoration: none; margin-bottom: 34px;">
+                              Recupera tu contraseña</a>
                           </div>
+                          
                           <div class="col-md-5 d-flex justify-content-end">
                             <button class="btn-utaxme" 
                               id="btnsend" style="height: 45px; font-size: 14px; line-height: 25px;"
@@ -86,6 +96,17 @@
                               Ingresar
                             </button>
                           </div>
+
+                          <div class="row mt-4 d-flex justify-content-center mb-3">
+                            <div class="col-md-7  align-items-end " style="justify-content: flex-end;">
+                              <p style="margin-top: 30px;" class="d-flex" class="recoverPass">¿Necesitas una cuenta? &nbsp;<a (click)="changePassword()" 
+                                style="color: #285CED; cursor: pointer; padding-left: 0px; text-align: center; text-decoration: none; ">
+                                 <b>Regístrate ahora</b>  </a></p>
+                                <a (click)="changePassword()" class="recoverPass"
+                                style="color: #020202; cursor: pointer; padding-left: 0px; text-align: center; text-decoration: none; margin-top: 34px;">
+                                 ¿Necesitas ayuda? </a>
+                            </div>
+                            </div>
                         </div>
                       </form>
                     </mat-card-content>

@@ -3,7 +3,7 @@
 }
 
 .content{
-  background: linear-gradient(to bottom, #FFFFFF 0%, #FFFFFF 75%, #122D4F 75%, #122D4F 100%)!important;
+  background: linear-gradient(to bottom, #FFFFFF 0%, #FFFFFF 75%, #122D4F 75%, #122D4F 100%);
 }
 
 .utaxme-card {  
@@ -52,34 +52,6 @@ mat-form-field {
   width: 100%;
 }
 
-@media(max-width: 767px){
-
-  .utaxme-card{
-    width: 100%;
-  }
-
-  .mat-card-image {
-    display: none!important;
-  }
-
-  .utaxme-card-content{    
-    flex: 0 0 100%!important;
-  }
-
-}
-
-@media (min-width: 1280px) {
-  .content{
-    background: linear-gradient(to bottom, #FFFFFF 0%, #FFFFFF 65%, #122D4F 65%, #122D4F 100%)!important;
-  }
-}
-
-@media (min-width: 1440px) {
-  .content{
-    background: linear-gradient(to bottom, #FFFFFF 0%, #FFFFFF 60%, #122D4F 60%, #122D4F 100%)!important;
-  }
-}
-
 .ico-login {
   background-image: url("src\assets\icon\contrato.svg");
   background-size: 20px 20px;
@@ -96,4 +68,109 @@ mat-form-field {
 
 mat-card {
   font-family: "Montserrat", sans-serif;
+}
+
+.tituloMobile{
+  display: block;
+}
+
+.logoMobile{
+  display: none;
+}
+
+.forgetPass{
+  display: block;
+}
+
+.recoverPass{
+  display: none;
+}
+
+@media (min-width: 1440px) {
+  .content{
+    background: linear-gradient(to bottom, #FFFFFF 0%, #FFFFFF 60%, #122D4F 60%, #122D4F 100%)!important;
+  }
+  .logoMobile{
+    display: none;
+  }
+  .recoverPass{
+    display: none;
+  }
+}
+
+@media (min-width: 1280px) {
+  .content{
+    background: linear-gradient(to bottom, #FFFFFF 0%, #FFFFFF 65%, #122D4F 65%, #122D4F 100%)!important;
+  }
+  .logoMobile{
+    display: none;
+  }
+  .recoverPass{
+    display: none;
+  }
+}
+
+@media(max-width: 767px){
+   .utaxme-card{
+    width: 100%;
+  }
+
+  .mat-card-image {
+    display: none!important;
+  }
+
+  .utaxme-card-content{    
+    flex: 0 0 100%!important;
+  }
+
+  .logoMobile{
+    display: none;
+  }
+  .recoverPass{
+    display: none;
+  }
+}
+
+@media(max-width: 425px){
+  .content{
+    background: #FFFFFF;
+  }
+
+  .card-content {
+    width: 100%;
+    border: none!important;
+    box-shadow: none!important;
+    max-height: 90%;
+}
+
+  .autorization-container{
+    background-color: #FFFFFF;
+    width: 100%;
+}
+
+.utaxme-card {
+  width: 100%;
+  height: 60%;
+  margin-top: -10%;
+  box-shadow: 2px -1px 0px -3px #1c1c1c;
+  max-width: 600px;
+  max-height: 400px;
+  padding: 0;
+}
+
+.tituloMobile{
+  display: none;
+}
+
+.logoMobile{
+  display: block;
+}
+
+.forgetPass{
+  display: none;
+}
+
+.recoverPass{
+  display: block;
+}
 }

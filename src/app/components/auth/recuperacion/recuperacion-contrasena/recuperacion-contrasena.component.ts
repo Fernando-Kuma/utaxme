@@ -42,7 +42,7 @@ export class RecuperacionContrasenaComponent implements OnInit {
   }
 
   cancel() {
-    
+      this.router.navigateByUrl(NAV.login); 
   }
 
 

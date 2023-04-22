@@ -220,4 +220,12 @@ export class LoginComponent implements OnInit {
     let texto = event.target.value;
     this.form.get('email').setValue(texto.trim());
   }
+
+  regitro(){
+
+  }
+
+  help(){
+    
+  }
 }

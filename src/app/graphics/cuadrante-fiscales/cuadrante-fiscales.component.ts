@@ -13,19 +13,24 @@ export class CuadranteFiscalesComponent implements OnInit {
   _consultaRequest: any;
   @Input() set consultaRequest(val: any) {
     this._consultaRequest = val;
+    this.obtenerSaludFiscal()
     //this.obtenerIngresosEngresos();
   }
 
   baseGravable: any = {
-    egresos: 0,
     ingresos: 0,
+    egresos: 0,
+    porcentaje: 0,
+    utilidad: 0
   }
 
-  @Input() set data(val: any) {
+/*   @Input() set data(val: any) {
     this.baseGravable = val;
     this.calcularSpeed()
     //this.obtenerDato();
-  }
+  } */
+
+  tipoPeriodo: boolean = true;
 
   response: DatosFiscales;
   urlConstancia: any;
@@ -75,12 +80,23 @@ export class CuadranteFiscalesComponent implements OnInit {
       
   }
 
+  obtenerSaludFiscal(){
+    this.dashboardService.obtenerSaludFiscal(this._consultaRequest).subscribe(
+      (response) => {
+        console.log('Res saludFiscal: ', response);
+        this.baseGravable = response.baseGravable
+        this.calcularSpeed()
+      },(_error) => {
+        console.log("Error: ", _error);
+    });
+  }
+
   calcularSpeed(){
-    this.speedValue = 0 
-    if(this.baseGravable.ingresos > this.baseGravable.egresos){
+    this.speedValue = this.baseGravable.porcentaje / 10
+    /* if(this.baseGravable.ingresos > this.baseGravable.egresos){
       console.log('true')
       this.speedValue = Number(((this.baseGravable.egresos / this.baseGravable.ingresos) * 10).toFixed(3))
-    }
+    } */
     console.log(Number(this.speedValue))
   }
 

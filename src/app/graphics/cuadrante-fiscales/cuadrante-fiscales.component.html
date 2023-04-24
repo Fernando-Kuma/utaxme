@@ -33,11 +33,28 @@
     <mat-divider></mat-divider>
   </div>
 </div>
-<div class="row">
-  <div class="col-12 titulo-cuadrante" style="margin-top: 30px;">
-    Base Gravable
+<div class="row d-flex align-items-center">
+  <div class="col-6 titulo-cuadrante" style="margin-top: 30px;">
+    Salud Fiscal
   </div>
-
+  <div class="col-6 titulo-cuadrante" style="margin-top: 30px;">
+    <mat-form-field appearance="outline" style="width: 100%; font-size: 14px; height: 70px;">
+      <mat-label>Periodo fiscal</mat-label>
+      <mat-select  id="diasCredito" name="diasCredito">
+        <mat-option>
+          Selecciona una escala 
+        </mat-option>
+        <mat-option value="Abril 2023" (click)="tipoPeriodo = true">
+          Abril 2023
+        </mat-option>
+        <mat-option value="Enero a Abril 2023" (click)="tipoPeriodo = false">
+          Enero a Abril 2023
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
+<div class="row">
   <div class="col-12 titulo-gatos">
     Egresos vs Ingresos
   </div>
@@ -58,10 +75,19 @@
 
   </div>
 
+  <div class="col-12 titulo-gatos">
+    <ng-container *ngIf="!tipoPeriodo">
+      Utilidad del año fiscal: ${{ baseGravable.utilidad | thousandsPipe }}
+    </ng-container>
+    <ng-container *ngIf="tipoPeriodo">
+      Utilidad mensual fiscal: ${{ baseGravable.utilidad | thousandsPipe }}
+    </ng-container>
+  </div>
+
   <div class="col-12">
     <div class="cuadro-informacion">
       <mat-icon class="image-dashboard-info image-size-22"></mat-icon>
-      Estas gastando el 60% del total de tu ingresos facturados
+      Estas gastando el {{baseGravable.porcentaje}}% del total de tu ingresos facturados
     </div>
   </div>
 </div>

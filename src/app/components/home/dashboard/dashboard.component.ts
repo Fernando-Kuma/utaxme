@@ -47,10 +47,6 @@ export class DashboardComponent implements OnInit {
   cumplimientoFiscal: CumplimientoFiscal
   gastosPeriodo: ComprobantePeriodo = new ComprobantePeriodo;
   ingresosPeriodo: ComprobantePeriodo = new ComprobantePeriodo;
-  baseGravable:any = {
-    egresos: 0,
-    ingresos: 0,
-  }
 
   usuario: Usuario;
   datosCliente: Cliente;
@@ -113,18 +109,14 @@ export class DashboardComponent implements OnInit {
     this.dashboardService.obtenerIngresosGastos(this.requestDashboard).subscribe(
       (response) => {
         console.log('Res gatos: ', response);
-        this.baseGravable.egresos = 0
-        this.baseGravable.ingresos = 0
         this.ingresosPeriodo = new ComprobantePeriodo
         this.gastosPeriodo = new ComprobantePeriodo
         if(response.listaReporteIngresosEgresosBean != null){
           if(response.listaReporteIngresosEgresosBean.find((element) => element.tipoComprobante === 'INGRESOS')){
             this.ingresosPeriodo = response.listaReporteIngresosEgresosBean.find((element) => element.tipoComprobante === 'INGRESOS');
-            this.baseGravable.ingresos = this.ingresosPeriodo.total
           }
           if(response.listaReporteIngresosEgresosBean.find((element) => element.tipoComprobante === 'GASTOS')){
             this.gastosPeriodo = response.listaReporteIngresosEgresosBean.find((element) => element.tipoComprobante === 'GASTOS');
-            this.baseGravable.egresos = this.gastosPeriodo.total
           }
         }
         this.spinnerLoadingIngresos = false;

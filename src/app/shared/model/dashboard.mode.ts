@@ -46,7 +46,7 @@ export class ComprobantePeriodo{
   ivaRetenido?: number = 0;
   isrRetenido?: number = 0;
   tipoComprobante?: string = '';
-  detalle?: DetalleData[];
+  detalles?: DetalleData[];
 }
 
 export class DetalleData{

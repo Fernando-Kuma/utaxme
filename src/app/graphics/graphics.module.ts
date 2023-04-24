@@ -20,6 +20,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { ThousandsPipe } from '../shared/pipe/thousands.pipe';
 import { FullSizeComponent } from './full-size/full-size.component';
 import { HeaderHomeModule } from '../shared/utils/header-home';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 
 
 
@@ -46,7 +48,9 @@ import { HeaderHomeModule } from '../shared/utils/header-home';
     MatIconModule,
     MatTabsModule,
     MatProgressSpinnerModule,
-    HeaderHomeModule
+    HeaderHomeModule,
+    MatFormFieldModule,
+    MatSelectModule,
   ],
   exports: [
     BarrasEmitidasComponent,

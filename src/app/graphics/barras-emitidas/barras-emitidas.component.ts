@@ -96,7 +96,7 @@ export class BarrasEmitidasComponent implements AfterViewInit, OnInit, OnDestroy
   _data: Array<DateValue> = [];
   @Input() set data(val: Array<any>) {
     val.forEach((element, index) => {
-      this._data.push({id: index, total: Number(element.total) })
+      this._data.push({id: index + 1, total: Number(element.total) })
     });
     /* 
     if (val.length > 0 && typeof val[0].date == 'string') {

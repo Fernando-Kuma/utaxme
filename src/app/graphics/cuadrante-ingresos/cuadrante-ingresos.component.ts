@@ -25,6 +25,7 @@ export class CuadranteIngresosComponent implements OnInit {
   ingresosPeriodo: ComprobantePeriodo = new ComprobantePeriodo;
   @Input() set data(val: any) {
     this.ingresosPeriodo = val;
+    this.obtenerData()
     console.log(this.ingresosPeriodo);
   }  
   spinnerLoading: boolean = true;
@@ -69,6 +70,14 @@ export class CuadranteIngresosComponent implements OnInit {
         console.log(_)
       }
     });
+  }
+
+  obtenerData(){
+    let data = []
+    this.ingresosPeriodo.detalles.forEach((element, index) => {
+      data.push({id: index, total: element.total })
+    });
+    console.log(data)
   }
 
   fullSize(){

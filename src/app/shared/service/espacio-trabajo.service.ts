@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
@@ -55,5 +55,38 @@ export class EspacioTrabajoService {
       );
   }
 
+
+  obtenerCatalogoProductos(textoFiltro: string): Observable<any> {
+    let request = {
+      filtro: textoFiltro
+    }
+    return this.http
+      .post<any>(`${API.catalogoProductos}?filtro=${textoFiltro}`, request)
+      .pipe(
+        catchError((e) => {
+          return throwError(e);
+        })
+      );
+  }
+
+  crearNuevoConcepto(request: any): Observable<any> {
+    return this.http
+      .post<any>(`${API.agregarConcepto}`, request)
+      .pipe(
+        catchError((e) => {
+          return throwError(e);
+        })
+      );
+  }
+
+  actualizarConcepto(request: any): Observable<any> {
+    return this.http
+      .post<any>(`${API.actualizarConcepto}`, request)
+      .pipe(
+        catchError((e) => {
+          return throwError(e);
+        })
+      );
+  }
 
 }

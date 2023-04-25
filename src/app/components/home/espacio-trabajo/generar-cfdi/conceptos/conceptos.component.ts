@@ -5,6 +5,7 @@ import { CrearConceptoComponent } from '../crear-concepto/crear-concepto.compone
 import { DialogService } from 'src/app/shared/service/dialog.service';
 import { EspacioTrabajoService } from 'src/app/shared/service/espacio-trabajo.service';
 import { AuthService } from 'src/app/shared/service/auth.service';
+import { Conceptos } from 'src/app/shared/model/espacio-trabajo.model';
 
 @Component({
   selector: 'app-conceptos',
@@ -14,7 +15,8 @@ import { AuthService } from 'src/app/shared/service/auth.service';
 export class ConceptosComponent{
 
   checked = false;
-  tablaListaConceptos: any; 
+  tablaListaConceptos: Conceptos[]; 
+  tablaLista: Conceptos[]; 
   public form: FormGroup;
 
   constructor(
@@ -29,6 +31,7 @@ export class ConceptosComponent{
 
   ngOnInit(): void {
     this.crearForm();
+    this.listaConceptos()
   }
 
   crearForm(){
@@ -38,13 +41,32 @@ export class ConceptosComponent{
   }
 
   closeDialog() {
-    this.dialogRef.close(false);
+    let listaConcepto = this.tablaListaConceptos.filter(ele => ele.estatus)
+    this.dialogRef.close(listaConcepto);
+  }
+
+  confirmDialog() {
+    let listaConcepto = this.tablaListaConceptos.filter(ele => ele.estatus)
+    this.dialogRef.close(listaConcepto);
   }
 
   crearConcepto(){
     const dialogRef = this.dialog.open(
       CrearConceptoComponent, 
-      this.dialogService.detalle()
+      this.dialogService.crearConceto()
+    );
+    dialogRef.afterClosed().subscribe(
+      data => {
+        //this.crearTicket();
+      }
+    );
+  }
+
+  editarConcepto(concepto: any){
+    console.log(concepto)
+    const dialogRef = this.dialog.open(
+      CrearConceptoComponent, 
+      this.dialogService.editarConcepto(concepto)
     );
     dialogRef.afterClosed().subscribe(
       data => {
@@ -59,11 +81,27 @@ export class ConceptosComponent{
     }
     this.espacioTrabajoService.obtenerListaConceptos(request).subscribe((resp) => {
       this.tablaListaConceptos = resp.listaConceptos;
-      /* console.log('::RESP Datos Fiscales', this.response); */
+      if(this.data.conceptos != null){
+        this.tablaListaConceptos.forEach(element => {
+          this.data.conceptos.forEach(ele => {
+            if(ele.idConceptoCliente == element.idConceptoCliente){
+              element.estatus = ele.estatus
+            }
+          });
+        });
+      }
+      this.tablaLista = this.tablaListaConceptos
     },(_error) => {
       console.log("::Entro al error Datos fiscales: ", _error);
-    }
-    );
+    });
+  }
+
+  onKeyDownEvent(event: any){
+    let busquedaDeDatos;
+    let filtro = event.target.value;
+    this.tablaLista = this.tablaListaConceptos.filter( item => 
+    item?.descripcion.toLowerCase().includes(filtro.toLowerCase())
+    )
   }
 
 }

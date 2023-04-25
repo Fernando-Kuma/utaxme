@@ -15,7 +15,37 @@ export class DialogService {
         metodoPago: data,
     }
     return this.dialogConfig;
-}
+  }
+
+
+  tablaConceptos(data: any): MatDialogConfig {
+    this.dialogConfig.restoreFocus = false;
+    this.dialogConfig.autoFocus = false;
+    this.dialogConfig.data = {
+        conceptos: data,
+    }
+    return this.dialogConfig;
+  }
+
+  crearConceto(): MatDialogConfig {
+    this.dialogConfig.restoreFocus = false;
+    this.dialogConfig.autoFocus = false;
+    this.dialogConfig.data = {
+      concepto: '',
+      metodo: 'crear',
+    }
+    return this.dialogConfig;
+  }
+
+  editarConcepto(item): MatDialogConfig {
+    this.dialogConfig.restoreFocus = false;
+    this.dialogConfig.autoFocus = false;
+    this.dialogConfig.data = {
+        concepto: item,
+        metodo: 'editar',
+    }
+    return this.dialogConfig;
+  }
 
   detalle(): MatDialogConfig {
         this.dialogConfig.restoreFocus = false;

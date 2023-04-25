@@ -28,12 +28,11 @@
             <div class="col-12 d-flex justify-content-end align-items-center">
               <mat-form-field appearance="outline" style="min-width: 280px; font-size: 12px; height: 48px;">
                 <mat-label>Buscar concepto</mat-label>
-                <input matInput formControlName="busqueda" id="busqueda" name="busqueda" minlength="3"/>
-                <!-- <mat-error *ngIf="!form.controls['metodoPago'].valid && form.controls['metodoPago'].touched">
-                  {{ getError() }}
-                </mat-error> -->
+                <input matInput formControlName="busqueda" id="busqueda" name="busqueda" minlength="3" (keyup)="onKeyDownEvent($event)"/>
+                <mat-icon class="image-workspace-buscardor" matSuffix></mat-icon>
               </mat-form-field>
-              <button type="button" class="btn-utaxme-secondary" style="max-width: 260px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 0 20px;" (click)="crearConcepto()">
+              <button type="button" class="btn-utaxme-secondary" style="max-width: 260px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: space-evenly; margin: 0 20px;" (click)="crearConcepto()">
+                <mat-icon class="image-workspace-agregar"></mat-icon>
                 Crear nuevo concepto
               </button>
             </div>
@@ -41,8 +40,8 @@
         </div>
 
         <div class="row w100m0p0" style="margin-top: 3% !important;">
-          <div class="col-12 tableFixHead">
-            <table aria-describedby="tabla" class="table table-responsive table-striped " style="" >
+          <div class="col-12 tableFixHead disable-scrollbars" style="max-height: 300px; overflow-x: auto;">
+            <table aria-describedby="tabla" class="table table-responsive table-striped">
               <thead style="margin-bottom: 10px;">
                   <tr class="textoM">
                       <th class="punta-tittle" style="text-align: center;">
@@ -76,25 +75,25 @@
                   </tr>
               </thead>
               <tbody class="table-scroll" style="border: solid 1px #ffffff; ">
-                <tr>
+                <tr *ngFor="let item of tablaLista">
                   <td style="text-align: center;">
-                    <mat-checkbox class="example-margin" [(ngModel)]="checked"></mat-checkbox>
+                    <mat-checkbox class="example-margin" [(ngModel)]="item.estatus"></mat-checkbox>
                   </td>
                   <td style="text-align: center;">
-                    260
+                    {{item.idConceptoCliente}}
                   </td>
                   <td style="text-align: center;">
-                    SERVICIOS DE HOSPEDAJE AIRBNB 
+                    {{item.descripcion}} 
                   </td>
                   <td style="text-align: center;">
-                    NO APLICA
+                    {{item.unidad}}
                   </td>
                   <td style="text-align: center;">
-                    $4,441.10
+                    ${{item.valorUnitario | thousandsPipe}}
                   </td>
                   <td class="d-flex justify-content-center">
                     <div class="card-accion">
-                      <mat-icon class="img-accion-editar"></mat-icon>
+                      <mat-icon class="img-accion-editar" (click)="editarConcepto(item)"></mat-icon>
                     </div>
                     <div class="card-accion">
                       <mat-icon class="img-accion-borrar"></mat-icon>

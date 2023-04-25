@@ -5,10 +5,6 @@
   min-height: 220px !important;
 }
 
-::ng-deep .confirm .mat-dialog-content{
-}
-
-
 .mat-dialog-actions {
   display: contents !important;
 }

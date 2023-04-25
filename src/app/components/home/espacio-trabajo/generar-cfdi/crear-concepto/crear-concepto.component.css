@@ -5,10 +5,6 @@
   min-height: 220px !important;
 }
 
-::ng-deep .confirm .mat-dialog-content{
-}
-
-
 .mat-dialog-actions {
   display: contents !important;
 }
@@ -65,4 +61,11 @@
 
 .textoM{
   text-transform: uppercase;
+}
+
+.image-workspace-buscardor {
+  background-image: url("src\assets\icon\buscar.svg");
+  background-size: 24px 24px;
+  background-position: right;
+  background-repeat: no-repeat;
 }

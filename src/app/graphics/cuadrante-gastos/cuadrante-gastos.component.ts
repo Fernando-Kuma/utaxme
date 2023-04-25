@@ -79,7 +79,6 @@ export class CuadranteGastosComponent implements OnInit {
     this.dashboardService.obtenerReporte(this._consultaRequest).subscribe({
       next: (response) => {
         if(response != null){
-          const timeStamp = moment().format('YYYYMMDDHHmmss');
           const linkDescarga = document.createElement('a');
           const url = window.URL.createObjectURL(response);
           document.body.appendChild(linkDescarga);

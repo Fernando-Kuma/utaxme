@@ -1,5 +1,5 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, Inject } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
@@ -52,16 +52,16 @@ export class ConfiguracionAvanzadaComponent{
 
   crearForm(){
     this.form = this.formBuilder.group({      
-      metodoPago: [''],
-      moneda: [''],
-      condicionesPago: [''],
-      diasCredito: ['']
+      metodoPago: [null, [Validators.required]],
+      moneda: [null, [Validators.required]],
+      condicionesPago: [null, [Validators.required]],
+      diasCredito: [null, [Validators.required]],
     });
   }
 
   changeDiasCredito() {
-    var fechaCondiciones = new Date();
-    let condiciones = "PAGO EN UNA SOLA EXHIBICIÓN"
+    let fechaCondiciones = new Date();
+    let condiciones = ""
     if (this.form.controls['diasCredito'].value  == "0") {
       condiciones = "PAGO EN UNA SOLA EXHIBICIÓN"
     } else if (this.form.controls['diasCredito'].value == "15") {
@@ -91,5 +91,10 @@ export class ConfiguracionAvanzadaComponent{
   closeDialog() {
     this.dialogRef.close(false);
   }
+
+  get formulario() {
+    return this.form.controls;
+  }
+
 
 }

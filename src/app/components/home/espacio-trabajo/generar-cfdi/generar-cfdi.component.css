@@ -11,6 +11,20 @@
   background-repeat: no-repeat;
 }
 
+.image-workspace-buscardor {
+  background-image: url("src\assets\icon\buscar.svg");
+  background-size: 24px 24px;
+  background-position: right;
+  background-repeat: no-repeat;
+}
+
+.image-workspace-select {
+  background-image: url("src\assets\icon\home-down.svg");
+  background-size: 14px 14px;
+  background-position: right;
+  background-repeat: no-repeat;
+}
+
 .titulo-proceso{
   font-weight: 400;
   font-size: 24px;
@@ -46,7 +60,6 @@
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
   border-radius: 8px;
   margin: 10px 0;
- /*  border: 1px solid #3B4559;  */
 }
 
 .titulo-panel-expansion{

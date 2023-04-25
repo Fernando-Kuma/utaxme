@@ -2,11 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouterModule } from '@angular/router';
-import { SharedModule } from 'src/app/shared/shared.module';
 import { HeaderHomeModule } from 'src/app/shared/utils/header-home';
 import { HomeComponent } from './home.component';
 import { GraphicsModule } from 'src/app/graphics/graphics.module';
-import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
@@ -28,6 +27,7 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 
 
@@ -65,7 +65,8 @@ import {MatDividerModule} from '@angular/material/divider';
     MatButtonModule,
     MatCheckboxModule,
     MatProgressSpinnerModule,
-    MatDividerModule
+    MatDividerModule,
+    MatAutocompleteModule
   ],
   exports: [
     MatDatepickerModule,

@@ -25,16 +25,21 @@
             <div class="col-6">
               <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                 <mat-label>Buscar concepto</mat-label>
-                <input matInput formControlName="buscar" id="buscar" name="buscar" minlength="3"/>
-                <!-- <mat-error *ngIf="!form.controls['metodoPago'].valid && form.controls['metodoPago'].touched">
-                  {{ getError() }}
-                </mat-error> -->
+                <input matInput formControlName="buscar" id="buscar" name="buscar" [matAutocomplete]="auto" (keyup)="catalogoProductos($event)"/>
+                <mat-icon class="image-workspace-buscardor" matSuffix></mat-icon>
+
+                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                  <mat-option *ngFor="let item of filteredOptions | async" [value]="item.descripcion" (click)="seleccionConcepto(item)">
+                    {{item.descripcion}}
+                  </mat-option>
+                </mat-autocomplete>
+
               </mat-form-field>
             </div>
           </div> 
         </div>
         <mat-divider></mat-divider>
-        <div class="cotainer disable-scrollbars" style="overflow: scroll; max-height: 400px;">  
+        <div class="cotainer disable-scrollbars" style="overflow: scroll; max-height: 500px;">  
           <div class="row w100m0p0" style="margin-top: 3% !important;">
             <div class="col-12 dialog-texto-titulo">
               Detalles del concepto
@@ -42,19 +47,23 @@
             <div class="col-6 textoM" style="margin-top: 3%;">
               <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                 <mat-label>nombre producto/servicio*</mat-label>
-                <input matInput formControlName="nombreProducto" id="nombreProducto" name="nombreProducto" minlength="3"/>
-                <!-- <mat-error *ngIf="!form.controls['metodoPago'].valid && form.controls['metodoPago'].touched">
-                  {{ getError() }}
-                </mat-error> -->
+                <input matInput formControlName="nombreProducto" id="nombreProducto" name="nombreProducto"/>
+                <mat-error *ngIf="formulario.nombreProducto.invalid && formulario.nombreProducto.touched && formulario.nombreProducto.errors">
+                  <ng-container *ngIf="formulario.nombreProducto.errors.required">
+                    {{ getErrorRequerido() }}
+                  </ng-container>
+                </mat-error>
               </mat-form-field>
             </div>
             <div class="col-6 textoM" style="margin-top: 3%;">
               <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                 <mat-label>clave producto/servicio*</mat-label>
-                <input matInput formControlName="clavaProducto" id="clavaProducto" name="clavaProducto" minlength="3"/>
-                <!-- <mat-error *ngIf="!form.controls['metodoPago'].valid && form.controls['metodoPago'].touched">
-                  {{ getError() }}
-                </mat-error> -->
+                <input matInput formControlName="clavaProducto" id="clavaProducto" name="clavaProducto"/>
+                <mat-error *ngIf="formulario.clavaProducto.invalid && formulario.clavaProducto.touched && formulario.clavaProducto.errors">
+                  <ng-container *ngIf="formulario.clavaProducto.errors.required">
+                    {{ getErrorRequerido() }}
+                  </ng-container>
+                </mat-error>
               </mat-form-field>
             </div>
             <div class="col-6 textoM m0p0">
@@ -62,41 +71,50 @@
                 <div class="col-12" style="margin-top: 3%;">
                   <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                     <mat-label>unidad*</mat-label>
-                    <input matInput formControlName="unidad" id="unidad" name="unidad" minlength="3"/>
-                    <!-- <mat-error *ngIf="!form.controls['metodoPago'].valid && form.controls['metodoPago'].touched">
-                      {{ getError() }}
-                    </mat-error> -->
+                    <input matInput formControlName="unidad" id="unidad" name="unidad" />
+                    <mat-error *ngIf="formulario.unidad.invalid && formulario.unidad.touched && formulario.unidad.errors">
+                      <ng-container *ngIf="formulario.unidad.errors.required">
+                        {{ getErrorRequerido() }}
+                      </ng-container>
+                    </mat-error>
                   </mat-form-field>
                 </div>
-                <div class="col-12" style="margin-top: 3%;">.
+                <div class="col-12" style="margin-top: 3%;">
                   <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                     <mat-label>clave unidad*</mat-label>
-                    <input matInput formControlName="clavaUnidad" id="clavaUnidad" name="clavaUnidad" minlength="3"/>
-                    <!-- <mat-error *ngIf="!form.controls['metodoPago'].valid && form.controls['metodoPago'].touched">
-                      {{ getError() }}
-                    </mat-error> -->
+                    <input matInput formControlName="clavaUnidad" id="clavaUnidad" name="clavaUnidad" />
+                    <mat-error *ngIf="formulario.unidad.invalid && formulario.unidad.touched && formulario.unidad.errors">
+                      <ng-container *ngIf="formulario.unidad.errors.required">
+                        {{ getErrorRequerido() }}
+                      </ng-container>
+                    </mat-error>
                   </mat-form-field>
                 </div>
                 <div class="col-12" style="margin-top: 3%;">
                   <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                     <mat-label>valor unitario*</mat-label>
-                    <input matInput formControlName="valorUnitario" id="valorUnitario" name="valorUnitario" minlength="3"/>
-                    <!-- <mat-error *ngIf="!form.controls['metodoPago'].valid && form.controls['metodoPago'].touched">
-                      {{ getError() }}
-                    </mat-error> -->
+                    <input matInput formControlName="valorUnitario" id="valorUnitario" name="valorUnitario"/>
+                    <span matPrefix style="display: table-caption; height: 22px;">$&nbsp;</span>
+                    <mat-error *ngIf="formulario.valorUnitario.invalid && formulario.valorUnitario.touched && formulario.valorUnitario.errors">
+                      <ng-container *ngIf="formulario.valorUnitario.errors.required">
+                        {{ getErrorRequerido() }}
+                      </ng-container>
+                    </mat-error>
                   </mat-form-field>
                 </div>
               </div>
             </div>
             <div class="col-6 textoM m0p0">
               <div class="row w100m0p0">
-                <div class="col-12" style="margin-top: 3%;">
+                <div class="col-12" style="margin-top: 5%;">
                   <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                     <mat-label>descripción*</mat-label>
-                    <input matInput formControlName="descripcion" id="descripcion" name="descripcion" minlength="3"/>
-                    <!-- <mat-error *ngIf="!form.controls['metodoPago'].valid && form.controls['metodoPago'].touched">
-                      {{ getError() }}
-                    </mat-error> -->
+                    <textarea  matInput formControlName="descripcion" id="descripcion" name="descripcion" rows="11"></textarea>
+                    <mat-error *ngIf="formulario.descripcion.invalid && formulario.descripcion.touched && formulario.descripcion.errors">
+                      <ng-container *ngIf="formulario.descripcion.errors.required">
+                        {{ getErrorRequerido() }}
+                      </ng-container>
+                    </mat-error>
                   </mat-form-field></div>
               </div>
             </div>
@@ -117,20 +135,16 @@
                   <div class="col-6 textoM" style="margin-top: 3%;">
                     <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                       <mat-label>IVA</mat-label>
-                      <input matInput formControlName="iva" id="iva" name="iva" minlength="3"/>
-                      <!-- <mat-error *ngIf="!form.controls['metodoPago'].valid && form.controls['metodoPago'].touched">
-                        {{ getError() }}
-                      </mat-error> -->
+                      <input matInput formControlName="iva" id="iva" name="iva"/>
+                      <span matSuffix style="display: table-caption; height: 22px;">%</span>
                     </mat-form-field>
                   </div>
                   <div class="col-6 textoM" style="margin-top: 3%;">
                     <ng-container >
                       <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                         <mat-label>IEPS</mat-label>
-                        <input matInput formControlName="ieps" id="ieps" name="ieps" minlength="3"/>
-                        <!-- <mat-error *ngIf="!form.controls['metodoPago'].valid && form.controls['metodoPago'].touched">
-                          {{ getError() }}
-                        </mat-error> -->
+                        <span matPrefix style="display: table-caption; height: 22px;">$&nbsp;</span>
+                        <input matInput formControlName="ieps" id="ieps" name="ieps"/>
                       </mat-form-field>
                     </ng-container>
                   </div>
@@ -146,19 +160,15 @@
                   <div class="col-6 textoM" style="margin-top: 3%;">
                     <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                       <mat-label>isr</mat-label>
-                      <input matInput formControlName="isr" id="isr" name="isr" minlength="3"/>
-                      <!-- <mat-error *ngIf="!form.controls['metodoPago'].valid && form.controls['metodoPago'].touched">
-                        {{ getError() }}
-                      </mat-error> -->
+                      <input matInput formControlName="isr" id="isr" name="isr"/>
+                      <span matSuffix style="display: table-caption; height: 22px;">%</span>
                     </mat-form-field>
                   </div>
                   <div class="col-6 textoM" style="margin-top: 3%;">
                     <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                       <mat-label>IEPS</mat-label>
-                      <input matInput formControlName="iepsISR" id="iepsISR" name="iepsISR" minlength="3"/>
-                      <!-- <mat-error *ngIf="!form.controls['metodoPago'].valid && form.controls['metodoPago'].touched">
-                        {{ getError() }}
-                      </mat-error> -->
+                      <span matPrefix style="display: table-caption; height: 22px;">$&nbsp;</span>
+                      <input matInput formControlName="iepsISR" id="iepsISR" name="iepsISR"/>
                     </mat-form-field>
                   </div>
                 </ng-container>
@@ -173,19 +183,18 @@
                   <div class="col-6 textoM" style="margin-top: 3%;">
                     <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                       <mat-label>impuesto local</mat-label>
-                      <input matInput formControlName="impuestoLocal" id="impuestoLocal" name="impuestoLocal" minlength="3"/>
-                      <!-- <mat-error *ngIf="!form.controls['metodoPago'].valid && form.controls['metodoPago'].touched">
-                        {{ getError() }}
-                      </mat-error> -->
+                      <mat-select formControlName="impuestoLocal" id="impuestoLocal" name="impuestoLocal">
+                        <mat-option *ngFor="let item of catalogoImpuestos" [value]="item.clave">
+                          {{item.descripcion}}
+                        </mat-option>
+                      </mat-select>
                     </mat-form-field>
                   </div>
                   <div class="col-6 textoM" style="margin-top: 3%;">
                     <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                       <mat-label>tasa local</mat-label>
-                      <input matInput formControlName="tasaLocal" id="tasaLocal" name="tasaLocal" minlength="3"/>
-                      <!-- <mat-error *ngIf="!form.controls['metodoPago'].valid && form.controls['metodoPago'].touched">
-                        {{ getError() }}
-                      </mat-error> -->
+                      <input matInput formControlName="tasaLocal" id="tasaLocal" name="tasaLocal"/>
+                      <span matSuffix style="display: table-caption; height: 22px;">%</span>
                     </mat-form-field>
                   </div>
                 </ng-container>
@@ -197,7 +206,7 @@
               <button type="button" class="btn-utaxme-secondary" (click)="closeDialog()" style="max-width: 120px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;">
                 Cancelar
               </button>
-              <button type="button" class="btn-utaxme" (click)="closeDialog()" style="max-width: 225px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;">
+              <button type="button" class="btn-utaxme" (click)="guardarConcepto()" style="max-width: 225px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;">
                 Guardar concepto
               </button>
             </div>

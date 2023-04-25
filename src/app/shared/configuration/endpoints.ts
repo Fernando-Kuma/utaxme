@@ -19,11 +19,14 @@ export const API = {
   clientesCount: environment.apiDashboard + 'cfdis/clientes/count',
   regimenFiscal: environment.apiDashboard + 'cfdi/regimenfiscal',
   listaConceptos: environment.apiDashboard + 'conceptos/clientes/consultar',
-
+  catalogoProductos: environment.apiDashboard + 'CatalogoProductoSatForm.htm',
+  agregarConcepto: environment.apiDashboard + 'conceptos/clientes/agregar',
+  actualizarConcepto: environment.apiDashboard + 'conceptos/clientes/actualizar',
 
   cfdiGeneradosFilter: environment.apiDashboard+ 'CfdiGeneradosFilter.htm',
   reporteFacturas: environment.apiDashboard + 'DownloadReporteValidacionFacturasForm.htm',
 
+  
   /* getWord: environment.api + 'wordwise/entries?limit=1&headword=',
   login: environment.api + 'utaxon/admin/find',
   dataBank: environment.api + 'utaxon/admin/dataBank',

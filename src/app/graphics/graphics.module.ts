@@ -60,7 +60,8 @@ import { MatSelectModule } from '@angular/material/select';
     CuadranteGastosComponent,
     CuadranteDeduccionesComponent,
     CuadranteCumplimientoComponent,
-    CuadranteFiscalesComponent
+    CuadranteFiscalesComponent,
+    ThousandsPipe
   ],
 })
 export class GraphicsModule { }

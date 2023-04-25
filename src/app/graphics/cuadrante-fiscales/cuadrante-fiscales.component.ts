@@ -14,7 +14,6 @@ export class CuadranteFiscalesComponent implements OnInit {
   @Input() set consultaRequest(val: any) {
     this._consultaRequest = val;
     this.obtenerSaludFiscal()
-    //this.obtenerIngresosEngresos();
   }
 
   baseGravable: any = {
@@ -52,9 +51,8 @@ export class CuadranteFiscalesComponent implements OnInit {
     this.dashboardService.obtenerDatosFiscales(this._consultaRequest).subscribe((resp) => {
       this.spinnerLoading = false;
       this.response = resp.datosFiscales;
-      /* console.log('::RESP Datos Fiscales', this.response); */
     },(_error) => {
-      console.log("::Entro al error Datos fiscales");
+      console.log("::Entro al error Datos fiscales: ", _error);
     }
     );
   }
@@ -93,11 +91,6 @@ export class CuadranteFiscalesComponent implements OnInit {
 
   calcularSpeed(){
     this.speedValue = this.baseGravable.porcentaje / 10
-    /* if(this.baseGravable.ingresos > this.baseGravable.egresos){
-      console.log('true')
-      this.speedValue = Number(((this.baseGravable.egresos / this.baseGravable.ingresos) * 10).toFixed(3))
-    } */
-    console.log(Number(this.speedValue))
   }
 
   public get width() {

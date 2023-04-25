@@ -86,24 +86,32 @@
                           <div class="col-5">
                             <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                               <mat-label>Número de orden (Mínimo 3 caracteres)</mat-label>
-                              <input matInput formControlName="numeroOrden" id="tituloPaquete" name="tituloPaquete" minlength="3"/>
-                              <!-- <mat-error *ngIf="!form.controls['tituloPaquete'].valid && form.controls['tituloPaquete'].touched">
-                                {{ getError() }}
-                              </mat-error> -->
+                              <input matInput formControlName="numeroOrden" id="numeroOrden" name="numeroOrden" minlength="3"/>
+                              <mat-error *ngIf="formulario.numeroOrden.invalid && formulario.numeroOrden.touched && formulario.numeroOrden.errors">
+                                <ng-container *ngIf="formulario.numeroOrden.errors.required">
+                                  El número de orden es requerido
+                                </ng-container>
+                                <ng-container *ngIf="formulario.numeroOrden.errors.minlength">
+                                  {{ getErrorCaracteres(3) }}
+                                </ng-container>
+                              </mat-error>
                             </mat-form-field>
                           </div>
                           <div class="col-2"></div>
                           <div class="col-5">
                             <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                               <mat-label>Selecciona un Régimen Fiscal</mat-label>
-                              <mat-select formControlName="regimenFiscal" id="sector" name="sector">
+                              <mat-select formControlName="regimenFiscal" id="regimenFiscal" name="regimenFiscal">
                                 <mat-option *ngFor="let item of regimenFiscal" [value]="item.idSat">
                                   {{item.descripcionRegimen}}
                                 </mat-option>
                               </mat-select>
-                              <!-- <mat-error *ngIf="!form.controls['regimenFiscal'].valid && form.controls['regimenFiscal'].touched">
-                                {{ getError() }}
-                              </mat-error> -->
+                              <mat-error *ngIf="formulario.regimenFiscal.invalid && 
+                              formulario.regimenFiscal.touched && formulario.regimenFiscal.errors">
+                                <ng-container *ngIf="formulario.regimenFiscal.errors.required">
+                                  Seleccione un régimen fiscal emisor
+                                </ng-container>
+                              </mat-error>
                             </mat-form-field>
                           </div>
                         </div>
@@ -112,28 +120,34 @@
                           <div class="col-5">
                             <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                               <mat-label>Selecciona Uso de CFDI</mat-label>
-                              <mat-select formControlName="usoCFDI" id="sector" name="sector">
-                                <mat-option *ngFor="let item of catalogos.catalogoUsoCfdi" [value]="item.clave">
+                              <mat-select formControlName="usoCFDI" id="usoCFDI" name="usoCFDI">
+                                <mat-option *ngFor="let item of catalogos?.catalogoUsoCfdi" [value]="item.clave">
                                   {{item.descripcion}}
                                 </mat-option>
                               </mat-select>
-                              <!-- <mat-error *ngIf="!form.controls['tituloPaquete'].valid && form.controls['tituloPaquete'].touched">
-                                {{ getError() }}
-                              </mat-error> -->
+                              <mat-error *ngIf="formulario.usoCFDI.invalid && 
+                              formulario.usoCFDI.touched && formulario.usoCFDI.errors">
+                                <ng-container *ngIf="formulario.usoCFDI.errors.required">
+                                  Seleccione el uso de CFDI
+                                </ng-container>
+                              </mat-error>
                             </mat-form-field>
                           </div>
                           <div class="col-2"></div>
                           <div class="col-5">
                             <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                               <mat-label>Selecciona una Forma de Pago</mat-label>
-                              <mat-select formControlName="formaPago" id="sector" name="sector">
-                                <mat-option *ngFor="let item of catalogos.catalogoFormaPago" [value]="item.clave">
+                              <mat-select formControlName="formaPago" id="formaPago" name="formaPago">
+                                <mat-option *ngFor="let item of catalogos?.catalogoFormaPago" [value]="item.clave">
                                   {{item.descripcion}}
                                 </mat-option>
                               </mat-select>
-                              <!-- <mat-error *ngIf="!form.controls['tituloPaquete'].valid && form.controls['tituloPaquete'].touched">
-                                {{ getError() }}
-                              </mat-error> -->
+                              <mat-error *ngIf="formulario.formaPago.invalid && 
+                              formulario.formaPago.touched && formulario.formaPago.errors">
+                                <ng-container *ngIf="formulario.formaPago.errors.required">
+                                  Seleccione una forma de pago
+                                </ng-container>
+                              </mat-error>
                             </mat-form-field>
                           </div>
                         </div>
@@ -150,24 +164,37 @@
                         <div class="col-5">
                           <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                             <mat-label>Escribe el RFC Receptor</mat-label>
-                            <mat-select formControlName="rfc" id="sector" name="sector">
-                              <mat-option *ngFor="let item of listaClientes" [value]="item" (click)="selecionarCliente(item)">
-                                  {{item.rfcReceptor}}
-                                </mat-option>
-                            </mat-select>
-                            <!-- <mat-error *ngIf="!form.controls['tituloPaquete'].valid && form.controls['tituloPaquete'].touched">
-                              {{ getError() }}
-                            </mat-error> -->
+                            <input matInput formControlName="rfc" [matAutocomplete]="auto" id="rfc" name="rfc" minlength="12"  maxlength="13">
+                            <mat-icon class="image-workspace-buscardor" matPrefix></mat-icon>
+                            <mat-icon class="image-workspace-select" matSuffix></mat-icon>
+                            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                              <mat-option *ngFor="let item of filteredOptions | async" [value]="item.rfcCliente" (click)="selecionarCliente(item)">
+                                {{item.rfcCliente}}
+                              </mat-option>
+                            </mat-autocomplete>
+                            <mat-error *ngIf="formulario.rfc.invalid && formulario.rfc.touched && formulario.rfc.errors">
+                              <ng-container *ngIf="formulario.rfc.errors.required">
+                                El RFC es requerido
+                              </ng-container>
+                              <ng-container *ngIf="formulario.rfc.errors.minlength">
+                                El RFC debe tener 12 o 13 caracteres
+                              </ng-container>
+                            </mat-error>
                           </mat-form-field>
                         </div>
                         <div class="col-2"></div>
                         <div class="col-5">
                           <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                             <mat-label>Escribe la Razón Social Receptor (Sin espacios)</mat-label>
-                            <input matInput formControlName="razonSocial" id="tituloPaquete" name="tituloPaquete" minlength="3"/>
-                            <!-- <mat-error *ngIf="!form.controls['tituloPaquete'].valid && form.controls['tituloPaquete'].touched">
-                              {{ getError() }}
-                            </mat-error> -->
+                            <input matInput formControlName="razonSocial" id="razonSocial" name="razonSocial" minlength="3"/>
+                            <mat-error *ngIf="formulario.razonSocial.invalid && formulario.razonSocial.touched && formulario.razonSocial.errors">
+                              <ng-container *ngIf="formulario.razonSocial.errors.required">
+                                La razón social es requerida
+                              </ng-container>
+                              <ng-container *ngIf="formulario.razonSocial.errors.minlength">
+                                Ingrese al menos 3 caracteres
+                              </ng-container>
+                            </mat-error>
                           </mat-form-field>
                         </div>
                       </div>
@@ -177,23 +204,30 @@
                           <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                             <mat-label class="textoM">régimen fiscal receptor</mat-label>
                             <mat-select formControlName="regimenFiscalCliente" id="regimenFiscalCliente" name="regimenFiscalCliente">
-                              <mat-option *ngFor="let item of catalogos.catalogoSatRegimenFiscales" [value]="item.clave">
+                              <mat-option *ngFor="let item of catalogos?.catalogoSatRegimenFiscales" [value]="item.clave">
                                 {{item.descripcion}}
                               </mat-option>
                             </mat-select>
-                            <!-- <mat-error *ngIf="!form.controls['tituloPaquete'].valid && form.controls['tituloPaquete'].touched">
-                              {{ getError() }}
-                            </mat-error> -->
+                            <mat-error *ngIf="formulario.regimenFiscalCliente.invalid && formulario.regimenFiscalCliente.touched && formulario.regimenFiscalCliente.errors">
+                              <ng-container *ngIf="formulario.regimenFiscalCliente.errors.required">
+                                Seleccione un régimen fiscal receptor
+                              </ng-container>
+                            </mat-error>
                           </mat-form-field>
                         </div>
                         <div class="col-2"></div>
                         <div class="col-5">
                           <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                             <mat-label class="textoM">código postal</mat-label>
-                            <input matInput formControlName="codigoPostal" id="codigoPostal" name="codigoPostal" minlength="3"/>
-                            <!-- <mat-error *ngIf="!form.controls['tituloPaquete'].valid && form.controls['tituloPaquete'].touched">
-                              {{ getError() }}
-                            </mat-error> -->
+                            <input matInput formControlName="codigoPostal" id="codigoPostal" name="codigoPostal" minlength="5"  maxlength="5" (keypress)="onlyNumbers($event);"/>
+                            <mat-error *ngIf="formulario.codigoPostal.invalid && formulario.codigoPostal.touched && formulario.codigoPostal.errors">
+                              <ng-container *ngIf="formulario.codigoPostal.errors.required">
+                                El campo es requerido
+                              </ng-container>
+                              <ng-container *ngIf="formulario.codigoPostal.errors.minlength">
+                                El código postal debe tener 5 caracteres
+                              </ng-container>
+                            </mat-error>
                           </mat-form-field>
                         </div>
                       </div>
@@ -202,10 +236,15 @@
                         <div class="col-5">
                           <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                             <mat-label class="textoM">correo electrónico</mat-label>
-                            <input matInput formControlName="correo" id="tituloPaquete" name="tituloPaquete" minlength="3"/>
-                            <!-- <mat-error *ngIf="!form.controls['tituloPaquete'].valid && form.controls['tituloPaquete'].touched">
-                              {{ getError() }}
-                            </mat-error> -->
+                            <input matInput formControlName="correo" id="correo" name="correo" minlength="3"/>
+                            <mat-error *ngIf="formulario.correo.invalid && formulario.correo.touched && formulario.correo.errors">
+                              <ng-container *ngIf="formulario.correo.errors.required">
+                                El E-mail es requerido
+                              </ng-container>
+                              <ng-container *ngIf="formulario.correo.errors.email || formulario.correo.errors.pattern">
+                                Correo electrónico inválido
+                              </ng-container>
+                            </mat-error>
                           </mat-form-field>
                         </div>
                         <div class="col-2"></div>
@@ -256,8 +295,8 @@
                           </div>
 
                           <div class="col-12" style="margin-top: 3%;">
-                            <div class="row tableFixHead" style="width: 100%; margin: 0; padding: 0;">
-                              <table aria-describedby="tabla" class="table table-responsive table-striped " style="" >
+                            <div class="row tableFixHead disable-scrollbars" style="max-height: 250px; overflow-x: auto; width: 100%; margin: 0; padding: 0;">
+                              <table aria-describedby="tabla" class="table table-responsive table-striped ">
                                   <thead style="margin-bottom: 10px;">
                                       <tr class="textoM">
                                           <th class="punta-tittle" style="text-align: center;">
@@ -293,21 +332,21 @@
                                       </tr>
                                   </thead>
                                   <tbody class="table-scroll" style="border: solid 1px #ffffff; ">
-                                    <tr>
+                                    <tr *ngFor="let item of tablaListaConceptos">
                                       <td style="text-align: center;">
-                                        SERVICIOS DE HOSPEDAJE AIRBNB
+                                        {{item.descripcion}} 
                                       </td>
                                       <td style="text-align: center;">
-                                        2.00
+                                        {{0}} 
                                       </td>
                                       <td style="text-align: center;">
-                                        0.00  
+                                        {{0}} 
                                       </td>
                                       <td style="text-align: center;">
-                                        $4,441.10
+                                        ${{0}}
                                       </td>
                                       <td style="text-align: center;">
-                                        $8,882.20
+                                        ${{item.valorUnitario | thousandsPipe}}
                                       </td>
                                       <td class="d-flex justify-content-center ">
                                         <div class="card-accion">

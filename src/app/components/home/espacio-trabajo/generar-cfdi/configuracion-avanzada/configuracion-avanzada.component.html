@@ -33,9 +33,11 @@
                     {{item.descripcion}}
                   </mat-option>
                 </mat-select>
-                <!-- <mat-error *ngIf="!form.controls['metodoPago'].valid && form.controls['metodoPago'].touched">
-                  {{ getError() }}
-                </mat-error> -->
+                <mat-error *ngIf="formulario.metodoPago.invalid && formulario.metodoPago.touched && formulario.metodoPago.errors">
+                  <ng-container *ngIf="formulario.metodoPago.errors.required">
+                    Seleccione un método de pago
+                  </ng-container>
+                </mat-error>
               </mat-form-field>
             </div>
             <div class="col-6 textoM" style="margin-top: 3%;">
@@ -46,18 +48,22 @@
                     {{item.descripcion}}
                   </mat-option>
                 </mat-select>
-                <!-- <mat-error *ngIf="!form.controls['tituloPaquete'].valid && form.controls['tituloPaquete'].touched">
-                  {{ getError() }}
-                </mat-error> -->
+                <mat-error *ngIf="formulario.moneda.invalid && formulario.moneda.touched && formulario.moneda.errors">
+                  <ng-container *ngIf="formulario.moneda.errors.required">
+                    Seleccione el tipo de moneda
+                  </ng-container>
+                </mat-error>
               </mat-form-field>
             </div>
             <div class="col-6 textoM" style="margin-top: 3%;">
               <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                 <mat-label>condiciones de pago</mat-label>
                 <input matInput formControlName="condicionesPago" id="condicionesPago" name="condicionesPago">
-                <!-- <mat-error *ngIf="!form.controls['tituloPaquete'].valid && form.controls['tituloPaquete'].touched">
-                  {{ getError() }}
-                </mat-error> -->
+                <mat-error *ngIf="formulario.condicionesPago.invalid && formulario.condicionesPago.touched && formulario.condicionesPago.errors">
+                  <ng-container *ngIf="formulario.condicionesPago.errors.required">
+                    Ingrese las condiciones de pago
+                  </ng-container>
+                </mat-error>
               </mat-form-field>
             </div>
             <div class="col-6 textoM" style="margin-top: 3%;">
@@ -68,9 +74,11 @@
                     {{item.descripcion}}
                   </mat-option>
                 </mat-select>
-                <!-- <mat-error *ngIf="!form.controls['tituloPaquete'].valid && form.controls['tituloPaquete'].touched">
-                  {{ getError() }}
-                </mat-error> -->
+                <mat-error *ngIf="formulario.diasCredito.invalid && formulario.diasCredito.touched && formulario.diasCredito.errors">
+                  <ng-container *ngIf="formulario.diasCredito.errors.required">
+                    Seleccione los días de crédito
+                  </ng-container>
+                </mat-error>
               </mat-form-field>
             </div>
           </div>

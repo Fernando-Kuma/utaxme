@@ -28,6 +28,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { PagerModule } from 'src/app/shared/utils/pager';
+import { MatTableModule } from '@angular/material/table';
 
 
 
@@ -66,7 +68,9 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatCheckboxModule,
     MatProgressSpinnerModule,
     MatDividerModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    PagerModule,
+    MatTableModule,
   ],
   exports: [
     MatDatepickerModule,

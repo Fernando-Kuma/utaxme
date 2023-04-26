@@ -25,6 +25,7 @@ export const API = {
 
   cfdiGeneradosFilter: environment.apiDashboard+ 'CfdiGeneradosFilter.htm',
   reporteFacturas: environment.apiDashboard + 'DownloadReporteValidacionFacturasForm.htm',
+  busquedaCfdi: environment.apiDashboard + 'CfdiGeneradosFilter.htm',
 
   
   /* getWord: environment.api + 'wordwise/entries?limit=1&headword=',

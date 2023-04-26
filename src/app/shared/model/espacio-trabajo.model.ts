@@ -17,7 +17,6 @@ export class Conceptos{
     isrRet?: any;
     ieps?: any;
     estatus?: boolean;
-
     
     tasaLocal?: any;
     importe?: number;
@@ -32,5 +31,27 @@ export class ConfiguracionAvanzada{
     condiciones?: string = 'PAGO EN UNA SOLA EXHIBICIÓN';
     periodicidad?: string = '04';
     meses?: string;
-    
+    }
+
+
+
+export interface ListaCfdi {
+    idCfdi?:        number;
+    uidd?:          string;
+    fechaTimbrado?: string;
+    emailReceptor?: string;
+    emailEnviado?:  boolean;
+    referencia?:    string;
+    plataforma?:    string;
+    mes?:           number;
+    anio?:          number;
+    folio?:         number;
+    rfcReceptor?:   string;
+    archivoXml?:    string;
+    archivoPdf?:    string;
+    rfcEmisor?:     string;
+    idRefUidd?:     string;
+    cancelado?:     boolean;
+    total?:         number;
+    timeout?:       boolean;
 }

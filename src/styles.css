@@ -376,6 +376,13 @@ body {
   background-repeat: no-repeat;
 }
 
+.ico-search {
+  background-image: url("src\assets\icon\Search.svg");
+  background-size: 20px 20px;
+  background-position: left;
+  background-repeat: no-repeat;
+}
+
 .img-calendar{
   background-image: url("src\assets\icon\calendar-voz.svg");
   background-size: 15px 15px;

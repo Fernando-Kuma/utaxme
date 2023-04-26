@@ -31,6 +31,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { ConfirmDialogModule } from 'src/app/shared/utils/confirm-dialog/confirm-dialog.module';
 import { PagerModule } from 'src/app/shared/utils/pager';
 import { FilterErrorModule } from 'src/app/shared/utils/filter-error';
+import { MatTableModule } from '@angular/material/table';
 
 
 
@@ -72,7 +73,8 @@ import { FilterErrorModule } from 'src/app/shared/utils/filter-error';
     MatAutocompleteModule,
     ConfirmDialogModule,
     PagerModule,
-    FilterErrorModule
+    FilterErrorModule,
+    MatTableModule,
   ],
   exports: [
     MatDatepickerModule,

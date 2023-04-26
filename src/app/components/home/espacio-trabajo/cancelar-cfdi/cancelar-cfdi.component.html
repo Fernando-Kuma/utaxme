@@ -1,37 +1,198 @@
-<div class="page-wrapper page-background" style="margin: 0; padding: 0;">
+<div class="page-wrapper" style="margin: 0; padding: 0;">
   <div class="sticky-header">
     <app-header-home></app-header-home>
   </div>
-  <div class="home-container" style="margin-top: 30px;">
-    <div class="row w100m0p0">
-        <div class="col-1"></div>
-        <div class="col-5">
+  <div class="content-wrapper disable-scrollbars" style="background-color: #F4F4F4; overflow: scroll;">
+    <div class="content-home">
+      <div class="home-container-accesos" style="margin-top: 30px;">
+        <div class="row w100m0p0">
+          <div class="col-1" style="margin: 0; padding: 0;">
+            <div class="image-workspace-back" style="width: 30px; height: 20px; float: right; cursor: pointer;"
+              (click)="regresar()"></div>
+          </div>
+          <div class="col-11">
             <div class="row w100m0p0">
-                <div class="col-1 icon-header" (click)="back()">
-                    <div class="image-administrator-workspace">&nbsp;</div>
+              <div class="col-8">
+                <div class="titulo-proceso">
+                  {{ tituloProceso }}
                 </div>
-                <div class="col title-header">
-                    CANCELAR FACTURA
+                <div class="subtitulo-proceso">
+                  Crea y edita a tus clientes frecuentes para enviarles facturas <br> rápidamente
                 </div>
-                <div class="row subt-header" >
-                  Última actualización: 27 feb 05:49 pm
+              </div>
+              <div class="col-4 bienvenida-cliente">
+                ¡Buen día, {{ nombreCliente }}!
               </div>
             </div>
+          </div>
         </div>
-        <div class="col-5 saludo-header"><p>¡Buen día!</p></div>
-        <div class="col-1"></div>
+      </div>
+
+      <div class="home-container-accesos" style="margin-top: 30px;">
+        <div class="row w100m0p0">
+          <div class="col-1"></div>
+          <div class="col-10 px-4 p-4" style="background-color: #FFFFFF; min-height: 350px;">
+            <div class="titulo-formulario">
+              Cancelar CFDI
+            </div>
+            <form [formGroup]="form" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+              <div class="row">
+                <div class="col-12">
+                  <div class="row" style="margin-top: 2%;">
+                    <div class="col-3">
+                      <mat-form-field appearance="outline" style="font-size: 13px; height: 80px;"
+                        (click)="picker.open()">
+                        <mat-label>Fecha de inicio</mat-label>
+                        <input readonly formControlName="inicial" id='inputInicial' matInput [matDatepicker]="picker"
+                          (dateChange)="actionDisabledOrden()">
+                        <mat-hint>DD/MM/AAAA</mat-hint>
+                        <mat-datepicker-toggle matSuffix [for]="picker">
+                          <mat-icon matDatepickerToggleIcon class="image-calendar-date-picker"></mat-icon>
+                        </mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-3">
+                      <mat-form-field appearance="outline" style="font-size: 13px; height: 80px;"
+                        (click)="picker2.open()">
+                        <mat-label>Fecha final</mat-label>
+                        <input readonly formControlName="final" id='inputFinal' matInput [matDatepicker]="picker2"
+                          (dateChange)="actionDisabledOrden()">
+                        <mat-hint>DD/MM/AAAA</mat-hint>
+                        <mat-datepicker-toggle matSuffix [for]="picker2">
+                          <mat-icon matDatepickerToggleIcon class="image-calendar-date-picker"></mat-icon>
+                        </mat-datepicker-toggle>
+                        <mat-datepicker #picker2></mat-datepicker>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-1 d-flex justify-content-end">
+                      <mat-divider vertical style="height: 100%;"></mat-divider>
+                    </div>
+                    <div class="col-5">
+                      <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
+                        <mat-icon matPrefix class="ico-search"></mat-icon>
+                        <mat-label>Buscar por número de orden</mat-label>
+                        <input matInput formControlName="numeroOrden" id="inputOrden" name="tituloPaquete" minlength="3"
+                          (keyup)="actionDisabledFecha()" />
+                        <!-- <mat-error *ngIf="!form.controls['tituloPaquete'].valid && form.controls['tituloPaquete'].touched">
+                      {{ getError() }}
+                    </mat-error> -->
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-12 d-flex justify-content-end">
+                      <button mat-button class="btn-utaxme-secondary"
+                        style="max-width: 120px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;"
+                        (click)="limpiarTabla()">
+                        Regresar
+                      </button>
+                      <button mat-button class="btn-utaxme"
+                        style="max-width: 160px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;"
+                        (click)="listaCfdi()">
+                        Buscar facturas
+                      </button>
+                    </div>
+                  </div>
+
+                  <div *ngIf="verTabla">
+                    <div class="col-12">
+                      <mat-divider></mat-divider>
+                      <div class="titulo-cuadrante" style="margin-top: 35px; margin-bottom: 53px;">Facturas emitidas
+                        (CFDI)</div>
+                      <mat-divider></mat-divider>
+                    </div>
+                    <table aria-describedby="tabla" class="table table-responsive table-striped">
+                      <thead style="margin-bottom: 10px;">
+                        <tr class="textoM">
+                          <th class="punta-tittle" style="text-align: center;">
+                            <span style="cursor:default!important;">
+                              N° DE ORDEN
+                            </span>
+                          </th>
+                          <th class="punta-tittle" style="text-align: center;">
+                            <span style="cursor:default!important;">
+                              RFC RECEPTOR
+                            </span>
+                          </th>
+                          <th class="punta-tittle" style="text-align: center;">
+                            <span style="cursor:default!important;">
+                              FECHA EMISIÓN
+                            </span>
+                          </th>
+                          <th class="punta-tittle" style="text-align: center;">
+                            <span style="cursor:default!important;">
+                              TOTAL
+                            </span>
+                          </th>
+                          <th class="punta-tittle" style="text-align: center;">
+                            <span style="width: 70px; cursor:default!important;">
+                              CANCELACIÓN
+                            </span>
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody class="table-scroll" style="border: solid 1px #ffffff; ">
+                        <tr *ngFor="let item of tablaCfdi">
+                          <td style="text-align: center;">
+                            {{item.referencia}}
+                          </td>
+                          <td style="text-align: center;">
+                            {{item.rfcReceptor}}
+                          </td>
+                          <td style="text-align: center;">
+                            {{item.fechaTimbrado | date:'shortDate'}}
+                          </td>
+                          <td style="text-align: center;">
+                            $ {{item.total | thousandsPipe}}
+                          </td>
+                          <td class="d-flex justify-content-center">
+                            <div class="icon-detalle" (click)="cancelar(item)">
+                              <div class="img-cancelacion" style="padding-right: 15px;">&nbsp; </div>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div class="col-12" style="margin-top: 13px;">
+                      <mat-divider></mat-divider>
+                    </div>
+                    <div class="col-12" *ngIf="tablaCfdi?.length> 0">
+                      <div class="col-6"
+                        style="margin: 0; padding: 0; font-weight: 600; font-size: 10px; letter-spacing: 3px; color: #7B8AA0; padding-top: 7px;">
+                        Mostrando pág {{ this.pager?.current }} de {{ this.pager?.total }} de
+                        {{ this.pager?.data.length }} resultados
+                      </div>
+                      <div class="col 6">
+                        <app-pager [pageModel]="pager" (paged)="onPaged($event)" style="float: right;"></app-pager>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div *ngIf="verNoEncontrados" class="d-flex justify-content-center" style="text-align: center;">
+                    <div class="">
+                      <div fxLayout="row" fxLayoutAlign="space-around center">
+                        <div><img src="../../../../../assets/icon/error-pesando.svg"
+                            alt="Error en busca de resultado" /><br /></div>
+                      </div>
+                      <div fxLayout="row" fxLayoutAlign="space-around center">
+                        <div>
+                          <h4>
+                            No hay resultados que coincidan con tus criterios. Intenta ingresar otra fecha de búsqueda,
+                            trata <br> de validar tu N° de Orden o <a href="">vuelve a la página anterior</a>.
+                          </h4>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col-1"></div>
+        </div>
+      </div>
     </div>
-</div>
-<div class="home-container" style="margin-top: 20px;">
-  <div class="row w100m0p0">
-      <div class="col-1"></div>
-      <div class="col-10">
-        <div class="content-form">
-          
-        </div>
-      </div>
-      <div class="col-1">
-      </div>
   </div>
-</div>
 </div>

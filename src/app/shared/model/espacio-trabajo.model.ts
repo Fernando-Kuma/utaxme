@@ -19,3 +19,26 @@ export class Conceptos{
     ieps?: any;
     estatus?: boolean;
 }
+
+
+
+export interface ListaCfdi {
+    idCfdi?:        number;
+    uidd?:          string;
+    fechaTimbrado?: string;
+    emailReceptor?: string;
+    emailEnviado?:  boolean;
+    referencia?:    string;
+    plataforma?:    string;
+    mes?:           number;
+    anio?:          number;
+    folio?:         number;
+    rfcReceptor?:   string;
+    archivoXml?:    string;
+    archivoPdf?:    string;
+    rfcEmisor?:     string;
+    idRefUidd?:     string;
+    cancelado?:     boolean;
+    total?:         number;
+    timeout?:       boolean;
+}

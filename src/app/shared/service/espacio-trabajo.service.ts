@@ -89,4 +89,24 @@ export class EspacioTrabajoService {
       );
   }
 
+  busquedaCfdiFecha(request: any): Observable<any> {
+    return this.http
+      .post<any>(`${API.busquedaCfdi}?rfc=${request.rfc}&fechaInicialFilter=${request.fechaInicialFilter}&fechaFinFilter=${request.fechaFinFilter}`, request)
+      .pipe(
+        catchError((e) => {
+          return throwError(e);
+        })
+      );
+  }
+
+  busquedaCfdiOrden(request: any): Observable<any> {
+    return this.http
+      .post<any>(`${API.busquedaCfdi}?rfc=${request.rfc}&referencia=${request.referencia}`, request)
+      .pipe(
+        catchError((e) => {
+          return throwError(e);
+        })
+      );
+  }
+
 }

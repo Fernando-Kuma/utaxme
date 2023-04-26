@@ -22,6 +22,12 @@ import { FullSizeComponent } from './full-size/full-size.component';
 import { HeaderHomeModule } from '../shared/utils/header-home';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
 
@@ -51,6 +57,13 @@ import { MatSelectModule } from '@angular/material/select';
     HeaderHomeModule,
     MatFormFieldModule,
     MatSelectModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatTooltipModule,
+    MatMenuModule,
+    MatChipsModule,
+    MatCheckboxModule
   ],
   exports: [
     BarrasEmitidasComponent,
@@ -61,6 +74,7 @@ import { MatSelectModule } from '@angular/material/select';
     CuadranteDeduccionesComponent,
     CuadranteCumplimientoComponent,
     CuadranteFiscalesComponent,
+    MatFormFieldModule,
     ThousandsPipe
   ],
 })

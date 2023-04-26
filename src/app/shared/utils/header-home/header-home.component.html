@@ -1,11 +1,12 @@
-<mat-toolbar [ngStyle]="{'background-color': color}">
+<mat-toolbar [ngStyle]="{'background-color': color}" *ngIf="width > 450">
   <div class="row width-completo">
-    <div class="col-4">
+    <div class="m0p0" [ngClass]="width > 850 ? 'col-2' : 'col-3'">
       <div [ngClass]="logo"></div>
     </div>
-    <div class="col-4 d-flex align-items-end">
+    <div class="d-flex align-items-end justify-content-evenly" [ngClass]="width > 850 ? 'col-5' : width > 700 ? 'col-6' : 'col-8'">
+      
       <div class="home-menu" [ngClass]="this.router.url === '/dashboard' ? 'menu-active':''" (click)="cambiarMenu(1)">
-        <div class="menu-ico" [ngStyle]="{'background-color': this.router.url === '/dashboard' ? '#7B8AA0':'#122d4f'}" >
+        <div class="menu-ico" [ngStyle]="{'background-color': this.router.url === '/dashboard' ? '#7B8AA0':'#122d4f'}">
           <mat-icon [ngClass]="this.router.url === '/dashboard' ? 'image-home-black image-invert-color' : 'image-home'" class="image-size-20"></mat-icon>
         </div>
         <div [ngClass]="this.router.url === '/dashboard' ? 'menu-title-active':'menu-title'">
@@ -13,48 +14,50 @@
         </div>
       </div>
       
-        <div class="home-menu" [ngClass]="this.router.url != '/dashboard' ? 'menu-active':''" style="width: 210px; cursor: pointer; margin-left: 50px; margin-top: 12px;" (click)="cambiarMenu(2)">
-            <div class="menu-ico"
-            [ngStyle]="{'background-color': this.router.url != '/dashboard' ? '#7B8AA0':'#122d4f'}" 
-            [ngClass]="this.router.url != '/dashboard' ? 'img-header-work-active':'img-header-work'" style="margin-left: 5px;"></div>
-            <div [ngClass]="this.router.url != '/dashboard' ? 'menu-title-active':'menu-title'"  style="margin-left: 10px;">
+        <div class="home-menu" [ngClass]="this.router.url != '/dashboard' ? 'menu-active':''" (click)="cambiarMenu(2)">
+            <div class="menu-ico" [ngStyle]="{'background-color': this.router.url != '/dashboard' ? '#7B8AA0':'#122d4f'}">
+              <mat-icon [ngClass]="this.router.url != '/dashboard' ? 'img-header-work-active':'img-header-work'" class="image-size-20"></mat-icon>
+            </div>
+            <div [ngClass]="this.router.url != '/dashboard' ? 'menu-title-active':'menu-title'">
                 Espacio de trabajo
             </div>
         </div>
      
       
     </div>
-    <div class="col-2 display-align-center">
+    <div class="m0p0  d-flex align-items-center justify-content-end" [ngClass]="width > 700 ? 'col-3' : 'col-1'">
       <div class="menu-user" [matMenuTriggerFor]="userMenu">
-        <div class="container">
-            <div class="row">
-              <div class="col-3">
-                <div class="home-header-user">
-                  <mat-icon class="image-home-user image-size-22"></mat-icon>
-                </div>
-              </div>
-              <div class="col-9">
-                <div class="menu-user-container">
-                    <div class="row">
-                        <div class="col home-user-name">
-                          {{ user.name }}
-                          <!--
-                            {{ (username.length>15) ? (username | slice:0:15 | titlecase) + '...' : username | titlecase }}
-                          -->
-                        </div>
-                        <div class="col image-home-down image-size-14"></div>
-                    </div>
-                    <div class="row home-user-rol">
-                      {{ user.rol }}
-                      <!--
-                        {{ (role | uppercase) }}
-                      -->
-                    </div>
-                </div>
-              </div>
+        <div class="row">
+          <div [ngClass]="width > 700 ? 'col-3' : 'col-12'">
+            <div class="home-header-user">
+              <mat-icon class="image-home-user image-size-22"></mat-icon>
             </div>
+          </div>
+          <div class="col-9" [ngClass]="{'ocultar-contenido' : width < 700}">
+            <div class="menu-user-container">
+                <div class="row">
+                    <div class="col home-user-name">
+                      {{ (user.name.length > 15) ? (user.name | slice:0:15 ) + '...' : user.name | titlecase }}
+                    </div>
+                    <div class="col image-home-down image-size-14"></div>
+                </div>
+                <div class="row home-user-rol">
+                  {{ user.rol }}
+                </div>
+            </div>
+          </div>
         </div>
         <mat-menu class="header-menu" #userMenu="matMenu" xPosition="before">
+            <ng-container *ngIf="width < 850">
+              <button mat-menu-item style="font-size: 14px; font-weight: 400; text-align: left;" disabled>
+                <mat-icon class="image-home-notificacion image-size-20"></mat-icon>
+                <span>Notificaciones</span>
+              </button>
+              <button mat-menu-item style="font-size: 14px; font-weight: 400; text-align: left;" disabled>
+                <mat-icon class="image-home-ayuda image-size-20"></mat-icon>
+                <span>Ayuda</span>
+              </button>
+            </ng-container>
             <button mat-menu-item style="font-size: 14px; font-weight: 400;" (click)="salir()">
                 <mat-icon class="image-home-logout image-size-20"></mat-icon>
                 <span>CERRAR SESIÓN</span>
@@ -66,7 +69,7 @@
         </mat-menu>
       </div>
     </div>
-    <div class="col-2 display-align-center justify-content-evenly">
+    <div class="col-2 display-align-center justify-content-evenly" [ngClass]="{'ocultar-contenido' : width < 850}">
       <!--
         <div class="img-header-notification" style="margin-top: 1px; margin-left: 20px; width: 40px; height: 40px; cursor: pointer;" #menuTriggerNotification="matMenuTrigger" [matMenuTriggerFor]="notificacion" (click)="openMenu()">
           <div class="badged-notification" *ngIf="numNotificaciones != '0'">
@@ -112,5 +115,38 @@
       </div>
     </div>
   </div>
+</mat-toolbar>
 
+
+<mat-toolbar [ngStyle]="{'background-color': color}" *ngIf="width <= 450">
+  <div class="row width-completo ">
+    <div class="col d-flex flex-column align-items-center" (click)="cambiarMenu(1)">
+      <mat-icon class="image-invert-color image-size-19" [ngClass]="this.router.url === '/dashboard' ? 'menu-movil-home-activo' : 'menu-movil-home'"></mat-icon>
+      <div class="menu-title-movil" [ngStyle]="{'font-weight': this.router.url === '/dashboard' ? 600 : ''}" >
+        Dashboard
+      </div>
+    </div>
+
+    <div class="col d-flex flex-column align-items-center" (click)="cambiarMenu(2)">
+      <mat-icon class="image-invert-color image-size-19" [ngClass]="this.router.url === '/espacio-trabajo' ? 'menu-movil-espacio-activo' : 'menu-movil-espacio'"></mat-icon>
+      <div class="menu-title-movil" [ngStyle]="{'font-weight': this.router.url === '/espacio-trabajo' ? 600 : ''}" >
+        Tu Espacio
+      </div>
+    </div>
+
+    <div class="col d-flex flex-column align-items-center" (click)="cambiarMenu(3)">
+      <mat-icon class="image-invert-color image-size-19" [ngClass]="this.router.url === '/salud-fiscal' ? 'menu-movil-fiscal-activo' : 'menu-movil-fiscal'"></mat-icon>
+      <div class="menu-title-movil" [ngStyle]="{'font-weight': this.router.url === '/salud-fiscal' ? 600 : ''}" >
+        Salud Fiscal
+      </div>
+    </div>
+
+    <div class="col d-flex flex-column align-items-center" (click)="cambiarMenu(4)">
+      <mat-icon class="image-invert-color image-size-19" [ngClass]="this.router.url === '/perfil' ? 'menu-movil-usuario-activo' : 'menu-movil-usuario'"></mat-icon>
+      <div class="menu-title-movil" [ngStyle]="{'font-weight': this.router.url === '/perfil' ? 600 : ''}" >
+        Perfil
+      </div>
+    </div>
+    
+  </div>
 </mat-toolbar>

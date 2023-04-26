@@ -49,4 +49,8 @@ export class HeaderHomeComponent implements OnInit {
     //this.router.navigateByUrl(NAV.login);
   }
 
+  public get width() {
+    return window.innerWidth;
+  }
+
 }

@@ -13,9 +13,24 @@ export class Conceptos{
     valorUnitario?: number;
     consecutivo?: number;
     claveImpuestoLocal?: any;
-    tasaLocal?: any;
     ivaRet?: any;
     isrRet?: any;
     ieps?: any;
     estatus?: boolean;
+
+    
+    tasaLocal?: any;
+    importe?: number;
+    descuento?: number;
+}
+
+
+export class ConfiguracionAvanzada{
+    metodoPago?: string = 'PUE';
+    moneda?: string = 'MXN';
+    diasCredito?: string = '0';
+    condiciones?: string = 'PAGO EN UNA SOLA EXHIBICIÓN';
+    periodicidad?: string = '04';
+    meses?: string;
+    
 }

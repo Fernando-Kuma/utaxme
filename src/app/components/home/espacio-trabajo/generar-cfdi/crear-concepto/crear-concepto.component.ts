@@ -178,7 +178,6 @@ export class CrearConceptoComponent {
   private _filter(value: any): any[] {
     const filterValue = value.toLowerCase();
     console.log(filterValue)
-    //return this.listaCatalogoProductos.filter(item => item.descripcion.toLowerCase().includes(filterValue));
     return this.listaCatalogoProductos;
   }
 

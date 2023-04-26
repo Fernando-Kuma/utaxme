@@ -32,9 +32,7 @@ mat-toolbar{
 .home-menu{
   height: 50px; 
   border-radius: 8px 8px 0px 0px;
-  padding: 0;
-  padding-left: 10px;
-  width: 145px;
+  padding: 0 10px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -76,7 +74,6 @@ mat-toolbar{
 
 .menu-active{
   background-color: #F4F4F4;
-  padding-top: 12px;
 }
 
 .menu-title-active{
@@ -186,3 +183,103 @@ mat-toolbar{
   font-style: normal;
   font-size: 18px !important;
 }
+
+.ocultar-contenido{
+  display: none
+}
+
+@media(max-width: 650px){
+
+  .home-menu {
+    padding: 0 4px;
+  }
+
+  .menu-title{
+    font-size: 11px;
+  }
+
+  .menu-title-active{
+    font-size: 11px;
+  }
+
+  .image-toolbar{
+    background-size: 120px 40px;
+  }
+
+  
+
+}
+
+@media(max-width: 450px){
+  mat-toolbar{
+    height: 45px;
+  }
+}
+.menu-movil-home{
+  background-image: url("src\assets\icon\home-black.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.menu-movil-home-activo{
+  background-image: url("src\assets\icon\home-relleno.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.menu-movil-espacio{
+  background-image: url("src\assets\icon\espacio-black.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.menu-movil-espacio-activo{
+  background-image: url("src\assets\icon\espacio-relleno.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.menu-movil-fiscal{
+  background-image: url("src\assets\icon\salud-fiscal-black.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.menu-movil-fiscal-activo{
+  background-image: url("src\assets\icon\salud-fiscal-relleno.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.menu-movil-usuario{
+  background-image: url("src\assets\icon\usuario-black.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.menu-movil-usuario-activo{
+  background-image: url("src\assets\icon\usuario-relleno.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.image-size-19 {
+  background-size: 19px 19px;
+}
+
+.menu-title-movil{
+  font-weight: 400;
+  font-size: 9px;
+  line-height: 16px;
+  text-align: center;
+  color: #FFFFFF;
+}
+

@@ -14,7 +14,6 @@ import { Conceptos } from 'src/app/shared/model/espacio-trabajo.model';
 })
 export class ConceptosComponent{
 
-  checked = false;
   tablaListaConceptos: Conceptos[]; 
   tablaLista: Conceptos[]; 
   public form: FormGroup;
@@ -57,7 +56,7 @@ export class ConceptosComponent{
     );
     dialogRef.afterClosed().subscribe(
       data => {
-        //this.crearTicket();
+        this.listaConceptos()
       }
     );
   }
@@ -70,7 +69,7 @@ export class ConceptosComponent{
     );
     dialogRef.afterClosed().subscribe(
       data => {
-        //this.crearTicket();
+        this.listaConceptos()
       }
     );
   }
@@ -97,7 +96,6 @@ export class ConceptosComponent{
   }
 
   onKeyDownEvent(event: any){
-    let busquedaDeDatos;
     let filtro = event.target.value;
     this.tablaLista = this.tablaListaConceptos.filter( item => 
     item?.descripcion.toLowerCase().includes(filtro.toLowerCase())

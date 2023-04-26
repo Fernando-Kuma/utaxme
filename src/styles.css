@@ -21,6 +21,14 @@ body {
   flex-direction: column;
 }
 
+@media(max-width: 451px){
+  .page-wrapper{
+    flex-direction: column-reverse;
+
+  }
+}
+
+
 .page-background{
   background: #F4F4F4;
   }
@@ -47,7 +55,6 @@ body {
 
 .image-toolbar {
   height: 60px;
-  width: 140px;
   background-image: url("src\assets\img\Logo-Utax.png");
   background-size: 158px 53px;
   background-position: center;

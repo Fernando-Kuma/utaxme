@@ -2,62 +2,101 @@
     width: 100%!important;
     margin: 0;
     padding: 0;
-  }
+}
 
-  .icon-header{
-    width: 22px; 
-    margin: 0; 
-    padding: 0;
-  }
-  
-  .title-header{
-    margin: 0; 
-    padding: 0; 
-    padding-top: 1px; 
-    padding-left: 5px; 
-    font-size: 18px;
-  }
+.home-container-accesos{
+  width: 100%!important;
+  margin: 0;
+  padding: 0;
+}
 
-  .subt-header{
-    font-weight: 600; 
-    font-size: 11px; 
-    color: #838383; 
-    margin-left: 18px; 
-    margin-top: 10px; 
-    margin-bottom: 30px;
-  }
-  
-  .saludo-header{
-    text-align: right; 
-    font-weight: 600;
-  }
+.image-workspace-back {
+  background-image: url("src\assets\icon\workspace-back.svg");
+  background-size: 20px 20px;
+  background-position: right;
+  background-repeat: no-repeat;
+}
 
-  .content-form{
-    width: 100%; 
-    background-color: #FFFFFF; 
-    min-height: 565px;
-    margin-left: 15px;
-  }
-  
-  .graficos-content{
-    width: 365px; 
-    height: 326px; 
-    background: #C0EEEB; 
-    border-radius: 15px;
-  }
-  
-  .btn-accion{
-    flex-direction: column; 
-    text-align: center; 
-    margin-right: 38px; 
-    border: 2px solid #E6EDF6; 
-    box-shadow: 8px 16px 32px #E6EDF6; 
-    border-radius: 4px;
-  }
-  
-  .background-icon{
-    background: #E6EDF6; 
-    width: 53px; 
-    height: 53px; 
-    border-radius: 8px;
-  }
+.titulo-proceso{
+  font-weight: 400;
+  font-size: 24px;
+  text-transform: uppercase;
+  color: #0B112A;
+}
+
+.subtitulo-proceso{
+  font-weight: 400;
+  font-size: 16px;
+  color: #7B8AA0;
+  margin-top: 15px;
+}
+
+.bienvenida-cliente{
+  font-weight: 600;
+  font-size: 20px;
+  display: flex;
+  align-items: flex-start;
+  text-align: right;
+  color: #3B4559;
+}
+
+.titulo-formulario{
+  font-weight: 400;
+  font-size: 24px;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+}
+
+
+.image-workspace-buscardor {
+  background-image: url("src\assets\icon\buscar.svg");
+  background-size: 24px 24px;
+  background-position: right;
+  background-repeat: no-repeat;
+}
+.image-workspace-agregar {
+  background-image: url("src\assets\icon\crear.svg");
+  background-size: 24px 24px;
+  background-position: right;
+  background-repeat: no-repeat;
+}
+.textoM{
+  text-transform: uppercase;
+}
+.punta-tittle{
+  margin: 0; 
+  padding: 0;
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 16px;
+  letter-spacing: 0.2em;
+  color: #000000;
+}
+
+.img-accion-borrar {
+  background-image: url("src\assets\icon\delete.svg");
+  background-size: 24px 24px;
+  background-repeat: no-repeat;
+  background-position: left;
+}
+
+.img-accion-editar {
+  background-image: url("src\assets\icon\edit-concepto.svg");
+  background-size: 22px 22px;
+  background-repeat: no-repeat;
+  background-position: left;
+}
+
+.card-accion{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* System/Info/10 */
+  Width:40px;
+  Height:40px;
+  background: #D3E3FE;
+  border-radius: 8px;
+
+  cursor: pointer;
+  margin: 0 10px;
+}

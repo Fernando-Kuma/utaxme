@@ -84,35 +84,14 @@ export class BarrasEmitidasComponent implements AfterViewInit, OnInit, OnDestroy
     this._showDomain = val;
   }
 
-  _scale: 'week' | 'day' | 'hour' | 'month' | 'hourDiario' | 'minute' = 'week';
-  @Input() set scale(val: 'week' | 'day' | 'hour' | 'month' |'hourDiario' | 'minute') {
-    this._scale = val;
-  }
-
-  get scale() {
-    return this._scale;
-  }
-
   _data: Array<DateValue> = [];
   @Input() set data(val: Array<any>) {
-    val.forEach((element, index) => {
-      this._data.push({id: index + 1, total: Number(element.total) })
-    });
-    /* 
-    if (val.length > 0 && typeof val[0].date == 'string') {
-      this._data = val.map((dt) => {
-        let dateValue: DateValue = {
-          date: new Date(dt.date),
-          value: dt.value,
-        };
-        return dateValue;
-      });
-    } else {
-      this._data = val;
-    } */
+    this._data = val
     this.update();
   }
+
   get data() {
+    console.log(this._data)
     return this._data;
   }
 
@@ -140,10 +119,6 @@ export class BarrasEmitidasComponent implements AfterViewInit, OnInit, OnDestroy
 
   ngOnInit(): void {
     this.removeTooltips();
-    let mode = localStorage.getItem('darkTheme');
-    if (mode != null) {
-      this.dark = mode === '1' ? true : false;
-    }
   }
 
   ngAfterViewInit(): void {
@@ -171,17 +146,15 @@ export class BarrasEmitidasComponent implements AfterViewInit, OnInit, OnDestroy
       yDomain = this.range;
     } else {
       this.range = [Math.round(d3.min(this.Y) - (d3.min(this.Y) * .1)), Math.round(d3.max(this.Y) + (d3.max(this.Y) * .1))]
-      if(this.range[0] > 0 && this.range[0] < 10){
-        this.range[0] = (this.range[0] - 1);
-      }
-      if(this.range[0] <= 0){
+      if(this.range[0] < 10){
         this.range[0] = 0;
       }
       if(this.range[1] < 1){
         this.range[1] = 1;
       }
-      yDomain = this.range; 
-      //yDomain = [0, 110];
+      yDomain = this.range;
+
+      
     }
 
     const xType = d3.scaleTime;
@@ -192,50 +165,35 @@ export class BarrasEmitidasComponent implements AfterViewInit, OnInit, OnDestroy
 
     this.xScale = xType(xDomain, xRange);
     this.yScale = yType(yDomain, yRange);
-    d3.timeFormatDefaultLocale(ES_MX_LOCALE);
-
-    let formatShort = this.getFormat();
 
     this.xAxis = d3
       .axisBottom(this.xScale)
       .tickSize(0)
-      .tickFormat((d: any) => (d.toString()))
+      .tickFormat((d) => {
+        return + d;
+      })
       .tickSizeInner(this.margin.top + this.margin.bottom - this.height)
       .tickSizeOuter(0)
       .tickPadding(5);
 
-    
-
-    this.defineTicksXAxis();
+      
 
     this.yAxis = d3
       .axisLeft(this.yScale)
       .tickSize(0)
       .tickFormat((d) => {
-        return d + this.unit;
+        return this.unit + d;
       })
       .tickSizeInner(this.margin.right + this.margin.left - this.width - 20)
-      .tickSizeOuter(0);
+      .tickSizeOuter(0)
+      .tickPadding(5);
 
       if (this.showYLabels) {
         let r = this.range[1] - this.range[0];
         let d = 8;
-        /* if(r > 10){
-           d = r / 10;
-        }else{
-           d = 10;
-        } */
         let array: number[] = [];
-        /* array.push(this.range[0]); */
         let contador = 1;
         let rangoY;
-        /* if(this.range[1] <= 10){
-          rangoY = 1;
-        }else if(this.range[1] <= 100 && this.range[1] > 10){
-          rangoY = 10;
-        }else if(this.range[1] <= 1000 && this.range[1] > 100){
-          rangoY = 100;
-        } */
         rangoY = r/d
         for (let index = 1; index < Math.round(d); index++) {
           array.push(this.range[0] + (Math.round(rangoY) * index))
@@ -245,36 +203,11 @@ export class BarrasEmitidasComponent implements AfterViewInit, OnInit, OnDestroy
         this.yAxis.tickValues(
           this.yScale.ticks(0).concat(array)
         ).tickPadding(5);
-
       }else{
         this.yAxis.tickValues(
           this.yScale.ticks(0)
         ).tickPadding(5);
       }
-  }
-
-  private getFormat() {
-    let formatShort =  d3.timeFormat('%d');
-    /* if(this._scale === 'week'){
-      if(this.full){
-        formatShort = d3.timeFormat('%m/%-d/%Y');
-      }else{
-        formatShort = d3.timeFormat('%d/%m/%Y');
-      }
-    }else if(this._scale === 'month'){
-      formatShort = d3.timeFormat("%d");
-    }else if(this._scale === 'hour'){
-      formatShort = d3.timeFormat('%H:%M');
-    } else if (this.scale === 'minute'){
-      formatShort = d3.timeFormat('%M');
-    }else{
-      if(this.full){
-        formatShort = d3.timeFormat("%H:%M");
-      }else{
-        formatShort = d3.timeFormat('%H:%M');
-      }
-    } */
-    return formatShort;
   }
 
   private defineXAxis() {
@@ -286,51 +219,25 @@ export class BarrasEmitidasComponent implements AfterViewInit, OnInit, OnDestroy
       )
       .style('font-size', (g) => {
         if (this.full) {
-          return '12px';
+          return '18px';
         } else {
-          return '7px';
+          return '10px';
         }
       })
-      .style('color', '#7C8DB5')
+      .style('color', '#697181')
       .call(this.xAxis)
+      .attr('class', 'ejeXBarra')
       .call((g: any) => {
         if (!this._showDomain) {
           g.select('.domain').remove();
         }
       })
-      .call((g: any) =>
-        g.select('.tick:last-of-type text').style('color', '#285CED')
-      )
       .call((g: any) => g.selectAll('.tick line').remove())
       .call((g: any) => {
         if (!this._showScale) {
           g.selectAll('.tick').remove();
         }
       });
-
-    this.transformLabels();
-  }
-
-  private transformLabels() {
-    if(this.full){
-      if(this._scale === 'hour'){
-        this.svg
-        .selectAll("text")
-        .attr("transform", "translate(11, 25) rotate(90)");
-      }else if(this._scale === 'day'){
-        this.svg
-        .selectAll("text")
-        .attr("transform", "translate(-10,20) rotate(315)");
-      } else if (this.scale === 'minute') {
-        this.svg
-          .selectAll('text')
-          .attr('transform', 'translate(-10,20) rotate(315)');
-      } else{
-        this.svg
-        .selectAll("text")
-        .attr("transform", "translate(-10,35) rotate(-50)");
-      }
-    }
   }
 
   private defineYAxis() {
@@ -339,72 +246,23 @@ export class BarrasEmitidasComponent implements AfterViewInit, OnInit, OnDestroy
       .attr('transform', 'translate(' + this.margin.left + ',0)')
       .style('font-size', (g) => {
         if (this.full) {
-          return '16px';
+          return '18px';
         } else {
-          return '8px';
+          return '11px';
         }
       })
       .style('font-weight', '600')
-      .style('color', '#7C8DB5')
+      .style('color', '#6B778C')
       .call(this.yAxis)
-      .call((g: any) => g.select('.domain').remove())
+      .attr('class', 'ejeYBarra')
       .call((g: any) => {
-        if (this.full) {
-          return g
-            .selectAll('.tick text')
-            .attr('transform', 'translate(-20,0)');
+        if (!this._showDomain) {
+          g.select('.domain').remove();
         }
       })
-      .call((g: any) =>
-        g.select('.tick:last-of-type text').style('color', '#285CED')
-      )
       .call((g: any) => {
-        if (!this.grid) {
-          return g.selectAll('.tick line').remove();
-        } else {
-          return g.selectAll('.tick line').attr('opacity', 0.1);
-        }
-      });
-  }
-
-  private defineTicksXAxis() {
-    if (this.showXLabels) {
-      /* if(this._scale === 'week'){
-        if(this.full){
-          this.xAxis.tickValues(
-            this.xScale.ticks(30)
-          );
-        }else{
-          this.xAxis.tickValues(
-            this.xScale.ticks(7)
-          ).tickPadding(10) ;
-        }
-      }else if(this._scale === 'month'){
-        this.xAxis.tickValues(
-          this.xScale.ticks(31)
-        );
-      }else if(this._scale === 'day'){
-        this.xAxis.tickValues(
-          this.xScale.ticks(12)
-        ).tickPadding(10) ;
-      } else if (this.scale === 'minute'){
-        this.xAxis.tickValues(this.xScale.ticks(12));
-      } else{
-        if(this.full){
-          this.xAxis.tickValues(
-            this.xScale.ticks(40)
-          );
-        }else{
-          this.xAxis.tickValues(
-            this.xScale.ticks()
-          );
-        }
-      } */
-      this.xAxis.tickValues(this.xScale.ticks(d3.timeDay.every(1)))
-    } else {
-      this.xAxis.tickValues(this.xScale.ticks(0));
-    }
-
+        return g.selectAll('.tick line').attr('opacity', 0.1);
+      })
   }
 
   private draw() {
@@ -428,9 +286,6 @@ export class BarrasEmitidasComponent implements AfterViewInit, OnInit, OnDestroy
   }
 
   private setForms() {
-
-
-
     if (this.showLimits) {
       this.svg
         .append('line')
@@ -457,48 +312,6 @@ export class BarrasEmitidasComponent implements AfterViewInit, OnInit, OnDestroy
         .attr('y2', this.height / 2);
     }
 
-    if (this.showSLA) {
-      //if(d3.max(this.Y) > this.sla){
-      if(this.range[1] > this.sla){
-        if (this.slaMean) {
-          this.svg
-            .append('line')
-            .attr('class', 'line')
-            .call(d3.line())
-            .style('stroke', '#27509B')
-            .style('stroke-dasharray', '3, 2')
-            .style('stroke-width', 1)
-            .attr('x1', this.margin.left)
-            .attr('x2', this.width)
-            .attr('y1', this.height - d3.mean(this.Y))
-            .attr('y2', this.height - d3.mean(this.Y));
-        } else {
-  
-          this.svg
-            .append('line')
-            .attr('class', 'line')
-            .call(d3.line())
-            .style('stroke', '#F95A36')
-            .style('stroke-dasharray', '3, 2')
-            .style('stroke-width', 1)
-            .attr('x1', this.margin.left)
-            .attr('x2', this.full ? this.width + this.rx : this.width + this.rx + 10)
-            .attr('y1', this.yScale(this.sla))
-            .attr('y2', this.yScale(this.sla));
-  
-          this.svg.append("text")
-            .attr("x", (this.width + this.rx + 15))
-            .attr("y", this.yScale(this.sla - 0.4))
-            .style("font-size", this.full ? '14px' : '10px')
-            .style("font-weight", "400")
-            .style("font-family","sans-serif")
-            .style("fill", '#F95A36')
-            .text(this.sla + '' + this.unit);
-  
-        }
-      }
-    }
-
     let defs = this.svg.append('defs');
 
     let filter = defs.append('filter').attr('id', 'dropshadow');
@@ -508,47 +321,35 @@ export class BarrasEmitidasComponent implements AfterViewInit, OnInit, OnDestroy
     feMerge.append('feMergeNode').attr('in', 'offsetBlur');
     feMerge.append('feMergeNode').attr('in', 'SourceGraphic');
 
-    let formatShort = this.getFormat();
-
-    let width = 120;
-    let height = 40;
-    let fontSize = 10;
-    let fontWeight = 400;
-    let lineHeight = 15;
-
-    if(this.full){
-      width = 150;
-      height = 50;
-      fontSize = 14;
-      fontWeight = 500;
-      lineHeight = 20;
-    }
-
     let tip = d3Tip()
     .offset([-10, 6])
     .html((d)=> {
-      let fecha = d.target.__data__.total
-      let fechaTool = fecha.getDate() + '/' + (fecha.getMonth() + 1) + '/' + fecha.getFullYear();
       if(this.viewTooltip){
-        return " <div class='TooltipGenerated' style='width: "+ width +"px; height: "+ height +"px; border-radius: 3px; line-height: "+ lineHeight +"px; text-align: center; padding-top: 5px; font-size: "+ fontSize +"px; font-weight: "+ fontWeight +"; opacity: .8; background: #4e5d87;        '><span style='color: #FFFFFF !important'>"+fecha+"</span><br><span style='font-size: "+ (fontSize+1) +"px; font-weight: "+ (fontWeight+100) +"; color: #dbdbdb !important'><b>"+ this.unit + '' + d.target.__data__.total +''+ (this.tickets ? this.tooltipLabel : '') + "</b></span></div>";
+        if(this.full){
+          return `<div class='TooltipGenerated' style='width: 150px; height: 50px; border-radius: 3px; text-align: center; padding-top: 5px; font-size: 16px; font-weight: 500; opacity: .8; background: #4e5d87;'>
+          <span style='color: #FFFFFF !important'>Factura: ${d.target.__data__.id}</span>
+          <br>
+          <span style='font-size: 15px; font-weight: 500; color: #dbdbdb !important'>Ingreso: $${d.target.__data__.total}</span>
+          </div>`
+        }else{
+          return `<div class='TooltipGenerated' style='width: 120px; height: 40px; border-radius: 3px; text-align: center; padding-top: 5px; font-size: 10px; font-weight: 400; opacity: .8; background: #4e5d87;'>
+          <span style='color: #FFFFFF !important'>Factura: ${d.target.__data__.id}</span>
+          <br>
+          <span style='font-size: 11px; font-weight: 400; color: #dbdbdb !important'>Ingreso: $${d.target.__data__.total}</span>
+          </div>`
+        }
       }
     });
 
-
-    let widthSize
     this.svg.call(tip);
-    if((this._scale == 'day' || this._scale == 'hour' || this.scale == 'minute') && !this.full){
-      widthSize = 10
-    }else{
-      widthSize = this.barWidth
-    }
+
     let rects = this.svg
       .selectAll('rect')
       .data(this.data)
       .enter()
       .append('rect')
       .attr('x', (_: DateValue, i: number) => this.xScale(this.X[i]))
-      .attr('width', widthSize)
+      .attr('width', 10)
       .attr('height', 0)
       .attr('y', (_: DateValue, i: number) => this.yScale(50))
       .on('mouseover', tip.show )
@@ -567,7 +368,7 @@ export class BarrasEmitidasComponent implements AfterViewInit, OnInit, OnDestroy
       )
       .attr('fill', (_: DateValue, i) => {
         if (this.different) {
-          if (d3.max(this.Y) == _.value) {
+          if (d3.max(this.Y) == _.total) {
             return this.differentcolor;
           } else {
             return this.color;

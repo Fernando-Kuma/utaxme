@@ -20,7 +20,21 @@ export class ConfirmDialogService {
         showCancelMessage: false
     }
     return this.dialogConfig;
-}
+    
+  }
+    generarCFDI(): MatDialogConfig {
+      this.dialogConfig.restoreFocus = false;
+      this.dialogConfig.autoFocus = false;
+      this.dialogConfig.data = {
+          title: "GENERAR CFDI",
+          subtitle: "¿Está seguro que desea generar el CFDI?",
+          cancelMessage: "Regresar",
+          confirmMessage: "Aceptar",
+          type: "warn",
+          showCancelMessage: true
+      }
+      return this.dialogConfig;
+    }
 
   constructor() { }
 }

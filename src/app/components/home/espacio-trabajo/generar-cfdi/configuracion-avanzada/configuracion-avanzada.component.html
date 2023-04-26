@@ -1,4 +1,4 @@
-<div class="confirm">
+<div class="modal-cfdi">
   <mat-dialog-content>
       <div class="container" style="width: 100%; margin: 0; padding: 0; overflow: hidden;">
           <div class="row" style="width: 100%; margin: 0; padding: 0;">
@@ -27,7 +27,6 @@
             <div class="col-6 textoM" style="margin-top: 3%;">
               <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                 <mat-label>método de pago</mat-label>
-<!--            <input matInput formControlName="metodoPago" id="metodoPago" name="metodoPago" minlength="3"/>-->
                 <mat-select formControlName="metodoPago" id="metodoPago" name="metodoPago">
                   <mat-option *ngFor="let item of catalogoMetodoPago" [value]="item.clave">
                     {{item.descripcion}}

@@ -28,6 +28,9 @@ export class CuadranteIngresosComponent implements OnInit {
     this.obtenerData()
     console.log(this.ingresosPeriodo);
   }  
+
+  dateValue: Array<DateValue> = []
+
   spinnerLoading: boolean = true;
 
   dateValueWeek: Array<DateValue> = [
@@ -45,7 +48,7 @@ export class CuadranteIngresosComponent implements OnInit {
     top: 10,
     right: 10,
     bottom: 5,
-    left: 35,
+    left: 50,
   };
 
   scale: 'week' | 'day'  = 'week' ;
@@ -73,11 +76,10 @@ export class CuadranteIngresosComponent implements OnInit {
   }
 
   obtenerData(){
-    let data = []
+    this.dateValue = []
     this.ingresosPeriodo.detalles.forEach((element, index) => {
-      data.push({id: index, total: element.total })
+      this.dateValue.push({id: index+1, total: element.total })
     });
-    console.log(data)
   }
 
   fullSize(){

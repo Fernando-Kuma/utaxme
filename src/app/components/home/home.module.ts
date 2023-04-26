@@ -28,6 +28,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { ConfirmDialogModule } from 'src/app/shared/utils/confirm-dialog/confirm-dialog.module';
+import { PagerModule } from 'src/app/shared/utils/pager';
+import { FilterErrorModule } from 'src/app/shared/utils/filter-error';
 
 
 
@@ -66,7 +69,10 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatCheckboxModule,
     MatProgressSpinnerModule,
     MatDividerModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    ConfirmDialogModule,
+    PagerModule,
+    FilterErrorModule
   ],
   exports: [
     MatDatepickerModule,

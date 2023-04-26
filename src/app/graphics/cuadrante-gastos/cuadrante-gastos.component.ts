@@ -17,9 +17,12 @@ export class CuadranteGastosComponent implements OnInit {
     this._consultaRequest = val;
   }
 
+  dateValue: Array<DateValue> = []
+  
   gastosPeriodo: ComprobantePeriodo = new ComprobantePeriodo;
   @Input() set data(val: any) {
     this.gastosPeriodo = val;
+    this.obtenerData()
   }
 
   dateValueWeek: Array<DateValue> = [
@@ -93,6 +96,13 @@ export class CuadranteGastosComponent implements OnInit {
       error: (_) => {
         console.log(_)
       }
+    });
+  }
+
+  obtenerData(){
+    this.dateValue = []
+    this.gastosPeriodo.detalles.forEach((element, index) => {
+      this.dateValue.push({id: index+1, total: element.total })
     });
   }
 

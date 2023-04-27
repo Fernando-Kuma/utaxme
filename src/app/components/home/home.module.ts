@@ -32,6 +32,8 @@ import { ConfirmDialogModule } from 'src/app/shared/utils/confirm-dialog/confirm
 import { PagerModule } from 'src/app/shared/utils/pager';
 import { FilterErrorModule } from 'src/app/shared/utils/filter-error';
 import { MatTableModule } from '@angular/material/table';
+import { CancelarDialogComponent } from './espacio-trabajo/cancelar-cfdi/cancelar-dialog/cancelar-dialog.component';
+import { ConfirmarCancelarDialogComponent } from './espacio-trabajo/cancelar-cfdi/confirmar-cancelar-dialog/confirmar-cancelar-dialog.component';
 
 
 
@@ -49,6 +51,8 @@ import { MatTableModule } from '@angular/material/table';
     ConfiguracionAvanzadaComponent,
     ConceptosComponent,
     CrearConceptoComponent,
+    CancelarDialogComponent,
+    ConfirmarCancelarDialogComponent,
   ],
   imports: [
     CommonModule,

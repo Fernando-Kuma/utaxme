@@ -56,4 +56,24 @@ export class DialogService {
         }
         return this.dialogConfig;
     }
+
+    confirmarCancelarCfdi(): MatDialogConfig {
+      this.dialogConfig.restoreFocus = false;
+      this.dialogConfig.autoFocus = false;
+      this.dialogConfig.data = {
+        concepto: '',
+        metodo: 'confirmar',
+      }
+      return this.dialogConfig;
+    }
+
+    cancelarCfdi(cfdi:any): MatDialogConfig {
+      this.dialogConfig.restoreFocus = false;
+      this.dialogConfig.autoFocus = false;
+      this.dialogConfig.data = {
+        nOrden: cfdi,
+        /* motivoCancelacion: data, */
+      }
+      return this.dialogConfig;
+    }
 }

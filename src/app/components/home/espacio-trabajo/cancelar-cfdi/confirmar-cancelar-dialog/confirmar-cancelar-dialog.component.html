@@ -1,0 +1,71 @@
+<div class="modal-cfdi">
+  <mat-dialog-content>
+      <div class="container" style="width: 100%; margin: 0; padding: 0; overflow: hidden;">
+          <div class="row" style="width: 100%; margin: 0; padding: 0;">
+              <div class="col-10"  style="padding: 0; display: flex; align-items: center;">
+                <span class="dialog-titulo">¿Está seguro que desea cancelar el CFDI? </span> 
+              </div>
+              <div class="col-2">
+                  <button mat-icon-button style="float: right; position: relative;" (click)="closeDialog()">
+                      <mat-icon class="img-close"></mat-icon>
+                  </button>
+              </div>
+          </div>
+      </div>
+  </mat-dialog-content>
+  
+  <mat-dialog-actions>
+      <div class="container" style="margin: 0; padding: 20px 30px;">
+          
+          <div class="row w100m0p0" style="margin-top: 1%;">
+            <div class="col-6 textoM" style="margin-top: 3%;">
+              <div class="respuesta-cuadrante">Número de orden:</div>
+            </div>
+            <div class="col-6 textoM" style="margin-top: 3%;">
+              <div class="respuesta-cuadrante">0904</div>
+            </div>
+            <div class="col-6 textoM" style="margin-top: 3%;">
+              <div class="respuesta-cuadrante">Motivo de cancelación:</div>
+            </div>
+            <div class="col-6 textoM" style="margin-top: 3%;">
+              <div class="respuesta-cuadrante">Comprobante emitido con errores con relacion</div>
+            </div>
+            <div class="col-6 textoM" style="margin-top: 3%;">
+              <div class="respuesta-cuadrante">Total:</div>
+            </div>
+            <div class="col-6 textoM" style="margin-top: 3%;">
+              <div class="respuesta-cuadrante">$ 92800</div>
+            </div>
+            <div class="col-6 textoM" style="margin-top: 3%;">
+              <div class="respuesta-cuadrante">UIDD:</div>
+            </div>
+            <div class="col-6 textoM" style="margin-top: 3%;">
+              <div class="respuesta-cuadrante">9ee71674-301e-4b67-904e-78f95f19f4f0</div>
+            </div>
+          </div>
+
+          <div class="row w100m0p0" style="margin-top: 2%;">
+            <div class="col-8 dialog-texto">
+              El total de este CFDI es mayor a $1,000.00. <br>
+              El proceso de cancelación puede tardar hasta 24 horas.
+            </div>
+            <div class="col-4"></div>
+          </div>
+
+          <div class="col-12" style="margin-top: 40px; padding: 0 20px;">
+            <mat-divider></mat-divider>
+          </div>
+
+          <div class="row" style="margin: 20px 0px 0px !important; width: 100%; padding: 0;">
+            <div class="col-12 d-flex justify-content-end">
+              <button type="button" class="btn-utaxme-secondary" (click)="closeDialog()" style="max-width: 120px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;">
+                Regresar
+              </button>
+              <button type="button" class="btn-utaxme" (click)="closeDialog()" style="max-width: 225px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;">
+                Cancelar CFDI
+              </button>
+            </div>
+          </div>
+      </div>
+  </mat-dialog-actions>
+</div>

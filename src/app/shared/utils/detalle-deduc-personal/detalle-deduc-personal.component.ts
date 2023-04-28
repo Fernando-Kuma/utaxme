@@ -11,7 +11,7 @@ export class DetalleDeducPersonalComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<DetalleDeducPersonalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: GenericDialogModel
+    @Inject(MAT_DIALOG_DATA) public data: any,
   ) { }
 
   ngOnInit(): void {

@@ -53,3 +53,26 @@ export class DetalleData{
   factura: number;
   total: number;
 }
+
+
+export interface Deducciones {
+  deduccionesFiscales?: DeduccionesFiscale[];
+  codigo?:              string;
+  mensaje?:             string;
+}
+
+export interface DeduccionesFiscale {
+  deduccionId?: number;
+  clave?:       string;
+  descripcion?: string;
+  tipo?:        string;
+  aplica?:      Aplica;
+  requisitos?:  string;
+  detalle?:     string;
+  estatus?:     boolean;
+}
+
+export enum Aplica {
+  Anual = "Anual",
+  Mensual = "Mensual",
+}

@@ -1,7 +1,7 @@
 ::ng-deep  .mat-dialog-container:has(.modal-cfdi) {
   border-radius: 4px;
   padding: 0px;
-  min-width: 1050px !important;
+  min-width: 600px !important;
   min-height: 220px !important;
 }
 

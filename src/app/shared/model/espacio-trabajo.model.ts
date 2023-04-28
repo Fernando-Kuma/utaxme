@@ -33,7 +33,11 @@ export class ConfiguracionAvanzada{
     meses?: string;
     }
 
-
+    export interface CfdisFecha {
+        codigo?:  string;
+        mensaje?: string;
+        lista?:   ListaCfdi[];
+    }
 
 export interface ListaCfdi {
     idCfdi?:        number;
@@ -54,4 +58,5 @@ export interface ListaCfdi {
     cancelado?:     boolean;
     total?:         number;
     timeout?:       boolean;
+
 }

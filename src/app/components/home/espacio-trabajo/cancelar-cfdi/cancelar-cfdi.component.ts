@@ -40,8 +40,7 @@ export class CancelarCfdiComponent implements OnInit {
   verNoEncontrados: boolean = false;
   disabledFechas: boolean = false;
   disabledOrden: boolean = false;
-  catalogo: any;
-
+  
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
@@ -53,7 +52,7 @@ export class CancelarCfdiComponent implements OnInit {
 
   ngOnInit(): void {
     this.crearForm();
-    
+   /*  this.obtenerCatalogos(); */
   }
 
   crearForm() {
@@ -81,23 +80,26 @@ export class CancelarCfdiComponent implements OnInit {
     this.onPaged(1);
   }
 
-  obtenerCatalogos(){
+/*   obtenerCatalogos(){
     this.espacioTrabajoService.obtenerCatalogoForm()
       .subscribe((response) => {
       this.catalogo = response;
+      console.log('::Catalogos', this.catalogo);
     },(_error) => {
       console.log("Error en catalogo: ", _error);
     }
     );
-  }
+  } */
 
   cancelar(cfdi: any) {
+    console.log('::CFDI Dialog',cfdi)
     const dialogRef = this.dialog.open(
       CancelarDialogComponent, 
       this.dialogService.cancelarCfdi(cfdi)
     );
     dialogRef.afterClosed().subscribe(
       data => {
+        /* this.obtenerCatalogos() */
       }
     );
   }

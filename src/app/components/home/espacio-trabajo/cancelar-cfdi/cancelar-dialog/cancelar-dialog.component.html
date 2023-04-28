@@ -23,8 +23,8 @@
             </div> -->
             <div class="col-4"></div>
           </div>
-          <div class="row w100m0p0" style="margin-top: 1%;">
-            <div class="col-6 textoM" style="margin-top: 3%;">
+          <div class=" w100m0p0" style="margin-top: 1%;">
+            <div class="col-12 textoM" style="margin-top: 3%;">
               <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;" >
                 <mat-label>número de orden</mat-label>
                 <input matInput formControlName="nOrden" id="nOrden" name="nOrden">
@@ -33,8 +33,9 @@
             <div class="col-12 textoM" style="margin-top: 3%;">
               <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                 <mat-label>Selecciona motivo de cancelación</mat-label>
-                <mat-select formControlName="motivoCancelacion" id="motivoCancelacion" name="motivoCancelacion">
-                  <mat-option *ngFor="let item of catalogoMotivoCancelacion" [value]="item.clave">
+                <mat-select formControlName="motivoCancelacion" id="motivoCancelacion" name="motivoCancelacion"
+                [(ngModel)]="selectedMotivo" (ngModelChange)="actionMostrarSelect()">
+                  <mat-option *ngFor="let item of catalogo" [value]="item.descripcion">
                     {{item.descripcion}}
                   </mat-option>
                 </mat-select>
@@ -45,11 +46,12 @@
                 </mat-error> -->
               </mat-form-field>
             </div>
-            <div class="col-12 textoM" style="margin-top: 3%;">
-              <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
+            <div class="col-12 textoM" style="margin-top: 3%;" *ngIf="mostrarListCfdi">
+              <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;" (change)="actionMostrarSelect()">
                 <mat-label>Selecciona número de orden nuevo</mat-label>
-                <mat-select formControlName="nOrdenNuevo" id="moneda" name="moneda">
-                  <mat-option *ngFor="let item of nOrdenNuevoList" [value]="item.clave">
+                <mat-select formControlName="nOrdenNuevo" id="moneda" name="moneda"
+                [(ngModel)]="selectedNewOrder" (ngModelChange)="actionNuevaOrden()">
+                  <mat-option *ngFor="let item of nOrdenNuevoList" [value]="item.clave" >
                     {{item.descripcion}}
                   </mat-option>
                 </mat-select>
@@ -59,6 +61,24 @@
                   </ng-container>
                 </mat-error> -->
               </mat-form-field>
+              <div class="col-6 textoM" style="margin-top: 3%;">
+                <div class="respuesta-cuadrante">Datos del nuevo CFDI</div>
+              </div>
+              <div class="row w100m0p0" style="margin-top: 1%;">
+                
+                <div class="col-12 textoM" style="margin-top: 3%;">
+                  <div class="dialog-texto">Fecha: {{tablaListaCfdi[0].fechaTimbrado}}</div>
+                </div>
+                <div class="col-12 textoM" style="margin-top: 3%;">
+                  <div class="dialog-texto">RFC Receptor: {{tablaListaCfdi[0].rfcReceptor}}</div>
+                </div>
+                <div class="col-12 textoM" style="margin-top: 3%;">
+                  <div class="dialog-texto">Total: {{tablaListaCfdi[0].total}}</div>
+                </div>
+                <div class="col-12 textoM" style="margin-top: 3%;">
+                  <div class="dialog-texto">UIDD: {{tablaListaCfdi[0].uidd}}</div>
+                </div>
+              </div>
             </div>
             
             <!-- <div class="col-6 textoM" style="margin-top: 3%;">
@@ -84,7 +104,7 @@
               <button type="button" class="btn-utaxme-secondary" (click)="closeDialog()" style="max-width: 120px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;">
                 Regresar
               </button>
-              <button type="button" class="btn-utaxme" (click)="confirmarCancelacionDialog()" style="max-width: 225px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;">
+              <button type="button" class="btn-utaxme" (click)="confirmarCancelacionDialog(data.cfdi)" style="max-width: 225px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;">
                 Cancelar factura
               </button>
             </div>

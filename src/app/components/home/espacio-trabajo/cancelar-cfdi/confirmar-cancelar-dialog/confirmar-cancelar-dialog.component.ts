@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CancelarDialogComponent } from '../cancelar-dialog/cancelar-dialog.component';
 import { DialogService } from 'src/app/shared/service/dialog.service';
 
@@ -10,18 +10,25 @@ import { DialogService } from 'src/app/shared/service/dialog.service';
 })
 export class ConfirmarCancelarDialogComponent implements OnInit {
 
+  referencia = this.data.cfdi.referencia;
+  motivo = this.data.motivo;
+  total = this.data.cfdi.total;
+  uidd = this.data.cfdi.uidd;
+
   constructor(
     public dialogRef: MatDialogRef<ConfirmarCancelarDialogComponent>,
     public dialogRef2: MatDialogRef<CancelarDialogComponent>,
     public dialog: MatDialog,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogService: DialogService,
   ) { }
 
   ngOnInit(): void {
+    
   }
 
-  closeDialog() {
-    this.dialogRef.close(false);
+  closeDialog(close: boolean) {
+    this.dialogRef.close(close);
   }
 
   regresar(cfdi: any) {

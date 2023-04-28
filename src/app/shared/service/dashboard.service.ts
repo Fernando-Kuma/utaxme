@@ -82,7 +82,7 @@ export class DashboardService {
 
   obtenerDeduccionesFiscales(): Observable<any> {
     return this.http
-      .get<any>(`${API.deduccionesFiscales}`,)
+      .get<any>(`${API.deduccionesFiscales}`)
       .pipe(
         catchError((e) => {
           return throwError(e);

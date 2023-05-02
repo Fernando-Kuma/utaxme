@@ -12,7 +12,9 @@ export class DialogService {
     this.dialogConfig.restoreFocus = false;
     this.dialogConfig.autoFocus = false;
     this.dialogConfig.data = {
-        metodoPago: data,
+        metodoPago: data.catalogoMetodoPago,
+        periodicidad: data.catalogoSatPeriodicidad,
+        meses: data.catalogoSatMeses,
         dataFormulario: form,
     }
     return this.dialogConfig;
@@ -48,6 +50,26 @@ export class DialogService {
     return this.dialogConfig;
   }
 
+  crearCliente(): MatDialogConfig {
+    this.dialogConfig.restoreFocus = false;
+    this.dialogConfig.autoFocus = false;
+    this.dialogConfig.data = {
+      cliente: '',
+      metodo: 'crear',
+    }
+    return this.dialogConfig;
+  }
+
+  editarCliente(item): MatDialogConfig {
+    this.dialogConfig.restoreFocus = false;
+    this.dialogConfig.autoFocus = false;
+    this.dialogConfig.data = {
+        cliente: item,
+        metodo: 'editar',
+    }
+    return this.dialogConfig;
+  }
+
   detalle(): MatDialogConfig {
         this.dialogConfig.restoreFocus = false;
         this.dialogConfig.autoFocus = false;
@@ -55,5 +77,15 @@ export class DialogService {
             title: "Hola",
         }
         return this.dialogConfig;
+  }
+
+  actualizarValor(titulo: any, valor: any): MatDialogConfig {
+    this.dialogConfig.restoreFocus = false;
+    this.dialogConfig.autoFocus = false;
+    this.dialogConfig.data = {
+        titulo: titulo,
+        valor: valor,
     }
+    return this.dialogConfig;
+  }
 }

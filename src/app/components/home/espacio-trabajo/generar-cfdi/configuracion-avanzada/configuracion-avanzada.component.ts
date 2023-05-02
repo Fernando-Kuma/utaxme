@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { ConfiguracionAvanzada } from 'src/app/shared/model/espacio-trabajo.model';
 
 @Component({
   selector: 'app-configuracion-avanzada',
@@ -8,6 +9,8 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
   styleUrls: ['./configuracion-avanzada.component.css']
 })
 export class ConfiguracionAvanzadaComponent{
+
+  formularioAvanzado: ConfiguracionAvanzada = new ConfiguracionAvanzada;
 
   catalogoMoneda: any = [
     {
@@ -33,8 +36,9 @@ export class ConfiguracionAvanzadaComponent{
       descripcion: "45",
     },
   ]
-
   catalogoMetodoPago: any;
+  catalogoPeriocidad: any;
+  catalogoMeses: any;
 
   public form: FormGroup;
 
@@ -46,8 +50,11 @@ export class ConfiguracionAvanzadaComponent{
   ) { }
 
   ngOnInit(): void {
-    this.crearForm();
     this.catalogoMetodoPago = this.data.metodoPago
+    this.catalogoMeses = this.data.meses
+    this.catalogoPeriocidad = this.data.periodicidad
+    this.crearForm();
+    this.actualizarForm()
   }
 
   crearForm(){
@@ -56,6 +63,10 @@ export class ConfiguracionAvanzadaComponent{
       moneda: [null, [Validators.required]],
       condicionesPago: [null, [Validators.required]],
       diasCredito: [null, [Validators.required]],
+      
+      periodicidad: [null, [Validators.required]],
+      meses: [null, [Validators.required]],
+      anio: [null, [Validators.required]],
     });
   }
 
@@ -77,6 +88,23 @@ export class ConfiguracionAvanzadaComponent{
     this.form.get('condicionesPago').setValue(condiciones);
   }
 
+  actualizarForm(){
+    this.form.get('metodoPago').setValue(this.data.dataFormulario.metodoPago);
+    this.form.get('moneda').setValue(this.data.dataFormulario.moneda);
+    this.form.get('condicionesPago').setValue(this.data.dataFormulario.condiciones);
+    this.form.get('diasCredito').setValue(this.data.dataFormulario.diasCredito);
+
+    if(this.data.dataFormulario.configuracionGeneral){
+      const date = new Date();
+      let _anioActual = date.getFullYear();
+      let _mesActual = date.getMonth();
+      this.form.get('periodicidad').setValue(this.data.dataFormulario.periodicidad);
+      this.form.get('meses').setValue(this.catalogoMeses[_mesActual].clave);
+      this.form.get('anio').setValue(_anioActual);
+    }
+
+  }
+
   formattedDate(d = new Date()) {
     let month = String(d.getMonth() + 1);
     let day = String(d.getDate());
@@ -89,7 +117,26 @@ export class ConfiguracionAvanzadaComponent{
   }
 
   closeDialog() {
-    this.dialogRef.close(false);
+    this.dialogRef.close(this.formularioAvanzado);
+  }
+
+  cancelarForm(){
+    this.formularioAvanzado = this.data.dataFormulario
+    this.closeDialog()
+  }
+
+  guardarForm(){
+    this.formularioAvanzado.metodoPago = this.form.value.metodoPago;
+    this.formularioAvanzado.moneda = this.form.value.moneda;
+    this.formularioAvanzado.condiciones = this.form.value.condicionesPago;
+    this.formularioAvanzado.diasCredito = this.form.value.diasCredito;
+    if(this.data.dataFormulario.configuracionGeneral){
+      this.formularioAvanzado.diasCredito = this.form.value.periodicidad;
+      this.formularioAvanzado.diasCredito = this.form.value.meses;
+      this.formularioAvanzado.diasCredito = this.form.value.anio;
+    }
+
+    this.closeDialog()
   }
 
   get formulario() {

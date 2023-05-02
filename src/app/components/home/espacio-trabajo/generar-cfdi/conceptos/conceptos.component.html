@@ -45,7 +45,6 @@
               <thead style="margin-bottom: 10px;">
                   <tr class="textoM">
                       <th class="punta-tittle" style="text-align: center;">
-
                       </th>
                       <th class="punta-tittle" style="text-align: center;">
                           <span style="cursor:default!important;">
@@ -83,7 +82,7 @@
                     {{item.idConceptoCliente}}
                   </td>
                   <td style="text-align: center;">
-                    {{item.descripcion}} 
+                    {{item.productoServicio}} 
                   </td>
                   <td style="text-align: center;">
                     {{item.unidad}}
@@ -92,10 +91,10 @@
                     ${{item.valorUnitario | thousandsPipe}}
                   </td>
                   <td class="d-flex justify-content-center">
-                    <div class="card-accion">
-                      <mat-icon class="img-accion-editar" (click)="editarConcepto(item)"></mat-icon>
+                    <div class="card-accion" (click)="editarConcepto(item)">
+                      <mat-icon class="img-accion-editar"></mat-icon>
                     </div>
-                    <div class="card-accion">
+                    <div class="card-accion" (click)="borrarConcepto(item)">
                       <mat-icon class="img-accion-borrar"></mat-icon>
                     </div>
                   </td>

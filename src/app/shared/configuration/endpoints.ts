@@ -22,6 +22,7 @@ export const API = {
   catalogoProductos: environment.apiDashboard + 'CatalogoProductoSatForm.htm',
   agregarConcepto: environment.apiDashboard + 'conceptos/clientes/agregar',
   actualizarConcepto: environment.apiDashboard + 'conceptos/clientes/actualizar',
+  emitirCFDI: environment.apiDashboard + 'cfdi/emitir/v4',
 
   cfdiGeneradosFilter: environment.apiDashboard+ 'CfdiGeneradosFilter.htm',
   reporteFacturas: environment.apiDashboard + 'DownloadReporteValidacionFacturasForm.htm',

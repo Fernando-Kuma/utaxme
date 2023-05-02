@@ -74,17 +74,29 @@ export class ConceptosComponent{
     );
   }
 
+  borrarConcepto(concepto: any){
+
+  }
+
   listaConceptos(){
     let request = {
       rfc: this.auth.usuario.cliente.rfc
     }
     this.espacioTrabajoService.obtenerListaConceptos(request).subscribe((resp) => {
+      resp.listaConceptos.forEach(element => {
+        element.cantidad = 0;
+        element.descuento = 0;
+        element.importe = 0;
+      });
       this.tablaListaConceptos = resp.listaConceptos;
       if(this.data.conceptos != null){
         this.tablaListaConceptos.forEach(element => {
           this.data.conceptos.forEach(ele => {
             if(ele.idConceptoCliente == element.idConceptoCliente){
               element.estatus = ele.estatus
+              element.descuento = ele.descuento
+              element.cantidad = ele.cantidad
+              element.importe = ele.importe;
             }
           });
         });

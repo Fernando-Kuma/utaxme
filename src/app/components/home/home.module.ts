@@ -32,6 +32,8 @@ import { ConfirmDialogModule } from 'src/app/shared/utils/confirm-dialog/confirm
 import { PagerModule } from 'src/app/shared/utils/pager';
 import { FilterErrorModule } from 'src/app/shared/utils/filter-error';
 import { MatTableModule } from '@angular/material/table';
+import { ModificarValorComponent } from './espacio-trabajo/generar-cfdi/modificar-valor/modificar-valor.component';
+import { NuevoClienteComponent } from './espacio-trabajo/clientes-frecuentes/nuevo-cliente/nuevo-cliente.component';
 
 
 
@@ -49,6 +51,8 @@ import { MatTableModule } from '@angular/material/table';
     ConfiguracionAvanzadaComponent,
     ConceptosComponent,
     CrearConceptoComponent,
+    ModificarValorComponent,
+    NuevoClienteComponent,
   ],
   imports: [
     CommonModule,

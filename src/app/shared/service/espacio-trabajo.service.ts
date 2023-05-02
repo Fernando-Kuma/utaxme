@@ -45,6 +45,16 @@ export class EspacioTrabajoService {
       );
   }
 
+  emitirCFDI(request: any): Observable<any> {
+    return this.http
+      .post<any>(`${API.emitirCFDI}`, request)
+      .pipe(
+        catchError((e) => {
+          return throwError(e);
+        })
+      );
+  }
+
   obtenerListaConceptos(request: any): Observable<any> {
     return this.http
       .post<any>(`${API.listaConceptos}`, request)

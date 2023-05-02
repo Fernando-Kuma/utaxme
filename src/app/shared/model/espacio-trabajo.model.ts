@@ -18,9 +18,12 @@ export class Conceptos{
     ieps?: any;
     estatus?: boolean;
     
+    cantidad?: number;
     tasaLocal?: any;
     importe?: number;
     descuento?: number;
+
+    taxObject?:any;
 }
 
 
@@ -30,7 +33,9 @@ export class ConfiguracionAvanzada{
     diasCredito?: string = '0';
     condiciones?: string = 'PAGO EN UNA SOLA EXHIBICIÓN';
     periodicidad?: string = '04';
-    meses?: string;
+    meses?: string = '0';
+    anio?: string = '0';
+    configuracionGeneral?: boolean = false;
     }
 
 
@@ -54,4 +59,16 @@ export interface ListaCfdi {
     cancelado?:     boolean;
     total?:         number;
     timeout?:       boolean;
+}
+
+export class TotalFactura {
+    ivaT?: number = 0;
+    ieps: number = 0;
+    isrR: number = 0;
+    ivaR: number = 0;
+    localTraslado: number = 0;
+    descuento: number = 0;
+    subtotalSinDescuento: number= 0;
+    subtotal: number = 0;
+    total: number = 0;
 }

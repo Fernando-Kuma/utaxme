@@ -85,6 +85,8 @@
   padding: 15px;
 }
 
+
+
 .card-titulo{
   font-weight: 500;
   font-size: 18px;
@@ -159,6 +161,20 @@
   cursor: pointer;
 }
 
+.card-accion-cantidad{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  Width:100%;
+  Height:40px;
+  background: #D3E3FE;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+
+
+
 ::ng-deep .expansion-panel-header-title-secondary .mat-expansion-indicator{
   width: 14px; 
   height: 14px; 
@@ -206,4 +222,9 @@ overflow: auto;
 
 .textoM{
   text-transform: uppercase;
+}
+
+.isDisabled{
+  pointer-events: none;
+  opacity: 0.5;
 }

@@ -13,8 +13,6 @@ import { EspacioTrabajoService } from 'src/app/shared/service/espacio-trabajo.se
   styleUrls: ['./crear-concepto.component.css']
 })
 export class CrearConceptoComponent {
-
-
   public form: FormGroup;
   opcionCrear: boolean = true;
   filteredOptions: Observable<any[]>;
@@ -66,7 +64,7 @@ export class CrearConceptoComponent {
     if(this.data.concepto.isrRet != null){
       this.form.get('impuestoR').setValue(true);
       this.form.get('isr').setValue(this.data.concepto.isrRet);
-      this.form.get('iepsISR').setValue(this.data.concepto.ivaRet);
+      this.form.get('ivaR').setValue(this.data.concepto.ivaRet);
     }
 
     if(this.data.concepto.claveImpuestoLocal != null){
@@ -92,7 +90,7 @@ export class CrearConceptoComponent {
       iva: [null],
       ieps: [null],
       isr: [null],
-      iepsISR: [null],
+      ivaR: [null],
       impuestoLocal: [null],
       tasaLocal: [null],
     });
@@ -148,7 +146,7 @@ export class CrearConceptoComponent {
         tasa: this.form.controls['iva'].value,
         ieps: this.form.controls['ieps'].value,
         isrRet: this.form.controls['isr'].value,
-        ivaRet: this.form.controls['iepsISR'].value,
+        ivaRet: this.form.controls['ivaR'].value,
         claveImpuestoLocal: this.form.controls['impuestoLocal'].value,
         tasaLocal: this.form.controls['tasaLocal'].value,
         idConceptoCliente: 0
@@ -163,6 +161,7 @@ export class CrearConceptoComponent {
         console.log("::Entro al error Datos fiscales: ", _error);
       });
     }else{
+      request.idConceptoCliente = this.data.concepto.idConceptoCliente
       this.espacioTrabajoService.actualizarConcepto(request)
       .subscribe((resp) => {
         console.log(resp)

@@ -53,9 +53,9 @@
                                 Datos Fiscales
                               </div>
                               <div class="card-texto">
-                                {{ response?.razonSocial }}
+                                {{ datosFiscales?.razonSocial }}
                                 <br>
-                                {{ response?.rfc }}
+                                {{ datosFiscales?.rfc }}
                               </div>
                             </div>  
                           </div>
@@ -66,7 +66,7 @@
                                 Dirección Fiscal
                               </div>
                               <div class="card-texto">
-                                {{ response?.calle}} {{response?.numeroExterior}}, {{response?.colonia}} C.P. {{response?.cp}}, {{response?.municipio}}, {{response?.ciudad}}
+                                {{ datosFiscales?.calle}} {{datosFiscales?.numeroExterior}}, {{datosFiscales?.colonia}} C.P. {{datosFiscales?.cp}}, {{datosFiscales?.municipio}}, {{datosFiscales?.ciudad}}
                               </div>
                             </div>
                           </div>
@@ -86,13 +86,13 @@
                           <div class="col-5">
                             <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                               <mat-label>Número de orden (Mínimo 3 caracteres)</mat-label>
-                              <input matInput formControlName="numeroOrden" id="numeroOrden" name="numeroOrden" minlength="3"/>
+                              <input matInput formControlName="numeroOrden" id="numeroOrden" name="numeroOrden" minlength="3" (keypress)="caracteresValidos($event)" />
                               <mat-error *ngIf="formulario.numeroOrden.invalid && formulario.numeroOrden.touched && formulario.numeroOrden.errors">
                                 <ng-container *ngIf="formulario.numeroOrden.errors.required">
                                   El número de orden es requerido
                                 </ng-container>
                                 <ng-container *ngIf="formulario.numeroOrden.errors.minlength">
-                                  {{ getErrorCaracteres(3) }}
+                                  Ingrese al menos 3 caracteres
                                 </ng-container>
                               </mat-error>
                             </mat-form-field>
@@ -164,7 +164,7 @@
                         <div class="col-5">
                           <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                             <mat-label>Escribe el RFC Receptor</mat-label>
-                            <input matInput formControlName="rfc" [matAutocomplete]="auto" id="rfc" name="rfc" minlength="12"  maxlength="13">
+                            <input matInput formControlName="rfc" [matAutocomplete]="auto" id="rfc" name="rfc" minlength="12"  maxlength="13" (keypress)="caracteresValidosRFC($event)" (keyup)="setMayusculas($event, 'rfc')">
                             <mat-icon class="image-workspace-buscardor" matPrefix></mat-icon>
                             <mat-icon class="image-workspace-select" matSuffix></mat-icon>
                             <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
@@ -186,7 +186,7 @@
                         <div class="col-5">
                           <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                             <mat-label>Escribe la Razón Social Receptor (Sin espacios)</mat-label>
-                            <input matInput formControlName="razonSocial" id="razonSocial" name="razonSocial" minlength="3"/>
+                            <input matInput formControlName="razonSocial" id="razonSocial" name="razonSocial" minlength="3" (keypress)="caracteresValidosRS($event)" (keyup)="setMayusculas($event, 'razonSocial')" />
                             <mat-error *ngIf="formulario.razonSocial.invalid && formulario.razonSocial.touched && formulario.razonSocial.errors">
                               <ng-container *ngIf="formulario.razonSocial.errors.required">
                                 La razón social es requerida
@@ -249,7 +249,7 @@
                         </div>
                         <div class="col-2"></div>
                         <div class="col-5">
-                          <div style="width: 100%; font-size: 16px; min-height: 80px;">
+                          <div style="width: 100%; font-size: 16px; min-height: 80px;" [ngClass]="{'isDisabled ': formularioAvanzado.configuracionGeneral}" (click)="clienteFrecuente()">
                             <span class="texto-hipervinculo" style="color: #0B112A !important; ">¿Es un cliente frecuente? </span><span class="texto-hipervinculo">Haz clic para guardar como cliente fecuente</span>
                           </div>
                         </div>
@@ -263,7 +263,7 @@
                             <span>
                               Recuerda que las facturas al publico en general es un comprobante fiscal que reúne las operaciones con los clientes que no solicitaron un CFDI. 
                             </span>
-                            <span style="color: #5179EF; text-decoration-line: underline; cursor: pointer;" (click)="publicoGeneral(opcionPublicoGenera = !opcionPublicoGenera)">
+                            <span style="color: #5179EF; text-decoration-line: underline; cursor: pointer;" (click)="publicoGeneral(formularioAvanzado.configuracionGeneral = !formularioAvanzado.configuracionGeneral)">
                               Haz clic aquí para autocompletar los campos y crear una Factura al Publico en General.
                             </span>
                              
@@ -337,19 +337,23 @@
                                         {{item.descripcion}} 
                                       </td>
                                       <td style="text-align: center;">
-                                        {{0}} 
+                                        <div class="card-accion-cantidad" (click)="actualizarValor('cantidad', item)">
+                                          {{item.cantidad}} 
+                                        </div>
                                       </td>
                                       <td style="text-align: center;">
-                                        {{0}} 
-                                      </td>
-                                      <td style="text-align: center;">
-                                        ${{0}}
+                                        <div class="card-accion-cantidad" (click)="actualizarValor('descuento', item)">
+                                          {{item.descuento}}  
+                                        </div>
                                       </td>
                                       <td style="text-align: center;">
                                         ${{item.valorUnitario | thousandsPipe}}
                                       </td>
+                                      <td style="text-align: center;">
+                                        ${{item.importe}}
+                                      </td>
                                       <td class="d-flex justify-content-center ">
-                                        <div class="card-accion">
+                                        <div class="card-accion" (click)="eliminarConcepto(item.idConceptoCliente)">
                                           <mat-icon class="img-accion-borrar"></mat-icon>
                                         </div>
                                       </td>
@@ -361,22 +365,29 @@
 
                           <div class="col-12" style="margin-top: 2%;">
                             <div class="row total-conceptos">
-                              <div class="col-9"></div>
-                              <div class="col-1">
-                                Subtotal:
-                                <br>
-                                IVA Tras.:
-                                <br>
-                                <span style="font-weight: 600;">Total:</span>
+                              <div class="col-7"></div>
+                              <div class="col-2">
+                                <span *ngIf="costoFactura.subtotalSinDescuento > 0">Sub sin Desc:</span>
+                                <span *ngIf="costoFactura.descuento"><br>Descuento:</span>
+                                <span><br>Subtotal:</span>
+                                <span *ngIf="costoFactura.ivaT"><br>IVA Tras.:</span>
+                                <span *ngIf="costoFactura.ieps"><br>IEPS:</span>
+                                <span *ngIf="costoFactura.isrR"><br>ISR Ret.:</span>
+                                <span *ngIf="costoFactura.ivaR"><br>IVA Ret.:</span>
+                                <span *ngIf="costoFactura.localTraslado"><br>Local.:</span>
+                                <span style="font-weight: 600;"><br>Total:</span>
                                 
                               </div>
-                              <div class="col-2" style="text-align: end;">
-                                $19,7749.08
-                                <br>
-                                $3,1639.85
-                                <br>
-                                <span style="font-weight: 600;">$22,844.93</span>
-                                
+                              <div class="col-3" style="text-align: end;">
+                                <span *ngIf="costoFactura.subtotalSinDescuento">${{costoFactura.subtotalSinDescuento}}</span>
+                                <span *ngIf="costoFactura.descuento"><br>${{costoFactura.descuento}}</span>
+                                <span><br>${{costoFactura.subtotal}}</span>
+                                <span *ngIf="costoFactura.ivaT"><br>${{costoFactura.ivaT}}</span>
+                                <span *ngIf="costoFactura.ieps"><br>${{costoFactura.ieps}}</span>
+                                <span *ngIf="costoFactura.isrR"><br>${{costoFactura.isrR}}</span>
+                                <span *ngIf="costoFactura.ivaR"><br>${{costoFactura.ivaR}}</span>
+                                <span *ngIf="costoFactura.localTraslado"><br>${{costoFactura.localTraslado}}</span>
+                                <span style="font-weight: 600;"><br>${{costoFactura.total}}</span>
                               </div>
                             </div>
                           </div>

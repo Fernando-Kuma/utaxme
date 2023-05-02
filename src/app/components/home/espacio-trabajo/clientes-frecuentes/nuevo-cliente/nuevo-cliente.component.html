@@ -1,0 +1,94 @@
+<div class="modal-cfdi">
+  <mat-dialog-content>
+      <div class="container" style="width: 100%; margin: 0; padding: 0; overflow: hidden;">
+          <div class="row" style="width: 100%; margin: 0; padding: 0;">
+              <div class="col-10"  style="padding: 0; display: flex; align-items: center;">
+                <span class="dialog-titulo">Datos del Cliente</span> 
+              </div>
+              <div class="col-2">
+                  <button mat-icon-button style="float: right; position: relative;" (click)="closeDialog()">
+                      <mat-icon class="img-close"></mat-icon>
+                  </button>
+              </div>
+          </div>
+      </div>
+  </mat-dialog-content>
+  
+  <mat-dialog-actions>
+    <form [formGroup]="form" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+      <div class="container" style="margin: 0; padding: 20px 30px;">
+        <div class="cotainer" style="padding: 20px 30px;">  
+          <div class="row w100m0p0">
+            <div class="col-6 textoM" style="margin-top: 2%;">
+              <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
+                <mat-label>Escribe el RFC Receptor</mat-label>
+                <input matInput formControlName="rfc" id="rfc" name="rfc"/>
+                <mat-error *ngIf="formulario.rfc.invalid && formulario.rfc.touched && formulario.rfc.errors">
+                  <ng-container *ngIf="formulario.rfc.errors.required">
+                    {{ getErrorRequerido() }}
+                  </ng-container>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-6 textoM" style="margin-top: 2%;">
+              <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
+                <mat-label>Escribe la Razón Social Receptor (Sin espacios)</mat-label>
+                <input matInput formControlName="razonSocial" id="razonSocial" name="razonSocial"/>
+                <mat-error *ngIf="formulario.razonSocial.invalid && formulario.razonSocial.touched && formulario.razonSocial.errors">
+                  <ng-container *ngIf="formulario.razonSocial.errors.required">
+                    {{ getErrorRequerido() }}
+                  </ng-container>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-6 textoM" style="margin-top: 2%;">
+              <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
+                <mat-label>régimen fiscal receptor</mat-label>
+                <input matInput formControlName="regimenFiscal" id="regimenFiscal" name="regimenFiscal"/>
+                <mat-error *ngIf="formulario.regimenFiscal.invalid && formulario.regimenFiscal.touched && formulario.regimenFiscal.errors">
+                  <ng-container *ngIf="formulario.regimenFiscal.errors.required">
+                    {{ getErrorRequerido() }}
+                  </ng-container>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-6 textoM" style="margin-top: 2%;">
+              <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
+                <mat-label>código postal</mat-label>
+                <input matInput formControlName="codigoPostal" id="codigoPostal" name="codigoPostal"/>
+                <mat-error *ngIf="formulario.codigoPostal.invalid && formulario.codigoPostal.touched && formulario.codigoPostal.errors">
+                  <ng-container *ngIf="formulario.codigoPostal.errors.required">
+                    {{ getErrorRequerido() }}
+                  </ng-container>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-6 textoM" style="margin-top: 2%;">
+              <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
+                <mat-label>correo electrónico</mat-label>
+                <input matInput formControlName="correo" id="correo" name="correo"/>
+                <mat-error *ngIf="formulario.correo.invalid && formulario.correo.touched && formulario.correo.errors">
+                  <ng-container *ngIf="formulario.correo.errors.required">
+                    {{ getErrorRequerido() }}
+                  </ng-container>
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+          </div>
+
+          <div class="row" style="margin: 40px 0px 0px !important; width: 100%; padding: 0;">
+            <div class="col-12 d-flex justify-content-end">
+              <button type="button" class="btn-utaxme-secondary" (click)="closeDialog()" style="max-width: 120px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;">
+                Cancelar
+              </button>
+              <button type="button" class="btn-utaxme" (click)="guardarCliente()" style="max-width: 225px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;">
+                Guardar concepto
+              </button>
+            </div>
+          </div>
+        </div>
+        </div>
+      </form>
+  </mat-dialog-actions>
+</div>

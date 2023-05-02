@@ -25,11 +25,11 @@
           </div>
           <div class="row" class="respuesta-cuadrante" style="margin: 0; padding: 0; margin-top: 10px;">
             <div class="col-12" style="margin: 0; padding: 0; margin-top: 5px;">
-              <strong>Honorarios médicos, dentales y gastos hospitalarios.</strong>
+              <strong>{{this.data.item.descripcion}}</strong>
             </div>
           </div>
         </div>
-        <div class="col-12" style="margin: 0; margin-top: 27px; padding: 0;">
+        <!-- <div class="col-12" style="margin: 0; margin-top: 27px; padding: 0;">
           <div class="row" class="subtitulo-cuadrante" style="line-height: 5px;">
             ¿Para quienes?:
           </div>
@@ -38,21 +38,14 @@
               Los pagados para usted, su cónyuge o concubino/a, sus padres, abuelos, hijos y nietos.
             </div>
           </div>
-        </div>
+        </div> -->
         <div class="col-12" style="margin: 0; margin-top: 27px; padding: 0;">
           <div class="row" class="subtitulo-cuadrante" style="line-height: 5px;">
             Requisitos
           </div>
           <div class="row" class="texto-cuadrante" style="margin: 0; padding: 0; margin-top: 10px;">
             <div class="col-12" style="margin: 0; padding: 0; margin-top: 5px;">
-              ° La factura debe ser proporcionada por personas con titulo profesional legalmente expedido. <br>
-              ° El pago se debió realizar mediante cheque, transferencia electrónica, tarjeta de crédito, de débito o de
-              servicios. <br>
-              ° Incluye: honorarios médicos, dentales, enfermeras, nutriólogos, pscólogos, hospitalarios, análisis,
-              estudios clínicos o prótesis, compra o alquiler de aparatos para rehabilitación, lentes ópticos graduados.
-              <br>
-              ° <strong>Clave de uso de DFDI</strong>: D01 (Honorarios médicos, dentales y gastos hospitalarios) o D02
-              (Gastos médicos por incapacidad o discapacidad). <br>
+              {{this.data.item.requisitos}}
             </div>
           </div>
         </div>
@@ -62,20 +55,17 @@
           </div>
           <div class="row" class="texto-cuadrante" style="margin: 0; padding: 0; margin-top: 10px;">
             <div class="col-12" style="margin: 0; padding: 0; margin-top: 5px;">
-              Medicinas incluidas en facturas de hospitales (que se incluyan en comprobantes de hospitales, no en
-              comprobantes de farmacias).
+              {{this.data.item.detalle}}
             </div>
           </div>
         </div>
         <div class="col-12" style="margin-bottom: 72px; margin-top: 27px; padding: 0;">
           <div class="row" class="subtitulo-cuadrante" style="line-height: 5px;">
-            Tope de deducción
+            Tipe de deducción
           </div>
           <div class="row" class="texto-cuadrante" style="margin: 0; padding: 0; margin-top: 10px;">
             <div class="col-12" style="margin: 0; padding: 0; margin-top: 5px;">
-              ° El 15% del total de tus ingresos o de $163,467.00 (5 UMA´s elevadas al año), lo que resulte menor,
-              (excepto gastos médicos por incapacidad y discapacidad). <br>
-              ° En lentes graduados $2,500.00 por persona en el ejercicio.
+              {{this.data.item.tipo}}
             </div>
           </div>
         </div>

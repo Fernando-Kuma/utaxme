@@ -13,8 +13,8 @@ import { NAV } from 'src/app/shared/configuration/navegacion';
 import { ListaCfdi } from 'src/app/shared/model/espacio-trabajo.model';
 import { AuthService } from 'src/app/shared/service/auth.service';
 import { EspacioTrabajoService } from 'src/app/shared/service/espacio-trabajo.service';
-import { ConfirmDialogComponent } from 'src/app/shared/utils/confirm-dialog/confirm-dialog.component';
-import { ConfirmDialogService } from 'src/app/shared/utils/confirm-dialog/confirm-dialog.service';
+import { CancelarDialogComponent } from './cancelar-dialog/cancelar-dialog.component';
+import { DialogService } from 'src/app/shared/service/dialog.service';
 
 @Component({
   selector: 'app-cancelar-cfdi',
@@ -40,19 +40,19 @@ export class CancelarCfdiComponent implements OnInit {
   verNoEncontrados: boolean = false;
   disabledFechas: boolean = false;
   disabledOrden: boolean = false;
-
+  
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
     private dialog: MatDialog,
-    private dialogService: ConfirmDialogService,
+    private dialogService: DialogService,
     private espacioTrabajoService: EspacioTrabajoService,
     private auth: AuthService
   ) {}
 
   ngOnInit(): void {
     this.crearForm();
-    
+   /*  this.obtenerCatalogos(); */
   }
 
   crearForm() {
@@ -80,14 +80,28 @@ export class CancelarCfdiComponent implements OnInit {
     this.onPaged(1);
   }
 
-  cancelar(cfdi: any) {
-    const dialogRef = this.dialog.open(
-      ConfirmDialogComponent,
-      this.dialogService.alertCancelarCfdi(cfdi)
+/*   obtenerCatalogos(){
+    this.espacioTrabajoService.obtenerCatalogoForm()
+      .subscribe((response) => {
+      this.catalogo = response;
+      console.log('::Catalogos', this.catalogo);
+    },(_error) => {
+      console.log("Error en catalogo: ", _error);
+    }
     );
-    dialogRef.afterClosed().subscribe((data) => {
-      //this.crearTicket();
-    });
+  } */
+
+  cancelar(cfdi: any) {
+    console.log('::CFDI Dialog',cfdi)
+    const dialogRef = this.dialog.open(
+      CancelarDialogComponent, 
+      this.dialogService.cancelarCfdi(cfdi)
+    );
+    dialogRef.afterClosed().subscribe(
+      data => {
+        /* this.obtenerCatalogos() */
+      }
+    );
   }
 
   limpiarTabla() {

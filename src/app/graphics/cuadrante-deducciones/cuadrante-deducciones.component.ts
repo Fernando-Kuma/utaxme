@@ -4,17 +4,11 @@ import { MatOption } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSelect } from '@angular/material/select';
 import { Paginator } from 'array-paginator';
+import { DeduccionesFiscale } from 'src/app/shared/model/dashboard.mode';
+import { DashboardService } from 'src/app/shared/service/dashboard.service';
 import { ConfirmDialogComponent } from 'src/app/shared/utils/confirm-dialog/confirm-dialog.component';
 import { DetalleDeducPersonalComponent } from 'src/app/shared/utils/detalle-deduc-personal';
 import { DetalleDeducPersonalService } from 'src/app/shared/utils/detalle-deduc-personal/detalle-deduc-personal.service';
-
-export interface PeriodicElement {
-  deduccion: string;
-  clave: string;
-  requisitos: string;
-}
-
-  
 
 @Component({
   selector: 'app-cuadrante-deducciones',
@@ -22,104 +16,7 @@ export interface PeriodicElement {
   styleUrls: ['./cuadrante-deducciones.component.css'],
 })
 export class CuadranteDeduccionesComponent implements OnInit {
-
   @ViewChild('selectDispositivo') matRef: MatSelect;
-
-  ELEMENT_DATA_PERSONALES: PeriodicElement[] = [
-    {
-      clave: 'D01',
-      deduccion: 'Honorarios médicos, dentales y gastos hospitalarios',
-      requisitos: 'Son los Honorarios médicos y medicamentos utilizados en hospitalizaciones, exceptuado medicamentos comprados en farmacias',
-    },{
-      clave: 'D02',
-      deduccion: 'Gastos médicos por incapacidad o discapacidad',
-      requisitos: 'Este uso del CFDI se le dará cuando realicen un gasto por ejemplo la compra de una silla de ruedas.',
-    },{
-      clave: 'D03',
-      deduccion: 'Gastos funerales',
-      requisitos: 'Los gastos para cubrir funerales a futuro, serán deducibles en el año de calendario en que se utilicen los servicios funerales',
-    },{
-      clave: 'D04',
-      deduccion: 'Donativos',
-      requisitos: 'Las Donaciones deben cumplir con lo estipulado por la ley para considerarse deducibles.',
-    },{
-      clave: 'D05',
-      deduccion: 'Intereses reales efectivamente pagados por créditos hipotecarios (casa habitación)',
-      requisitos: 'Son los intereses que se pagan por parte del contribuyente a las instituciones de crédito, por ejemplo, el Infonavit.',
-    },{
-      clave: 'D06',
-      deduccion: 'Aportaciones voluntarias al SAR',
-      requisitos: 'Aportaciones personales y voluntarias a tu cuenta del Sistema de Ahorro para el Retiro (SAR).',
-    },{
-      clave: 'D07',
-      deduccion: 'Primas por seguros de gastos médicos',
-      requisitos: 'Para la compra de un Seguro de Gastos Médicos Mayores (SGMM), el comprobante deberá contener este concepto según el catálogo.',
-    },{
-      clave: 'D08',
-      deduccion: 'Gastos de transportación escolar obligatoria',
-      requisitos: 'Si realizas pagos por colegiatura y es obligatorio el pago de transporte.',
-    },{
-      clave: 'D09',
-      deduccion: 'Depósitos en cuentas para el ahorro, primas que tengan como base planes de pensiones',
-      requisitos: 'Pago de otros planes de retiro que no sean del SAR',
-    },{
-      clave: 'D10',
-      deduccion: 'Pagos por servicios educativos (colegiaturas)',
-      requisitos: 'Pagos de las colegiaturas de Preescolar, Primaria, Secundaria, Profesional Técnico o Bachillerato. Excluidos pagos adicionales a las colegiaturas, como inscripciones, reinscripciones, útiles y uniformes.',
-    },
-  ]
-
-  ELEMENT_DATA_AUTORIZADAS: PeriodicElement[] = [
-    {
-      clave: 'G01',
-      deduccion: 'Adquisición de mercancías',
-      requisitos: 'Compras nacionales destinadas a la venta.',
-    },{
-      clave: 'G02',
-      deduccion: 'Devoluciones, descuentos o bonificaciones',
-      requisitos: 'Por lo regular estos conceptos se utilizan en los Comprobantes Fiscales Digitales por Internet cuando necesitamos una Nota de Crédito.',
-    },{
-      clave: 'G03',
-      deduccion: 'Gastos en general',
-      requisitos: 'Cuando el uso de la factura no se especifique en algún otro concepto del catálogo y el uso del CFDI sea para un gasto.',
-    },{
-      clave: 'I01',
-      deduccion: 'Construcciones',
-      requisitos: 'Adquisición, construcciones nuevas, ampliaciones y mejoras permanentes, que no sean reparaciones o mantenimiento.',
-    },{
-      clave: 'I02',
-      deduccion: 'Mobiliario y equipo de oficina por inversiones',
-      requisitos: 'Escritorio, sillas, muebles, estantes, etc',
-    },{
-      clave: 'I03',
-      deduccion: 'Equipo de transporte',
-      requisitos: 'Automóviles',
-    },{
-      clave: 'I04',
-      deduccion: 'Equipo de cómputo y accesorios',
-      requisitos: 'Computadoras de escritorio y portátiles, impresoras, servidores, discos duros, etc',
-    },{
-      clave: 'I05',
-      deduccion: 'Dados, troqueles, moldes, matrices y herramental',
-      requisitos: 'Es un concepto muy específico de este nuevo catálogo.',
-    },{
-      clave: 'I06',
-      deduccion: 'Comunicaciones telefónicas',
-      requisitos: 'Telefonía fija y celular, radio, Internet.',
-    },{
-      clave: 'I07',
-      deduccion: 'Comunicaciones satelitales',
-      requisitos: 'Cuando contraten servicios de telefonía o Internet satelital.',
-    },{
-      clave: 'I08',
-      deduccion: 'Otra maquinaria y equipo',
-      requisitos: 'Maquinaria usada en la elaboración de productos.',
-    },{
-      clave: 'P01',
-      deduccion: 'Por definir',
-      requisitos: 'Se emplea cuando el CFDI es en pago en parcialidades o diferido.',
-    }
-  ]
 
   _consultaRequest: any;
   @Input() set consultaRequest(val: any) {
@@ -128,119 +25,144 @@ export class CuadranteDeduccionesComponent implements OnInit {
 
   request: any;
 
-  listaResultado: any;
+  tablaLista: any;
+  deducciones: DeduccionesFiscale[];
+  tablaDeducciones: DeduccionesFiscale[];
+
   displayedColumns: string[] = ['clave', 'deduccion', 'requisitos', 'detalle'];
   public pager: any;
   public form: FormGroup;
 
-
-
-  dispositivosBusqueda = [{
-    estatus: false,
-    tipo: 1,
-    nombre: 'Enlaces'
-  },{
-    estatus: false,
-    tipo: 1,
-    nombre: 'Sitios'
-  },{
-    estatus: false,
-    tipo: 1,
-    nombre: 'Servicios'
-  },{
-    estatus: false,
-    tipo: 2,
-    nombre: 'Inactivo'
-  },{
-    estatus: false,
-    tipo: 2,
-    nombre: 'Activo'
-  },{
-    estatus: false,
-    tipo: 2,
-    nombre: 'En mantenimiento'
-  }];
-  Options = [{
-    nombre: "Switch",
-    icono: "image-dispositivo-servicio"
-  },{
-    nombre: "ONT",
-    icono: "image-dispositivo-ont"
-  },{
-    nombre: "Radio Base",
-    icono: "image-puntas-radio"
-  },{
-    nombre: "CPE",
-    icono: "image-dispositivo-cpe"
-  },{
-    nombre: "Firewall",
-    icono: "image-dispositivo-estatus"
-  },{
-    nombre: "Router",
-    icono: "image-dispositivo-sitio"
-  }];
+  dispositivosBusqueda = [
+    {
+      estatus: false,
+      tipo: 1,
+      nombre: 'Enlaces',
+    },
+    {
+      estatus: false,
+      tipo: 1,
+      nombre: 'Sitios',
+    },
+    {
+      estatus: false,
+      tipo: 1,
+      nombre: 'Servicios',
+    },
+    {
+      estatus: false,
+      tipo: 2,
+      nombre: 'Inactivo',
+    },
+    {
+      estatus: false,
+      tipo: 2,
+      nombre: 'Activo',
+    },
+    {
+      estatus: false,
+      tipo: 2,
+      nombre: 'En mantenimiento',
+    },
+  ];
+  Options = [
+    {
+      nombre: 'Switch',
+      icono: 'image-dispositivo-servicio',
+    },
+    {
+      nombre: 'ONT',
+      icono: 'image-dispositivo-ont',
+    },
+    {
+      nombre: 'Radio Base',
+      icono: 'image-puntas-radio',
+    },
+    {
+      nombre: 'CPE',
+      icono: 'image-dispositivo-cpe',
+    },
+    {
+      nombre: 'Firewall',
+      icono: 'image-dispositivo-estatus',
+    },
+    {
+      nombre: 'Router',
+      icono: 'image-dispositivo-sitio',
+    },
+  ];
 
   removable = true;
   selectable = true;
-
 
   constructor(
     private dialogService: DetalleDeducPersonalService,
     private dialog: MatDialog,
     private formBuilder: FormBuilder,
+    private dashboardService: DashboardService
   ) {}
 
   ngOnInit(): void {
     this.crearForm();
-    
-    this.paginador(this.ELEMENT_DATA_PERSONALES);
+    this.listaDeducciones();
   }
 
-  crearForm(){
-    this.form = this.formBuilder.group({      
+  crearForm() {
+    this.form = this.formBuilder.group({
       buscar: [''],
       dispositivos: [''],
     });
   }
 
+  listaDeducciones() {
+    this.dashboardService.obtenerDeduccionesFiscales().subscribe(
+      (response) => {
+        this.deducciones = response.deduccionesFiscales;
+        this.paginador(this.deducciones);
+      },
+      (_error) => {
+        console.log('Error en catalogo: ', _error);
+      }
+    );
+  }
+
   onPaged(page) {
-    this.listaResultado = this.pager.page(page);
+    this.tablaDeducciones = this.pager.page(page);
   }
 
   paginador(value: any) {
     this.pager = new Paginator(value, 4, 1);
-    this.onPaged(1);
+    if (value.length > 0) {
+      this.tablaDeducciones = this.pager.page(1);
+    } else {
+      this.tablaDeducciones = [];
+    }
   }
 
-     openDetalleDialog() {
+  openDetalleDialog(item) {
     const dialogRef = this.dialog.open(
       DetalleDeducPersonalComponent,
-      this.dialogService.detalleDeducPersonal()
+      this.dialogService.detalleDeducPersonal(item)
     );
-    
-  } 
-
-  send(){
-    this.openDetalleDialog(); 
   }
 
-  cambiarTabla(event){
-    console.log()
-    if(event.index == 0){
-      this.paginador(this.ELEMENT_DATA_PERSONALES);
-    }
-    if(event.index == 1){
-      this.paginador(this.ELEMENT_DATA_AUTORIZADAS);
-    }
+  send(item) {
+    this.openDetalleDialog(item);
   }
 
-
-  removeService(index: number, item: any){
-    
-    this.matRef.options.forEach((data: MatOption) => {      
-      if(item === data.value){
+  removeService(index: number, item: any) {
+    this.matRef.options.forEach((data: MatOption) => {
+      if (item === data.value) {
         data.deselect();
       }
     });
+  }
+
+  onKeyDownEvent(event: any) {
+    let filtro = event.target.value;
+
+    this.deducciones = this.tablaDeducciones.filter((item) =>
+      item?.descripcion.toLowerCase().includes(filtro.toLowerCase())
+    );
   }
 }

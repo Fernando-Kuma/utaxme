@@ -34,6 +34,8 @@ import { FilterErrorModule } from 'src/app/shared/utils/filter-error';
 import { MatTableModule } from '@angular/material/table';
 import { ModificarValorComponent } from './espacio-trabajo/generar-cfdi/modificar-valor/modificar-valor.component';
 import { NuevoClienteComponent } from './espacio-trabajo/clientes-frecuentes/nuevo-cliente/nuevo-cliente.component';
+import { CancelarDialogComponent } from './espacio-trabajo/cancelar-cfdi/cancelar-dialog/cancelar-dialog.component';
+import { ConfirmarCancelarDialogComponent } from './espacio-trabajo/cancelar-cfdi/confirmar-cancelar-dialog/confirmar-cancelar-dialog.component';
 
 
 
@@ -53,6 +55,8 @@ import { NuevoClienteComponent } from './espacio-trabajo/clientes-frecuentes/nue
     CrearConceptoComponent,
     ModificarValorComponent,
     NuevoClienteComponent,
+    CancelarDialogComponent,
+    ConfirmarCancelarDialogComponent,
   ],
   imports: [
     CommonModule,

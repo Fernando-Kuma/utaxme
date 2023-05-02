@@ -119,4 +119,9 @@ export class EspacioTrabajoService {
       );
   }
 
+
+  cancelarCfdi(){
+    
+  }
+
 }

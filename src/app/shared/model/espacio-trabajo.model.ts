@@ -38,7 +38,11 @@ export class ConfiguracionAvanzada{
     configuracionGeneral?: boolean = false;
     }
 
-
+    export interface CfdisFecha {
+        codigo?:  string;
+        mensaje?: string;
+        lista?:   ListaCfdi[];
+    }
 
 export interface ListaCfdi {
     idCfdi?:        number;
@@ -59,6 +63,7 @@ export interface ListaCfdi {
     cancelado?:     boolean;
     total?:         number;
     timeout?:       boolean;
+
 }
 
 export class TotalFactura {

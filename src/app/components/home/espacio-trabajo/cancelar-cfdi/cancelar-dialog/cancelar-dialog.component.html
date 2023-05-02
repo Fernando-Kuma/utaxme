@@ -1,0 +1,115 @@
+<div class="modal-cfdi">
+  <mat-dialog-content>
+      <div class="container" style="width: 100%; margin: 0; padding: 0; overflow: hidden;">
+          <div class="row" style="width: 100%; margin: 0; padding: 0;">
+              <div class="col-10"  style="padding: 0; display: flex; align-items: center;">
+                <span class="dialog-titulo">Cancelar CFDI</span> 
+              </div>
+              <div class="col-2">
+                  <button mat-icon-button style="float: right; position: relative;" (click)="closeDialog()">
+                      <mat-icon class="img-close"></mat-icon>
+                  </button>
+              </div>
+          </div>
+      </div>
+  </mat-dialog-content>
+  
+  <mat-dialog-actions>
+      <div class="container" style="margin: 0; padding: 20px 30px;">
+        <form [formGroup]="form" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+          <div class="row w100m0p0" style="margin-top: 2%;">
+            <!-- <div class="col-8 dialog-texto">
+              Configura los detalles de tu factura, puedes cambiarlos las veces que sean necesarias antes de generar tu factura
+            </div> -->
+            <div class="col-4"></div>
+          </div>
+          <div class=" w100m0p0" style="margin-top: 1%;">
+            <div class="col-12 textoM" style="margin-top: 3%;">
+              <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;" >
+                <mat-label>número de orden</mat-label>
+                <input matInput formControlName="nOrden" id="nOrden" name="nOrden">
+              </mat-form-field>
+            </div>
+            <div class="col-12 textoM" style="margin-top: 3%;">
+              <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
+                <mat-label>Selecciona motivo de cancelación</mat-label>
+                <mat-select formControlName="motivoCancelacion" id="motivoCancelacion" name="motivoCancelacion"
+                [(ngModel)]="selectedMotivo" (ngModelChange)="actionMostrarSelect()">
+                  <mat-option *ngFor="let item of catalogo" [value]="item.descripcion">
+                    {{item.descripcion}}
+                  </mat-option>
+                </mat-select>
+                <!-- <mat-error *ngIf="formulario.motivoCancelacion.invalid && formulario.motivoCancelacion.touched && formulario.motivoCancelacion.errors">
+                  <ng-container *ngIf="formulario.motivoCancelacion.errors.required">
+                    Seleccione un método de pago
+                  </ng-container>
+                </mat-error> -->
+              </mat-form-field>
+            </div>
+            <div class="col-12 textoM" style="margin-top: 3%;" *ngIf="mostrarListCfdi">
+              <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;" (change)="actionMostrarSelect()">
+                <mat-label>Selecciona número de orden nuevo</mat-label>
+                <mat-select formControlName="nOrdenNuevo" id="moneda" name="moneda"
+                [(ngModel)]="selectedNewOrder" (ngModelChange)="actionNuevaOrden()">
+                  <mat-option *ngFor="let item of nOrdenNuevoList" [value]="item.clave" >
+                    {{item.descripcion}}
+                  </mat-option>
+                </mat-select>
+               <!--  <mat-error *ngIf="formulario.moneda.invalid && formulario.moneda.touched && formulario.moneda.errors">
+                  <ng-container *ngIf="formulario.moneda.errors.required">
+                    Seleccione el tipo de moneda
+                  </ng-container>
+                </mat-error> -->
+              </mat-form-field>
+              <div class="col-6 textoM" style="margin-top: 3%;">
+                <div class="respuesta-cuadrante">Datos del nuevo CFDI</div>
+              </div>
+              <div class="row w100m0p0" style="margin-top: 1%;">
+                
+                <div class="col-12 textoM" style="margin-top: 3%;">
+                  <div class="dialog-texto">Fecha: {{tablaListaCfdi[0].fechaTimbrado}}</div>
+                </div>
+                <div class="col-12 textoM" style="margin-top: 3%;">
+                  <div class="dialog-texto">RFC Receptor: {{tablaListaCfdi[0].rfcReceptor}}</div>
+                </div>
+                <div class="col-12 textoM" style="margin-top: 3%;">
+                  <div class="dialog-texto">Total: {{tablaListaCfdi[0].total}}</div>
+                </div>
+                <div class="col-12 textoM" style="margin-top: 3%;">
+                  <div class="dialog-texto">UIDD: {{tablaListaCfdi[0].uidd}}</div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- <div class="col-6 textoM" style="margin-top: 3%;">
+              <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
+                <mat-label>días de crédito</mat-label>
+                <mat-select formControlName="diasCredito" id="diasCredito" name="diasCredito">
+                  <mat-option *ngFor="let item of catalogoDiasCredito" [value]="item.clave" (click)="changeDiasCredito()">
+                    {{item.descripcion}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="formulario.diasCredito.invalid && formulario.diasCredito.touched && formulario.diasCredito.errors">
+                  <ng-container *ngIf="formulario.diasCredito.errors.required">
+                    Seleccione los días de crédito
+                  </ng-container>
+                </mat-error>
+              </mat-form-field>
+            </div> -->
+          </div>
+
+
+          <div class="row" style="margin: 40px 0px 0px !important; width: 100%; padding: 0;">
+            <div class="col-12 d-flex justify-content-end">
+              <button type="button" class="btn-utaxme-secondary" (click)="closeDialog()" style="max-width: 120px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;">
+                Regresar
+              </button>
+              <button type="button" class="btn-utaxme" (click)="confirmarCancelacionDialog(data.cfdi)" style="max-width: 225px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;">
+                Cancelar factura
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+  </mat-dialog-actions>
+</div>

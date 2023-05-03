@@ -18,3 +18,18 @@
   min-height: 45px;
   border-radius: 25px;
 }
+
+.ver-btns-cumplimiento{
+  display: block;
+ }
+
+ 
+@media(max-width: 425px){
+  .btn-cumplimiento{
+    display: none;
+ }
+
+ .ver-btns-cumplimiento{
+  display: none;
+ }
+}

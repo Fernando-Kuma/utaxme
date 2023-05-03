@@ -13,3 +13,10 @@
   min-height: 45px;
   border-radius: 25px;
 }
+
+@media(max-width: 425px){
+  .boton-factura{
+    display: none;
+  }
+
+}

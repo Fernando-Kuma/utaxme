@@ -5,13 +5,14 @@
       <div>Deducciones (Recomendaciones)</div>
       <div class="image-info" 
       style="padding-right: 22px; padding-left: 6px;"  
-      matTooltip="Info about the action"
+      matTooltip="Las Deducciones Personales son los gastos que como contribuyente tienes derecho a disminuir de tus ingresos acumulables en la Declaración Anual del ejercicio.
+El monto total de las deducciones personales no debe exceder 5 (UMA) anuales o del 15% total de tus ingresos, incluidos los exentos, lo que resulte menor."
       >&nbsp; </div>
     </div>
 
-    <div class="row">
-      <form [formGroup]="form" action="">
-        <div class="col-5" style="margin-top: 53px;">
+    <div class="row busqueda-mobile">
+      <form [formGroup]="form" action="" class="busqueda-mobile">
+        <div class="col-5 busqueda-mobile" style="margin-top: 53px;">
           <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
             <mat-icon matPrefix class="ico-search"></mat-icon>
             <mat-label>Buscar deducciones</mat-label>
@@ -29,22 +30,22 @@
                 <div class="col-8" style="font-weight: 600; font-size: 15px; color: #261C15;">
                   Filtro de búsqueda
                 </div>
-                <div class="col-4" style="font-size: 13px; color: #285CED; text-align: end; cursor: pointer;">
+                <div class="col-4" style="font-size: 13px; color: #285CED; text-align: end; cursor: pointer;" (click)="borrarFiltro(3, $event)">
                   Borrar filtros
                 </div>
                 <div class="col-12" style="margin-top: 20px;">
                   <div class="row">
                     <div class="col-8" style="font-size: 12px; color: #636971; margin-bottom: 10px;">
-                      Dispositivo:
+                      Tipo de deducción::
                     </div>
-                    <div class="col-4" style="font-size: 12px; color: #F95A36; text-align: end; cursor: pointer;" >
+                    <div class="col-4" style="font-size: 12px; color: #F95A36; text-align: end; cursor: pointer;" (click)="borrarFiltro(1, $event)">
                       Borrar
                     </div>
                     <div class="col-10 row">
-                      <div class="col-4" *ngFor="let dispositivo of dispositivosBusqueda">
-                        <div  [class]="dispositivo.estatus ? 'checkboxBusqueda' : ''">
+                      <div class="col-4" *ngFor="let deduccion of deduccionesBusqueda">
+                        <div  [class]="deduccion.estatus ? 'checkboxBusqueda' : ''">
                           <p style="margin-left: 10px; margin-right: 30px; font-size: 12px;">
-                            <mat-checkbox (click)="$event.stopPropagation();" [(ngModel)]="dispositivo.estatus" [ngModelOptions]="{standalone: true}">{{dispositivo.nombre}}</mat-checkbox>
+                            <mat-checkbox (click)="$event.stopPropagation();" [(ngModel)]="deduccion.estatus" [ngModelOptions]="{standalone: true}">{{deduccion.nombre}}</mat-checkbox>
                           </p>
                         </div>
                       </div>
@@ -54,9 +55,9 @@
                 <div class="col-12">
                   <div class="row">
                     <div class="col-8" style="font-size: 12px; color: #636971; margin-bottom: 10px;">
-                      Tipo de dispositivo:
+                      Categoría de deducción:
                     </div>
-                    <div class="col-4" style="font-size: 12px; color: #F95A36; text-align: end; cursor: pointer;" >
+                    <div class="col-4" style="font-size: 12px; color: #F95A36; text-align: end; cursor: pointer;" (click)="borrarFiltro(2, $event)">
                       Borrar
                     </div>
 
@@ -119,7 +120,7 @@
             <thead style="margin-bottom: 10px;">
                 <tr class="textoM">
            
-                    <th class="subtitulo-cuadrante" style="text-align: center;">
+                    <th class="subtitulo-cuadrante view-mobile" style="text-align: center;">
                         <span style="cursor:default!important;">
                           clave
                         </span>
@@ -129,7 +130,7 @@
                           deducción
                         </span>
                     </th>
-                    <th class="subtitulo-cuadrante" style="text-align: center;">
+                    <th class="subtitulo-cuadrante view-mobile" style="text-align: center;">
                         <span style="cursor:default!important;">
                           requisitos
                         </span>
@@ -145,17 +146,17 @@
             <tbody class="table-scroll" style="border: solid 1px #ffffff; ">
               <tr *ngFor="let item of tablaDeducciones">
                 
-                <td style="text-align: center;">
+                <td class="view-mobile" style="text-align: center;">
                   {{item.clave}}
                 </td>
-                <td style="text-align: center;">
+                <td  style="text-align: center;">
                   {{item.descripcion}} 
                 </td>
-                <td style="text-align: center;">
+                <td class="view-mobile" style="text-align: center;">
                   {{item.requisitos}}
                 </td>
                
-                <td class="d-flex justify-content-center">
+                <td class="justify-content-center ">
                   <div class="icon-detalle" (click)="send(item)">
                     <div class="image-document" style="padding-right: 22px; padding-left: 6px;">&nbsp; </div>
                   </div>

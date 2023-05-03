@@ -100,3 +100,62 @@
 .option-not-selected-chip{
   background-color: white!important;
 }
+
+.image-salud {
+  background-image: url("src\assets\icon\salud.svg");
+  background-size: 19px 19px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.image-educacion {
+  background-image: url("src\assets\icon\educacion.svg");
+  background-size: 19px 19px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.image-funerario {
+  background-image: url("src\assets\icon\funerario.svg");
+  background-size: 19px 19px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.image-hipotecario {
+  background-image: url("src\assets\icon\hipotecario.svg");
+  background-size: 19px 19px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.image-donativo {
+  background-image: url("src\assets\icon\donativo.svg");
+  background-size: 19px 19px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.image-aportacion {
+  background-image: url("src\assets\icon\aportacion.svg");
+  background-size: 19px 19px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.view-mobile{
+  display: table-cell;
+}
+
+
+@media(max-width: 425px){
+
+.view-mobile{
+  display: none;
+}
+
+.busqueda-mobile {
+  width: 100%;
+  padding-right: 0;
+}
+}

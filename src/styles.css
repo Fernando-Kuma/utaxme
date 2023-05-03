@@ -285,6 +285,13 @@ body {
   background-position: center;
 }
 
+.image-dashboard-descargar-blanco {
+  background-image: url("src\assets\icon\download-blanco.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 .image-dashboard-info {
   background-image: url("src\assets\icon\dashboard-info.svg");
   background-size: 100% 100%;
@@ -297,9 +304,22 @@ body {
   background-repeat: no-repeat;
   background-position: center;
 }
+.image-edit-doc-blanco {
+  background-image: url("src\assets\icon\edit-blanco.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 
 .image-user-call {
   background-image: url("src\assets\icon\user-call.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.image-user-call-blanco {
+  background-image: url("src\assets\icon\user-call-blanco.svg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
@@ -314,6 +334,13 @@ body {
 
 .image-ver-acuse {
   background-image: url("src\assets\icon\fact.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.image-ver-acuse-blanco {
+  background-image: url("src\assets\icon\acuse-blanco.svg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
@@ -531,3 +558,10 @@ body {
 }
 
 /* SCROLL FIGMA */
+
+@media(max-width: 425px){
+  .content-wrapper{
+   background: #FFFFFF;
+  }
+ 
+ }

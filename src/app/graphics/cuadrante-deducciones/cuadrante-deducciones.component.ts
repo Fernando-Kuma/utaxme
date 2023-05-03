@@ -29,66 +29,56 @@ export class CuadranteDeduccionesComponent implements OnInit {
   deducciones: DeduccionesFiscale[];
   tablaDeducciones: DeduccionesFiscale[];
 
-  displayedColumns: string[] = ['clave', 'deduccion', 'requisitos', 'detalle'];
+  /* displayedColumns: string[] = ['clave', 'deduccion', 'requisitos', 'detalle']; */
   public pager: any;
   public form: FormGroup;
 
-  dispositivosBusqueda = [
+  deduccionesBusqueda = [
     {
       estatus: false,
       tipo: 1,
-      nombre: 'Enlaces',
-    },
-    {
-      estatus: false,
-      tipo: 1,
-      nombre: 'Sitios',
+      nombre: 'Personales',
     },
     {
       estatus: false,
       tipo: 1,
-      nombre: 'Servicios',
+      nombre: 'Autorizadas',
+    },
+    {
+      estatus: false,
+      tipo: 1,
+      nombre: 'Anuales',
     },
     {
       estatus: false,
       tipo: 2,
-      nombre: 'Inactivo',
-    },
-    {
-      estatus: false,
-      tipo: 2,
-      nombre: 'Activo',
-    },
-    {
-      estatus: false,
-      tipo: 2,
-      nombre: 'En mantenimiento',
+      nombre: 'Mensuales',
     },
   ];
   Options = [
     {
-      nombre: 'Switch',
-      icono: 'image-dispositivo-servicio',
+      nombre: 'Salud',
+      icono: 'image-salud',
     },
     {
-      nombre: 'ONT',
-      icono: 'image-dispositivo-ont',
+      nombre: 'Educación',
+      icono: 'image-educacion',
     },
     {
-      nombre: 'Radio Base',
-      icono: 'image-puntas-radio',
+      nombre: 'Funerarios',
+      icono: 'image-funerario',
     },
     {
-      nombre: 'CPE',
-      icono: 'image-dispositivo-cpe',
+      nombre: 'Hipotecarios',
+      icono: 'image-hipotecario',
     },
     {
-      nombre: 'Firewall',
-      icono: 'image-dispositivo-estatus',
+      nombre: 'Donativos',
+      icono: 'image-donativo',
     },
     {
-      nombre: 'Router',
-      icono: 'image-dispositivo-sitio',
+      nombre: 'Aportaciones',
+      icono: 'image-aportacion',
     },
   ];
 
@@ -156,6 +146,24 @@ export class CuadranteDeduccionesComponent implements OnInit {
         data.deselect();
       }
     });
+  }
+
+  borrarFiltro(condition: number, event?: any){
+    if(event){
+      event.stopPropagation();
+    }
+    if(condition == 1 ){
+      this.deduccionesBusqueda.forEach(element => {
+        element.estatus = false;
+      });
+    }else if(condition == 2){
+      this.form.get('deduccion').setValue([]);
+    }else if(condition == 3){
+      this.deduccionesBusqueda.forEach(element => {
+        element.estatus = false;
+      });
+      this.form.get('deduccion').setValue([]);
+    }
   }
 
   onKeyDownEvent(event: any) {

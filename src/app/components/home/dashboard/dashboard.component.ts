@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Cliente, Usuario } from 'src/app/shared/model/usuario.model';
 import { FormControl } from '@angular/forms';
 import { AuthService } from 'src/app/shared/service/auth.service';
@@ -43,6 +43,10 @@ export const MY_FORMATS = {
 })
 export class DashboardComponent implements OnInit {
 
+  _consultaRequest: any;
+  @Input() set consultaRequest(val: any) {
+    this._consultaRequest = val;
+  }
 
   cumplimientoFiscal: CumplimientoFiscal
   gastosPeriodo: ComprobantePeriodo = new ComprobantePeriodo;
@@ -177,5 +181,58 @@ export class DashboardComponent implements OnInit {
 
   cancelarFactura(){
     this.router.navigateByUrl(NAV.cancelarCfdi);
+  }
+
+
+  verOpinion(){
+    let urlOpinion = localStorage.Opinion;
+    if(urlOpinion != null){
+      window.open(urlOpinion, "_blank");
+    }else{
+      this.openSnackBar()
+    }
+  }
+
+  verAcuse(){
+    let urlAcuse = localStorage.Acuse;
+    if(urlAcuse != null){
+      window.open(urlAcuse, "_blank");
+    }else{
+      this.openSnackBar()
+    }
+  }
+
+  openSnackBar() {
+    alert('No se encontro el acuse');
+  }
+
+  descargarExcel(){
+    if(this.gastosPeriodo.total == 0){
+      console.log("No hay ingresos ni egresos en este periodo.")
+    }else{
+      this.descargarExcelPeticion()
+    }
+    
+  }
+
+  descargarExcelPeticion(){
+    this.dashboardService.obtenerReporte(this._consultaRequest).subscribe({
+      next: (response) => {
+        if(response != null){
+          const linkDescarga = document.createElement('a');
+          const url = window.URL.createObjectURL(response);
+          document.body.appendChild(linkDescarga);
+          linkDescarga.setAttribute('style', 'display: none');
+          linkDescarga.href = url;
+          linkDescarga.download = 'Reporte_Contable_'+this._consultaRequest.rfc+"_"+ this._consultaRequest.mes+"_"+this._consultaRequest.anio+".xls";
+          linkDescarga.click();
+          window.URL.revokeObjectURL(url);
+          linkDescarga.remove();
+        }
+      },
+      error: (_) => {
+        console.log(_)
+      }
+    });
   }
 }

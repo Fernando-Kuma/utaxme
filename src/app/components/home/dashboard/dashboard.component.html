@@ -1,4 +1,5 @@
-<div class="page-wrapper" style="margin: 0; padding: 0;">
+<div class="col-xs-12 col-sm-6 col-md-8">
+  <div class="page-wrapper" style="margin: 0; padding: 0;">
   <div class="sticky-header">
     <app-header-home></app-header-home>
   </div>
@@ -7,7 +8,7 @@
       <div class="home-container-accesos" style="margin-top: 30px;">
         <div class="row w100m0p0">
           <div class="col-12">
-            <div class="row">
+            <div class="row head-mobile-title">
               <div class="col-1" style="width: 45px;">
                 <div class="img-inicio-home">&nbsp;</div>
               </div>
@@ -20,20 +21,41 @@
           </div>
         </div>
 
-        <div class="d-flex flex-row disable-scrollbars" style="margin-top: 50px;">
+        <div class=" disable-scrollbars style-desk" style="">
           <div class="columna-cuadrante1">
             <div class="container">
-              <div class="row cuadrante1">
-                <div class="col-8">
-                  <span style="font-weight: 500; font-size: 40px; color: #0B112A; line-height: 50px; text-transform: capitalize;">Bienvenido, {{usuario.nombre + '' + usuario.apellidos}}</span>
+              <div class="row cuadrante1 otro-style" >
+                <div class="col-8  aling-head">
+                  <span class="bienvenido-usuario" style="">Bienvenido, {{usuario.nombre + '' + usuario.apellidos}}</span>
                   <br>
-                  <span style="color: #838383; font-weight: 500; font-size: 16; line-height: 20px;">Gestiona tus actividades:</span>
+                  <span class="gestiona" style="">Gestiona tus actividades:</span>
                 </div>
-                <div class="col-4 calendario-dashboard">
 
-                  <mat-form-field appearance="outline" >
+                <div class="btn-cfdi-mobile">
+                  <div class="d-flex justify-content-between" style="padding: 0;">
+                    <button mat-button class="btn-utaxme"
+                      style="max-width: 132px; font-size: 14px; font-weight: 500; height: 48px;display: flex; align-items: center; justify-content: center; border-radius: 4px !important;"
+                      (click)="crearFactura()"
+                      >
+                      <mat-icon class="image-edit-doc-blanco image-size-22" ></mat-icon>
+                      Crear factura
+                    </button>
+                    <button mat-button class="btn-utaxme"
+                      style="max-width: 175px; font-size: 14px; font-weight: 500; height: 48px;display: flex; align-items: center; justify-content: center; border-radius: 4px !important;"
+                      (click)="contacto()"
+                      >
+                      <mat-icon class="image-user-call-blanco image-size-22"></mat-icon>
+                      Contactar Contador
+                    </button>
+                  </div>
+                </div>
+                  <mat-divider></mat-divider>
+
+                <div class="col-4 calendario-dashboard ">
+
+                  <mat-form-field appearance="outline"  class="input-mobile">
                     <mat-label>Periodo fiscal</mat-label>
-                    <input matInput [matDatepicker]="dp" [formControl]="date" [max]="maxDate">
+                    <input matInput [matDatepicker]="dp" [formControl]="date" [max]="maxDate" class="font-blue">
                     <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
                     <mat-datepicker #dp
                                     startView="multi-year"
@@ -45,7 +67,7 @@
 
                 </div>
               </div>
-              <div class="row" style="margin: 45px 0 35px;">
+              <div class="row style-btn-mobile" style="margin: 45px 0 35px;">
                 <div class="col-4" (click)="nuevaFactura()">
                   <div class="row boton-enlace m0p0">
                     <div class="internal">
@@ -84,8 +106,7 @@
             </div>
 
             <div class="row">
-              <div class="col"
-                style="background-color: #FFFFFF; width: 975px; height: 351px; margin-bottom: 39px;  border-radius: 15px; padding: 15px 12px;">
+              <div class="col cuadrante-ingresos">
                 <ng-container *ngIf="!spinnerLoadingIngresos">
                   <app-cuadrante-ingresos [data]="ingresosPeriodo"></app-cuadrante-ingresos>
                 </ng-container>
@@ -95,8 +116,7 @@
               </div>
             </div>
             <div class="row">
-              <div class="col"
-                style="background-color: #FFFFFF; width: 975px; height: 351px; margin-bottom: 39px; border-radius: 15px; padding: 15px 12px;">
+              <div class="col cuadrante-gastos">
                 <ng-container *ngIf="!spinnerLoadingIngresos">
                   <app-cuadrante-gastos [data]="gastosPeriodo" [consultaRequest]="requestDashboard"></app-cuadrante-gastos>
                 </ng-container>
@@ -104,10 +124,27 @@
                   <mat-spinner [diameter]="30"></mat-spinner>
                 </div>
               </div>
+
+
+
+
+              <div class="btn-cfdi-mobile" style="margin-bottom: 39px;">
+                <div class="" style="padding: 0;">
+                  <button mat-button class="btn-utaxme"
+                    style="width: 100%; font-size: 14px; font-weight: 500; height: 48px;display: flex; align-items: center; justify-content: center; border-radius: 15px !important;"
+                    (click)="descargarExcel()"
+                    >
+                    <mat-icon class="image-dashboard-descargar-blanco image-size-22"></mat-icon>
+                    Descargar gastos
+                  </button>
+                  
+                </div>
+              </div>
+
+
             </div>
             <div class="row">
-              <div class="col"
-                style="background-color: #FFFFFF; width: 975px; margin-bottom: 39px; border-radius: 15px; padding: 15px 12px;">
+              <div class="col cuadrante-deducciones">
                 <app-cuadrante-deducciones [consultaRequest]="requestDashboard"></app-cuadrante-deducciones>
               </div>
             </div>
@@ -115,8 +152,7 @@
 
           <div class="columna-cuadrante2">
             <div class="row">
-              <div class="col"
-                style="background-color: #FFFFFF; width: 489px; height: 424px; margin-bottom: 39px; border-radius: 15px; padding: 15px 12px;">
+              <div class="col cuadrante-cumplimiento">
                 <ng-container *ngIf="!spinnerLoadingCumplimiento">
                   <app-cuadrante-cumplimiento [data]="cumplimientoFiscal"></app-cuadrante-cumplimiento>
                 </ng-container>
@@ -125,9 +161,28 @@
                 </div>
               </div>
             </div>
+
+            <div class="btn-cfdi-mobile">
+              <div class="" style="padding: 0;">
+                <button mat-button class="btn-utaxme"
+                  style="width: 100%; font-size: 14px; font-weight: 500; height: 48px;display: flex; align-items: center; justify-content: center; border-radius: 15px !important;"
+                  (click)="verAcuse()"
+                  >
+                  <mat-icon class="image-ver-acuse-blanco image-size-22" ></mat-icon>
+                  Ver acuse
+                </button>
+                <div class=" boton-cumplimiento">
+                  <button type="button" class="btn btn-outline-primary btn-cumplimiento" 
+                  (click)="verOpinion()">
+                    <div class="image-ver-opinion image-size-22" style="padding-right: 22px;">&nbsp; </div>  
+                    Ver opinión
+                  </button>
+                </div>
+              </div>
+            </div>
+
             <div class="row">
-              <div class="col"
-                style="background-color: #FFFFFF; width: 489px; height: 1147px; margin-bottom: 39px; border-radius: 15px; padding: 15px 12px;">
+              <div class="col cuadrante-fiscales">
                 <ng-container *ngIf="!spinnerLoadingIngresos">
                   <app-cuadrante-fiscales [consultaRequest]="requestDashboard"></app-cuadrante-fiscales>
                 </ng-container>
@@ -141,4 +196,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

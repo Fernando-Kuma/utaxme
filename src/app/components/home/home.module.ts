@@ -36,6 +36,11 @@ import { ModificarValorComponent } from './espacio-trabajo/generar-cfdi/modifica
 import { NuevoClienteComponent } from './espacio-trabajo/clientes-frecuentes/nuevo-cliente/nuevo-cliente.component';
 import { CancelarDialogComponent } from './espacio-trabajo/cancelar-cfdi/cancelar-dialog/cancelar-dialog.component';
 import { ConfirmarCancelarDialogComponent } from './espacio-trabajo/cancelar-cfdi/confirmar-cancelar-dialog/confirmar-cancelar-dialog.component';
+import { HomeMobileComponent } from './home-mobile/home-mobile.component';
+import { PerfilComponent } from './home-mobile/perfil/perfil.component';
+import { SaludFiscalComponent } from './home-mobile/salud-fiscal/salud-fiscal.component';
+import { NotificacionesComponent } from './home-mobile/notificaciones/notificaciones.component';
+import { DatosFiscalesComponent } from './home-mobile/datos-fiscales/datos-fiscales.component';
 
 
 
@@ -57,6 +62,11 @@ import { ConfirmarCancelarDialogComponent } from './espacio-trabajo/cancelar-cfd
     NuevoClienteComponent,
     CancelarDialogComponent,
     ConfirmarCancelarDialogComponent,
+    HomeMobileComponent,
+    PerfilComponent,
+    SaludFiscalComponent,
+    NotificacionesComponent,
+    DatosFiscalesComponent,
   ],
   imports: [
     CommonModule,

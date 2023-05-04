@@ -23,7 +23,7 @@
       <div class="col-1 disp-mobile"></div>
         <div class="col-10 espacio-opciones worskpace-tab">
               <mat-tab-group [disableRipple]="true" >
-              <mat-tab label="Facturación">
+              <mat-tab label="Tu Espacio de Trabajo">
                     <ng-template matTabContent >
                         <div class="d-flex content-form" >
                           <div class="row d-flex justify-content-between " style="width: 100%; margin: 0;">
@@ -40,43 +40,88 @@
                                     <div class="texto-cuadrante" style="margin-top: 10px;">Crea y enviar facturas a tus clientes. Puedes dar de alta clientes frecuentes y crear facturas en solo segundos.</div>
                                   </div>
                                 </div>
-                                <div class="row  btns-crea-productos" style="">
-                                  <div class="col d-flex justify-content-center align-items-center btn-accion" (click)="nuevaFactura()">
-                                    <div class="row background-icon">
-                                      <div class="image-nueva-factura">&nbsp;</div>
-                                    </div>
-                                    <div class="row" style="margin-top: 15px;">
-                                      <div class="respuesta-cuadrante">Crear <br> nueva factura</div>
-                                    </div>
-                                  </div>
-                                  <div class="col d-flex justify-content-center align-items-center btn-accion" (click)="crearProdServ()">
-                                    <div class="row background-icon">
-                                      <div class="image-crear-prod-serv">&nbsp;</div>
-                                    </div>
-                                    <div class="row" style="margin-top: 15px;">
-                                      <div class="respuesta-cuadrante">Administra <br> productos/servicios</div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="row btns-administra-cancela" style="">
-                                  <div class="col d-flex justify-content-center align-items-center btn-accion" (click)="clientesFrecuentes()">
-                                      <div class="row background-icon">
-                                        <div class="image-cliente-frecuente">&nbsp;</div>
-                                      </div>
-                                      <div class="row" style="margin-top: 30px;">
-                                        <div class="respuesta-cuadrante">Administra <br> Clientes frecuentes</div>
-                                    </div>
-                                    
-                                  </div>
-                                  <div class="col d-flex justify-content-center align-items-center btn-accion" (click)="cancelarFactura()">
-                                    <div class="row background-icon">
-                                      <div class="image-cancelar-factura" style="padding-right: 22px;">&nbsp;</div>
-                                    </div>
-                                    <div class="row" style="margin-top: 30px;">
-                                      <div class=" respuesta-cuadrante">Cancelar facturas</div>
-                                    </div>
-                                  </div>
-                                </div>
+
+
+
+
+
+                                
+<div class="row" style="padding-right: 0;">
+
+
+
+
+
+
+
+
+
+
+
+  <div class="row  btns-crea-productos" style="">
+    <div class="col d-flex justify-content-center align-items-center btn-accion" (click)="nuevaFactura()">
+      <div class="row background-icon">
+        <div class="image-nueva-factura">&nbsp;</div>
+      </div>
+      <div class="row label-btn" style="margin-top: 15px;">
+        <div class="respuesta-cuadrante">Crear <br> nueva factura</div>
+      </div>
+    </div>
+    <div class="col d-flex justify-content-center align-items-center btn-accion" (click)="crearProdServ()">
+      <div class="row background-icon">
+        <div class="image-crear-prod-serv">&nbsp;</div>
+      </div>
+      <div class="row label-btn" style="margin-top: 15px;">
+        <div class="respuesta-cuadrante">Administra <br> productos/servicios</div>
+      </div>
+    </div>
+  </div>
+  <div class="row btns-administra-cancela" style="">
+    <div class="col d-flex justify-content-center align-items-center btn-accion" (click)="clientesFrecuentes()">
+        <div class="row background-icon">
+          <div class="image-cliente-frecuente">&nbsp;</div>
+        </div>
+        <div class="row label-btn" style="margin-top: 30px;">
+          <div class="respuesta-cuadrante">Administra <br> Clientes frecuentes</div>
+      </div>
+      
+    </div>
+    <div class="col d-flex justify-content-center align-items-center btn-accion" (click)="cancelarFactura()">
+      <div class="row background-icon">
+        <div class="image-cancelar-factura" style="padding-right: 22px;">&nbsp;</div>
+      </div>
+      <div class="row label-btn" style="margin-top: 30px;">
+        <div class=" respuesta-cuadrante">Cancelar facturas</div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                
                               </div>
                             </div>
                           </div>

@@ -1,127 +1,110 @@
 <div class="container">
-  <div class="row" *ngIf="!isFull">
-    <div class="col-4">
-      <div class="row" style="margin-right: -55px;">
-       
-        <div class="col-12 titulo-cuadrante">
-            Ingresos del periodo
+  <div class="row">
+    <div class="col-12 titulo-cuadrante">
+      Ingresos del periodo
+    </div>
+  </div>
+  <div class="row vista-mobile" *ngIf="!isFull">
+    <div class="col-4 datos-mobile">
+      <div class="row datos-mobile" style="margin-right: -55px;">
+
+        <div class="row m0p0 ">
+          <div class="col-7 centrar-texto m0p0">
+            <div class="texto-cuadrante" style="margin-top: 45px;">Subtotal de ingresos</div>
+            <div class="texto-cuadrante" style="margin-top: 29px;">IVA Trasladado</div>
+            <div class="texto-cuadrante" style="margin-top: 29px;">IVA Retenido</div>
+            <div class="texto-cuadrante" style="margin-top: 29px;">ISR Retenido</div>
+          </div>
+          <div class="col-5 final-texto m0p0">
+            <div class="respuesta-cuadrante weight600" style="margin-top: 45px;">
+              <ng-container *ngIf="ingresosPeriodo?.subtotal == 0">
+                ${{ ingresosPeriodo?.subtotal }}
+              </ng-container>
+              <ng-container *ngIf="ingresosPeriodo?.subtotal > 0">
+                ${{ ingresosPeriodo?.subtotal | thousandsPipe }}
+              </ng-container>
+            </div>
+            <div class="respuesta-cuadrante weight600" style="margin-top: 29px;">
+              <ng-container *ngIf="ingresosPeriodo?.iva == 0">
+                ${{ ingresosPeriodo?.iva }}
+              </ng-container>
+              <ng-container *ngIf="ingresosPeriodo?.iva > 0">
+                ${{ ingresosPeriodo?.iva | thousandsPipe }}
+              </ng-container>
+            </div>
+            <div class="respuesta-cuadrante weight600" style="margin-top: 29px;">
+              <ng-container *ngIf="ingresosPeriodo?.ivaRetenido == 0">
+                ${{ ingresosPeriodo?.ivaRetenido }}
+              </ng-container>
+              <ng-container *ngIf="ingresosPeriodo?.ivaRetenido > 0">
+                ${{ ingresosPeriodo?.ivaRetenido | thousandsPipe }}
+              </ng-container>
+            </div>
+            <div class="respuesta-cuadrante weight600" style="margin-top: 29px;">
+              <ng-container *ngIf="ingresosPeriodo?.isrRetenido == 0">
+                ${{ ingresosPeriodo?.isrRetenido }}
+              </ng-container>
+              <ng-container *ngIf="ingresosPeriodo?.isrRetenido > 0">
+                ${{ ingresosPeriodo?.isrRetenido | thousandsPipe }}
+              </ng-container>
+            </div>
+          </div>
         </div>
 
+        <div class="col-12" style="margin-top: 18px !important;">
+          <mat-divider></mat-divider>
+        </div>
 
-
-
-
-
-
-
-
-
-
-          <div class="row m0p0">
-            <div class="col-7 centrar-texto m0p0">
-              <div class="texto-cuadrante" style="margin-top: 45px;">Subtotal de ingresos</div>
-              <div class="texto-cuadrante" style="margin-top: 29px;">IVA Trasladado</div>
-              <div class="texto-cuadrante" style="margin-top: 29px;">IVA Retenido</div>
-              <div class="texto-cuadrante" style="margin-top: 29px;">ISR Retenido</div>
-            </div>
-            <div class="col-5 final-texto m0p0">
-              <div class="texto-cuadrante weight600" style="margin-top: 45px;">
-                <ng-container *ngIf="ingresosPeriodo?.subtotal == 0">
-                  ${{ ingresosPeriodo?.subtotal }}
-                </ng-container>
-                <ng-container *ngIf="ingresosPeriodo?.subtotal > 0">
-                  ${{ ingresosPeriodo?.subtotal | thousandsPipe }}
-                </ng-container>
-              </div>
-              <div class="texto-cuadrante weight600" style="margin-top: 29px;">
-                <ng-container *ngIf="ingresosPeriodo?.iva == 0">
-                  ${{ ingresosPeriodo?.iva }}
-                </ng-container>
-                <ng-container *ngIf="ingresosPeriodo?.iva > 0">
-                  ${{ ingresosPeriodo?.iva | thousandsPipe }}
-                </ng-container>
-              </div>
-              <div class="texto-cuadrante weight600" style="margin-top: 29px;">
-                <ng-container *ngIf="ingresosPeriodo?.ivaRetenido == 0">
-                  ${{ ingresosPeriodo?.ivaRetenido }}
-                </ng-container>
-                <ng-container *ngIf="ingresosPeriodo?.ivaRetenido > 0">
-                  ${{ ingresosPeriodo?.ivaRetenido | thousandsPipe }}
-                </ng-container>
-              </div>
-              <div class="texto-cuadrante weight600" style="margin-top: 29px;">
-                <ng-container *ngIf="ingresosPeriodo?.isrRetenido == 0">
-                  ${{ ingresosPeriodo?.isrRetenido }}
-                </ng-container>
-                <ng-container *ngIf="ingresosPeriodo?.isrRetenido > 0">
-                  ${{ ingresosPeriodo?.isrRetenido | thousandsPipe }}
-                </ng-container>
-              </div>
+        <div class="row m0p0">
+          <div class="col-7 centrar-texto m0p0">
+            <div class="texto-total" style="margin-top: 26px;">Total de Ingresos</div>
+          </div>
+          <div class="col-5 final-texto m0p0">
+            <div class="respuesta-cuadrante weight600" style="margin-top: 26px;">
+              <ng-container *ngIf="ingresosPeriodo?.total == 0">
+                ${{ingresosPeriodo?.total}}
+              </ng-container>
+              <ng-container *ngIf="ingresosPeriodo?.total > 0">
+                ${{ingresosPeriodo?.total | thousandsPipe}}
+              </ng-container>
             </div>
           </div>
-  
-          <div class="col-12" style="margin-top: 18px !important;">
-            <mat-divider></mat-divider>
-          </div>
-          
-          <div class="row m0p0">
-            <div class="col-7 centrar-texto m0p0">
-              <div class="texto-total" style="margin-top: 26px;">Total de Ingresos</div>
-            </div>
-            <div class="col-5 final-texto m0p0">
-              <div class="texto-cuadrante weight600" style="margin-top: 26px;">
-                <ng-container *ngIf="ingresosPeriodo?.total == 0">
-                  ${{ingresosPeriodo?.total}}
-                </ng-container>
-                <ng-container *ngIf="ingresosPeriodo?.total > 0">
-                  ${{ingresosPeriodo?.total | thousandsPipe}}
-                </ng-container>
-              </div>
-            </div>
-          </div>
-
-
-
-
-
-
-
-
-
-
-
-        
+        </div>
 
       </div>
     </div>
     <div class="col-1 d-flex justify-content-end">
       <mat-divider vertical style="height: 100%;"></mat-divider>
     </div>
-    <div class="col-7">
+
+    <div class="col-12 divider-mobile" style="margin-top: 18px !important;">
+      <mat-divider></mat-divider>
+    </div>
+
+    <div class="col-7 datos-mobile">
       <div class="row">
-        <div class="col-12 titulo-cuadrante">
+        <div class="col-12 titulo-cuadrante titulo-mobile">
           Facturas emitidas
         </div>
+
         <div class="col-12 d-flex justify-content-between" style="margin-top: 29px;">
-          <div class="texto-factura"><span class="titulo-cuadrante">{{ ingresosPeriodo?.facturas }}</span> facturas</div>
+          <div class="texto-factura"><span class="titulo-cuadrante">{{ ingresosPeriodo?.facturas }}</span> facturas
+          </div>
           <div class="texto-hipertexto" (click)="fullSize()">Ver más</div>
         </div>
       </div>
       <div class="row">
-        <app-barras-emitidas 
-        [sizex]="500" [sizey]="230" [data]="dateValue" color="#1D2640"
-        [showDomain]="true" [barWidth]="20" [showLimits]="false" [showXLabels]="true" 
-        [showYLabels]="true" [border]="true" [margin]="marginBarChart" [general]="true" 
-        [isDynamicRange]="false" unit="$"></app-barras-emitidas>
+        <app-barras-emitidas [sizex]="500" [sizey]="230" [data]="dateValue" color="#1D2640" [showDomain]="true"
+          [barWidth]="20" [showLimits]="false" [showXLabels]="true" [showYLabels]="true" [border]="true"
+          [margin]="marginBarChart" [general]="true" [isDynamicRange]="false" unit="$"></app-barras-emitidas>
       </div>
     </div>
+
   </div>
 
   <div class="row" *ngIf="isFull">
-    <app-barras-emitidas 
-        [sizex]="1300" [sizey]="500" [data]="dateValueWeek" color="#1D2640" [barWidth]="40"
-        [full]="true" [showDomain]="true" [showLimits]="false" [showXLabels]="true" 
-        [showYLabels]="true" [border]="true" [margin]="marginBarChart" [general]="true" 
-        [isDynamicRange]="false" unit="$"></app-barras-emitidas>
+    <app-barras-emitidas [sizex]="1300" [sizey]="500" [data]="dateValueWeek" color="#1D2640" [barWidth]="40"
+      [full]="true" [showDomain]="true" [showLimits]="false" [showXLabels]="true" [showYLabels]="true" [border]="true"
+      [margin]="marginBarChart" [general]="true" [isDynamicRange]="false" unit="$"></app-barras-emitidas>
   </div>
 </div>

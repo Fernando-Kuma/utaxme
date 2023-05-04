@@ -1,1 +1,143 @@
-<p>perfil works!</p>
+<div class="col-xs-12 col-sm-6 col-md-8">
+  <div class="page-wrapper" style="margin: 0; padding: 0;">
+  <div class="sticky-header">
+    <app-header-home></app-header-home>
+  </div>
+  <div class="content-wrapper disable-scrollbars page-background" style="overflow: scroll;">
+    <div class="content-home">
+      <div class="home-container-accesos" style="margin-top: 30px;">
+        <div class="row w100m0p0">
+          <div class="col-12">
+            <div class="row head-mobile-title">
+              <div class="row titulo-menu-cuadrante m0p0">
+                <div class="col-1" style="margin: 0; padding: 0;">
+                  <div class="image-workspace-back" style="width: 30px; height: 20px; float: right; cursor: pointer;" (click)="regresar()"></div>
+                </div>
+                <span style="font-weight: 600; width: 200px; font-size: 18px; color: #0B112A;"> Perfil</span> 
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+        
+
+        
+      </div>
+    </div>
+
+
+
+
+
+
+    <div class="row w100m0p0">
+      <div class="row" style="margin-top: 100px; height: 50%; display: flex; justify-content: center; align-items: center;">
+         
+          <div class="" style="margin: 0; padding: 0; display: flex; justify-content: center; flex-direction: column; align-items: center;">
+            <div class="image-user-perfil" style=" width: 80px; height: 80px;"></div>
+            
+            <div class="" style="margin-top: 24px;">
+              <span class="bienvenido-usuario" style="font-size: 17px; font-weight: 400; line-height: 21px;">{{usuario.nombre | titlecase}} &nbsp; {{usuario.apellidos | titlecase}}</span>
+            </div> 
+          </div>
+          <div class="col-12" style="margin-top: 29px;">
+            <div class="subtitulo-cuadrante">RFC</div>
+            <div class="respuesta-cuadrante">{{ usuario.cliente.rfc }}</div>
+          </div>
+      </div>
+      <div class="col-12" style="margin-top: 12px;">
+        <mat-divider></mat-divider>
+      </div>
+      <div class="row" style="height: 50%; display: flex; justify-content: center; align-items: center;">
+         
+        <div class="" style="margin: 0; padding: 0; display: flex; justify-content: center; flex-direction: column; align-items: center;">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+          <div class="row " style="width: 100%;">
+            <div class="col-9 centrar-texto">
+              <div class="d-flex" style="width: 100%;">
+                <div class="col-2 img-inicio-home">&nbsp;</div> 
+                <div class="texto-cuadrante">
+                  Datos fiscales y Constancia
+                </div>
+              </div>
+              <div class="d-flex" style="width: 100%; margin-top: 29px;">
+                <div class="col-2 img-inicio-home">&nbsp;</div>
+                <div class="texto-cuadrante">
+                  Notificaciones
+                </div> 
+              </div>
+              <div class="d-flex" style="width: 100%; margin-top: 29px;">
+                <div class="col-2 img-inicio-home">&nbsp;</div>
+                <div class="texto-cuadrante">
+                  Centro de ayuda
+                </div>
+              </div>
+              <div class="d-flex" style="width: 100%; margin-top: 29px;">
+                <div class="col-2 img-inicio-home">&nbsp;</div>
+                <div class="texto-cuadrante">
+                  Cerrar sesión
+                </div>
+              </div>
+            </div>
+            <div class="col final-texto m0p0">
+              <div class="respuesta-cuadrante weight600" style="">
+                <ng-container >
+                  <div class="image-workspace-back" style="transform: rotate(180deg); width: 30px; height: 20px; float: right; cursor: pointer;" (click)="regresar()"></div>
+                </ng-container>
+              </div>
+              <div class="respuesta-cuadrante weight600" style="margin-top: 29px;">
+                <ng-container >
+                  <div class="image-workspace-back" style="transform: rotate(180deg); width: 30px; height: 20px; float: right; cursor: pointer;" (click)="regresar()"></div>
+                </ng-container>
+              </div>
+              <div class="respuesta-cuadrante weight600" style="margin-top: 29px;">
+                <ng-container >
+                  <div class="image-workspace-back" style="transform: rotate(180deg); width: 30px; height: 20px; float: right; cursor: pointer;" (click)="regresar()"></div>
+                </ng-container>
+              </div>
+              <!-- <div class="respuesta-cuadrante weight600" style="margin-top: 29px;">
+                <ng-container >
+                  >
+                </ng-container>
+              </div> -->
+            </div>
+          </div>
+
+
+
+
+
+
+
+
+        </div>
+        
+    </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</div>
+</div>

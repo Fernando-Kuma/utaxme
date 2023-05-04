@@ -12,6 +12,8 @@ import { ClientesFrecuentesComponent } from 'src/app/components/home/espacio-tra
 import { CrearProdServComponent } from 'src/app/components/home/espacio-trabajo/crear-prod-serv/crear-prod-serv.component';
 import { EspacioTrabajoComponent } from 'src/app/components/home/espacio-trabajo/espacio-trabajo.component';
 import { FullSizeComponent } from 'src/app/graphics/full-size/full-size.component';
+import { PerfilComponent } from 'src/app/components/home/home-mobile/perfil/perfil.component';
+import { SaludFiscalComponent } from 'src/app/components/home/home-mobile/salud-fiscal/salud-fiscal.component';
 
 
 export const appRoutes: Routes = [
@@ -77,6 +79,13 @@ export const appRoutes: Routes = [
     path: NAV.crearCfdi,
     pathMatch: 'full',
     component: GenerarCfdiComponent,
+  },{
+    path: NAV.perfil,
+    pathMatch: 'full',
+    component: PerfilComponent,
+  },{
+    path: NAV.saludFiscal,
+    pathMatch: 'full',
+    component: SaludFiscalComponent,
   },
-
 ];

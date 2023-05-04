@@ -1,22 +1,24 @@
 <div class="container">
-  <div class="row">
-    <div class="col-4">
-      <div class="row" style="margin-right: -55px;">
-        <div class="col-12 titulo-cuadrante">
+  <div class="col-12 titulo-cuadrante">
           Gastos del periodo
         </div>
 
-        <div class="row">
+  <div class="row vista-mobile">
+    <div class="col-4 datos-mobile">
+      <div class="row datos-mobile" style="margin-right: -55px;">
+        
+
+        <div class="row m0p0" >
           <div class="col-7 inicio-texto">
             <div class="texto-cuadrante" style="margin-top: 45px;">Subtotal de ingresos</div>
             <div class="texto-cuadrante" style="margin-top: 29px;">IVA</div>
           </div>
           <div class="col-5 final-texto m0p0">
-            <div class="texto-cuadrante weight600" style="margin-top: 45px;">$
+            <div class="respuesta-cuadrante weight600" style="margin-top: 45px;">$
               <ng-container *ngIf="gastosPeriodo?.subtotal == 0">{{ gastosPeriodo?.subtotal }}</ng-container>
               <ng-container *ngIf="gastosPeriodo?.subtotal > 0">{{ gastosPeriodo?.subtotal | thousandsPipe }}</ng-container>
             </div>
-            <div class="texto-cuadrante weight600" style="margin-top: 29px;">$
+            <div class="respuesta-cuadrante weight600" style="margin-top: 29px;">$
               <ng-container *ngIf="gastosPeriodo?.iva == 0">{{ gastosPeriodo?.iva }}</ng-container>
               <ng-container *ngIf="gastosPeriodo?.iva > 0">{{ gastosPeriodo?.iva | thousandsPipe }}</ng-container>
             </div>
@@ -26,12 +28,12 @@
         <div class="col-12" style="margin-top: 22px !important;">
           <mat-divider></mat-divider>
         </div>
-        <div class="row">
+        <div class="row m0p0">
           <div class="col-7 inicio-texto">
             <div class="texto-total" style="margin-top: 29px;">Total de Gastos</div>
           </div>
           <div class="col-5 final-texto m0p0">
-            <div class="texto-cuadrante weight600" style="margin-top: 29px;">$
+            <div class="respuesta-cuadrante weight600" style="margin-top: 29px;">$
               <ng-container *ngIf="gastosPeriodo?.total == 0">{{ gastosPeriodo?.total }}</ng-container>
               <ng-container *ngIf="gastosPeriodo?.total > 0">{{ gastosPeriodo?.total | thousandsPipe }}</ng-container>
             </div>
@@ -51,9 +53,13 @@
     <div class="col-1 d-flex justify-content-end">
       <mat-divider vertical style="height: 100%;"></mat-divider>
     </div>
-    <div class="col-7">
+
+    <div class="col-12 divider-mobile" style="margin-top: 18px !important;">
+      <mat-divider></mat-divider>
+    </div> 
+    <div class="col-7 datos-mobile">
       <div class="row">
-        <div class="col-12 titulo-cuadrante">
+        <div class="col-12 titulo-cuadrante titulo-mobile">
           Facturas recibidas
         </div>
         <div class="col-12 d-flex justify-content-start" style="margin-top: 29px;">

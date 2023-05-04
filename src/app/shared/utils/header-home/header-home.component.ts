@@ -36,6 +36,14 @@ export class HeaderHomeComponent implements OnInit {
           localStorage.setItem('menu', '2');
           this.router.navigateByUrl(NAV.espacioTrabajo);
         break;
+      case 3:
+          localStorage.setItem('menu', '3');
+          this.router.navigateByUrl(NAV.saludFiscal);
+        break;
+      case 4:
+          localStorage.setItem('menu', '4');
+          this.router.navigateByUrl(NAV.perfil);
+        break;
       default:
         break;
     }

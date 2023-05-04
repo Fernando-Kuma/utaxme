@@ -1,1 +1,78 @@
-<p>salud-fiscal works!</p>
+<div class="col-xs-12 col-sm-6 col-md-8">
+  <div class="page-wrapper" style="margin: 0; padding: 0;">
+  <div class="sticky-header">
+    <app-header-home></app-header-home>
+  </div>
+  <div class="content-wrapper disable-scrollbars page-background" style="overflow: scroll;">
+    <div class="content-home">
+      <div class="home-container-accesos" style="margin-top: 30px;">
+        <div class="row w100m0p0">
+          <div class="col-12">
+            <div class="row head-mobile-title">
+              <div class="col-1" style="width: 45px;">
+                <div class="img-inicio-home">&nbsp;</div>
+              </div>
+              <div class="col-11 m0p0">
+                <span style="font-weight: 400; font-size: 18px; color: #0B112A;">| CONTABILIDAD</span> 
+                <br>
+                <span style="font-weight: 600; font-size: 11px; color: #838383; margin-left: 10px;">Última actualización: 27 feb 05:49 pm</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class=" disable-scrollbars style-desk" style="">
+          <div class="columna-cuadrante1">
+            <div class="container">
+              <div class="row cuadrante1 otro-style" >
+                
+
+            
+                  <mat-divider></mat-divider>
+
+                <div class="col-4 calendario-dashboard ">
+
+                  <mat-form-field appearance="outline"  class="input-mobile">
+                    <mat-label>Periodo fiscal</mat-label>
+                    <input matInput [matDatepicker]="dp" [formControl]="date" [max]="maxDate" class="font-blue">
+                    <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                    <mat-datepicker #dp
+                                    startView="multi-year"
+                                    (yearSelected)="chosenYearHandler($event)"
+                                    (monthSelected)="chosenMonthHandler($event, dp)"
+                                    panelClass="example-month-picker">
+                    </mat-datepicker>
+                  </mat-form-field>
+
+                </div>
+              </div>
+             
+            </div>
+
+            
+         
+           
+          </div>
+
+          <div class="columna-cuadrante2">
+           
+
+            
+
+            <div class="row">
+              <div class="col cuadrante-fiscales">
+                <ng-container >
+                  <app-cuadrante-fiscales [consultaRequest]="requestDashboard"></app-cuadrante-fiscales>
+                </ng-container>
+                <!-- <div *ngIf="spinnerLoadingIngresos" style="min-height: 1000px;" class="d-flex justify-content-center align-items-center">
+                  <mat-spinner [diameter]="30"></mat-spinner>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

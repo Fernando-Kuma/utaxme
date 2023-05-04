@@ -15,4 +15,6 @@ export const NAV = {
   espacioTrabajo: 'espacio-trabajo',
   crearCfdi: 'crear-cfdi',
   fullSize: 'full-size',
+  perfil: 'perfil',
+  saludFiscal: 'salud-fiscal'
 };

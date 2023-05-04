@@ -13,6 +13,8 @@ import { CrearProdServComponent } from 'src/app/components/home/espacio-trabajo/
 import { EspacioTrabajoComponent } from 'src/app/components/home/espacio-trabajo/espacio-trabajo.component';
 import { FullSizeComponent } from 'src/app/graphics/full-size/full-size.component';
 import { AuthGuardHelper } from '../helper/authGuard.helper';
+import { PerfilComponent } from 'src/app/components/home/home-mobile/perfil/perfil.component';
+import { SaludFiscalComponent } from 'src/app/components/home/home-mobile/salud-fiscal/salud-fiscal.component';
 
 
 export const appRoutes: Routes = [
@@ -86,6 +88,15 @@ export const appRoutes: Routes = [
     pathMatch: 'full',
     component: GenerarCfdiComponent,
     canActivate: [AuthGuardHelper],
+  },{
+    path: NAV.perfil,
+    pathMatch: 'full',
+    component: PerfilComponent,
+    canActivate: [AuthGuardHelper],
+  },{
+    path: NAV.saludFiscal,
+    pathMatch: 'full',
+    component: SaludFiscalComponent,
+    canActivate: [AuthGuardHelper],
   },
-
 ];

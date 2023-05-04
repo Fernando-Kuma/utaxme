@@ -14,9 +14,37 @@
   border-radius: 25px;
 }
 
+.divider-mobile{
+  display: none;
+}
+
+.titulo-mobile{
+  display: block;
+}
+
 @media(max-width: 425px){
   .boton-factura{
     display: none;
   }
 
+  .vista-mobile{
+    flex-direction: column-reverse;
+  }
+  
+  .datos-mobile {
+    width: 100%;
+  }
+
+  .divider-mobile{
+    display: block;
+  }
+
+  .titulo-mobile{
+    display: none;
+  }
+
+  .titulo-cuadrante {
+    text-align-last: center;
+  }
+  
 }

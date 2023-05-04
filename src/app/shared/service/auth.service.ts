@@ -61,6 +61,36 @@ export class AuthService {
     }
     return null;
   }
+
+  enviarCodigoPass(email: string,rfc: string) {
+    return this.http
+      .post<any>(`${API.validarCorreo}?email=${email}&rfc=${rfc}`, {})
+      .pipe(
+        catchError((e) => {
+          return throwError(e);
+        })
+      );
+  }
+
+  validarCodigoPass(email: string,rfc: string,token: string) {
+    return this.http
+      .post<any>(`${API.validarCodigo}?email=${email}&rfc=${rfc}&token=${token}`, {})
+      .pipe(
+        catchError((e) => {
+          return throwError(e);
+        })
+      );
+  }
+
+  cambiarContraseña(rfc: string,contraseña: string) {
+    return this.http
+      .post<any>(`${API.cambiarContraseña}?rfc=${rfc}&password=${contraseña}`, {})
+      .pipe(
+        catchError((e) => {
+          return throwError(e);
+        })
+      );
+  }
   
 
 }

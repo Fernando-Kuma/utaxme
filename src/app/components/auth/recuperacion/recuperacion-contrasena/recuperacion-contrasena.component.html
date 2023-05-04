@@ -40,6 +40,24 @@
                             </mat-form-field>
                           </div>
                         </div>
+                        <div class="row d-flex justify-content-center">
+                          <div class="col-sm-12" style="margin-top: 10px;">
+                            <mat-form-field appearance="outline"  color="primary">
+                              <mat-icon matPrefix class="ico-login"></mat-icon>
+                              <mat-label>RFC</mat-label>
+                              <input matInput formControlName="rfc" maxlength="100" minlength="3"
+                               style="font-size: 15px!important;"/>
+                              <mat-error
+                                *ngIf="
+                                  !form.controls['rfc'].valid &&
+                                  form.controls['rfc'].touched
+                                "
+                              >
+                              {{ getError('rfc') }}
+                              </mat-error>
+                            </mat-form-field>
+                          </div>
+                        </div>
                 
                         <div class="row mt-4 d-flex justify-content-center mb-3">
                           <div class="col-md-7 d-flex align-items-end justify-content-end">

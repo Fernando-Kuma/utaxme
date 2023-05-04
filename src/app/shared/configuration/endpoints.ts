@@ -39,6 +39,9 @@ export const API = {
   asignarNotificacion: environment.apiDashboard + '/Notificaciones/asignar',
   notificacionesCliente: environment.apiDashboard + 'Notificaciones/por-cliente',
 
+  validarCorreo: environment.apiDashboard + 'EnviarTokenCambioContraseniaForm.htm',
+  validarCodigo: environment.apiDashboard + 'ValidaTokenCambiaContraseniaForm.htm',
+  cambiarContraseña: environment.apiDashboard + 'ActualizarContraseniaForm.htm',
   
 
 

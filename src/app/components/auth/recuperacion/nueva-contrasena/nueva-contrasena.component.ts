@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatInput } from '@angular/material/input';
 import { Router } from '@angular/router';
 import { NAV } from 'src/app/shared/configuration/navegacion';
+import { AuthService } from 'src/app/shared/service/auth.service';
 import { ConfirmDialogComponent } from 'src/app/shared/utils/confirm-dialog/confirm-dialog.component';
 import { ConfirmDialogService } from 'src/app/shared/utils/confirm-dialog/confirm-dialog.service';
 
@@ -19,15 +20,18 @@ export class NuevaContrasenaComponent implements OnInit {
   title: string = 'ACTUALIZAR CONTRASEÑA';
   form: FormGroup;
   imgLoad: boolean = false;
+  rfc: string;
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private dialog: MatDialog,
+    private authService: AuthService,
     private dialogService: ConfirmDialogService,
   ) { }
 
   ngOnInit(): void {
+    this.rfc = localStorage.getItem('new-password-rfc');
     this.createForm();
   }
 
@@ -99,16 +103,26 @@ export class NuevaContrasenaComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       data => {
         setTimeout(() => {
-          this.router.navigateByUrl(NAV.login); 
-          /* this.router.navigateByUrl(localStorage.getItem('back-return'));
-          localStorage.removeItem('back-return') */
+          this.router.navigateByUrl(NAV.login);
         }, 500);
       }
     );
   }
 
-  send(){
-    this.openConfirmDialog();
+  send(): void {
+    this.authService.cambiarContraseña(this.rfc,this.form.get('password').value).subscribe({
+      next: (response) => {
+        if (response.codigo === "200") {
+          this.openConfirmDialog();
+        } else {
+          console.error(response.codigo);
+        }
+      },
+      error: (_) => {
+        console.error("No se pudo actualizar la contraseña");
+      }
+    });
+    
   }
 
 }

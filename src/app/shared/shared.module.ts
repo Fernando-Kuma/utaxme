@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SafePipe } from './pipe/safe.pipe';
 import { HomeModule } from '../components/home/home.module';
 import { MaskPipe } from './pipe/mask.pipe';
 import { PincodeComponent } from './utils/pincode/pincode.component';
@@ -20,10 +19,8 @@ import { ServiceErrorDialogModule } from './utils/service-error-dialog/service-e
 
 @NgModule({
   declarations: [
-    SafePipe, 
     MaskPipe,
-    
-],
+  ],
   imports: [
     CommonModule,
     HomeModule,
@@ -35,7 +32,6 @@ import { ServiceErrorDialogModule } from './utils/service-error-dialog/service-e
     ServiceErrorDialogModule
   ],
   exports: [
-    SafePipe,
     MaskPipe,
     PincodeComponent,
     TimerComponent,

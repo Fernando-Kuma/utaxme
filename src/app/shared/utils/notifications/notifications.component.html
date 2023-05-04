@@ -6,7 +6,7 @@
             </div> -->
             
             <ng-container *ngIf="leidas">
-                <div class="row notification-item" *ngFor="let item of notifications; let i = index;" (click)="goToInbox(item.idNotificacion)"
+                <div class="row notification-item" *ngFor="let item of notifications; let i = index;" (click)="goToInbox(item)"
                     style="width: 400px; margin: 0; padding: 15px 10px; border-radius: 8px; background-color: #E6EDF6; display: flex; margin-top: 10px; cursor: pointer; min-height: 110px">
                     <div class="row" style="margin: 0; padding: 0;">
                         <div class="col-10">
@@ -28,7 +28,7 @@
             </ng-container>
             
             <ng-container *ngIf="!leidas">
-                <div class="row notification-item" *ngFor="let item of notifications; let i = index;" (click)="goToInbox(item.idNotificacion)"
+                <div class="row notification-item" *ngFor="let item of notifications; let i = index;" (click)="goToInbox(item)"
                     style="width: 400px; margin: 0; padding: 15px 10px; min-height: 80px; border-radius: 8px; background-color: #F4F4F4; display: flex; margin-top: 10px; cursor: pointer;">
                     <div class="row" style="margin: 0; padding: 0;">
                         <div class="col-10">

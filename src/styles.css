@@ -490,6 +490,13 @@ body {
   background-position: center;
 }
 
+.image-notification-empty {
+  background-image: url("src\assets\img\notification-empty.svg");
+  background-size: 80px 79px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .image-invert-color {
   filter: invert(100%);
 }

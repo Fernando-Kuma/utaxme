@@ -1,4 +1,4 @@
-import { HttpClient} from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
@@ -15,6 +15,28 @@ export class NotificacionesService {
   obtenerNotificacion(request: any): Observable<any> {
     return this.http
       .get<any>(`${API.notificacionesCliente}?rfc=${request}`)
+      .pipe(
+        catchError((e) => {
+          return throwError(e);
+        })
+      );
+  }
+
+  marcarLeidoNotificacion(request: any): Observable<any> {
+
+    let parametros = new HttpParams();
+    parametros = parametros.append('idNotificacion',request.idNotificacion);
+    parametros = parametros.append('rfc',request.rfc);
+
+    const opciones = {
+      headers: new HttpHeaders({
+        'content-type': 'application/x-www-form-urlencoded'
+      }),
+      params: parametros
+    };
+
+    return this.http
+      .post<any>(`${API.notificationLeida}`, request, opciones)
       .pipe(
         catchError((e) => {
           return throwError(e);
@@ -51,19 +73,7 @@ export class NotificacionesService {
       );
   }
 
-  marcarLeidoNotificacion(request: any): Observable<any> {
-    let body = {
-      idNotificacion : 2,
-      rfc: 'UISJ810814P84'
-    }
-    return this.http
-      .post<any>(`${API.notificationLeida}`, body)
-      .pipe(
-        catchError((e) => {
-          return throwError(e);
-        })
-      );
-  }
+  
 
   enviarNotificacionMasiva(request: any): Observable<any> {
     let body = {

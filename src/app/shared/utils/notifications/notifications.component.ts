@@ -62,32 +62,29 @@ export class NotificationsComponent implements OnInit {
     }); */
   }
 
-  public goToInbox(idNotificacion?: number){
-    localStorage.setItem('menu', '3');
-    localStorage.setItem('id-notificacion',String(idNotificacion));
+  public goToInbox(notificacion: any){
+    this.actualizarNotificacion(notificacion)
+    localStorage.setItem('menu', '5');
+    localStorage.setItem('id-notificacion',String(notificacion.idNotificacion));
+    this.router.navigateByUrl(NAV.bandejaEntrada);
     this.close.emit(true);
 
-    this.router.navigateByUrl(NAV.activation);
-    if(localStorage.getItem('navigation') == 'inbox'){
+    if(this.router.url === '/bandeja-entrada'){
       window.location.reload();
     }
   }
 
-   fillnotifications(){
-    let dateNotification: any;
-    let diff: any;
-    let diferenciaDias
-    let tituloDia = 'HOY'
+  fillnotifications(){
     this.sinResultados = false;
     this.notifications = [];
     this.notificationService.obtenerNotificacion(this.auth.usuario.cliente.rfc).subscribe({
       next: (result) => {
         if(result.notificaciones.length > 0){
-          if(this.leidas){
+          if(!this.leidas){
             this.estatus = "leidas";
-            this.notifications = result.notificaciones.filter(ele => ele.leida = true);
+            this.notifications = result.notsificaciones.filter(ele => ele.leida == true);
           }else{
-            this.notifications = result.notificaciones.filter(ele => ele.leida = false);
+            this.notifications = result.notificaciones.filter(ele => ele.leida == false);
             this.estatus = "noleidas";
           }
 
@@ -134,6 +131,20 @@ export class NotificationsComponent implements OnInit {
     });
   }
 
+  actualizarNotificacion(notificacion){
+    let request = {
+      idNotificacion : notificacion.idNotificacion,
+      rfc: this.auth.usuario.cliente.rfc
+    }
+    this.notificationService.marcarLeidoNotificacion(request).subscribe({
+      next: (result) => {
+        console.log('Notificacion actualizado')
+      },
+      error: () => {
+        console.log('error')
+      }
+    });
+  }
 
 }
 

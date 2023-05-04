@@ -1,1 +1,125 @@
-<p>bandeja-entrada works!</p>
+<div class="page-wrapper" style="margin: 0; padding: 0;">
+    <div class="sticky-header">
+      <app-header-home></app-header-home>
+    </div>
+    <div class="content-wrapper disable-scrollbars" style="background-color: #F4F4F4; overflow: scroll;">
+        <div class="content-home">
+          <div class="home-container-accesos" style="margin-top: 30px;">
+            <div class="row w100m0p0">
+              <div class="col-1" style="margin: 0; padding: 0;">
+                <div class="image-workspace-back" style="width: 30px; height: 20px; float: right; cursor: pointer;" (click)="regresar()"></div>
+              </div> 
+              <div class="col-11">
+                <div class="row w100m0p0">
+                  <div class="col-6">
+                    <div class="titulo-proceso">
+                      {{ tituloProceso }}
+                    </div>
+                    <div class="subtitulo-proceso">
+                        Es el punto central donde recibes las actualizaciones y notificaciones relevantes para tu trabajo
+                    </div>
+                  </div>
+                  <div class="col-2"></div>
+                  <div class="col-4">
+                    <form [formGroup]="form" style="margin: 0;" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                        <mat-form-field appearance="outline" style="font-size: 12px; height: 80px; width: 100%;">
+                            <mat-label>Buscar</mat-label>
+                            <input matInput formControlName="busqueda" style="font-size: 13px!important;"/>
+                            <mat-icon class="image-workspace-buscardor" matSuffix style="margin-top: 10px!important;" ></mat-icon>
+                        </mat-form-field>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+          <div class="home-container-accesos" style="margin-top: 30px;">
+            <div class="row w100m0p0">
+                <div class="col-1"></div>
+                <div class="col-10 px-4 p-4" style="background-color: #FFFFFF; min-height: 350px;">
+                    <div class="row" style="min-height: 70px;">
+                        <div class="col-5" style="margin: auto; border-bottom: 2px solid #D0D0CE;">
+                            <div class="row">
+                                <div class="col-1"></div>
+                                <div class="col-10">
+                                    <mat-tab-group [disableRipple]="true" [selectedIndex]="selected.value" (selectedIndexChange)="tabChange($event)">
+                                        <mat-tab label="No leídas">
+                                            <ng-template matTabContent>
+      
+                                            </ng-template>
+                                        </mat-tab>
+                                        <mat-tab label="Leídas">
+                                            <ng-template matTabContent >
+                                                
+                                            </ng-template>
+                                        </mat-tab>
+                                    </mat-tab-group>
+                                </div>
+                                <div class="col-1"></div>
+                            </div>                        
+                        </div>
+                        <div class="col-7" style="border-left: 2px solid #D0D0CE;">
+                            <div class="row" style="min-height: 60.5px; border-bottom: 2px solid #D0D0CE; padding-top: 10px;">
+                                <ng-container *ngIf="this.notificacionSeleccionado != null">
+                                    <div class="col-8" style="padding-top: 12px; font-weight: 600; padding-left: 17px;font-size: 18px;">
+                                        {{notificacionSeleccionado.titulo}}
+                                    </div>
+                                    <div class="col-4" style="padding-right: 15px;">
+                                        <div class="image-trash-can"
+                                        style="width: 40px; height: 40px; background-color: #FEEAD6;  border-radius: 8px; background-position: center!important; float: right; cursor: pointer;"></div>
+                                    </div>                            
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="min-height: 320px; max-height: 600px;">
+                        <div class="col-5 disable-scrollbars" style="max-height: 600px;  overflow: scroll;" *ngIf="this.notificaciones.length > 0">
+                            <div class="row" style="padding-right: 10px; margin-top: 10px; cursor: pointer;" *ngFor="let item of notificaciones; let i = index;">
+                                <div class="col"  (click)="selecionarNotificacion(item)"
+                                [ngClass]="item.idNotificacion == idNotificacionSeleccionado ? 'notificacion-selected':'notificacion-not-selected'">
+                                    <div class="row" style="padding-top: 10px; padding-left: 10px;">
+                                        <div class="col-10" style="font-size: 13px; font-weight: 600;">
+                                            {{item.titulo}}
+                                        </div>
+                                    </div>
+                                    <div class="row" style="padding-top: 10px; padding-left: 10px;">
+                                        <div class="col-12" style="font-size: 13px; line-height: 20px;" [innerHTML]="item.mensaje | safe: 'html'">
+                                            
+                                        </div>                                    
+                                    </div>
+                                </div>                                                        
+                            </div>                        
+                        </div>
+                        <div class="col-5 disable-scrollbars" style="max-height: 600px;" *ngIf="this.notificaciones.length == 0">
+                            <div class="row" style="margin: 0; padding: 0; min-height: 440px; border-radius: 8px;" *ngIf="mostrarData">
+                                <div class="col-12" style="margin: 0; padding: 0; height: 80px; width: 100%; margin-top: 100px; display: flex; justify-content: center;">
+                                    <div class="image-notification-empty" style="width: 80px; height: 80px;"></div>
+                                </div>
+                                <div class="col-12" style="margin: 0; padding: 0; margin-top: 0px; font-weight: 600; font-size: 18px; color: #7B8AA0; line-height: 20px; text-align: center;">
+                                    ¡Excelente estás al día con <br> el trabajo!                            </div>
+                                <div class="col-12" style="margin: 0; padding: 0;  margin-top: -30px; font-weight: 500; font-size: 14px; line-height: 20px; text-align: center; color: #7B8AA0;">
+                                    Vuelve a consultar más tarde para ver las actualizaciones del trabajo en el que eres colabroador.
+                                </div>
+                                
+                            </div>
+      
+                            <div class="row" style="margin: 0; padding: 0; min-height: 440px; border-radius: 8px; display: flex; align-items: center;" *ngIf="!mostrarData">
+                                <app-filter-error (clickReturn)="returnFilter()"></app-filter-error>
+                            </div>
+                        </div>
+                        <div class="col-7" style="border-left: 2px solid #D0D0CE; margin-top: -10px!important;">
+                            <div class="row" style="margin-top: 10px;" *ngIf="this.notificacionSeleccionado != null">
+                                <div [innerHTML]="notificacionSeleccionado.mensaje | safe: 'html'"
+                                style="text-align: left; padding-left: 20px; padding-right: 20px; font-size: 13px; color: #0B112A; font-weight: 400; margin-top: 10px;">                        
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-1"></div>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>

@@ -15,6 +15,7 @@ import { FullSizeComponent } from 'src/app/graphics/full-size/full-size.componen
 import { AuthGuardHelper } from '../helper/authGuard.helper';
 import { PerfilComponent } from 'src/app/components/home/home-mobile/perfil/perfil.component';
 import { SaludFiscalComponent } from 'src/app/components/home/home-mobile/salud-fiscal/salud-fiscal.component';
+import { BandejaEntradaComponent } from 'src/app/components/home/bandeja-entrada/bandeja-entrada.component';
 
 
 export const appRoutes: Routes = [
@@ -97,6 +98,11 @@ export const appRoutes: Routes = [
     path: NAV.saludFiscal,
     pathMatch: 'full',
     component: SaludFiscalComponent,
+    canActivate: [AuthGuardHelper],
+  },{
+    path: NAV.bandejaEntrada,
+    pathMatch: 'full',
+    component: BandejaEntradaComponent,
     canActivate: [AuthGuardHelper],
   },
 ];

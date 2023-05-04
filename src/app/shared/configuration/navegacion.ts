@@ -16,5 +16,6 @@ export const NAV = {
   crearCfdi: 'crear-cfdi',
   fullSize: 'full-size',
   perfil: 'perfil',
-  saludFiscal: 'salud-fiscal'
+  saludFiscal: 'salud-fiscal',
+  bandejaEntrada: 'bandeja-entrada'
 };

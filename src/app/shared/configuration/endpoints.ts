@@ -32,11 +32,11 @@ export const API = {
   reporteFacturas: environment.apiDashboard + 'DownloadReporteValidacionFacturasForm.htm',
   busquedaCfdi: environment.apiDashboard + 'CfdiGeneradosFilter.htm',
 
-  nuevoNotificacion: environment.apiDashboard + '/Notificaciones',
-  nuevoNotificacionMasivai: environment.apiDashboard + '/Notificaciones/masiva',
-  notificationLeida: environment.apiDashboard + '/Notificaciones/marcar-leida',
-  actualizarNotificacion: environment.apiDashboard + '/Notificaciones/actualizar',
-  asignarNotificacion: environment.apiDashboard + '/Notificaciones/asignar',
+  nuevoNotificacion: environment.apiDashboard + 'Notificaciones',
+  nuevoNotificacionMasivai: environment.apiDashboard + 'Notificaciones/masiva',
+  notificationLeida: environment.apiDashboard + 'Notificaciones/marcar-leida',
+  actualizarNotificacion: environment.apiDashboard + 'Notificaciones/actualizar',
+  asignarNotificacion: environment.apiDashboard + 'Notificaciones/asignar',
   notificacionesCliente: environment.apiDashboard + 'Notificaciones/por-cliente',
 
   validarCorreo: environment.apiDashboard + 'EnviarTokenCambioContraseniaForm.htm',

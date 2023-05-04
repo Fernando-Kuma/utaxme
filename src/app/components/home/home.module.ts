@@ -42,6 +42,8 @@ import { SaludFiscalComponent } from './home-mobile/salud-fiscal/salud-fiscal.co
 import { NotificacionesComponent } from './home-mobile/notificaciones/notificaciones.component';
 import { DatosFiscalesComponent } from './home-mobile/datos-fiscales/datos-fiscales.component';
 import { BandejaEntradaComponent } from './bandeja-entrada/bandeja-entrada.component';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { SafePipe } from 'src/app/shared/pipe/safe.pipe';
 
 
 
@@ -69,6 +71,7 @@ import { BandejaEntradaComponent } from './bandeja-entrada/bandeja-entrada.compo
     NotificacionesComponent,
     DatosFiscalesComponent,
     BandejaEntradaComponent,
+    SafePipe
   ],
   imports: [
     CommonModule,
@@ -94,13 +97,14 @@ import { BandejaEntradaComponent } from './bandeja-entrada/bandeja-entrada.compo
     ConfirmDialogModule,
     PagerModule,
     FilterErrorModule,
-    MatTableModule,
+    MatTableModule
   ],
   exports: [
     MatDatepickerModule,
     MatFormFieldModule,
     MatNativeDateModule, 
-    MatInputModule
+    MatInputModule,
+    SafePipe
   ]
 })
 export class HomeModule { }

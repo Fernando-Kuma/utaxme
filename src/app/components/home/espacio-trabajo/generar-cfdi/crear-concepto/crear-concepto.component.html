@@ -3,7 +3,7 @@
       <div class="container" style="width: 100%; margin: 0; padding: 0; overflow: hidden;">
           <div class="row" style="width: 100%; margin: 0; padding: 0;">
               <div class="col-10"  style="padding: 0; display: flex; align-items: center;">
-                <span class="dialog-titulo">Crear nuevo concepto</span> 
+                <span class="dialog-titulo">{{titulo}}</span> 
               </div>
               <div class="col-2">
                   <button mat-icon-button style="float: right; position: relative;" (click)="closeDialog()">
@@ -17,7 +17,7 @@
   <mat-dialog-actions>
     <form [formGroup]="form" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
       <div class="container" style="margin: 0; padding: 20px 30px;">
-        <div class="cotainer">
+        <div class="cotainer" *ngIf="opcionCrear">
           <div class="row w100m0p0" style="margin-top: 3% !important;">
             <div class="col-6 dialog-texto">
               Puedes realizar búsquedas de conceptos y seleccionarlas dentro del buscador para completar los datos del formulario.
@@ -38,8 +38,8 @@
             </div>
           </div> 
         </div>
-        <mat-divider></mat-divider>
-        <div class="cotainer disable-scrollbars" style="overflow: scroll; max-height: 500px;">  
+        <mat-divider  *ngIf="opcionCrear"></mat-divider>
+        <div class="cotainer disable-scrollbars" style="overflow: scroll;" [ngStyle]="{'max-height': opcionCrear ? '500px' : '600px'}">  
           <div class="row w100m0p0" style="margin-top: 3% !important;">
             <div class="col-12 dialog-texto-titulo">
               Detalles del concepto
@@ -135,7 +135,7 @@
                   <div class="col-6 textoM" style="margin-top: 3%;">
                     <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                       <mat-label>IVA</mat-label>
-                      <input matInput formControlName="iva" id="iva" name="iva"/>
+                      <input matInput formControlName="iva" id="iva" name="iva" (keypress)="caracteresValidosDecimales($event)"/>
                       <span matSuffix style="display: table-caption; height: 22px;">%</span>
                     </mat-form-field>
                   </div>
@@ -143,8 +143,8 @@
                     <ng-container >
                       <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                         <mat-label>IEPS</mat-label>
-                        <span matPrefix style="display: table-caption; height: 22px;">$&nbsp;</span>
                         <input matInput formControlName="ieps" id="ieps" name="ieps"/>
+                        <span matSuffix style="display: table-caption; height: 22px;">%</span>
                       </mat-form-field>
                     </ng-container>
                   </div>
@@ -167,8 +167,8 @@
                   <div class="col-6 textoM" style="margin-top: 3%;">
                     <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                       <mat-label>iva</mat-label>
-                      <span matPrefix style="display: table-caption; height: 22px;">$&nbsp;</span>
                       <input matInput formControlName="ivaR" id="ivaR" name="ivaR"/>
+                      <span matSuffix style="display: table-caption; height: 22px;">%</span>
                     </mat-form-field>
                   </div>
                 </ng-container>

@@ -1,0 +1,71 @@
+<div class="disable-scrollbars" style="width: 100%; background-color: #FFFFFF; min-height: 300px; padding: 0; overflow: auto;">
+    <ng-container *ngIf="notifications.length > 0" >
+        <ng-container>
+            <!-- <div class="row" style="margin: 0; padding: 0; font-size: 12px; letter-spacing: 2px; color: #7B8AA0; font-weight: 600; margin-top: 10px;">
+                <span> {{itemNotificacion.titulo}}</span>
+            </div> -->
+            
+            <ng-container *ngIf="leidas">
+                <div class="row notification-item" *ngFor="let item of notifications; let i = index;" (click)="goToInbox(item.idNotificacion)"
+                    style="width: 400px; margin: 0; padding: 15px 10px; border-radius: 8px; background-color: #E6EDF6; display: flex; margin-top: 10px; cursor: pointer; min-height: 110px">
+                    <div class="row" style="margin: 0; padding: 0;">
+                        <div class="col-10">
+                            <div class="row">
+                                <div class="col-12" style="margin: 0; padding: 0;font-weight: bold; font-size: 16px; color: #0B112A;">
+                                    {{item.titulo | slice:0:28}}{{item.titulo.length > 28 ? '...' : ''}}
+                                </div>
+                                <div class="col-12" style="margin-top: 15px; padding: 0;font-weight: 400px; font-size: 14px; color: #0B112A;">
+                                    {{ item.mensaje | slice:0:31 }}{{ item.mensaje.length > 31 ? '...' : '' }}
+                                </div>
+                            </div>
+                        </div>            
+                        <div class="col-2" style="margin: 0; padding: 0; display: block;" (click)="$event.stopPropagation()">
+                            <div class="image-delete-notification" style="height: 20px; width: 50px; float: right;"
+                                (click)="deleteNotification(i, $event,item)"></div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            
+            <ng-container *ngIf="!leidas">
+                <div class="row notification-item" *ngFor="let item of notifications; let i = index;" (click)="goToInbox(item.idNotificacion)"
+                    style="width: 400px; margin: 0; padding: 15px 10px; min-height: 80px; border-radius: 8px; background-color: #F4F4F4; display: flex; margin-top: 10px; cursor: pointer;">
+                    <div class="row" style="margin: 0; padding: 0;">
+                        <div class="col-10">
+                            <div class="row">
+                                <div class="col-12" style="margin: 0; padding: 0; font-weight: 600px; font-size: 16px; color: #0B112A;">
+                                    {{item.titulo | slice:0:28}}{{item.titulo.length > 28 ? '...' : ''}}
+                                </div>
+                                <div class="col-12" style="margin-top: 15px; padding: 0;font-weight: 400px; font-size: 14px; color: #0B112A;">
+                                    {{ item.mensaje | slice:0:31 }}{{ item.mensaje.length > 31 ? '...' : '' }}
+                                </div>
+                            </div>
+                        </div>            
+                        <div class="col-2" style="margin: 0; padding: 0; display: block;" (click)="$event.stopPropagation()">
+                            <div class="image-delete-notification" style="height: 20px; width: 50px; float: right;"
+                                (click)="deleteNotification(i, $event,item)"></div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </ng-container>
+        
+        </ng-container>
+        <ng-container *ngIf="sinResultados">
+            <div class="row notification-item"
+                style="width: 400px; margin: 0; padding: 15px 10px; min-height: 80px; border-radius: 8px; background-color: #FFFFFF; display: flex; margin-top: 10px;">
+                <div class="col-12"
+                    style="margin: 0; padding: 0; height: 80px; margin-top: 10px; display: flex; justify-content: center;">
+                    <div class="image-notification-empty" style="width: 80px; height: 80px;"></div>
+                </div>
+                <div class="col-12"
+                    style="margin: 0; padding: 0; margin-top: 10px; font-weight: 600; font-size: 18px; color: #7B8AA0; line-height: 20px; text-align: center;">
+                    ¡Excelente! estás al día con <br> el trabajo!
+                </div>
+                <div class="col-12"
+                    style="margin: 0; padding: 0;  margin-top: 10px; font-weight: 500; font-size: 14px; line-height: 20px; text-align: center; color: #7B8AA0;">
+                    Vuelve a consultar más tarde para ver las actualizaciones del trabajo en el que eres colaborador.
+                </div>
+            </div>
+        </ng-container>
+</div>

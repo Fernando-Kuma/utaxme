@@ -45,13 +45,13 @@
                   </mat-form-field>
                   <button type="button" class="btn-utaxme" style="max-width: 260px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: space-evenly; margin: 0 20px;" (click)="crearCliente()">
                     <mat-icon class="image-workspace-agregar image-invert-color"></mat-icon>
-                    Crear nuevo concepto
+                    Crear nuevo cliente
                   </button>
                 </div>
               </form> 
             </div>
 
-            <div class="row" style="margin-top: 3% !important;" *ngIf="tablaLista?.length> 0">
+            <div class="row" style="margin-top: 3% !important; min-height: 250px;" *ngIf="tablaLista?.length> 0">
               <div class="col-12 tableFixHead disable-scrollbars" style=" overflow-x: auto;">
                 <table aria-describedby="tabla" class="table table-responsive table-striped">
                   <thead style="margin-bottom: 10px;">
@@ -84,22 +84,26 @@
                       </tr>
                   </thead>
                   <tbody class="table-scroll" style="border: solid 1px #ffffff; ">
-                    <tr>
+                    <tr *ngFor="let item of tablaLista">
                       <td style="text-align: center;">
+                        {{item.razonSocial}}
                       </td>
                       <td style="text-align: center;">
+                        {{item.rfcReceptor}}
                       </td>
                       <td style="text-align: center;">
+                        {{item.regimenFiscal}}
                       </td>
                       <td style="text-align: center;">
+                        {{item.correoElectronico}}
                       </td>
                       <td>
                         <div class="d-flex justify-content-center">
                           <div class="card-accion">
-                            <mat-icon class="img-accion-editar" (click)="editarCliente('item')"></mat-icon>
+                            <mat-icon class="img-accion-editar" (click)="editarCliente(item)"></mat-icon>
                           </div>
                           <div class="card-accion">
-                            <mat-icon class="img-accion-borrar" (click)="borrarCliente()"></mat-icon>
+                            <mat-icon class="img-accion-borrar" (click)="borrarCliente(item)"></mat-icon>
                           </div>
                         </div>
                       </td>
@@ -120,7 +124,7 @@
               </div>
             </div>
 
-            <div class="row" style="margin-top: 3% !important; display: flex; padding: 0 40px; min-height: 400px; align-items: center;" *ngIf="tablaLista?.length == 0">
+            <div class="row" style="margin-top: 3% !important; display: flex; padding: 0 40px; min-height: 300px; align-items: center;" *ngIf="tablaLista?.length == 0">
               <app-filter-error (clickReturn)="returnFilter()"></app-filter-error>
             </div>
 

@@ -12,6 +12,7 @@ import { ClientesFrecuentesComponent } from 'src/app/components/home/espacio-tra
 import { CrearProdServComponent } from 'src/app/components/home/espacio-trabajo/crear-prod-serv/crear-prod-serv.component';
 import { EspacioTrabajoComponent } from 'src/app/components/home/espacio-trabajo/espacio-trabajo.component';
 import { FullSizeComponent } from 'src/app/graphics/full-size/full-size.component';
+import { AuthGuardHelper } from '../helper/authGuard.helper';
 
 
 export const appRoutes: Routes = [
@@ -44,39 +45,47 @@ export const appRoutes: Routes = [
     path: NAV.dashboard,
     pathMatch: 'prefix',
     component: DashboardComponent,
+    canActivate: [AuthGuardHelper],
   },
   {
     path: NAV.cancelarCfdi,
     pathMatch: 'full',
     component: CancelarCfdiComponent,
+    canActivate: [AuthGuardHelper],
   },
   {
     path: NAV.generarCfdi,
     pathMatch: 'full',
     component: GenerarCfdiComponent,
+    canActivate: [AuthGuardHelper],
   },
   {
     path: NAV.clientesFrecuentes,
     pathMatch: 'full',
     component: ClientesFrecuentesComponent,
+    canActivate: [AuthGuardHelper],
   },
   {
     path: NAV.crearProdServ,
     pathMatch: 'full',
     component: CrearProdServComponent,
+    canActivate: [AuthGuardHelper],
   },
   {
     path: NAV.espacioTrabajo,
     pathMatch: 'full',
     component: EspacioTrabajoComponent,
+    canActivate: [AuthGuardHelper],
   },{
     path: NAV.fullSize,
     pathMatch: 'full',
     component: FullSizeComponent,
+    canActivate: [AuthGuardHelper],
   },{
     path: NAV.crearCfdi,
     pathMatch: 'full',
     component: GenerarCfdiComponent,
+    canActivate: [AuthGuardHelper],
   },
 
 ];

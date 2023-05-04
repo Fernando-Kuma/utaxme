@@ -9,26 +9,39 @@ export const API = {
   datosFiscales: environment.apiDashboard + 'DatosFiscalesForm.htm',
   cumplimiento: environment.apiDashboard + 'CumplimientoFiscalForm.htm',
   ingresosEgresos: environment.apiDashboard + 'ReporteIngresosEgresosForm.htm',
-
   deduccionesFiscales: environment.apiDashboard + 'DeduccionesFiscalesForm.htm',
   saludFiscal: environment.apiDashboard + 'BaseGravableForm.htm',
-
-
   catalogoSat: environment.apiDashboard + 'CatalogosSatForm.htm',
+  catalogoProductos: environment.apiDashboard + 'CatalogoProductoSatForm.htm',
+
+
   listaFrecuentes: environment.apiDashboard + 'clientes/frecuentes/list',
+  guardarCliente: environment.apiDashboard + 'clientes/frecuentes/save',
+  borrarCliente: environment.apiDashboard + 'clientes/frecuentes/delete',
+
   clientesCount: environment.apiDashboard + 'cfdis/clientes/count',
   regimenFiscal: environment.apiDashboard + 'cfdi/regimenfiscal',
-  listaConceptos: environment.apiDashboard + 'conceptos/clientes/consultar',
-  catalogoProductos: environment.apiDashboard + 'CatalogoProductoSatForm.htm',
-  agregarConcepto: environment.apiDashboard + 'conceptos/clientes/agregar',
-  actualizarConcepto: environment.apiDashboard + 'conceptos/clientes/actualizar',
   emitirCFDI: environment.apiDashboard + 'cfdi/emitir/v4',
+
+  agregarConcepto: environment.apiDashboard + 'conceptos/clientes/agregar',
+  eliminarConcepto: environment.apiDashboard + 'conceptos/clientes/eliminar',
+  actualizarConcepto: environment.apiDashboard + 'conceptos/clientes/actualizar',
+  listaConceptos: environment.apiDashboard + 'conceptos/clientes/consultar',
 
   cfdiGeneradosFilter: environment.apiDashboard+ 'CfdiGeneradosFilter.htm',
   reporteFacturas: environment.apiDashboard + 'DownloadReporteValidacionFacturasForm.htm',
   busquedaCfdi: environment.apiDashboard + 'CfdiGeneradosFilter.htm',
 
+  nuevoNotificacion: environment.apiDashboard + '/Notificaciones',
+  nuevoNotificacionMasivai: environment.apiDashboard + '/Notificaciones/masiva',
+  notificationLeida: environment.apiDashboard + '/Notificaciones/marcar-leida',
+  actualizarNotificacion: environment.apiDashboard + '/Notificaciones/actualizar',
+  asignarNotificacion: environment.apiDashboard + '/Notificaciones/asignar',
+  notificacionesCliente: environment.apiDashboard + 'Notificaciones/por-cliente',
+
   
+
+
   /* getWord: environment.api + 'wordwise/entries?limit=1&headword=',
   login: environment.api + 'utaxon/admin/find',
   dataBank: environment.api + 'utaxon/admin/dataBank',

@@ -1,0 +1,29 @@
+.disable-scrollbars::-webkit-scrollbar,
+.mat-drawer-inner-container::-webkit-scrollbar {
+    width: 8px !important;
+    height: 8px !important;
+}
+
+.disable-scrollbars::-webkit-scrollbar-thumb,
+.mat-drawer-inner-container::-webkit-scrollbar-thumb {
+    background: #eee !important;
+    border-radius: 4px !important;
+    border: none !important;
+}
+
+.enlace-notificacion{
+    width: 100%; margin: 0; padding: 0;
+    color: #285CED!important; 
+    line-height: 25px!important; 
+    text-decoration: underline!important;
+}
+
+.notification-item:not(:hover) .image-close-notification {
+    display: none;
+}
+
+.image-delete-notification {
+    background-image: url("src\assets\icon\delete-notification.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+  }

@@ -35,6 +35,26 @@ export class EspacioTrabajoService {
       );
   }
 
+  crearCliente(request: any): Observable<any> {
+    return this.http
+      .post<any>(`${API.guardarCliente}`, request)
+      .pipe(
+        catchError((e) => {
+          return throwError(e);
+        })
+      );
+  }
+
+  borrarCliente(request: any): Observable<any> {
+    return this.http
+      .post<any>(`${API.borrarCliente}`, request)
+      .pipe(
+        catchError((e) => {
+          return throwError(e);
+        })
+      );
+  }
+
   obtenerRegimenFiscal(request: any): Observable<any> {
     return this.http
       .post<any>(`${API.regimenFiscal}?rfc=${request.rfc}`, request)
@@ -92,6 +112,17 @@ export class EspacioTrabajoService {
   actualizarConcepto(request: any): Observable<any> {
     return this.http
       .post<any>(`${API.actualizarConcepto}`, request)
+      .pipe(
+        catchError((e) => {
+          return throwError(e);
+        })
+      );
+  }
+
+  eliminarConcepto(idConcepto: any): Observable<any> {
+    let request = {}
+    return this.http
+      .post<any>(`${API.eliminarConcepto}?idConcepto=${idConcepto}`, request)
       .pipe(
         catchError((e) => {
           return throwError(e);

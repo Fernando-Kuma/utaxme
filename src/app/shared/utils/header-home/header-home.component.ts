@@ -2,6 +2,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NAV } from '../../configuration/navegacion';
 import { AuthService } from '../../service/auth.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-header-home',
@@ -13,6 +14,8 @@ export class HeaderHomeComponent implements OnInit {
   @Input() color: string = '#122D4F';
   @Input() logo: string = 'image-toolbar';
 
+  selected = new FormControl(1);
+
   user: any = {
     name: 'José Martínez',
     rol: 'act. empresarial' 
@@ -21,7 +24,6 @@ export class HeaderHomeComponent implements OnInit {
   constructor(public router: Router, private auth: AuthService) { }
 
   ngOnInit(): void {
-    this.auth
     this.user.name = this.auth.usuario.nombre + '' + this.auth.usuario.apellidos
     this.user.rol = 'Act. empresarial'
   }
@@ -47,6 +49,14 @@ export class HeaderHomeComponent implements OnInit {
 
   abrirModuloAyuda(){
     //this.router.navigateByUrl(NAV.login);
+  }
+
+  selectTab(index: number){
+    this.selected.setValue(index);
+  }
+
+  openMenu(){
+    this.selected.reset();
   }
 
   public get width() {

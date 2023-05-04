@@ -70,46 +70,40 @@
       </div>
     </div>
     <div class="col-2 display-align-center justify-content-evenly" [ngClass]="{'ocultar-contenido' : width < 850}">
-      <!--
-        <div class="img-header-notification" style="margin-top: 1px; margin-left: 20px; width: 40px; height: 40px; cursor: pointer;" #menuTriggerNotification="matMenuTrigger" [matMenuTriggerFor]="notificacion" (click)="openMenu()">
-          <div class="badged-notification" *ngIf="numNotificaciones != '0'">
-            <span style="margin-top: -2px;margin-left: 10px;" [ngStyle]="{'margin-left' : numNotificaciones?.length > 1 ? '3px' : '10px'}">
-          {{ numNotificaciones }}</span></div></div>
-        <mat-menu class="notification-menu" #notificacion="matMenu" xPosition="before">
-            <div class="notificacion-menu-contenido" style="margin: 0!important; padding: 0!important; font-size: 14px; font-weight: 600; min-width: 400px; min-height: 400px;" (click) = "$event.stopPropagation()">
-                <div class="row" style="width:100%; margin:0; padding: 20px; text-transform: uppercase; line-height: 18px; font-size: 18px;">
-                    <div class="col-6" style="padding-top: 0px;">
-                        NOTIFICACIONES
-                    </div>
-                    <div class="col-6">
-                        <button mat-flat-button style="float: right; position: relative; top: -10px; right: -12px; width: 10px!important;  min-width: unset!important;" (click)="menuTriggerNotification.closeMenu()">
-                            <mat-icon style="margin-left: -12px!important; margin-top: 0px;">
-                                close
-                            </mat-icon>
-                        </button>
-                    </div>
-                </div>
-                <div class="row" style="width:100%; margin:0; padding: 20px; padding-top: 10px; margin-top: -15px;">
-                    <mat-tab-group [disableRipple]="true" [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)" dynamicHeight>
-                        <mat-tab label="No leídas">
-                            <ng-template matTabContent>
-                                <app-notifications [typeUser]="0" [leidas]="true" (close)="menuTriggerNotification.closeMenu();"></app-notifications>
-                            </ng-template>
-                        </mat-tab>
-                        <mat-tab label="Leídas">
-                            <ng-template matTabContent >
-                                <app-notifications [typeUser]="0" [leidas]="false" (close)="menuTriggerNotification.closeMenu();"></app-notifications>
-                            </ng-template>
-                        </mat-tab>
-                    </mat-tab-group>
-                </div>
-            </div>
-        </mat-menu>
-
-      -->
-      <div class="home-header-icon" (click)="abrirModuloAyuda()">
+      <div class="home-header-icon" #menuTriggerNotification="matMenuTrigger" [matMenuTriggerFor]="notificacion">
         <mat-icon class="image-home-notificacion image-size-20"></mat-icon>
       </div>
+      <mat-menu class="notification-menu" #notificacion="matMenu" xPosition="before">
+          <div class="notificacion-menu-contenido" style="margin: 0!important; padding: 0!important; font-size: 14px; font-weight: 600; min-width: 400px; min-height: 400px;" (click) = "$event.stopPropagation()">
+              <div class="row" style="width:100%; margin:0; padding: 20px; text-transform: uppercase; line-height: 18px; font-size: 18px;">
+                  <div class="col-6" style="padding-top: 0px;">
+                      NOTIFICACIONES
+                  </div>
+                  <div class="col-6">
+                      <button mat-flat-button style="float: right; position: relative; top: -10px; right: -12px; width: 10px!important;  min-width: unset!important;" (click)="menuTriggerNotification.closeMenu()">
+                          <mat-icon style="margin-left: -12px!important; margin-top: 0px;">
+                              close
+                          </mat-icon>
+                      </button>
+                  </div>
+              </div>
+              <div class="row" style="width:100%; margin:0; padding: 20px; padding-top: 10px; margin-top: -15px;">
+                  <mat-tab-group [disableRipple]="true" [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)" dynamicHeight>
+                      <mat-tab label="No leídas">
+                          <ng-template matTabContent>
+                              <app-notifications [leidas]="true" (close)="menuTriggerNotification.closeMenu();"></app-notifications>
+                          </ng-template>
+                      </mat-tab>
+                      <mat-tab label="Leídas">
+                          <ng-template matTabContent >
+                              <app-notifications [leidas]="false" (close)="menuTriggerNotification.closeMenu();"></app-notifications>
+                          </ng-template>
+                      </mat-tab>
+                  </mat-tab-group>
+              </div>
+          </div>
+      </mat-menu>
+
       <div class="home-header-icon" (click)="abrirModuloAyuda()">
         <mat-icon class="image-home-ayuda image-size-20"></mat-icon>
       </div>

@@ -44,7 +44,12 @@
             <div class="col-6 textoM" style="margin-top: 2%;">
               <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                 <mat-label>régimen fiscal receptor</mat-label>
-                <input matInput formControlName="regimenFiscal" id="regimenFiscal" name="regimenFiscal"/>
+                <mat-select formControlName="regimenFiscal" id="regimenFiscal" name="regimenFiscal">
+                  <mat-option *ngFor="let item of catalogos?.catalogoSatRegimenFiscales" [value]="item.clave">
+                    {{item.descripcion}}
+                  </mat-option>
+                </mat-select>
+
                 <mat-error *ngIf="formulario.regimenFiscal.invalid && formulario.regimenFiscal.touched && formulario.regimenFiscal.errors">
                   <ng-container *ngIf="formulario.regimenFiscal.errors.required">
                     {{ getErrorRequerido() }}

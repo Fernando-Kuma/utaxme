@@ -18,7 +18,8 @@ export class CrearConceptoComponent {
   filteredOptions: Observable<any[]>;
   listaCatalogoProductos: any[];
   catalogoImpuestos: any[];
-  
+  titulo: string = 'Crear nuevo concepto'
+
   constructor(
     public dialogRef: MatDialogRef<CrearConceptoComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -32,6 +33,7 @@ export class CrearConceptoComponent {
     this.crearForm();
     this.obtenerCatalogos();
     if(this.data.metodo === 'editar'){
+      this.titulo = 'Editar concepto'
       this.opcionCrear = false
       this.modificarForm()
     }
@@ -156,7 +158,7 @@ export class CrearConceptoComponent {
       .subscribe((resp) => {
         console.log(resp)
         //agregar alerta de listo
-        this.closeDialog()
+        this.dialogRef.close(true);
       },(_error) => {
         console.log("::Entro al error Datos fiscales: ", _error);
       });
@@ -166,7 +168,7 @@ export class CrearConceptoComponent {
       .subscribe((resp) => {
         console.log(resp)
         //agregar alerta de listo
-        this.closeDialog()
+        this.dialogRef.close(true);
       },(_error) => {
         console.log("::Entro al error Datos fiscales: ", _error);
       });
@@ -186,6 +188,16 @@ export class CrearConceptoComponent {
 
   getErrorRequerido(){
     return 'Este campo es requerido';
+  }
+
+  public caracteresValidosDecimales(event) {
+    let k = event.target.value;
+    let reg = /^[0-9]{1,}?(\.[0-9]{0,4})?$/g;
+    console.log(k)
+    console.log(reg.test(k))
+    if(!reg.test(k)){
+      return false
+    }
   }
 
 }

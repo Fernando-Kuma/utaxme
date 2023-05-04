@@ -16,6 +16,7 @@ import {map, startWith} from 'rxjs/operators';
 import { ConfirmDialogComponent } from 'src/app/shared/utils/confirm-dialog/confirm-dialog.component';
 import { ConfirmDialogService } from 'src/app/shared/utils/confirm-dialog/confirm-dialog.service';
 import { ModificarValorComponent } from './modificar-valor/modificar-valor.component';
+import { NuevoClienteComponent } from '../clientes-frecuentes/nuevo-cliente/nuevo-cliente.component';
 
 
 
@@ -216,9 +217,9 @@ export class GenerarCfdiComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       data => {
         if(columna === 'cantidad'){
-          item.cantidad = data
+          item.cantidad = Number(data)
         }else{
-          item.descuento = data
+          item.descuento = Number(data)
         }
         item.importe = Number((item.cantidad * item.valorUnitario).toFixed(2))
         item.importe = Number((item.importe - item.descuento).toFixed(2))
@@ -229,23 +230,38 @@ export class GenerarCfdiComponent implements OnInit {
  
   calcularTotal(){
     this.costoFactura = new  TotalFactura;
+    console.log('Paso 1: ', this.costoFactura)
     this.tablaListaConceptos.forEach(element => {
+      console.log(element)
       if(element.cantidad){
         this.costoFactura.ivaT = Number(((element.valorUnitario * (element.tasa/100)) + this.costoFactura.ivaT).toFixed(2))
-        this.costoFactura.ieps = (element.valorUnitario * (element.ieps/100)) + this.costoFactura.ieps
-        this.costoFactura.isrR = (element.valorUnitario * (element.isrRet/100)) + this.costoFactura.isrR
-        this.costoFactura.ivaR = (element.valorUnitario * (element.ivaRet/100)) + this.costoFactura.ivaR
-        this.costoFactura.localTraslado = (element.valorUnitario * (element.tasaLocal/100)) + this.costoFactura.localTraslado
+        this.costoFactura.isrR = Number(((element.valorUnitario * (element.isrRet/100)) + this.costoFactura.isrR).toFixed(2))
+        this.costoFactura.ivaR = Number(((element.valorUnitario * (element.ivaRet/100)) + this.costoFactura.ivaR).toFixed(2))
+        this.costoFactura.localTraslado = Number(((element.valorUnitario * (element.tasaLocal/100)) + this.costoFactura.localTraslado).toFixed(2))
         this.costoFactura.descuento = Number(element.descuento)+ this.costoFactura.descuento
         this.costoFactura.subtotalSinDescuento = element.descuento ?
         this.costoFactura.subtotalSinDescuento + (element.valorUnitario * element.cantidad) : this.costoFactura.subtotalSinDescuento
         this.costoFactura.subtotal = Number((element.importe + this.costoFactura.subtotal).toFixed(4))
         this.costoFactura.total = 
         Number((this.costoFactura.subtotal + this.costoFactura.ivaT + this.costoFactura.ieps - this.costoFactura.isrR - this.costoFactura.ivaR).toFixed(2))
-
       }
     });
-    console.log(this.costoFactura)
+    console.log('Paso 3: ',this.costoFactura)
+  }
+
+  crearCliente(){
+    const dialogRef = this.dialog.open(
+      NuevoClienteComponent, 
+      this.dialogService.crearCliente()
+    );
+    dialogRef.afterClosed().subscribe(
+      data => {
+        if(data){
+          const dialogRefConfirm = this.dialog.open( ConfirmDialogComponent, this.confirmDialogService.nuevoCliente() );
+          dialogRefConfirm.afterClosed().subscribe( data => { this.listaClientes() });
+        }
+      }
+    );
   }
 
   confirmarGenerarCFDI() {

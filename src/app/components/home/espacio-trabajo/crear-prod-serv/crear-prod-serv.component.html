@@ -51,7 +51,7 @@
               </form> 
             </div>
 
-            <div class="row" style="margin-top: 3% !important;" *ngIf="tablaLista?.length> 0">
+            <div class="row" style="margin-top: 3% !important; min-height: 250px;" *ngIf="tablaLista?.length> 0">
               <div class="col-12 tableFixHead disable-scrollbars" style=" overflow-x: auto;">
                 <table aria-describedby="tabla" class="table table-responsive table-striped">
                   <thead style="margin-bottom: 10px;">
@@ -111,7 +111,7 @@
                             <mat-icon class="img-accion-editar" (click)="editarConcepto(item)"></mat-icon>
                           </div>
                           <div class="card-accion">
-                            <mat-icon class="img-accion-borrar"></mat-icon>
+                            <mat-icon class="img-accion-borrar" (click)="borrarConcepto(item)"></mat-icon>
                           </div>
                         </div>
                       </td>

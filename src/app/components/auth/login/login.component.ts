@@ -80,9 +80,10 @@ export class LoginComponent implements OnInit {
       this._user = new User();
       this._user.email = this.form.controls['email'].value;
       this._user.password = this.form.controls['password'].value;
-       this.spinner.show();
+      this.spinner.show();
       this.authService.login(this._user).subscribe({
         next: (response) => {
+          this.spinner.hide();
           if(response != null ){
             this.authService.getIp()
             response.nombre = response.nombre.toLowerCase()
@@ -94,6 +95,7 @@ export class LoginComponent implements OnInit {
           }
         },
         error: (_) => {
+          this.spinner.hide();
           if(_.error.response === "No coinciden las credenciales"){
             this.selectMessageError(_.error.response);
           }else{

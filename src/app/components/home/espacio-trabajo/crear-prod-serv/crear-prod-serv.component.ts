@@ -11,6 +11,7 @@ import { EspacioTrabajoService } from 'src/app/shared/service/espacio-trabajo.se
 import { ConfirmDialogService } from 'src/app/shared/utils/confirm-dialog/confirm-dialog.service';
 import { CrearConceptoComponent } from '../generar-cfdi/crear-concepto/crear-concepto.component';
 import { Paginator } from 'array-paginator';
+import { ConfirmDialogComponent } from 'src/app/shared/utils/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-crear-prod-serv',
@@ -29,7 +30,7 @@ export class CrearProdServComponent implements OnInit {
   constructor(
     public dialog: MatDialog,  
     private dialogService: DialogService,
-    private confirmDialogService: ConfirmDialogService,
+    private dialogServiceConfirm: ConfirmDialogService,
     public router: Router, 
     private auth: AuthService, 
     private formBuilder: FormBuilder, 
@@ -107,7 +108,10 @@ export class CrearProdServComponent implements OnInit {
     );
     dialogRef.afterClosed().subscribe(
       data => {
-        this.listaConceptos()
+        if(data){
+          const dialogRefConfirm = this.dialog.open( ConfirmDialogComponent, this.dialogServiceConfirm.nuevoConcepto() );
+          dialogRefConfirm.afterClosed().subscribe( data => { this.listaConceptos() });
+        }
       }
     );
   }
@@ -120,7 +124,30 @@ export class CrearProdServComponent implements OnInit {
     );
     dialogRef.afterClosed().subscribe(
       data => {
-        this.listaConceptos()
+        if(data){
+          const dialogRefConfirm = this.dialog.open( ConfirmDialogComponent, this.dialogServiceConfirm.editarConcepto() );
+          dialogRefConfirm.afterClosed().subscribe( data => { this.listaConceptos() });
+        }
+      }
+    );
+  }
+
+  borrarConcepto(concepto: any){
+    const dialogRef = this.dialog.open(
+      ConfirmDialogComponent, 
+      this.dialogServiceConfirm.eliminarConcepto()
+    );
+    dialogRef.afterClosed().subscribe(
+      data => {
+        if(data){
+          this.espacioTrabajoService.eliminarConcepto(concepto.idConceptoCliente)
+            .subscribe((resp) => {
+              console.log(resp)
+              this.listaConceptos()
+            },(_error) => {
+              console.log("::Entro al error Datos fiscales: ", _error);
+            });
+        }
       }
     );
   }

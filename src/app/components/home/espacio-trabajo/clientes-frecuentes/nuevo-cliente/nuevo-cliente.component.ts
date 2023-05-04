@@ -15,7 +15,7 @@ export class NuevoClienteComponent {
 
   public form: FormGroup;
   opcionCrear: boolean = true;
-  catalogoImpuestos: any[];
+  catalogos: any;
   
   constructor(
     public dialogRef: MatDialogRef<NuevoClienteComponent>,
@@ -38,7 +38,7 @@ export class NuevoClienteComponent {
   obtenerCatalogos(){
     this.espacioTrabajoService.obtenerCatalogoForm()
       .subscribe((response) => {
-      this.catalogoImpuestos = response.catalogoImpuestosLocales;
+        this.catalogos = response;
     },(_error) => {
       console.log("Error en catalogo: ", _error);
     }
@@ -46,13 +46,11 @@ export class NuevoClienteComponent {
   }
 
   modificarForm(){
-    /* this.form.get('nombreProducto').setValue(this.data.concepto.productoServicio);
-    this.form.get('clavaProducto').setValue(this.data.concepto.identificadorSat);
-    this.form.get('unidad').setValue(this.data.concepto.unidad);
-    this.form.get('clavaUnidad').setValue(this.data.concepto.claveUnidad);
-    this.form.get('valorUnitario').setValue(this.data.concepto.valorUnitario);
-    this.form.get('descripcion').setValue(this.data.concepto.descripcion); */
-
+    this.form.get('rfc').setValue(this.data.cliente.rfcCliente);
+    this.form.get('razonSocial').setValue(this.data.cliente.razonSocial);
+    this.form.get('regimenFiscal').setValue(this.data.cliente.regimenFiscal);
+    this.form.get('codigoPostal').setValue(this.data.cliente.codigoPostal);
+    this.form.get('correo').setValue(this.data.cliente.correoElectronico);
   }
 
   crearForm(){
@@ -71,17 +69,23 @@ export class NuevoClienteComponent {
 
   guardarCliente(){
     let request = {
-        rfc: 0,
-        razonSocial: 0,
-        regimenFiscal: 0,
-        codigoPostal: 0,
-        correo: 0
+      rfcCliente: this.auth.usuario.cliente.rfc,
+      rfcReceptor: this.form.controls['rfc'].value,
+      razonSocial: this.form.controls['razonSocial'].value,
+      correoElectronico: this.form.controls['correo'].value,
+      regimenFiscal: this.form.controls['regimenFiscal'].value,
+      codigoPostal: this.form.controls['codigoPostal'].value,
     }
     if(this.opcionCrear){
-      this.closeDialog()
+      this.espacioTrabajoService.crearCliente(request).subscribe((response) => {
+        console.log(response)
+      },(_error) => {
+        console.log("Error en crear cliente: ", _error);
+      });
+      this.dialogRef.close(true);
       
     }else{
-      this.closeDialog()
+      this.dialogRef.close(true);
     }
     
   }
@@ -93,5 +97,6 @@ export class NuevoClienteComponent {
   getErrorRequerido(){
     return 'Este campo es requerido';
   }
+
 
 }

@@ -10,6 +10,7 @@ import { DialogService } from 'src/app/shared/service/dialog.service';
 import { EspacioTrabajoService } from 'src/app/shared/service/espacio-trabajo.service';
 import { ConfirmDialogService } from 'src/app/shared/utils/confirm-dialog/confirm-dialog.service';
 import { NuevoClienteComponent } from './nuevo-cliente/nuevo-cliente.component';
+import { ConfirmDialogComponent } from 'src/app/shared/utils/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-clientes-frecuentes',
@@ -20,15 +21,17 @@ export class ClientesFrecuentesComponent implements OnInit {
 
   tablaListaCliente: any[]; 
   tablaLista: any[]; 
+  catalogos: any;
   tituloProceso: string = 'ADMINISTRA CLIENTES FRECUENTES'
   nombreCliente: string;
+  requestDashboard: any;
   public form: FormGroup;
   public pager:any;
 
   constructor(
     public dialog: MatDialog,  
     private dialogService: DialogService,
-    private confirmDialogService: ConfirmDialogService,
+    private dialogServiceConfirm: ConfirmDialogService,
     public router: Router, 
     private auth: AuthService, 
     private formBuilder: FormBuilder, 
@@ -38,6 +41,10 @@ export class ClientesFrecuentesComponent implements OnInit {
 
   ngOnInit(): void {
     this.nombreCliente = this.auth.usuario.nombre;
+    this.requestDashboard = {
+      rfc: this.auth.usuario.cliente.rfc
+    }
+
     this.crearForm()
     this.listaClientes()
   }
@@ -75,9 +82,24 @@ export class ClientesFrecuentesComponent implements OnInit {
   }
 
   listaClientes(){
-    let request = {
-      rfc: this.auth.usuario.cliente.rfc
+    this.espacioTrabajoService.obtenerListaFrecuentes(this.requestDashboard)
+    .subscribe((response) => {
+      this.tablaListaCliente = response.clientes;
+      this.paginador(response.clientes);
+    },(_error) => {
+      console.log("::Entro al error Datos fiscales: ", _error);
     }
+    );
+  }
+
+  obtenerCatalogos(){
+    this.espacioTrabajoService.obtenerCatalogoForm()
+      .subscribe((response) => {
+      this.catalogos = response;
+    },(_error) => {
+      console.log("Error en catalogo: ", _error);
+    }
+    );
   }
 
   onKeyDownEvent(event: any){
@@ -96,7 +118,10 @@ export class ClientesFrecuentesComponent implements OnInit {
     );
     dialogRef.afterClosed().subscribe(
       data => {
-        this.listaClientes()
+        if(data){
+          const dialogRefConfirm = this.dialog.open( ConfirmDialogComponent, this.dialogServiceConfirm.nuevoCliente() );
+          dialogRefConfirm.afterClosed().subscribe( data => { this.listaClientes() });
+        }
       }
     );
   }
@@ -104,17 +129,38 @@ export class ClientesFrecuentesComponent implements OnInit {
   editarCliente(cliente: any){
     const dialogRef = this.dialog.open(
       NuevoClienteComponent, 
-      this.dialogService.editarConcepto(cliente)
+      this.dialogService.editarCliente(cliente)
     );
     dialogRef.afterClosed().subscribe(
       data => {
-        this.listaClientes()
+        const dialogRefConfirm = this.dialog.open( ConfirmDialogComponent, this.dialogServiceConfirm.editarCliente() );
+        dialogRefConfirm.afterClosed().subscribe( data => { this.listaClientes() });
       }
     );
   }
 
-  borrarCliente(){
-    
+  borrarCliente(cliente: any){
+    const dialogRef = this.dialog.open(
+      ConfirmDialogComponent, 
+      this.dialogServiceConfirm.eliminarCliente()
+    );
+    dialogRef.afterClosed().subscribe(
+      data => {
+        if(data){
+          let request  = {
+            idEmisionServicios : cliente.idEmisionServicios
+          }
+          this.espacioTrabajoService.borrarCliente(request).subscribe((resp) => {
+              console.log("Cliente frecuente eliminado correctamente: ", resp);
+              this.listaClientes()
+            },(_error) => {
+              console.log("::Entro al error Datos fiscales: ", _error);
+            });
+        }
+      }
+    );
   }
+
+
 
 }

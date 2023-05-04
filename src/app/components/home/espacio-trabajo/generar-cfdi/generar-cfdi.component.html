@@ -169,7 +169,7 @@
                             <mat-icon class="image-workspace-select" matSuffix></mat-icon>
                             <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
                               <mat-option *ngFor="let item of filteredOptions | async" [value]="item.rfcCliente" (click)="selecionarCliente(item)">
-                                {{item.rfcCliente}}
+                                {{item.rfcReceptor}}
                               </mat-option>
                             </mat-autocomplete>
                             <mat-error *ngIf="formulario.rfc.invalid && formulario.rfc.touched && formulario.rfc.errors">
@@ -250,7 +250,7 @@
                         <div class="col-2"></div>
                         <div class="col-5">
                           <div style="width: 100%; font-size: 16px; min-height: 80px;" [ngClass]="{'isDisabled ': formularioAvanzado.configuracionGeneral}" (click)="clienteFrecuente()">
-                            <span class="texto-hipervinculo" style="color: #0B112A !important; ">¿Es un cliente frecuente? </span><span class="texto-hipervinculo">Haz clic para guardar como cliente fecuente</span>
+                            <span class="texto-hipervinculo" style="color: #0B112A !important; ">¿Es un cliente frecuente? </span><span class="texto-hipervinculo" (click)="crearCliente()">Haz clic para guardar como cliente fecuente</span>
                           </div>
                         </div>
                       </div>
@@ -379,15 +379,15 @@
                                 
                               </div>
                               <div class="col-3" style="text-align: end;">
-                                <span *ngIf="costoFactura.subtotalSinDescuento">${{costoFactura.subtotalSinDescuento}}</span>
-                                <span *ngIf="costoFactura.descuento"><br>${{costoFactura.descuento}}</span>
-                                <span><br>${{costoFactura.subtotal}}</span>
-                                <span *ngIf="costoFactura.ivaT"><br>${{costoFactura.ivaT}}</span>
-                                <span *ngIf="costoFactura.ieps"><br>${{costoFactura.ieps}}</span>
-                                <span *ngIf="costoFactura.isrR"><br>${{costoFactura.isrR}}</span>
-                                <span *ngIf="costoFactura.ivaR"><br>${{costoFactura.ivaR}}</span>
-                                <span *ngIf="costoFactura.localTraslado"><br>${{costoFactura.localTraslado}}</span>
-                                <span style="font-weight: 600;"><br>${{costoFactura.total}}</span>
+                                <span *ngIf="costoFactura.subtotalSinDescuento">${{costoFactura.subtotalSinDescuento | thousandsPipe}}</span>
+                                <span *ngIf="costoFactura.descuento"><br>${{costoFactura.descuento | thousandsPipe}}</span>
+                                <span><br>${{costoFactura.subtotal | thousandsPipe}}</span>
+                                <span *ngIf="costoFactura.ivaT"><br>${{costoFactura.ivaT | thousandsPipe}}</span>
+                                <span *ngIf="costoFactura.ieps"><br>${{costoFactura.ieps | thousandsPipe}}</span>
+                                <span *ngIf="costoFactura.isrR"><br>${{costoFactura.isrR | thousandsPipe}}</span>
+                                <span *ngIf="costoFactura.ivaR"><br>${{costoFactura.ivaR | thousandsPipe}}</span>
+                                <span *ngIf="costoFactura.localTraslado"><br>${{costoFactura.localTraslado | thousandsPipe}}</span>
+                                <span style="font-weight: 600;"><br>${{costoFactura.total | thousandsPipe}}</span>
                               </div>
                             </div>
                           </div>

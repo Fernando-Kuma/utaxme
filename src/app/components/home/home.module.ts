@@ -41,6 +41,7 @@ import { PerfilComponent } from './home-mobile/perfil/perfil.component';
 import { SaludFiscalComponent } from './home-mobile/salud-fiscal/salud-fiscal.component';
 import { NotificacionesComponent } from './home-mobile/notificaciones/notificaciones.component';
 import { DatosFiscalesComponent } from './home-mobile/datos-fiscales/datos-fiscales.component';
+import { BandejaEntradaComponent } from './bandeja-entrada/bandeja-entrada.component';
 
 
 
@@ -67,6 +68,7 @@ import { DatosFiscalesComponent } from './home-mobile/datos-fiscales/datos-fisca
     SaludFiscalComponent,
     NotificacionesComponent,
     DatosFiscalesComponent,
+    BandejaEntradaComponent,
   ],
   imports: [
     CommonModule,

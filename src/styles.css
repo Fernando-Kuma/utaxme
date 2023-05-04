@@ -497,6 +497,34 @@ body {
   background-repeat: no-repeat;
 }
 
+.perfil-mobile-fiscales {
+  background-image: url("src\assets\icon\fiscales-perfil.svg");
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  background-position: left;
+}
+
+.perfil-mobile-notificacion {
+  background-image: url("src\assets\icon\notificacion-perfil.svg");
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  background-position: left;
+}
+
+.perfil-mobile-ayuda {
+  background-image: url("src\assets\icon\ayuda-perfil.svg");
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  background-position: left;
+}
+
+.perfil-mobile-salir {
+  background-image: url("src\assets\icon\salir-perfil.svg");
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  background-position: left;
+}
+
 .image-invert-color {
   filter: invert(100%);
 }
@@ -569,6 +597,7 @@ body {
 @media(max-width: 425px){
   .content-wrapper{
    background: #FFFFFF;
+   overflow-y: hidden;
   }
  
  }

@@ -140,6 +140,43 @@
 .label-btn{
   margin-top: 15px;
 }
+
+.label-facturacion{
+margin-left: 20px;
+height: 56px;
+width: 200px;
+background: white;
+border-radius: 8px 8px 0px 0px;
+display: flex;
+align-items: center;
+text-align: center;
+justify-content: center;
+font-weight: 600; 
+width: 240px; 
+font-size: 20px; 
+line-height: 28px; 
+color: #0B112A;
+}
+
+.vista-mobile{
+  display: block;
+}
+
+.espacio{
+  margin: 32px 120px;
+}
+
+.head-titulo-mob{
+  display: none;
+}
+
+.image-workspace-back {
+  background-image: url("src\assets\icon\back.svg");
+  background-size: 20px 20px;
+  background-position: right;
+  background-repeat: no-repeat;
+}
+
 @media(max-width: 425px){
  .graficos-content{
   display: none;
@@ -172,7 +209,6 @@
   margin-top: 26px;
   flex-direction: column;
   flex-wrap: nowrap;
-  padding-right: 0;
 }
 
 .btns-administra-cancela{
@@ -181,7 +217,6 @@
   margin-top: 80px;
   flex-direction: column;
   flex-wrap: nowrap;
-  padding-right: 0;
 }
 
 .btn-accion{
@@ -196,4 +231,29 @@
   margin-top: 15px;
   margin-left: 50px;
 }
+
+.vista-mobile{
+  display: none;
+}
+
+.head-titulo-mob{
+  display: block;
+}
+
+.espacio{
+  margin: 0px 0px;
+}
+
+.btns-mob{
+  display: flex;
+    justify-content: center;
+    padding: 0px 20px;
+}
+
+
+.label-facturacion{
+ 
+  display: none ;
+ 
+  }
 }

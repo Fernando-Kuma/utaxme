@@ -26,13 +26,6 @@
   justify-content: space-evenly;
 }
 
-@media(max-width: 1920px){
-  .cuadro-informacion{
-    min-width: 300px;
-    font-size: 9px; 
-  }
-}
-
 .boton-factura{
   display: flex;
   justify-content: center;
@@ -48,3 +41,45 @@
   border-radius: 25px;
   padding: 0 29px;
 }
+
+.view-salud-fiscal{
+  display: block;
+}
+
+.content-wrapper {
+  overflow: scroll;
+}
+@media(max-width: 1920px){
+  .cuadro-informacion{
+    min-width: 300px;
+    font-size: 9px; 
+  }
+
+}
+
+@media(max-width: 425px){
+   .view-salud-fiscal{
+    display: none;
+  }
+
+  .centrado-mobile{
+    text-align-last: center;
+  }
+  .direccion-mobile{
+    flex-direction: column;
+    margin-top: 20px;
+  }
+
+  .fecha-mobile{
+ margin-left: 5px;
+  }
+
+  .m-5-info{
+margin-left: 5px;
+  }
+
+  .content-wrapper {
+    overflow: hidden !important;
+  }
+}
+

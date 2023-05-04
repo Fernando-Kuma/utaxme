@@ -32,4 +32,8 @@ export class EspacioTrabajoComponent implements OnInit {
     this.router.navigateByUrl(NAV.clientesFrecuentes);
   }
 
+  regresar(){
+    this.router.navigateByUrl(NAV.perfil)
+  }
+
 }

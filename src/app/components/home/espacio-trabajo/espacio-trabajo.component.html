@@ -1,137 +1,110 @@
-<div class="page-wrapper page-background" style="margin: 0; padding: 0;">
-  <div class="sticky-header">
-    <app-header-home></app-header-home>
-  </div>
-  <div class="home-container head-mobile" style="margin-top: 30px;">    <div class="row w100m0p0">
-        <div class="col-1 disp-mobile"></div>
-        <div class="col-5">
-            <div class="row w100m0p0">
-                <div class="col-1 icon-header">
-                    <div class="image-administrator-workspace">&nbsp;</div>
+<div class="col-xs-12 col-sm-6 col-md-8">
+  <div class="page-wrapper" style="margin: 0; padding: 0;">
+    <div class="sticky-header">
+      <app-header-home></app-header-home>
+    </div>
+    <div class="content-wrapper disable-scrollbars page-background" style="overflow: scroll;">
+      <div class="content-home">
+        <div class="home-container-accesos" style="margin-top: 30px;">
+          <div class="row w100m0p0 vista-mobile">
+            <div class="col-12">
+              <div class="row head-mobile-title">
+                <div class="col-1" style="width: 45px;">
+                  <div class="image-administrator-workspace">&nbsp;</div>
                 </div>
-                <div class="col title-header">
-                    ESPACIO DE TRABAJO
+                <div class="col-11 m0p0">
+                  <span style="font-weight: 400; font-size: 18px; color: #0B112A;"> ESPACIO DE TRABAJO</span>
                 </div>
+              </div>
             </div>
-        </div>
-        <div class="col-5 saludo-header"><p>¡Buen día!</p></div>
-        <div class="col-1 disp-mobile"></div>
-    </div>
-</div>
-<div class="home-container" style="margin-top: 20px;">
-    <div class="row w100m0p0">
-      <div class="col-1 disp-mobile"></div>
-        <div class="col-10 espacio-opciones worskpace-tab">
-              <mat-tab-group [disableRipple]="true" >
-              <mat-tab label="Tu Espacio de Trabajo">
-                    <ng-template matTabContent >
-                        <div class="d-flex content-form" >
-                          <div class="row d-flex justify-content-between " style="width: 100%; margin: 0;">
-                            <div  class="col-4 cont-width d-flex justify-content-center align-items-center">
-                              <div class="graficos-content">
-                                <img src="../../../../assets/img/Graficos_Dashboard2 1.png" alt="">
-                              </div>
+          </div>
+          <div class="row w100m0p0 head-titulo-mob">
+            <div class="col-12">
+              <div class="row head-mobile-title">
+                <div class="row titulo-menu-cuadrante m0p0">
+                  <div class="col-1" style="margin: 0; padding: 0;">
+                    <div class="image-workspace-back" style="width: 30px; height: 20px; float: right; cursor: pointer;"
+                      (click)="regresar()"></div>
+                  </div>
+                  <span style="font-weight: 600; width: 350px; font-size: 18px; color: #0B112A;"> Tu Espacio de
+                    Trabajo</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class=" disable-scrollbars style-desk" style="">
+
+            <div class="espacio" style="">
+              <div class="label-facturacion vista-mobile">
+                <span style=""> Facturación</span>
+              </div>
+              <div class="d-flex content-form">
+                <div class="row d-flex justify-content-between " style="width: 100%; margin: 0;">
+                  <div class="col-4 cont-width d-flex justify-content-center align-items-center">
+                    <div class="graficos-content">
+                      <img src="../../../../assets/img/Graficos_Dashboard2 1.png" alt="">
+                    </div>
+                  </div>
+                  <div class="col d-flex justify-content-center align-items-center">
+                    <div class="row justify-content-center">
+                      <div class="row">
+                        <div class="col-12">
+                          <div class="respuesta-cuadrante">Módulo de facturación</div>
+                          <div class="texto-cuadrante" style="margin-top: 10px;">Crea y enviar facturas a tus clientes.
+                            Puedes dar de alta clientes frecuentes y crear facturas en solo segundos.</div>
+                        </div>
+                      </div>
+
+                      <div class="row btns-mob">
+                        <div class="row  btns-crea-productos" style="">
+                          <div class="col d-flex justify-content-center align-items-center btn-accion"
+                            (click)="nuevaFactura()">
+                            <div class="row background-icon">
+                              <div class="image-nueva-factura">&nbsp;</div>
                             </div>
-                            <div  class="col d-flex justify-content-center align-items-center">
-                              <div class="row justify-content-center">
-                                <div class="row">
-                                  <div class="col-12">
-                                    <div class="respuesta-cuadrante">Módulo de facturación</div>
-                                    <div class="texto-cuadrante" style="margin-top: 10px;">Crea y enviar facturas a tus clientes. Puedes dar de alta clientes frecuentes y crear facturas en solo segundos.</div>
-                                  </div>
-                                </div>
-
-
-
-
-
-                                
-<div class="row" style="padding-right: 0;">
-
-
-
-
-
-
-
-
-
-
-
-  <div class="row  btns-crea-productos" style="">
-    <div class="col d-flex justify-content-center align-items-center btn-accion" (click)="nuevaFactura()">
-      <div class="row background-icon">
-        <div class="image-nueva-factura">&nbsp;</div>
-      </div>
-      <div class="row label-btn" style="margin-top: 15px;">
-        <div class="respuesta-cuadrante">Crear <br> nueva factura</div>
-      </div>
-    </div>
-    <div class="col d-flex justify-content-center align-items-center btn-accion" (click)="crearProdServ()">
-      <div class="row background-icon">
-        <div class="image-crear-prod-serv">&nbsp;</div>
-      </div>
-      <div class="row label-btn" style="margin-top: 15px;">
-        <div class="respuesta-cuadrante">Administra <br> productos/servicios</div>
-      </div>
-    </div>
-  </div>
-  <div class="row btns-administra-cancela" style="">
-    <div class="col d-flex justify-content-center align-items-center btn-accion" (click)="clientesFrecuentes()">
-        <div class="row background-icon">
-          <div class="image-cliente-frecuente">&nbsp;</div>
-        </div>
-        <div class="row label-btn" style="margin-top: 30px;">
-          <div class="respuesta-cuadrante">Administra <br> Clientes frecuentes</div>
-      </div>
-      
-    </div>
-    <div class="col d-flex justify-content-center align-items-center btn-accion" (click)="cancelarFactura()">
-      <div class="row background-icon">
-        <div class="image-cancelar-factura" style="padding-right: 22px;">&nbsp;</div>
-      </div>
-      <div class="row label-btn" style="margin-top: 30px;">
-        <div class=" respuesta-cuadrante">Cancelar facturas</div>
-      </div>
-    </div>
-  </div>
-
-
-
-
-
-
-
-
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                
-                              </div>
+                            <div class="row label-btn" style="margin-top: 15px;">
+                              <div class="respuesta-cuadrante">Crear <br> nueva factura</div>
+                            </div>
+                          </div>
+                          <div class="col d-flex justify-content-center align-items-center btn-accion"
+                            (click)="crearProdServ()">
+                            <div class="row background-icon">
+                              <div class="image-crear-prod-serv">&nbsp;</div>
+                            </div>
+                            <div class="row label-btn" style="margin-top: 15px;">
+                              <div class="respuesta-cuadrante">Administra <br> productos/servicios</div>
                             </div>
                           </div>
                         </div>
-                    </ng-template>
-                </mat-tab>
-            </mat-tab-group>
+                        <div class="row btns-administra-cancela" style="">
+                          <div class="col d-flex justify-content-center align-items-center btn-accion"
+                            (click)="clientesFrecuentes()">
+                            <div class="row background-icon">
+                              <div class="image-cliente-frecuente">&nbsp;</div>
+                            </div>
+                            <div class="row label-btn" style="margin-top: 30px;">
+                              <div class="respuesta-cuadrante">Administra <br> Clientes frecuentes</div>
+                            </div>
+                          </div>
+                          <div class="col d-flex justify-content-center align-items-center btn-accion"
+                            (click)="cancelarFactura()">
+                            <div class="row background-icon">
+                              <div class="image-cancelar-factura" style="padding-right: 22px;">&nbsp;</div>
+                            </div>
+                            <div class="row label-btn" style="margin-top: 30px;">
+                              <div class=" respuesta-cuadrante">Cancelar facturas</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="col-1 disp-mobile"></div>
+      </div>
     </div>
-</div>
-
+  </div>
 </div>

@@ -30,4 +30,20 @@ export class PerfilComponent implements OnInit {
     this.router.navigateByUrl(NAV.dashboard)
   }
 
+  fiscales(){
+    this.router.navigateByUrl(NAV.datosFiscales)
+  }
+
+  notificaciones(){
+    this.router.navigateByUrl(NAV.bandejaEntrada)
+  }
+
+  ayuda(){
+    this.router.navigateByUrl(NAV.dashboard)
+  }
+
+  salir(){
+    this.auth.logout()
+  }
+
 }

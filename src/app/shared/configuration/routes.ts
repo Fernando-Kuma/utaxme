@@ -16,6 +16,7 @@ import { AuthGuardHelper } from '../helper/authGuard.helper';
 import { PerfilComponent } from 'src/app/components/home/home-mobile/perfil/perfil.component';
 import { SaludFiscalComponent } from 'src/app/components/home/home-mobile/salud-fiscal/salud-fiscal.component';
 import { BandejaEntradaComponent } from 'src/app/components/home/bandeja-entrada/bandeja-entrada.component';
+import { DatosFiscalesComponent } from 'src/app/components/home/home-mobile/datos-fiscales/datos-fiscales.component';
 
 
 export const appRoutes: Routes = [
@@ -103,6 +104,10 @@ export const appRoutes: Routes = [
     path: NAV.bandejaEntrada,
     pathMatch: 'full',
     component: BandejaEntradaComponent,
+  },{
+    path: NAV.datosFiscales,
+    pathMatch: 'full',
+    component: DatosFiscalesComponent,
     canActivate: [AuthGuardHelper],
   },
 ];

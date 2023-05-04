@@ -1,1 +1,72 @@
-<p>datos-fiscales works!</p>
+<div class="col-xs-12 col-sm-6 col-md-8">
+  <div class="page-wrapper" style="margin: 0; padding: 0;">
+  <div class="sticky-header">
+    <app-header-home></app-header-home>
+  </div>
+  <div class="content-wrapper disable-scrollbars page-background" >
+    <div class="content-home">
+      <div class="home-container-accesos" style="margin-top: 30px;">
+        <div class="row w100m0p0">
+          <div class="col-12">
+            <div class="row head-mobile-title">
+              <div class="row titulo-menu-cuadrante m0p0">
+                <div class="col-1" style="margin: 0; padding: 0;">
+                  <div class="image-workspace-back" style="width: 30px; height: 20px; float: right; cursor: pointer;" (click)="regresar()"></div>
+                </div>
+                <span style="font-weight: 600; width: 350px; font-size: 18px; color: #0B112A;"> Datos fiscales y Constancia</span> 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row w100" style="justify-content: center; padding: 0 20px;">
+      <div class="row" style=" display: flex; justify-content: center; align-items: center;">
+        <div class="" style="margin: 0; padding: 0; display: flex; justify-content: center; flex-direction: column; align-items: center;">
+          <div class="columna-cuadrante2">
+            <div class="row">
+              <div class="col-12 titulo-cuadrante view-mobile">
+                Datos Fiscales
+              </div>
+              <div class="col-12" style="margin-top: 45px;">
+                <div class="subtitulo-cuadrante">REGIMEN FISCAL</div>
+                <div class="respuesta-cuadrante">{{ response?.regimenFiscal }}</div>
+              </div>
+              <div class="col-12" style="margin-top: 29px;">
+                <div class="subtitulo-cuadrante">RAZÓN SOCIAL</div>
+                <div class="respuesta-cuadrante">{{ response?.razonSocial }}</div>
+              </div>
+              <div class="col-12" style="margin-top: 29px;">
+                <div class="subtitulo-cuadrante">RFC</div>
+                <div class="respuesta-cuadrante">{{ response?.rfc }}</div>
+              </div>
+              <div class="col-12" style="margin-top: 30px;">
+                <mat-divider></mat-divider>
+              </div>
+              <div class="col-12" style="margin-top: 29px;">
+                <div class="subtitulo-cuadrante">CORREO ELECTRÓNICO</div>
+                <div class="respuesta-cuadrante">{{ response?.emailPrincipal }}</div>
+              </div>
+              <div class="col-12" style="margin-top: 29px;">
+                <div class="subtitulo-cuadrante">DIRECCIÓN FISCAL</div>
+                <div class="respuesta-cuadrante">{{ response?.calle}} {{response?.numeroExterior}}, {{response?.colonia}} C.P. {{response?.cp}}, {{response?.municipio}}, {{response?.ciudad}}</div>
+              </div>
+              <div class="btn-cfdi-mobile" style="margin: 75px 0 0 0;">
+                <div class="" style="padding: 0;">
+                  <button mat-button class="btn-utaxme"
+                    style="width: 100%; font-size: 14px; font-weight: 500; height: 48px;display: flex; align-items: center; justify-content: center; border-radius: 15px !important;"
+                    (click)="verConstancia()"
+                    >
+                    <mat-icon class="image-dashboard-descargar-blanco image-size-22"></mat-icon>
+                    Descargar constancia
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    </div>
+  </div>
+</div>
+</div>

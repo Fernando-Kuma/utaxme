@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row view-salud-fiscal">
   <div class="col-12 titulo-cuadrante">
     Datos Fiscales
   </div>
@@ -33,11 +33,11 @@
     <mat-divider></mat-divider>
   </div>
 </div>
-<div class="row d-flex align-items-center">
-  <div class="col-6 titulo-cuadrante" style="margin-top: 30px;">
+<div class="row d-flex align-items-center direccion-mobile">
+  <div class="col-6 titulo-cuadrante view-salud-fiscal" style="margin-top: 30px;">
     Salud Fiscal
   </div>
-  <div class="col-6 titulo-cuadrante" style="margin-top: 30px;">
+  <div class="col-xl-6 col-sm-12 fecha-mobile" style="margin-top: 30px;">
     <mat-form-field appearance="outline" style="width: 100%; font-size: 14px; height: 70px;">
       <mat-label>Periodo fiscal</mat-label>
       <mat-select  id="diasCredito" name="diasCredito">
@@ -63,7 +63,7 @@
     ${{ baseGravable.egresos | thousandsPipe }}<span style="color: #838383"> / ${{ baseGravable.ingresos | thousandsPipe }}</span> 
   </div>
 
-  <div class="col-12" style="margin-top: 10px;">
+  <div class="col-12 centrado-mobile" style="margin-top: 10px;">
     <app-velocimetro 
     [sizex]="width > 1440 ? 410 : 310" [size]="width > 1440 ? 400 : 300"  [sizey]="width > 1440 ? 235 : 180" 
     [ringWidth]="width > 1440 ? 60 : 40" 
@@ -84,7 +84,7 @@
     </ng-container>
   </div>
 
-  <div class="col-12">
+  <div class="col-12 m-5-info">
     <div class="cuadro-informacion">
       <mat-icon class="image-dashboard-info image-size-22"></mat-icon>
       Estas gastando el {{baseGravable.porcentaje}}% del total de tu ingresos facturados

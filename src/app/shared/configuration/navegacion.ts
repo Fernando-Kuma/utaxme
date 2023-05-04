@@ -17,5 +17,6 @@ export const NAV = {
   fullSize: 'full-size',
   perfil: 'perfil',
   saludFiscal: 'salud-fiscal',
-  bandejaEntrada: 'bandeja-entrada'
+  bandejaEntrada: 'bandeja-entrada',
+  datosFiscales: 'datos-fiscales'
 };

@@ -36,12 +36,17 @@ export class BandejaEntradaComponent implements OnInit {
       busqueda: [null],
     });
     this.estatus = "leidas"
-    this.tabChange(0)
+    this.tabChange(1)
   }
 
   regresar(){
     localStorage.removeItem('id-notificacion')
-    this.router.navigateByUrl(NAV.dashboard)
+    if(this.width <= 450 && this.notificacionSeleccionado){
+      this.notificacionSeleccionado = null
+      this.fillnotifications()
+    }else{
+      this.router.navigateByUrl(NAV.dashboard)
+    }
   }
 
   selectTab(index: number){
@@ -74,6 +79,10 @@ export class BandejaEntradaComponent implements OnInit {
           }else{
             this.notificaciones = result.notificaciones.filter(ele => ele.leida == false);
             this.estatus = "noleidas";
+          }
+
+          if(this.width <= 450){
+            this.notificaciones = result.notificaciones
           }
 
           if(this.notificaciones.length > 0){
@@ -127,5 +136,10 @@ export class BandejaEntradaComponent implements OnInit {
     this.form.reset();
     this.fillnotifications();
   }
+
+  public get width() {
+    return window.innerWidth;
+  }
+
 
 }

@@ -143,5 +143,8 @@ export class ConfiguracionAvanzadaComponent{
     return this.form.controls;
   }
 
+  public get width() {
+    return window.innerWidth;
+  }
 
 }

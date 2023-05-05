@@ -7,7 +7,7 @@
   },
 
   "/utaxon": {
-    "target": "https://utaxon.com/utaxon",
+    "target": "http://3.16.240.122:8080/utaxon",
     "secure": false,
     "changeOrigin": true,
     "pathRewrite": { "^/utaxon": "" }

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { NAV } from '../../configuration/navegacion';
 import { AuthService } from '../../service/auth.service';
 import { FormControl } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-header-home',
@@ -21,7 +22,10 @@ export class HeaderHomeComponent implements OnInit {
     rol: 'act. empresarial' 
   }
 
-  constructor(public router: Router, private auth: AuthService) { }
+  constructor(
+    public router: Router, 
+    private auth: AuthService,
+    public matDialog: MatDialog) { }
 
   ngOnInit(): void {
     this.user.name = this.auth.usuario.nombre + '' + this.auth.usuario.apellidos
@@ -29,6 +33,7 @@ export class HeaderHomeComponent implements OnInit {
   }
 
   cambiarMenu(numeroMenu:number){
+    this.matDialog.closeAll();
     switch (numeroMenu) {
       case 1:
           localStorage.setItem('menu', '1');

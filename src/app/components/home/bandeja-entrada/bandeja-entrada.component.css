@@ -34,22 +34,20 @@
 
 .image-trash-can {
   background-image: url("src\assets\icon\trash-can.svg");
-  background-size: 18px 19px;
+  background-size: 20px 20px;
   background-repeat: no-repeat;
   background-position: left;
 }
 
-
+.opcion-notificacion{
+  display: flex;
+  justify-content: center;
+}
 
 
 .notificacion-selected{
   background-color: #E6EDF6; 
-  min-height: 100px; 
   border-left: 5px solid #3B4559;
-}
-
-.notificacion-not-selected{
-  min-height: 100px; 
 }
 
 .disable-scrollbars::-webkit-scrollbar,
@@ -63,4 +61,82 @@
   background: #ccc !important;
   border-radius: 4px !important;
   border: none !important;
+}
+
+.image-notificacion-user{
+  background-image: url("src\assets\icon\notificacion-user.svg");
+  background-size: 52px 52px;
+  background-repeat: no-repeat;
+  background-position: left;
+  width: 52px;
+  height: 52px;
+}
+
+::ng-deep .buscador-mobile .mat-form-field-flex{
+  background: #F1F1F1;
+}
+
+.notificacion-lista{
+  max-height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+.trash-can{
+  width: 40px; 
+  height: 40px; 
+  background-color: #FEEAD6;  
+  border-radius: 8px; 
+  cursor: pointer;
+
+  display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-notificacion{
+  background: #FFFFFF;
+  box-shadow: 0px 0.15px 0.45px rgba(0, 0, 0, 0.11), 0px 0.8px 1.8px rgba(0, 0, 0, 0.13);
+  border-radius: 4px;
+}
+
+@media(max-width: 450px){
+  .titulo-proceso{
+    font-weight: 700;
+    font-size: 18px;
+    color: #0B112A;
+    text-transform: initial;
+  }
+ 
+  .image-workspace-back {
+    background-image: url("src\assets\icon\back.svg");
+  }
+
+  .titulo-notificacion{
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 20px;
+    color: #0B112A;
+  }
+  
+  .subtitulo-notificacion{
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    color: #6E6E6E;
+  }
+
+  .texto-notificacion{
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: #242424;
+  }
+
+  .trash-can{
+    width: 30px; 
+    height: 30px;  
+  }
+
+  
 }

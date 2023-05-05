@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { NAV } from 'src/app/shared/configuration/navegacion';
 import { AuthService } from 'src/app/shared/service/auth.service';
 import { PincodeComponent } from 'src/app/shared/utils/pincode';
@@ -20,7 +21,8 @@ export class CodigoRecuperacionComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    public spinner: NgxSpinnerService
   ) { }
 
   ngOnInit(): void {
@@ -43,8 +45,10 @@ export class CodigoRecuperacionComponent implements OnInit {
   reenviarCodigo(){
     const email = this.email;
     const rfc = this.rfc;
+    this.spinner.show();
     this.authService.enviarCodigoPass(email,rfc).subscribe({
       next: (response) => {
+        this.spinner.hide();
         if (response.codigo === "200") {
           this.reiniciarComponente();
         } else {
@@ -53,13 +57,16 @@ export class CodigoRecuperacionComponent implements OnInit {
         }
       },
       error: (_) => {
+        this.spinner.hide();
       }
     });
   }
 
   validarCodigo() {
+    this.spinner.show();
     this.authService.validarCodigoPass(this.email,this.rfc,this.pincode.confirmCode()).subscribe({
       next: (response) => {
+        this.spinner.hide();
         if (response.codigo === "200") {
           this.router.navigateByUrl(NAV.nuevaContrasena);
         } else {
@@ -68,6 +75,7 @@ export class CodigoRecuperacionComponent implements OnInit {
         }
       },
       error: (_) => {
+        this.spinner.hide();
         console.log("No se pudo validar el codigo")
       }
     });

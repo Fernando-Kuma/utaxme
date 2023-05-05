@@ -82,6 +82,10 @@ export class CuadranteIngresosComponent implements OnInit {
     });
   }
 
+  public get width() {
+    return window.innerWidth;
+  }
+
   fullSize(){
     localStorage.setItem('dashboard','CUADRANTE-INGRESOS');
     localStorage.setItem('titulo-dashboard','Factura emitidas');

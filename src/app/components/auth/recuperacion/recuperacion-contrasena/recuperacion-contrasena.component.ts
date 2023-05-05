@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatInput } from '@angular/material/input';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { NAV } from 'src/app/shared/configuration/navegacion';
 import { AuthService } from 'src/app/shared/service/auth.service';
 
@@ -23,7 +24,8 @@ export class RecuperacionContrasenaComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder, 
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    public spinner: NgxSpinnerService
   ) { }
 
   ngOnInit(): void {
@@ -88,17 +90,28 @@ export class RecuperacionContrasenaComponent implements OnInit {
       const rfc = this.form.value.rfc;
       sessionStorage.setItem('email',email);
       sessionStorage.setItem('rfc',rfc);
+
+      this.spinner.show();
       this.authService.enviarCodigoPass(email,rfc).subscribe({
         next: (response) => {
+          this.spinner.hide();
           if (response.codigo === "200") {
             localStorage.setItem('new-password-email', email);
             localStorage.setItem('new-password-rfc', rfc);
             this.router.navigateByUrl(NAV.codigoRecuperacion);
           }else{
             this.mensajeError = response.mensaje;
+            if(response.mensaje === "No existe usuario con ese RFC"){
+              this.form.get('rfc')?.setErrors({ activo: true });
+              this.getError('rfc')
+            }else{
+              this.form.get('email')?.setErrors({ activo: true });
+              this.getError('email')
+            }
           }
         },
         error: (_) => {
+          this.spinner.hide();
           console.log("No se pudo enviar el codigo")
         }
       });

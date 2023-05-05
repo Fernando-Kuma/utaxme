@@ -58,8 +58,8 @@ export class BarrasEmitidasComponent implements AfterViewInit, OnInit, OnDestroy
   get color() {
     return this._color;
   }
-  @Input() rx = 4;
-  @Input() barWidth = 4;
+  @Input() rx = 5;
+  @Input() barWidth = 40;
   @Input() showLimits = true;
   @Input() showXLabels = true;
   @Input() showYLabels = true;
@@ -67,11 +67,6 @@ export class BarrasEmitidasComponent implements AfterViewInit, OnInit, OnDestroy
   @Input('secondary-color') secondaryColor = '#F9896B';
   @Input() border = false;
   @Input() xposition: number = 0;
-
-  @Input() showSLA = false;
-  @Input() slaMean = true;
-  @Input() sla = 84;
-  @Input() measure = 10;
 
   _showScale: boolean = true;
   @Input() opacity: number = 1;
@@ -342,7 +337,8 @@ export class BarrasEmitidasComponent implements AfterViewInit, OnInit, OnDestroy
     });
 
     this.svg.call(tip);
-
+    console.log(this.sizex, '/', this._data.length , '=' ,)
+    console.log(this.sizex / this._data.length)
     let rects = this.svg
       .selectAll('rect')
       .data(this.data)

@@ -24,7 +24,11 @@ body {
 @media(max-width: 451px){
   .page-wrapper{
     flex-direction: column-reverse;
+    
+  }
 
+  .sticky-header{
+    z-index: 9998;
   }
 }
 
@@ -596,7 +600,7 @@ body {
 
 @media(max-width: 425px){
   .content-wrapper{
-   background: #FFFFFF;
+   background: #FFFFFF !important;
    overflow-y: hidden;
   }
  

@@ -68,6 +68,45 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void{
+
+    let usuario = {
+      "nombre": "priscila olan tapia",
+      "apellidos": "",
+      "email": "priscila.olan.ta@gmail.com",
+      "password": "cHJpc2NpbGFvbGFu",
+      "telefono": "5568845587",
+      "aceptaTerminos": true,
+      "propuestaId": 440,
+      "onboardingId": 119,
+      "originId": "utaxme",
+      "folio": "utaxme0000000187",
+      "databank": {
+        "usename": null,
+        "tarjeta": "1212121212121212",
+        "anioExpira": "2025",
+        "mesExpira": "09",
+        "cvt": null,
+        "token": null
+      },
+      "cliente": {
+        "rfc": "OATP9611061C4",
+        "folioUtaxme": "utaxme0000000187",
+        "clientId": "435",
+        "razonSocial": "PRISCILA OLAN TAPIA",
+        "userName": "",
+        "celular": "",
+        "codigo": "200",
+        "mensaje": "Servicio Ejecutado Correctamente",
+        "versionAndroid": 0,
+        "versionIos": 0
+      }
+    }
+    sessionStorage.setItem('admin-user', JSON.stringify(usuario));
+                  //sessionStorage.setItem('cliente', JSON.stringify(response));
+                  this.router.navigateByUrl(NAV.dashboard);
+
+
+
     if(this.form.invalid){
       Object.keys(this.form.controls).forEach((field) => {
         const control = this.form.get(field);

@@ -80,13 +80,7 @@ export class NotificationsComponent implements OnInit {
     this.notificationService.obtenerNotificacion(this.auth.usuario.cliente.rfc).subscribe({
       next: (result) => {
         if(result.notificaciones.length > 0){
-          if(!this.leidas){
-            this.estatus = "leidas";
-            this.notifications = result.notsificaciones.filter(ele => ele.leida == true);
-          }else{
-            this.notifications = result.notificaciones.filter(ele => ele.leida == false);
-            this.estatus = "noleidas";
-          }
+          this.notifications = result.notificaciones.filter(ele => ele.leida == !this.leidas);
 
           if(this.notifications.length > 0){
             this.sinResultados = false;

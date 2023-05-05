@@ -107,4 +107,8 @@ export class CuadranteGastosComponent implements OnInit {
     });
   }
 
+  public get width() {
+    return window.innerWidth;
+  }
+
 }

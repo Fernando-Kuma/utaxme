@@ -94,6 +94,10 @@ export class NuevoClienteComponent {
     return this.form.controls;
   }
 
+  public get width() {
+    return window.innerWidth;
+  }
+  
   getErrorRequerido(){
     return 'Este campo es requerido';
   }

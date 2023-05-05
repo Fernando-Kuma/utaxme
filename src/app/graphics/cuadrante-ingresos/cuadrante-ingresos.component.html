@@ -94,8 +94,12 @@
         </div>
       </div>
       <div class="row">
-        <app-barras-emitidas [sizex]="500" [sizey]="230" [data]="dateValue" color="#1D2640" [showDomain]="true"
-          [barWidth]="20" [showLimits]="false" [showXLabels]="true" [showYLabels]="true" [border]="true"
+        <app-barras-emitidas 
+        [sizex]="width > 1440 ? 750 : width > 450 ?  550 : 320" 
+        [sizey]="width > 450 ? 220 : 150" 
+        [barWidth]="20"
+        [data]="dateValue" color="#1D2640" [showDomain]="true"
+           [showLimits]="false" [showXLabels]="true" [showYLabels]="true" [border]="true"
           [margin]="marginBarChart" [general]="true" [isDynamicRange]="false" unit="$"></app-barras-emitidas>
       </div>
     </div>
@@ -103,7 +107,11 @@
   </div>
 
   <div class="row" *ngIf="isFull">
-    <app-barras-emitidas [sizex]="1300" [sizey]="500" [data]="dateValueWeek" color="#1D2640" [barWidth]="40"
+    <app-barras-emitidas 
+    [sizex]="1300" [sizey]="500" 
+        [sizex]="width > 1440 ? 1800 : width > 450 ?  1300 : 400" 
+        [sizex]="width > 1440 ? 800 : width > 450 ?  500 : 400" 
+      [data]="dateValueWeek" color="#1D2640" [barWidth]="40"
       [full]="true" [showDomain]="true" [showLimits]="false" [showXLabels]="true" [showYLabels]="true" [border]="true"
       [margin]="marginBarChart" [general]="true" [isDynamicRange]="false" unit="$"></app-barras-emitidas>
   </div>

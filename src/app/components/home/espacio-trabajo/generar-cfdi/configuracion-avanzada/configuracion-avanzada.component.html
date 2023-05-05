@@ -1,11 +1,16 @@
-<!-- <div class="modal-cfdi">
+<div class="modal-cfdi">
   <mat-dialog-content>
       <div class="container" style="width: 100%; margin: 0; padding: 0; overflow: hidden;">
           <div class="row" style="width: 100%; margin: 0; padding: 0;">
+              <div class="col-2" *ngIf="width <= 450">
+                <button mat-icon-button style="float: right; position: relative;" (click)="cancelarForm()">
+                    <mat-icon class="img-close"></mat-icon>
+                </button>
+              </div>  
               <div class="col-10"  style="padding: 0; display: flex; align-items: center;">
                 <span class="dialog-titulo">Configuración avanzada</span> 
               </div>
-              <div class="col-2">
+              <div class="col-2" *ngIf="width > 450">
                   <button mat-icon-button style="float: right; position: relative;" (click)="cancelarForm()">
                       <mat-icon class="img-close"></mat-icon>
                   </button>
@@ -17,13 +22,12 @@
   <mat-dialog-actions>
       <div class="container" style="margin: 0; padding: 20px 30px;">
         <form [formGroup]="form" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
-          <div class="row w100m0p0" style="margin-top: 2%;">
-            <div class="col-8 dialog-texto">
-              Configura los detalles de tu factura, puedes cambiarlos las veces que sean necesarias antes de generar tu factura
+          <div class="row w100m0p0">
+            <div class="col-12 dialog-texto">
+              Configura los detalles de tu factura, puedes cambiarlos las veces que sean <br> necesarias antes de generar tu factura
             </div>
-            <div class="col-4"></div>
           </div>
-          <div class="row w100m0p0" style="margin-top: 1%;">
+          <div class="row w100m0p0 formulario-configuracion">
             <div class="col-6 textoM" style="margin-top: 3%;">
               <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                 <mat-label>método de pago</mat-label>
@@ -128,160 +132,21 @@
 
 
           <div class="row" style="margin: 40px 0px 0px !important; width: 100%; padding: 0;">
-            <div class="col-12 d-flex justify-content-end">
+            <div class="col-12 d-flex justify-content-end" *ngIf="width > 450">
               <button type="button" class="btn-utaxme-secondary" (click)="cancelarForm()" style="max-width: 120px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;">
                 Cancelar
               </button>
               <button type="button" class="btn-utaxme" (click)="guardarForm()" style="max-width: 225px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;">
                 Generar CFDI
+              </button>
+            </div>
+            <div class="col-12 d-flex justify-content-end" *ngIf="width <= 450">
+              <button type="button" class="btn-utaxme" (click)="guardarForm()" style="font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;">
+                Guardar
               </button>
             </div>
           </div>
         </form>
       </div>
   </mat-dialog-actions>
-</div> -->
-
-
-
-<div class="modal-cfdi vista-mobile">
-  <!-- <mat-dialog-content>
-      <div class="container" style="width: 100%; margin: 0; padding: 0; overflow: hidden;">
-          <div class="row" style="width: 100%; margin: 0; padding: 0;">
-              <div class="col-10"  style="padding: 0; display: flex; align-items: center;">
-                <span class="dialog-titulo">Configuración avanzada</span> 
-              </div>
-              <div class="col-2">
-                  <button mat-icon-button style="float: right; position: relative;" (click)="cancelarForm()">
-                      <mat-icon class="img-close"></mat-icon>
-                  </button>
-              </div>
-          </div>
-      </div>
-  </mat-dialog-content> -->
-  
-      <div class="container" style="margin: 0; padding: 20px 30px;">
-        <form [formGroup]="form" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="max-height: 95vh;">
-          <div class="row w100m0p0" style="margin-top: 2%;">
-            <div class="col-8 dialog-texto">
-              Configura los detalles de tu factura, puedes cambiarlos las veces que sean necesarias antes de generar tu factura
-            </div>
-            <div class="col-4"></div>
-          </div>
-          <div class="row w100m0p0" style="margin-top: 1%;">
-            <div class="col-6 textoM" style="margin-top: 3%;">
-              <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
-                <mat-label>método de pago</mat-label>
-                <mat-select formControlName="metodoPago" id="metodoPago" name="metodoPago">
-                  <mat-option *ngFor="let item of catalogoMetodoPago" [value]="item.clave">
-                    {{item.descripcion}}
-                  </mat-option>
-                </mat-select>
-                <mat-error *ngIf="formulario.metodoPago.invalid && formulario.metodoPago.touched && formulario.metodoPago.errors">
-                  <ng-container *ngIf="formulario.metodoPago.errors.required">
-                    Seleccione un método de pago
-                  </ng-container>
-                </mat-error>
-              </mat-form-field>
-            </div>
-            <div class="col-6 textoM" style="margin-top: 3%;">
-              <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
-                <mat-label>moneda</mat-label>
-                <mat-select formControlName="moneda" id="moneda" name="moneda">
-                  <mat-option *ngFor="let item of catalogoMoneda" [value]="item.clave">
-                    {{item.descripcion}}
-                  </mat-option>
-                </mat-select>
-                <mat-error *ngIf="formulario.moneda.invalid && formulario.moneda.touched && formulario.moneda.errors">
-                  <ng-container *ngIf="formulario.moneda.errors.required">
-                    Seleccione el tipo de moneda
-                  </ng-container>
-                </mat-error>
-              </mat-form-field>
-            </div>
-            <div class="col-6 textoM" style="margin-top: 3%;">
-              <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
-                <mat-label>condiciones de pago</mat-label>
-                <input matInput formControlName="condicionesPago" id="condicionesPago" name="condicionesPago">
-                <mat-error *ngIf="formulario.condicionesPago.invalid && formulario.condicionesPago.touched && formulario.condicionesPago.errors">
-                  <ng-container *ngIf="formulario.condicionesPago.errors.required">
-                    Ingrese las condiciones de pago
-                  </ng-container>
-                </mat-error>
-              </mat-form-field>
-            </div>
-            <div class="col-6 textoM" style="margin-top: 3%;">
-              <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
-                <mat-label>días de crédito</mat-label>
-                <mat-select formControlName="diasCredito" id="diasCredito" name="diasCredito">
-                  <mat-option *ngFor="let item of catalogoDiasCredito" [value]="item.clave" (click)="changeDiasCredito()">
-                    {{item.descripcion}}
-                  </mat-option>
-                </mat-select>
-                <mat-error *ngIf="formulario.diasCredito.invalid && formulario.diasCredito.touched && formulario.diasCredito.errors">
-                  <ng-container *ngIf="formulario.diasCredito.errors.required">
-                    Seleccione los días de crédito
-                  </ng-container>
-                </mat-error>
-              </mat-form-field>
-            </div>
-
-            <ng-container *ngIf="this.data.dataFormulario.configuracionGeneral">
-              <div class="col-6 textoM" style="margin-top: 3%;">
-                <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
-                  <mat-label>periocidad</mat-label>
-                  <mat-select formControlName="periodicidad" id="periodicidad" name="periodicidad">
-                    <mat-option *ngFor="let item of catalogoPeriocidad" [value]="item.clave">
-                      {{item.descripcion}}
-                    </mat-option>
-                  </mat-select>
-                  <mat-error *ngIf="formulario.periodicidad.invalid && formulario.periodicidad.touched && formulario.periodicidad.errors">
-                    <ng-container *ngIf="formulario.periodicidad.errors.required">
-                      Seleccione los días de crédito
-                    </ng-container>
-                  </mat-error>
-                </mat-form-field>
-              </div>
-              <div class="col-6 textoM" style="margin-top: 3%;">
-                <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
-                  <mat-label>meses</mat-label>
-                  <mat-select formControlName="meses" id="meses" name="meses">
-                    <mat-option *ngFor="let item of catalogoMeses" [value]="item.clave">
-                      {{item.descripcion}}
-                    </mat-option>
-                  </mat-select>
-                  <mat-error *ngIf="formulario.meses.invalid && formulario.meses.touched && formulario.meses.errors">
-                    <ng-container *ngIf="formulario.meses.errors.required">
-                      Seleccione los días de crédito
-                    </ng-container>
-                  </mat-error>
-                </mat-form-field>
-              </div>
-              <div class="col-6 textoM" style="margin-top: 3%;">
-                <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
-                  <mat-label>año</mat-label>
-                  <input matInput formControlName="anio" id="anio" name="anio">
-                  <mat-error *ngIf="formulario.anio.invalid && formulario.anio.touched && formulario.anio.errors">
-                    <ng-container *ngIf="formulario.anio.errors.required">
-                      Seleccione los días de crédito
-                    </ng-container>
-                  </mat-error>
-                </mat-form-field>
-              </div>
-            </ng-container>
-          </div>
-
-
-          <div class="row" style="margin: 40px 0px 0px !important; width: 100%; padding: 0;">
-            <div class="col-12 d-flex justify-content-end">
-              <button type="button" class="btn-utaxme-secondary" (click)="cancelarForm()" style="max-width: 120px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;">
-                Cancelar
-              </button>
-              <button type="button" class="btn-utaxme" (click)="guardarForm()" style="max-width: 225px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;">
-                Generar CFDI
-              </button>
-            </div>
-          </div>
-        </form>
-      </div>
 </div>

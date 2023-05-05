@@ -56,3 +56,13 @@
 .textoM{
   text-transform: uppercase;
 }
+
+.vista-mobile{
+  display: none;
+}
+
+@media(max-width: 425px){
+.vista-mobile{
+  display: block;
+}
+}

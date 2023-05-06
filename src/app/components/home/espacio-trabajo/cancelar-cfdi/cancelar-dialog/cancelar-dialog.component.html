@@ -62,21 +62,21 @@
               
             </div>
             
-            <div *ngIf="mostrarInfo">
-              <div class="col-6 textoM" style="margin-top: 3%;">
+            <div *ngIf="mostrarInfo" class="" style="max-width: 540px;">
+              <div class="col-12 textoM" style="margin-top: 3%;">
                 <div class="respuesta-cuadrante">Datos del nuevo CFDI</div>
               </div>
               <div class="row w100m0p0" style="margin-top: 1%;">
-                <div class="col-12 textoM" style="margin-top: 3%;">
+                <div class="col-sm-6 textoM" style="margin-top: 3%;">
                   <div class="dialog-texto">Fecha: {{this.fechaTimbrado | date: 'dd/MM/YYYY'}}</div>
                 </div>
-                <div class="col-12 textoM" style="margin-top: 3%;">
+                <div class="col-6 textoM" style="margin-top: 3%;">
                   <div class="dialog-texto">RFC Receptor: {{this.rfcReceptor}}</div>
                 </div>
-                <div class="col-12 textoM" style="margin-top: 3%;">
+                <div class="col-6 textoM" style="margin-top: 3%;">
                   <div class="dialog-texto">Total: {{this.total}}</div>
                 </div>
-                <div class="col-12 textoM" style="margin-top: 3%;">
+                <div class="col-6 textoM" style="margin-top: 3%;">
                   <div class="dialog-texto">UIDD: {{this.uidd}}</div>
                 </div>
               </div>

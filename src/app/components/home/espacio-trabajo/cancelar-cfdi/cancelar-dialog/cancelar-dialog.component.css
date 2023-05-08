@@ -48,3 +48,43 @@
 .textoM{
   text-transform: uppercase;
 }
+
+@media(max-width: 450px){
+  ::ng-deep  .mat-dialog-container:has(.modal-cfdi) {
+    min-width: 100vw!important;
+    min-height: 100vh !important;
+    border-radius: 0px;
+  }
+
+  
+
+  ::ng-deep  .cdk-overlay-pane:has(.modal-cfdi) {
+    max-width: 100vw !important;
+    max-height: 100vh;
+  }
+
+  .mat-dialog-content {
+    margin: 0 !important;
+    padding: 20px 30px;
+    background: #fff;
+  }
+
+  .img-close{
+    background-image: url("src\assets\icon\back.svg");
+    background-size: 20px 20px;
+  }
+
+  .dialog-titulo{
+    font-weight: 700;
+    font-size: 18px;
+    color: #0B112A;
+  }
+
+  .formulario-configuracion .col-6{
+    width: 100%;
+  }
+
+  .dialog-texto{
+    margin-bottom: 5%;
+  }
+}

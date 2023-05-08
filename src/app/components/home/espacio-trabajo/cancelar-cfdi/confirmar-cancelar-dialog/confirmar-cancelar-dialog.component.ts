@@ -42,4 +42,8 @@ export class ConfirmarCancelarDialogComponent implements OnInit {
     );
   }
 
+  cancelar(){
+    
+  }
+
 }

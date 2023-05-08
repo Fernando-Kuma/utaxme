@@ -2,14 +2,19 @@
   <mat-dialog-content>
       <div class="container" style="width: 100%; margin: 0; padding: 0; overflow: hidden;">
           <div class="row" style="width: 100%; margin: 0; padding: 0;">
-              <div class="col-10"  style="padding: 0; display: flex; align-items: center;">
-                <span class="dialog-titulo">Agregar concepto</span> 
-              </div>
-              <div class="col-2">
-                  <button mat-icon-button style="float: right; position: relative;" (click)="closeDialog()">
-                      <mat-icon class="img-close"></mat-icon>
-                  </button>
-              </div>
+            <div class="col-2" *ngIf="width <= 450">
+              <button mat-icon-button style="float: right; position: relative;" (click)="closeDialog()">
+                  <mat-icon class="img-close"></mat-icon>
+              </button>
+            </div>  
+            <div class="col-10"  style="padding: 0; display: flex; align-items: center;">
+              <span class="dialog-titulo">Agregar concepto</span> 
+            </div>
+            <div class="col-2" *ngIf="width > 450">
+              <button mat-icon-button style="float: right; position: relative;" (click)="closeDialog()">
+                  <mat-icon class="img-close"></mat-icon>
+              </button>
+            </div>
           </div>
       </div>
   </mat-dialog-content>
@@ -17,10 +22,9 @@
   <mat-dialog-actions>
       <div class="container" style="margin: 0; padding: 20px 30px;">  
         <div class="row w100m0p0" style="margin-top: 3% !important;">
-          <div class="col-8 dialog-texto">
-            Para ingresar servicios y montos a tu factura, selecciona tus conceptos y haz clic en ¨Agregar conceptos¨
+          <div class="col-12 dialog-texto">
+            Para ingresar servicios y montos a tu factura, selecciona tus conceptos <br> y haz clic en ¨Agregar conceptos¨
           </div>
-          <div class="col-4"></div>
         </div>
 
         <div class="row w100m0p0" style="margin-top: 3% !important;">
@@ -31,10 +35,15 @@
                 <input matInput formControlName="busqueda" id="busqueda" name="busqueda" minlength="3" (keyup)="onKeyDownEvent($event)"/>
                 <mat-icon class="image-workspace-buscardor" matSuffix></mat-icon>
               </mat-form-field>
-              <button type="button" class="btn-utaxme-secondary" style="max-width: 260px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: space-evenly; margin: 0 20px;" (click)="crearConcepto()">
+              <button type="button" *ngIf="width > 450" class="btn-utaxme-secondary" style="max-width: 260px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: space-evenly; margin: 0 20px;" (click)="crearConcepto()">
                 <mat-icon class="image-workspace-agregar"></mat-icon>
                 Crear nuevo concepto
               </button>
+
+              <button type="button" *ngIf="width <= 450" class="btn-utaxme" style="height: 48px; display: flex; align-items: center; justify-content: center; margin: 0 10px;" (click)="crearConcepto()">
+                <mat-icon class="image-workspace-agregar"></mat-icon>
+              </button>
+
             </div>
           </form> 
         </div>

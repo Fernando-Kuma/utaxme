@@ -138,4 +138,7 @@ export class ConceptosComponent{
     )
   }
 
+  public get width() {
+    return window.innerWidth;
+  }
 }

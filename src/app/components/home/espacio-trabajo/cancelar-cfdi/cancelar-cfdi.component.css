@@ -201,4 +201,9 @@ flex-wrap: wrap;
   .dialog-texto{
     margin-bottom: 5%;
   }
+
+  .respuesta-cuadrante2 {
+    font-weight: 400;
+    margin-top: 20px;
+}
   }

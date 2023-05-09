@@ -91,4 +91,20 @@
   .dialog-texto{
     margin-bottom: 5%;
   }
+
+  .w-mb{
+    width: 100%;
+  }
+
+  .not-mobile{
+    display: none;
+  }
+
+  .in-mobile{
+    display: block;
+  }
+  .inf-mb{
+    display: flex;
+    flex-direction: column;
+  }
 }

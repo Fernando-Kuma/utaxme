@@ -2,14 +2,15 @@
   <mat-dialog-content>
       <div class="container" style="width: 100%; margin: 0; padding: 0; overflow: hidden;">
           <div class="row" style="width: 100%; margin: 0; padding: 0;">
-              <div class="col-10"  style="padding: 0; display: flex; align-items: center;">
+            <div class="col-2">
+              <button mat-icon-button style="float: right; position: relative;" (click)="closeDialog()">
+                  <mat-icon class="img-close"></mat-icon>
+              </button>
+          </div>  
+            <div class="col-10"  style="padding: 0; display: flex; align-items: center;">
                 <span class="dialog-titulo">Cancelar CFDI</span> 
               </div>
-              <div class="col-2">
-                  <button mat-icon-button style="float: right; position: relative;" (click)="closeDialog()">
-                      <mat-icon class="img-close"></mat-icon>
-                  </button>
-              </div>
+             
           </div>
       </div>
   </mat-dialog-content>
@@ -66,17 +67,17 @@
               <div class="col-12 textoM" style="margin-top: 3%;">
                 <div class="respuesta-cuadrante">Datos del nuevo CFDI</div>
               </div>
-              <div class="row w100m0p0" style="margin-top: 1%;">
+              <div class="row w100m0p0 inf-mb" style="margin-top: 1%;">
                 <div class="col-sm-6 textoM" style="margin-top: 3%;">
                   <div class="dialog-texto">Fecha: {{this.fechaTimbrado | date: 'dd/MM/YYYY'}}</div>
                 </div>
-                <div class="col-6 textoM" style="margin-top: 3%;">
+                <div class="col-sm-6 textoM" style="margin-top: 3%;">
                   <div class="dialog-texto">RFC Receptor: {{this.rfcReceptor}}</div>
                 </div>
-                <div class="col-6 textoM" style="margin-top: 3%;">
+                <div class="col-sm-6 textoM" style="margin-top: 3%;">
                   <div class="dialog-texto">Total: {{this.total}}</div>
                 </div>
-                <div class="col-6 textoM" style="margin-top: 3%;">
+                <div class="col-sm-6 textoM" style="margin-top: 3%;">
                   <div class="dialog-texto">UIDD: {{this.uidd}}</div>
                 </div>
               </div>

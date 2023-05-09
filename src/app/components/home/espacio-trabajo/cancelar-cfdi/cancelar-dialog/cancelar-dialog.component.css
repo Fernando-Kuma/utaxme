@@ -87,4 +87,9 @@
   .dialog-texto{
     margin-bottom: 5%;
   }
+
+  .inf-mb{
+    display: flex;
+    flex-direction: column;
+  }
 }

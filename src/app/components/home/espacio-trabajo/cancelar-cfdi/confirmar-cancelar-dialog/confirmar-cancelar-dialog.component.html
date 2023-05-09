@@ -2,14 +2,15 @@
   <mat-dialog-content>
       <div class="container" style="width: 100%; margin: 0; padding: 0; overflow: hidden;">
           <div class="row" style="width: 100%; margin: 0; padding: 0;">
-              <div class="col-10"  style="padding: 0; display: flex; align-items: center;">
+            <div class="col-2">
+              <button mat-icon-button style="float: right; position: relative;" (click)="closeDialog(false)">
+                  <mat-icon class="img-close"></mat-icon>
+              </button>
+          </div>  
+            <div class="col-10"  style="padding: 0; display: flex; align-items: center;">
                 <span class="dialog-titulo">¿Está seguro que desea cancelar el CFDI? </span> 
               </div>
-              <div class="col-2">
-                  <button mat-icon-button style="float: right; position: relative;" (click)="closeDialog(false)">
-                      <mat-icon class="img-close"></mat-icon>
-                  </button>
-              </div>
+              
           </div>
       </div>
   </mat-dialog-content>
@@ -17,39 +18,39 @@
   <mat-dialog-actions>
       <div class="container" style="margin: 0; padding: 20px 30px;">
           
-          <div class="row w100m0p0" style="margin-top: 1%;">
-            <div class="col-5 textoM" style="margin-top: 3%;">
-              <div class="respuesta-cuadrante">Número de orden:</div>
+          <div class="row inf-mb w100m0p0" style="margin-top: 1%;">
+            <div class="col-sm-5 textoM" style="margin-top: 3%;">
+              <div class="respuesta-cuadrante2">Número de orden:</div>
             </div>
-            <div class="col-5 textoM" style="margin-top: 3%;">
+            <div class="col-sm-5 w-mb textoM" style="margin-top: 3%;">
               <div class="respuesta-cuadrante">{{referencia}}</div>
             </div>
-            <div class="col-5 textoM" style="margin-top: 3%;">
-              <div class="respuesta-cuadrante">Motivo de cancelación:</div>
+            <div class="col-sm-5 textoM" style="margin-top: 3%;">
+              <div class="respuesta-cuadrante2">Motivo de cancelación:</div>
             </div>
-            <div class="col-5 textoM" style="margin-top: 3%;">
+            <div class="col-sm-5 w-mb textoM" style="margin-top: 3%;">
               <div class="respuesta-cuadrante">{{motivo}}</div>
             </div>
-            <div class="col-5 textoM" style="margin-top: 3%;">
-              <div class="respuesta-cuadrante">Total:</div>
+            <div class="col-sm-5 textoM" style="margin-top: 3%;">
+              <div class="respuesta-cuadrante2">Total:</div>
             </div>
-            <div class="col-5 textoM" style="margin-top: 3%;">
+            <div class="col-sm-5 w-mb textoM" style="margin-top: 3%;">
               <div class="respuesta-cuadrante">$ {{total}}</div>
             </div>
-            <div class="col-5 textoM" style="margin-top: 3%;">
-              <div class="respuesta-cuadrante">UIDD:</div>
+            <div class="col-sm-5 textoM" style="margin-top: 3%;">
+              <div class="respuesta-cuadrante2">UIDD:</div>
             </div>
-            <div class="col-5 textoM" style="margin-top: 3%;">
+            <div class="col-sm-5 textoM" style="margin-top: 3%;">
               <div class="respuesta-cuadrante">{{uidd}}</div>
             </div>
           </div>
 
           <div class="row w100m0p0" style="margin-top: 2%;">
-            <div class="col-8 dialog-texto">
+            <div class="col-8 w-mb dialog-texto">
               El total de este CFDI es mayor a $1,000.00. <br>
               El proceso de cancelación puede tardar hasta 24 horas.
             </div>
-            <div class="col-4"></div>
+            <div class="col-4 not-mobile"></div>
           </div>
 
           <div class="col-12" style="margin-top: 40px; padding: 0 20px;">

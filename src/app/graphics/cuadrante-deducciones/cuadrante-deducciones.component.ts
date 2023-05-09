@@ -47,12 +47,12 @@ export class CuadranteDeduccionesComponent implements OnInit {
     {
       estatus: false,
       tipo: 1,
-      nombre: 'Anuales',
+      nombre: 'Anual',
     },
     {
       estatus: false,
       tipo: 2,
-      nombre: 'Mensuales',
+      nombre: 'Mensual',
     },
   ];
   Options = [
@@ -61,7 +61,7 @@ export class CuadranteDeduccionesComponent implements OnInit {
       icono: 'image-salud',
     },
     {
-      nombre: 'Educación',
+      nombre: 'Educacion',
       icono: 'image-educacion',
     },
     {
@@ -168,9 +168,43 @@ export class CuadranteDeduccionesComponent implements OnInit {
 
   onKeyDownEvent(event: any) {
     let filtro = event.target.value;
+    if(filtro.length > 2 ){
+      this.deduccionesBusqueda.forEach(element => {
+        element.estatus = false;
+      });
+      this.tablaDeducciones = this.deducciones.filter((item) =>
+        item?.descripcion.toLowerCase().includes(filtro.toLowerCase())
+      );
+      this.paginador(this.tablaDeducciones);
+    }else{
+      this.tablaDeducciones = this.deducciones;
+      this.paginador(this.tablaDeducciones);
+    }
+  }
 
-    this.deducciones = this.tablaDeducciones.filter((item) =>
-      item?.descripcion.toLowerCase().includes(filtro.toLowerCase())
-    );
+
+  filtrarDeducciones() {
+    this.form.get('buscar').setValue("");
+    console.log(this.deduccionesBusqueda);
+    let aplica = [];
+    this.deduccionesBusqueda.forEach(element => {
+      if(element.estatus === true){
+        aplica.push(element.nombre);
+      }
+    });
+    let tipo = this.form.controls['dispositivos'].value ?  this.form.controls['dispositivos'].value : [];
+
+    if(aplica.length == 0 && tipo.length == 0){
+      this.tablaDeducciones = this.deducciones;
+    }else{
+      console.log("tipos seleccionados:",tipo);
+      console.log("aplica seleccionados:",aplica);
+      this.tablaDeducciones =this.deducciones.filter((item) =>
+        item?.aplica.toLowerCase().includes(aplica[0]?.toLowerCase()) || item?.aplica.toLowerCase().includes(aplica[1]?.toLowerCase()) || item?.aplica.toLowerCase().includes(aplica[2]?.toLowerCase()) || item?.aplica.toLowerCase().includes(aplica[3]?.toLowerCase())
+        || item?.tipo.toLowerCase().includes(tipo[0]?.toLowerCase()) || item?.tipo.toLowerCase().includes(tipo[1]?.toLowerCase()) || item?.tipo.toLowerCase().includes(tipo[2]?.toLowerCase()) || item?.tipo.toLowerCase().includes(tipo[3]?.toLowerCase()) 
+        || item?.tipo.toLowerCase().includes(tipo[4]?.toLowerCase()) || item?.tipo.toLowerCase().includes(tipo[5]?.toLowerCase())
+      );
+    }
+    this.paginador(this.tablaDeducciones);
   }
 }

@@ -1,4 +1,4 @@
-::ng-deep  .mat-dialog-container:has(.modal-cfdi) {
+::ng-deep .mat-dialog-container:has(.modal-cfdi) {
   border-radius: 4px;
   padding: 0px;
   min-width: 1050px !important;
@@ -30,11 +30,12 @@
   min-width: 110px;
 }
 
-::ng-deep .modal-cfdi .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+::ng-deep .modal-cfdi .mat-tab-group.mat-primary .mat-ink-bar,
+.mat-tab-nav-bar.mat-primary .mat-ink-bar {
   width: 110px !important;
 }
 
-.dialog-titulo{
+.dialog-titulo {
   font-weight: 700;
   font-size: 20px;
   color: #FFFFFF;
@@ -47,19 +48,19 @@
   background-position: left;
 }
 
-.dialog-texto{
+.dialog-texto {
   font-weight: 400;
   font-size: 16px;
   color: #7B8AA0;
 }
 
-.dialog-texto-titulo{
+.dialog-texto-titulo {
   font-weight: 600;
   font-size: 20px;
   color: #0B112A;
 }
 
-.textoM{
+.textoM {
   text-transform: uppercase;
 }
 
@@ -70,17 +71,58 @@
   background-repeat: no-repeat;
 }
 
+.inp-mob {
+  display: flex;
+  flex-wrap: wrap;
+}
 
-@media(max-width: 450px){
-  ::ng-deep  .mat-dialog-container:has(.modal-cfdi) {
-    min-width: 100vw!important;
+.btns-mb {
+  display: flex;
+  justify-content: end;
+}
+
+
+
+.btn-cancelar {
+  max-width: 120px;
+  font-size: 16px;
+  font-weight: 600;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+}
+
+::ng-deep .mat-checkbox-checked .mat-checkbox-layout .mat-checkbox-inner-container .mat-checkbox-background {
+  background-color: #285ced !important;
+}
+
+.form-mb {
+  overflow: scroll;
+}
+
+.btn-guardar {
+  max-width: 225px;
+  font-size: 16px;
+  font-weight: 600;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+}
+
+@media(max-width: 450px) {
+  ::ng-deep .mat-dialog-container:has(.modal-cfdi) {
+    min-width: 100vw !important;
     min-height: 100vh !important;
     border-radius: 0px;
   }
 
-  
 
-  ::ng-deep  .cdk-overlay-pane:has(.modal-cfdi) {
+
+  ::ng-deep .cdk-overlay-pane:has(.modal-cfdi) {
     max-width: 100vw !important;
     max-height: 100vh;
   }
@@ -91,22 +133,59 @@
     background: #fff;
   }
 
-  .img-close{
+  .img-close {
     background-image: url("src\assets\icon\back.svg");
     background-size: 20px 20px;
   }
 
-  .dialog-titulo{
+  .dialog-titulo {
     font-weight: 700;
     font-size: 18px;
     color: #0B112A;
   }
 
-  .formulario-configuracion .col-6{
+  .formulario-configuracion .col-6 {
     width: 100%;
   }
 
-  .dialog-texto{
+  .dialog-texto {
     margin-bottom: 5%;
+  }
+
+  .inp-mob {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+
+  .head-mb {
+    width: 100%;
+  }
+
+  .btns-mb {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 60px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .btn-cancelar {
+    display: none;
+  }
+
+  .form-mb {
+    overflow: revert;
+  }
+
+  .btn-guardar {
+    max-width: 100%;
+    font-size: 16px;
+    font-weight: 600;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
   }
 }

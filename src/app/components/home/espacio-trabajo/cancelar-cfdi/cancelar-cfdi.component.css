@@ -1,30 +1,30 @@
-  .home-container{
-    width: 100%!important;
+  .home-container {
+    width: 100% !important;
     margin: 0;
     padding: 0;
   }
 
-  .icon-header{
-    width: 22px; 
-    margin: 0; 
+  .icon-header {
+    width: 22px;
+    margin: 0;
     padding: 0;
   }
-  
-  .titulo-proceso{
+
+  .titulo-proceso {
     font-weight: 400;
     font-size: 24px;
     text-transform: uppercase;
     color: #0B112A;
   }
-  
-  .subtitulo-proceso{
+
+  .subtitulo-proceso {
     font-weight: 400;
     font-size: 16px;
     color: #7B8AA0;
     margin-top: 5px;
   }
-  
-  .bienvenida-cliente{
+
+  .bienvenida-cliente {
     font-weight: 600;
     font-size: 20px;
     display: flex;
@@ -33,40 +33,40 @@
     color: #3B4559;
   }
 
-  .titulo-formulario{
+  .titulo-formulario {
     font-weight: 400;
     font-size: 24px;
     text-transform: uppercase;
     margin-bottom: 30px;
   }
 
-  .content-form{
-    width: 100%; 
-    background-color: #FFFFFF; 
+  .content-form {
+    width: 100%;
+    background-color: #FFFFFF;
     min-height: 565px;
     margin-left: 15px;
   }
-  
-  .graficos-content{
-    width: 365px; 
-    height: 326px; 
-    background: #C0EEEB; 
+
+  .graficos-content {
+    width: 365px;
+    height: 326px;
+    background: #C0EEEB;
     border-radius: 15px;
   }
-  
-  .btn-accion{
-    flex-direction: column; 
-    text-align: center; 
-    margin-right: 38px; 
-    border: 2px solid #E6EDF6; 
-    box-shadow: 8px 16px 32px #E6EDF6; 
+
+  .btn-accion {
+    flex-direction: column;
+    text-align: center;
+    margin-right: 38px;
+    border: 2px solid #E6EDF6;
+    box-shadow: 8px 16px 32px #E6EDF6;
     border-radius: 4px;
   }
-  
-  .background-icon{
-    background: #E6EDF6; 
-    width: 53px; 
-    height: 53px; 
+
+  .background-icon {
+    background: #E6EDF6;
+    width: 53px;
+    height: 53px;
     border-radius: 8px;
   }
 
@@ -98,7 +98,7 @@
     background-position: left;
   }
 
-  .icon-detalle{
+  .icon-detalle {
     width: 40px;
     padding: 8px;
     background: #D3E3FE;
@@ -109,101 +109,102 @@
     border-radius: 8px;
   }
 
-  .head-mob{
+  .head-mob {
     display: flex;
   }
 
-  .inp-mob{
-display: flex;
-flex-wrap: wrap;
+  .inp-mob {
+    display: flex;
+    flex-wrap: wrap;
   }
 
-  .not-mobile{
+  .not-mobile {
     display: block;
   }
 
-  .in-mobile{
+  .in-mobile {
     display: none;
   }
 
-  .tab-colum{
+  .tab-colum {
     display: revert;
   }
 
-  @media(max-width: 425px){
-    .content-home{
-  background: white;
+  @media(max-width: 425px) {
+    .content-home {
+      background: white;
     }
-  
-    .not-mobile{
-      display: none;
-    }
-  
-    .in-mobile{
-      display: block;
-    }
-  
-    .head-mob{
+
+    .not-mobile {
       display: none;
     }
 
-    .inp-mob{
+    .in-mobile {
+      display: block;
+    }
+
+    .head-mob {
+      display: none;
+    }
+
+    .inp-mob {
       display: flex;
       flex-wrap: wrap;
       flex-direction: column;
-        }
+    }
 
-        .input-mob{
-          width: 100%;
-        }
+    .input-mob {
+      width: 100%;
+    }
 
-    .p-mb{
+    .p-mb {
       padding: 0;
     }
-    .tab-colum{
+
+    .tab-colum {
       display: none;
     }
 
-    ::ng-deep  .mat-dialog-container:has(.modal-cfdi) {
-    min-width: 100vw!important;
-    min-height: 100vh !important;
-    border-radius: 0px;
-  }
+    ::ng-deep .mat-dialog-container:has(.modal-cfdi) {
+      min-width: 100vw !important;
+      min-height: 100vh !important;
+      border-radius: 0px;
+    }
 
-  
 
-  ::ng-deep  .cdk-overlay-pane:has(.modal-cfdi) {
-    max-width: 100vw !important;
-    max-height: 100vh;
-  }
 
-  .mat-dialog-content {
-    margin: 0 !important;
-    padding: 20px 30px;
-    background: #fff;
-  }
+    ::ng-deep .cdk-overlay-pane:has(.modal-cfdi) {
+      max-width: 100vw !important;
+      max-height: 100vh;
+    }
 
-  .img-close{
-    background-image: url("src\assets\icon\back.svg");
-    background-size: 20px 20px;
-  }
+    .mat-dialog-content {
+      margin: 0 !important;
+      padding: 20px 30px;
+      background: #fff;
+    }
 
-  .dialog-titulo{
-    font-weight: 700;
-    font-size: 18px;
-    color: #0B112A;
-  }
+    .img-close {
+      background-image: url("src\assets\icon\back.svg");
+      background-size: 20px 20px;
+    }
 
-  .formulario-configuracion .col-6{
-    width: 100%;
-  }
+    .dialog-titulo {
+      font-weight: 700;
+      font-size: 18px;
+      color: #0B112A;
+    }
 
-  .dialog-texto{
-    margin-bottom: 5%;
-  }
+    .formulario-configuracion .col-6 {
+      width: 100%;
+    }
 
-  .respuesta-cuadrante2 {
-    font-weight: 400;
-    margin-top: 20px;
-}
+    .dialog-texto {
+      margin-bottom: 5%;
+    }
+
+    .respuesta-cuadrante2 {
+      font-weight: 400;
+      margin-top: 20px;
+    }
   }

@@ -2,14 +2,15 @@
   <mat-dialog-content>
       <div class="container" style="width: 100%; margin: 0; padding: 0; overflow: hidden;">
           <div class="row" style="width: 100%; margin: 0; padding: 0;">
-              <div class="col-10"  style="padding: 0; display: flex; align-items: center;">
+            <div class="col-2">
+              <button mat-icon-button style="float: right; position: relative;" (click)="closeDialog()">
+                  <mat-icon class="img-close"></mat-icon>
+              </button>
+          </div>  
+            <div class="col-10"  style="padding: 0; display: flex; align-items: center;">
                 <span class="dialog-titulo">{{titulo}}</span> 
               </div>
-              <div class="col-2">
-                  <button mat-icon-button style="float: right; position: relative;" (click)="closeDialog()">
-                      <mat-icon class="img-close"></mat-icon>
-                  </button>
-              </div>
+              
           </div>
       </div>
   </mat-dialog-content>
@@ -18,11 +19,11 @@
     <form [formGroup]="form" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
       <div class="container" style="margin: 0; padding: 20px 30px;">
         <div class="cotainer" *ngIf="opcionCrear">
-          <div class="row w100m0p0" style="margin-top: 3% !important;">
-            <div class="col-6 dialog-texto">
+          <div class="row w100m0p0 inp-mob" style="margin-top: 3% !important;">
+            <div class="col-6 head-mb dialog-texto">
               Puedes realizar búsquedas de conceptos y seleccionarlas dentro del buscador para completar los datos del formulario.
             </div>
-            <div class="col-6">
+            <div class="col-6 head-mb">
               <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                 <mat-label>Buscar concepto</mat-label>
                 <input matInput formControlName="buscar" id="buscar" name="buscar" [matAutocomplete]="auto" (keyup)="catalogoProductos($event)"/>
@@ -39,12 +40,12 @@
           </div> 
         </div>
         <mat-divider  *ngIf="opcionCrear"></mat-divider>
-        <div class="cotainer disable-scrollbars" style="overflow: scroll;" [ngStyle]="{'max-height': opcionCrear ? '500px' : '600px'}">  
-          <div class="row w100m0p0" style="margin-top: 3% !important;">
+        <div class="cotainer disable-scrollbars form-mb" style="" [ngStyle]="{'max-height': opcionCrear ? '500px' : '600px'}">  
+          <div class="row w100m0p0 inp-mob" style="margin-top: 3% !important;">
             <div class="col-12 dialog-texto-titulo">
               Detalles del concepto
             </div>
-            <div class="col-6 textoM" style="margin-top: 3%;">
+            <div class="col-6 head-mb textoM" style="margin-top: 3%;">
               <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                 <mat-label>nombre producto/servicio*</mat-label>
                 <input matInput formControlName="nombreProducto" id="nombreProducto" name="nombreProducto"/>
@@ -55,7 +56,7 @@
                 </mat-error>
               </mat-form-field>
             </div>
-            <div class="col-6 textoM" style="margin-top: 3%;">
+            <div class="col-6 head-mb textoM" style="margin-top: 3%;">
               <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                 <mat-label>clave producto/servicio*</mat-label>
                 <input matInput formControlName="clavaProducto" id="clavaProducto" name="clavaProducto"/>
@@ -66,7 +67,7 @@
                 </mat-error>
               </mat-form-field>
             </div>
-            <div class="col-6 textoM m0p0">
+            <div class="col-6 head-mb textoM m0p0">
               <div class="row w100m0p0">
                 <div class="col-12" style="margin-top: 3%;">
                   <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
@@ -79,7 +80,7 @@
                     </mat-error>
                   </mat-form-field>
                 </div>
-                <div class="col-12" style="margin-top: 3%;">
+                <div class="col-12 head-mb" style="margin-top: 3%;">
                   <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                     <mat-label>clave unidad*</mat-label>
                     <input matInput formControlName="clavaUnidad" id="clavaUnidad" name="clavaUnidad" />
@@ -90,7 +91,7 @@
                     </mat-error>
                   </mat-form-field>
                 </div>
-                <div class="col-12" style="margin-top: 3%;">
+                <div class="col-12 head-mb" style="margin-top: 3%;">
                   <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                     <mat-label>valor unitario*</mat-label>
                     <input matInput formControlName="valorUnitario" id="valorUnitario" name="valorUnitario"/>
@@ -104,9 +105,9 @@
                 </div>
               </div>
             </div>
-            <div class="col-6 textoM m0p0">
+            <div class="col-6 head-mb textoM m0p0">
               <div class="row w100m0p0">
-                <div class="col-12" style="margin-top: 5%;">
+                <div class="col-12 " style="margin-top: 5%;">
                   <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                     <mat-label>descripción*</mat-label>
                     <textarea  matInput formControlName="descripcion" id="descripcion" name="descripcion" rows="11"></textarea>
@@ -132,14 +133,14 @@
                   <mat-checkbox class="example-margin" formControlName="impuestoT">Impuesto trasladado</mat-checkbox>
                 </div>
                 <ng-container *ngIf="form.controls['impuestoT'].value">
-                  <div class="col-6 textoM" style="margin-top: 3%;">
+                  <div class="col-6 head-mb textoM" style="margin-top: 3%;">
                     <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                       <mat-label>IVA</mat-label>
                       <input matInput formControlName="iva" id="iva" name="iva" (keypress)="caracteresValidosDecimales($event)"/>
                       <span matSuffix style="display: table-caption; height: 22px;">%</span>
                     </mat-form-field>
                   </div>
-                  <div class="col-6 textoM" style="margin-top: 3%;">
+                  <div class="col-6 head-mb textoM" style="margin-top: 3%;">
                     <ng-container >
                       <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                         <mat-label>IEPS</mat-label>
@@ -157,14 +158,14 @@
                   <mat-checkbox class="example-margin" formControlName="impuestoR">Impuesto retenido</mat-checkbox>
                 </div>
                 <ng-container *ngIf="form.controls['impuestoR'].value">
-                  <div class="col-6 textoM" style="margin-top: 3%;">
+                  <div class="col-6 head-mb textoM" style="margin-top: 3%;">
                     <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                       <mat-label>isr</mat-label>
                       <input matInput formControlName="isr" id="isr" name="isr"/>
                       <span matSuffix style="display: table-caption; height: 22px;">%</span>
                     </mat-form-field>
                   </div>
-                  <div class="col-6 textoM" style="margin-top: 3%;">
+                  <div class="col-6 head-mb textoM" style="margin-top: 3%;">
                     <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                       <mat-label>iva</mat-label>
                       <input matInput formControlName="ivaR" id="ivaR" name="ivaR"/>
@@ -180,7 +181,7 @@
                   <mat-checkbox class="example-margin" formControlName="impuestoL">Impuesto local</mat-checkbox>
                 </div>
                 <ng-container *ngIf="form.controls['impuestoL'].value">
-                  <div class="col-6 textoM" style="margin-top: 3%;">
+                  <div class="col-6 head-mb textoM" style="margin-top: 3%;">
                     <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                       <mat-label>impuesto local</mat-label>
                       <mat-select formControlName="impuestoLocal" id="impuestoLocal" name="impuestoLocal">
@@ -190,7 +191,7 @@
                       </mat-select>
                     </mat-form-field>
                   </div>
-                  <div class="col-6 textoM" style="margin-top: 3%;">
+                  <div class="col-6 head-mb textoM" style="margin-top: 3%;">
                     <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                       <mat-label>tasa local</mat-label>
                       <input matInput formControlName="tasaLocal" id="tasaLocal" name="tasaLocal"/>
@@ -202,11 +203,11 @@
             </div>
           </div>
           <div class="row" style="margin: 40px 0px 0px !important; width: 100%; padding: 0;">
-            <div class="col-12 d-flex justify-content-end">
-              <button type="button" class="btn-utaxme-secondary" (click)="closeDialog()" style="max-width: 120px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;">
+            <div class="col-12 btns-mb">
+              <button type="button" class="btn-utaxme-secondary tab-colum btn-cancelar" (click)="closeDialog()" style="">
                 Cancelar
               </button>
-              <button type="button" class="btn-utaxme" (click)="guardarConcepto()" style="max-width: 225px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;">
+              <button type="button" class="btn-utaxme btn-guardar" (click)="guardarConcepto()" style="">
                 Guardar concepto
               </button>
             </div>

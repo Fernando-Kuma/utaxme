@@ -1,11 +1,11 @@
-.home-container{
-    width: 100%!important;
-    margin: 0;
-    padding: 0;
+.home-container {
+  width: 100% !important;
+  margin: 0;
+  padding: 0;
 }
 
-.home-container-accesos{
-  width: 100%!important;
+.home-container-accesos {
+  width: 100% !important;
   margin: 0;
   padding: 0;
 }
@@ -17,21 +17,21 @@
   background-repeat: no-repeat;
 }
 
-.titulo-proceso{
+.titulo-proceso {
   font-weight: 400;
   font-size: 24px;
   text-transform: uppercase;
   color: #0B112A;
 }
 
-.subtitulo-proceso{
+.subtitulo-proceso {
   font-weight: 400;
   font-size: 16px;
   color: #7B8AA0;
   margin-top: 15px;
 }
 
-.bienvenida-cliente{
+.bienvenida-cliente {
   font-weight: 600;
   font-size: 20px;
   display: flex;
@@ -40,7 +40,7 @@
   color: #3B4559;
 }
 
-.titulo-formulario{
+.titulo-formulario {
   font-weight: 400;
   font-size: 24px;
   text-transform: uppercase;
@@ -54,17 +54,20 @@
   background-position: right;
   background-repeat: no-repeat;
 }
+
 .image-workspace-agregar {
   background-image: url("src\assets\icon\crear.svg");
   background-size: 24px 24px;
   background-position: right;
   background-repeat: no-repeat;
 }
-.textoM{
+
+.textoM {
   text-transform: uppercase;
 }
-.punta-tittle{
-  margin: 0; 
+
+.punta-tittle {
+  margin: 0;
   padding: 0;
   font-weight: 600;
   font-size: 10px;
@@ -87,16 +90,160 @@
   background-position: left;
 }
 
-.card-accion{
+.card-accion {
   display: flex;
   justify-content: center;
   align-items: center;
   /* System/Info/10 */
-  Width:40px;
-  Height:40px;
+  Width: 40px;
+  Height: 40px;
   background: #D3E3FE;
   border-radius: 8px;
 
   cursor: pointer;
   margin: 0 10px;
+}
+
+.not-mobile {
+  display: block;
+}
+
+.in-mobile {
+  display: none;
+}
+
+.tab-colum {
+  display: revert;
+}
+
+.head-mob {
+  display: flex;
+}
+
+.img-inicio-mas {
+  background-image: url("src\assets\icon\mas.svg");
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  background-position: left;
+}
+
+.btn-concepto-mb {
+  display: none;
+}
+
+.btn-concepto {
+  max-width: 260px;
+  font-size: 16px;
+  font-weight: 600;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 0 20px;
+}
+
+.cont-prod {
+  background-color: #FFFFFF;
+  min-height: 350px;
+  padding: 1.4rem;
+}
+
+.tab-colum {
+  display: revert;
+}
+
+.busq {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+@media(max-width: 425px) {
+  .content-home {
+    background: white;
+  }
+
+  .not-mobile {
+    display: none;
+  }
+
+  .in-mobile {
+    display: block;
+  }
+
+  .head-mob {
+    display: none;
+  }
+
+  .inp-mob {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+
+  .input-mob {
+    width: 100%;
+  }
+
+  .p-mb {
+    padding: 0;
+  }
+
+  .tab-colum {
+    display: none;
+  }
+
+  .busq {
+    justify-content: space-between;
+  }
+
+
+  .img-close {
+    background-image: url("src\assets\icon\back.svg");
+    background-size: 20px 20px;
+    background-position: right;
+    background-repeat: no-repeat;
+  }
+
+  .dialog-titulo {
+    font-weight: 700;
+    font-size: 18px;
+    color: #0B112A;
+  }
+
+  .formulario-configuracion .col-6 {
+    width: 100%;
+  }
+
+  .dialog-texto {
+    margin-bottom: 5%;
+  }
+
+  .respuesta-cuadrante2 {
+    font-weight: 400;
+    margin-top: 20px;
+  }
+
+  .btn-concepto {
+    display: none;
+  }
+
+
+  .btn-concepto-mb {
+    max-width: 30px !important;
+    font-size: 16px;
+    font-weight: 600;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px !important;
+  }
+
+  .cont-prod {
+    min-height: 100%;
+    width: 100%;
+    padding: 25px;
+  }
+
 }

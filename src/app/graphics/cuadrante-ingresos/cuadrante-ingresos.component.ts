@@ -7,6 +7,7 @@ import { ComprobantePeriodo } from 'src/app/shared/model/dashboard.mode';
 import { DateValue } from 'src/app/shared/model/date-value';
 import { MarginConf } from 'src/app/shared/model/margin-conf';
 import { DashboardService } from 'src/app/shared/service/dashboard.service';
+import { AlertService } from 'src/app/shared/utils/alertas';
 @Component({
   selector: 'app-cuadrante-ingresos',
   templateUrl: './cuadrante-ingresos.component.html',
@@ -16,18 +17,18 @@ export class CuadranteIngresosComponent implements OnInit {
 
   @Input() isFull: boolean = false;
   
-  _consultaRequest: any;
-  @Input() set consultaRequest(val: any) {
-    this._consultaRequest = val;
-    this.obtenerDato();
-  }
+  
 
   ingresosPeriodo: ComprobantePeriodo = new ComprobantePeriodo;
   @Input() set data(val: any) {
     this.ingresosPeriodo = val;
     this.obtenerData()
-    console.log(this.ingresosPeriodo);
   }  
+
+  _consultaRequest: any;
+  @Input() set consultaRequest(val: any) {
+    this._consultaRequest = val;
+  }
 
   dateValue: Array<DateValue> = []
 
@@ -35,39 +36,48 @@ export class CuadranteIngresosComponent implements OnInit {
 
   dateValueWeek: Array<DateValue> = [
     { date: new Date(moment().set({ 'minute': 0, 'second': 0, 'millisecond': 0}).format()), value: 0 },
-    { date: new Date(moment().set({'minute': 0, 'second': 0, 'millisecond': 0}).subtract(1, 'days').format()), value: 0 },
-    { date: new Date(moment().set({'minute': 0, 'second': 0, 'millisecond': 0}).subtract(2, 'days').format()), value: 0 },
-    { date: new Date(moment().set({ 'minute': 0, 'second': 0, 'millisecond': 0}).subtract(3, 'days').format()), value: 0 },
-    { date: new Date(moment().set({ 'minute': 0, 'second': 0, 'millisecond': 0}).subtract(4, 'days').format()), value: 0 },
-    { date: new Date(moment().set({ 'minute': 0, 'second': 0, 'millisecond': 0}).subtract(5, 'days').format()), value: 0 },
-    { date: new Date(moment().set({ 'minute': 0, 'second': 0, 'millisecond': 0}).subtract(6, 'days').format()), value: 0 },
   ];
 
 
   marginBarChart?: MarginConf = {
     top: 10,
     right: 10,
-    bottom: 5,
+    bottom: 10,
     left: 50,
   };
 
-  scale: 'week' | 'day'  = 'week' ;
-  constructor(public router: Router, private dashboardService: DashboardService) { }
+  marginBarChartFull?: MarginConf = {
+    top: 10,
+    right: 30,
+    bottom: 30,
+    left: 80,
+  };
+  
+  constructor(
+    public router: Router, 
+    private dashboardService: DashboardService,
+    private alertService: AlertService) { }
 
   ngOnInit(): void {
-    
+    if(this.isFull){
+      this.consultaRequest = JSON.parse(localStorage.getItem('consulta-dashboard'))
+      this.obtenerDato()
+    }
   }
 
   obtenerDato(){
     this.spinnerLoading = true;
     this.dashboardService.obtenerIngresosGastos(this._consultaRequest).subscribe({
       next: (result) => {
+        console.log(result)
         this.spinnerLoading = false;
         this.ingresosPeriodo = new ComprobantePeriodo;
-        if(result.listaReporteIngresosEgresosBean.find((element) => element.tipoComprobante === 'INGRESOS')){
-          this.ingresosPeriodo = result.listaReporteIngresosEgresosBean.find((element) => element.tipoComprobante === 'INGRESOS');
+        if(result.listaReporteIngresosEgresosBean){
+          if(result.listaReporteIngresosEgresosBean.find((element) => element.tipoComprobante === 'INGRESOS')){
+            this.ingresosPeriodo = result.listaReporteIngresosEgresosBean.find((element) => element.tipoComprobante === 'INGRESOS');
+          }
         }
-        
+        this.obtenerData()
       },
       error: (_) => {
         console.log(_)
@@ -77,9 +87,13 @@ export class CuadranteIngresosComponent implements OnInit {
 
   obtenerData(){
     this.dateValue = []
-    this.ingresosPeriodo.detalles.forEach((element, index) => {
-      this.dateValue.push({id: index+1, total: element.total })
-    });
+    if(this.ingresosPeriodo.facturas > 0){
+      this.ingresosPeriodo.detalles.forEach((element, index) => {
+        this.dateValue.push({id: index+1, total: element.total })
+      });
+    }else{
+      this.dateValue = [{id: 0, total: 0}]
+    }
   }
 
   public get width() {
@@ -90,6 +104,8 @@ export class CuadranteIngresosComponent implements OnInit {
     localStorage.setItem('dashboard','CUADRANTE-INGRESOS');
     localStorage.setItem('titulo-dashboard','Factura emitidas');
     localStorage.setItem('texto-dashboard',String(this.ingresosPeriodo.facturas));
+
+    localStorage.setItem('consulta-dashboard', JSON.stringify(this._consultaRequest));
     this.router.navigateByUrl(NAV.fullSize);
   }
 

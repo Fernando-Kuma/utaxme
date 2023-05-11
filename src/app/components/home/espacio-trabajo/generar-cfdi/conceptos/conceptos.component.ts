@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/shared/service/auth.service';
 import { Conceptos } from 'src/app/shared/model/espacio-trabajo.model';
 import { ConfirmDialogComponent } from 'src/app/shared/utils/confirm-dialog/confirm-dialog.component';
 import { ConfirmDialogService } from 'src/app/shared/utils/confirm-dialog/confirm-dialog.service';
+import { AlertService } from 'src/app/shared/utils/alertas';
 
 @Component({
   selector: 'app-conceptos',
@@ -21,6 +22,7 @@ export class ConceptosComponent{
   public form: FormGroup;
 
   constructor(
+    private alertService: AlertService,
     public dialogRef: MatDialogRef<ConceptosComponent>,
     public dialogService: DialogService,
     public dialogServiceConfirm: ConfirmDialogService,
@@ -43,13 +45,18 @@ export class ConceptosComponent{
   }
 
   closeDialog() {
-    let listaConcepto = this.tablaListaConceptos.filter(ele => ele.estatus)
-    this.dialogRef.close(listaConcepto);
+    this.dialogRef.close(this.data.conceptos);
   }
 
   confirmDialog() {
     let listaConcepto = this.tablaListaConceptos.filter(ele => ele.estatus)
-    this.dialogRef.close(listaConcepto);
+    let condicionISH = listaConcepto.filter(ele => ele.tasaLocal > 0)
+    if(condicionISH.length <= 1){
+      this.dialogRef.close(listaConcepto);
+    }else{
+      this.alertService.error('<b>Solo puedes añadir un concepto con una Tasa Trasladado.</b>');
+    }
+
   }
 
   crearConcepto(){

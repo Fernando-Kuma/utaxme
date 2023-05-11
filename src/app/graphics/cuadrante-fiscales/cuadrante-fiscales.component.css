@@ -42,6 +42,15 @@
   padding: 0 29px;
 }
 
+.btn-factura{
+  height: 45px; 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-evenly;
+  margin: 0 10px;
+  border-radius: 25px !important;
+}
+
 .view-salud-fiscal{
   display: block;
 }

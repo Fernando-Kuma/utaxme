@@ -9,7 +9,7 @@
           <div class="col-1" style="margin: 0; padding: 0;">
             <div class="image-workspace-back" style="width: 30px; height: 20px; float: right; cursor: pointer;" (click)="regresar()"></div>
           </div> 
-          <div class="col-11">
+          <div class="col-11" *ngIf="width > 450">
             <div class="row w100m0p0">
               <div class="col-5">
                 <div class="titulo-proceso">
@@ -25,34 +25,51 @@
               </div>
             </div>
           </div>
+          <div class="col-11" *ngIf="width <= 450">
+            <span style="font-weight: 700; font-size: 18px; color: #0B112A;">Administra clientes frecuentes</span>
+          </div>
         </div>
       </div>
 
       <div class="home-container-accesos" style="margin-top: 30px;">
         <div class="row w100m0p0">
           <div class="col-1"></div>
-          <div class="col-10 px-4 p-4" style="background-color: #FFFFFF; min-height: 350px;">
-            <div class="titulo-formulario">
+          <div class="px-4 p-4" style="background-color: #FFFFFF; min-height: 350px;" [ngClass]="width > 450 ? 'col-10' : 'col-12'">
+            <div class="titulo-formulario" *ngIf="width > 450">
               tus clientes
             </div>
+
+            <div class="titulo-formulario" *ngIf="width <= 450">
+              Crea y edita a tus clientes frecuentes para enviarles facturas rápidamente.
+            </div>
+
             <div class="row" style="margin-top: 4% !important;">
               <form [formGroup]="form" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
                 <div class="col-12 d-flex justify-content-end align-items-center">
-                  <mat-form-field appearance="outline" style="min-width: 300px; font-size: 12px; height: 48px;">
+                  <mat-form-field appearance="outline" style="font-size: 12px; height: 48px;">
                     <mat-label>Buscar concepto</mat-label>
                     <input matInput formControlName="buscar" id="buscar" name="buscar" (keyup)="onKeyDownEvent($event)"/>
                     <mat-icon class="image-workspace-buscardor" matSuffix></mat-icon>
                   </mat-form-field>
-                  <button type="button" class="btn-utaxme" style="max-width: 260px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: space-evenly; margin: 0 20px;" (click)="crearCliente()">
+
+                  <button type="button" *ngIf="width > 450" class="btn-utaxme" style="max-width: 260px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: space-evenly; margin: 0 20px;" (click)="crearCliente()">
                     <mat-icon class="image-workspace-agregar image-invert-color"></mat-icon>
                     Crear nuevo cliente
                   </button>
+
+                  <button type="button" *ngIf="width <= 450" class="btn-utaxme" style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; margin: 0 10px;" (click)="crearCliente()">
+                    <mat-icon class="image-workspace-agregar"></mat-icon>
+                  </button>
+
                 </div>
               </form> 
             </div>
 
+
+
             <div class="row" style="margin-top: 3% !important; min-height: 250px;" *ngIf="tablaLista?.length> 0">
-              <div class="col-12 tableFixHead disable-scrollbars" style=" overflow-x: auto;">
+              
+              <div class="col-12 tableFixHead disable-scrollbars" style=" overflow-x: auto;" *ngIf="width > 450">
                 <table aria-describedby="tabla" class="table table-responsive table-striped">
                   <thead style="margin-bottom: 10px;">
                       <tr class="textoM">
@@ -111,6 +128,48 @@
                   </tbody>
               </table>
               </div>
+
+              <div class="col-12 tableFixHead disable-scrollbars" style="max-height: 300px; overflow-x: auto;" *ngIf="width <= 450">
+                <table aria-describedby="tabla" class="table table-responsive table-striped">
+                  <thead style="margin-bottom: 10px;">
+                      <tr class="textoM">
+                          <th class="punta-tittle" style="text-align: center;">
+                              <span style="cursor:default!important;">
+                                razón social
+                              </span>
+                          </th>
+                          <th class="punta-tittle" style="text-align: center;">
+                              <span style="cursor:default!important;">
+                                rfc
+                              </span>
+                          </th>
+                          <th class="punta-tittle" style="text-align: center;">
+                              <span style="width: 70px; cursor:default!important;">
+                                acciones
+                              </span>
+                          </th>
+                      </tr>
+                  </thead>
+                  <tbody class="table-scroll" style="border: solid 1px #ffffff; ">
+
+                    <tr *ngFor="let item of tablaLista">
+                      <td class="tabla-razonSocial" style="text-align: center;">
+                        {{item.razonSocial}}
+                      </td>
+                      <td class="tabla-rfcReceptor" style="text-align: center;">
+                        {{item.rfcReceptor}}
+                      </td>
+                      <td>
+                        <div style="display: flex;  justify-content: space-evenly;">
+                          <mat-icon class="img-accion-editar" (click)="editarCliente(item)"></mat-icon>
+                          <mat-icon class="img-accion-borrar" (click)="borrarCliente(item)"></mat-icon>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
             </div>
             <div class="row w100m0p0" style="margin-top: 30px!important; min-height: 50px;" *ngIf="tablaLista?.length> 0">
               <div class="col-6"

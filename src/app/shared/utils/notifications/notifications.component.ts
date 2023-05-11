@@ -81,14 +81,11 @@ export class NotificationsComponent implements OnInit {
       next: (result) => {
         if(result.notificaciones.length > 0){
           this.notifications = result.notificaciones.filter(ele => ele.leida == !this.leidas);
-
           if(this.notifications.length > 0){
             this.sinResultados = false;
           }else{
             this.sinResultados = true;
           }
-
-          console.log(this.notifications)
           /* result.data.forEach(element => {
             dateNotification = new Date(formatDate(new Date(element.fechaCreacion), 'YYYY-MM-dd', 'en'))
             diff = this.fechaActual - dateNotification;

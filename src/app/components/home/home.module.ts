@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouterModule } from '@angular/router';
 import { HeaderHomeModule } from 'src/app/shared/utils/header-home';
-import { HomeComponent } from './home.component';
 import { GraphicsModule } from 'src/app/graphics/graphics.module';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -43,6 +42,7 @@ import { DatosFiscalesComponent } from './home-mobile/datos-fiscales/datos-fisca
 import { BandejaEntradaComponent } from './bandeja-entrada/bandeja-entrada.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { SafePipe } from 'src/app/shared/pipe/safe.pipe';
+import { AlertModule } from 'src/app/shared/utils/alertas';
 
 
 
@@ -51,7 +51,6 @@ import { SafePipe } from 'src/app/shared/pipe/safe.pipe';
 @NgModule({
   declarations: [
     DashboardComponent,
-    HomeComponent,
     CancelarCfdiComponent,
     GenerarCfdiComponent,
     ClientesFrecuentesComponent,
@@ -95,7 +94,8 @@ import { SafePipe } from 'src/app/shared/pipe/safe.pipe';
     ConfirmDialogModule,
     PagerModule,
     FilterErrorModule,
-    MatTableModule
+    MatTableModule,
+    AlertModule
   ],
   exports: [
     MatDatepickerModule,

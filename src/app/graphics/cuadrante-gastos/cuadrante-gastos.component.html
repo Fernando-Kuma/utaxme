@@ -41,7 +41,7 @@
         </div>
 
         <div class="col-12 boton-factura">
-          <button type="button" class="btn btn-outline-primary btn-factura" (click)="descargarExcel()">
+          <button type="button" class="btn-utaxme-secondary btn-factura" (click)="descargarExcel()">
             <mat-icon class="image-dashboard-descargar image-size-22"></mat-icon>
             Descargar gastos
           </button>
@@ -68,8 +68,8 @@
       </div>
       <div class="row">
         <app-barras-emitidas 
-        [sizex]="width > 1440 ? 750 : width > 450 ?  550 : 320" 
-        [sizey]="width > 450 ? 220 : 150" 
+        [sizex]="width > 1440 ? 750 : width > 450 ?  550 : 300" 
+        [sizey]="width > 450 ? 220 : 130" 
         [data]="dateValue" color="#1D2640"
         [showDomain]="true" [barWidth]="20" [showLimits]="false" [showXLabels]="true" 
         [showYLabels]="true" [border]="true" [margin]="marginBarChart" [general]="true" 

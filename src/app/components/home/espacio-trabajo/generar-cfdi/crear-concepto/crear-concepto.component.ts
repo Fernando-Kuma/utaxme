@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Observable } from 'rxjs';
@@ -136,6 +136,18 @@ export class CrearConceptoComponent {
   }
 
   guardarConcepto(){
+
+    if(this.form.controls['ivaR'].value > 0 && this.form.controls['iva'].value <= 0 ){
+      this.form.get('iva')?.setErrors({ impuesto: true });
+      Object.keys(this.form.controls).forEach((field) => {
+        const control = this.form.get(field);
+        if (!control.valid) {
+            control.markAsTouched({ onlySelf: true });
+        }
+      });
+      return
+    }
+    
     let request = {
         productoServicio: this.form.controls['nombreProducto'].value.toUpperCase(),
         identificadorSat: this.form.controls['clavaProducto'].value,
@@ -145,14 +157,18 @@ export class CrearConceptoComponent {
         unidad: this.form.controls['unidad'].value,
         valorUnitario: this.form.controls['valorUnitario'].value,
         claveImpuestoSat: "002", //ok  fijo
-        tasa: this.form.controls['iva'].value,
-        ieps: this.form.controls['ieps'].value,
-        isrRet: this.form.controls['isr'].value,
-        ivaRet: this.form.controls['ivaR'].value,
-        claveImpuestoLocal: this.form.controls['impuestoLocal'].value,
-        tasaLocal: this.form.controls['tasaLocal'].value,
+        tasa: this.form.controls['impuestoT'].value ? this.form.controls['iva'].value : null,
+        ieps: this.form.controls['impuestoT'].value ? this.form.controls['ieps'].value : null,
+
+        isrRet: this.form.controls['impuestoR'].value ? this.form.controls['isr'].value : null,
+        ivaRet: this.form.controls['impuestoR'].value ? this.form.controls['ivaR'].value : null,
+
+        claveImpuestoLocal: this.form.controls['impuestoL'].value ? this.form.controls['impuestoLocal'].value : null,
+        tasaLocal: this.form.controls['impuestoL'].value ? this.form.controls['tasaLocal'].value : null,
         idConceptoCliente: 0
     }
+
+
     if(this.opcionCrear){
       this.espacioTrabajoService.crearNuevoConcepto(request)
       .subscribe((resp) => {
@@ -173,7 +189,6 @@ export class CrearConceptoComponent {
         console.log("::Entro al error Datos fiscales: ", _error);
       });
     }
-    
   }
 
   private _filter(value: any): any[] {
@@ -190,14 +205,37 @@ export class CrearConceptoComponent {
     return 'Este campo es requerido';
   }
 
-  public caracteresValidosDecimales(event) {
+  public validarCaracteres(event, input) {
     let k = event.target.value;
     let reg = /^[0-9]{1,}?(\.[0-9]{0,4})?$/g;
-    console.log(k)
-    console.log(reg.test(k))
+    if(k == '' || k == null){
+      return
+    } 
     if(!reg.test(k)){
-      return false
+      this.form.get(input)?.setErrors({ valor: true });
+    }
+    if((input == 'iva' || input == 'ivaR' ) && k > 16){
+      this.form.get(input)?.setErrors({ mayor: true });
+    }
+    if((input == 'ivaR' || input == 'iva') && this.form.controls['ivaR'].value > 0 && this.form.controls['iva'].value <= 0 ){
+      this.form.get('iva')?.setErrors({ impuesto: true });
+      Object.keys(this.form.controls).forEach((field) => {
+        const control = this.form.get(field);
+        if (!control.valid) {
+            control.markAsTouched({ onlySelf: true });
+        }
+    });
     }
   }
 
+  public onlyNumbers(event) {
+    let k;
+    k = event.charCode;
+    return (!(k > 31 && (k < 48 || k > 57) && k != 46));
+  }
+
+  public get width() {
+    return window.innerWidth;
+  }
+  
 }

@@ -11,7 +11,6 @@ export class PagerComponent implements OnInit {
   @Input() changePage: number;
   _pageModel : Page<any>;
   @Input() set pageModel(val: Page<any>) {
-    console.log("Paginador:",val);
     this._pageModel = val;
     this.arrayPages();
   }

@@ -10,14 +10,12 @@ import {
 import * as d3 from 'd3';
 import d3Tip from "d3-tip";
 import { Observable } from 'rxjs';
-import { ES_MX_LOCALE } from 'src/app/shared/helper/es-mx-locale';
 import { DateValue } from 'src/app/shared/model/date-value';
 import { MarginConf } from 'src/app/shared/model/margin-conf';
 
 @Component({
   selector: 'app-barras-emitidas',
-  templateUrl: './barras-emitidas.component.html',
-  styleUrls: ['./barras-emitidas.component.css']
+  templateUrl: './barras-emitidas.component.html'
 })
 
 export class BarrasEmitidasComponent implements AfterViewInit, OnInit, OnDestroy {
@@ -86,7 +84,6 @@ export class BarrasEmitidasComponent implements AfterViewInit, OnInit, OnDestroy
   }
 
   get data() {
-    console.log(this._data)
     return this._data;
   }
 
@@ -206,11 +203,13 @@ export class BarrasEmitidasComponent implements AfterViewInit, OnInit, OnDestroy
   }
 
   private defineXAxis() {
+    let widthBarra = (this.sizex / (this._data.length * 9)).toFixed(0)
+    console.log(widthBarra)
     this.svg
       .append('g')
       .attr(
         'transform',
-        `translate(${this.xposition} , ${this.height - this.margin.bottom})`
+        `translate(${widthBarra} , ${this.height - this.margin.bottom})`
       )
       .style('font-size', (g) => {
         if (this.full) {
@@ -337,15 +336,15 @@ export class BarrasEmitidasComponent implements AfterViewInit, OnInit, OnDestroy
     });
 
     this.svg.call(tip);
-    console.log(this.sizex, '/', this._data.length , '=' ,)
-    console.log(this.sizex / this._data.length)
+    let widthBarra = (this.sizex / (this._data.length * 4))
+    console.log(Number(widthBarra).toFixed(0))
     let rects = this.svg
       .selectAll('rect')
       .data(this.data)
       .enter()
       .append('rect')
       .attr('x', (_: DateValue, i: number) => this.xScale(this.X[i]))
-      .attr('width', 10)
+      .attr('width', Number(widthBarra).toFixed(0))
       .attr('height', 0)
       .attr('y', (_: DateValue, i: number) => this.yScale(50))
       .on('mouseover', tip.show )

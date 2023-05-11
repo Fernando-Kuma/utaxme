@@ -1,13 +1,14 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatInput } from '@angular/material/input';
 import { Router } from '@angular/router';
 import { NAV } from 'src/app/shared/configuration/navegacion';
-import { Auth, User } from 'src/app/shared/model/auth-model';
+import { User } from 'src/app/shared/model/auth-model';
 import { AuthService } from 'src/app/shared/service/auth.service';
 import { DashboardService } from 'src/app/shared/service/dashboard.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ServiceErrorDialogComponent } from 'src/app/shared/utils/service-error-dialog/service-error-dialog.component';
 
 
 @Component({
@@ -59,58 +60,12 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  checkPassword(control) {
-    let enteredPassword = control.value;
-    /* let passwordCheck = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/;
-    return !passwordCheck.test(enteredPassword) && enteredPassword
-      ? { requirements: true }
-      : null; */
-  }
-
   login(): void{
-
-    let usuario = {
-      "nombre": "priscila olan tapia",
-      "apellidos": "",
-      "email": "priscila.olan.ta@gmail.com",
-      "password": "cHJpc2NpbGFvbGFu",
-      "telefono": "5568845587",
-      "aceptaTerminos": true,
-      "propuestaId": 440,
-      "onboardingId": 119,
-      "originId": "utaxme",
-      "folio": "utaxme0000000187",
-      "databank": {
-        "usename": null,
-        "tarjeta": "1212121212121212",
-        "anioExpira": "2025",
-        "mesExpira": "09",
-        "cvt": null,
-        "token": null
-      },
-      "cliente": {
-        "rfc": "OATP9611061C4",
-        "folioUtaxme": "utaxme0000000187",
-        "clientId": "435",
-        "razonSocial": "PRISCILA OLAN TAPIA",
-        "userName": "",
-        "celular": "",
-        "codigo": "200",
-        "mensaje": "Servicio Ejecutado Correctamente",
-        "versionAndroid": 0,
-        "versionIos": 0
-      }
-    }
-    sessionStorage.setItem('admin-user', JSON.stringify(usuario));
-                  //sessionStorage.setItem('cliente', JSON.stringify(response));
-                  this.router.navigateByUrl(NAV.dashboard);
-
-
 
     if(this.form.invalid){
       Object.keys(this.form.controls).forEach((field) => {
         const control = this.form.get(field);
-        if (control.valid == false) {
+        if (!control.valid) {
             control.markAsTouched({ onlySelf: true });
         }
       });
@@ -127,7 +82,6 @@ export class LoginComponent implements OnInit {
             this.authService.getIp()
             response.nombre = response.nombre.toLowerCase()
             response.apellidos = response.apellidos.toLowerCase()
-            //response.email = this._user.email
             this.validarCliente(response)
           }else{
             this.selectMessageError("El usuario no se encuentra registrado en el sistema");
@@ -138,6 +92,7 @@ export class LoginComponent implements OnInit {
           if(_.error.response === "No coinciden las credenciales"){
             this.selectMessageError(_.error.response);
           }else{
+            this.openDialog()
             console.log("Error: ", _)
           }
         }
@@ -152,7 +107,7 @@ export class LoginComponent implements OnInit {
     }
     this.authService.payment(email).subscribe({
       next: (resp) => {
-        if (resp.payment == true) {
+        if (resp.payment) {
           this.spinner.hide();
           let request = {
             folio: usuario.folio
@@ -163,27 +118,19 @@ export class LoginComponent implements OnInit {
                 if(response.rfc != ""){
                   usuario.cliente = response
                   sessionStorage.setItem('admin-user', JSON.stringify(usuario));
-                  //sessionStorage.setItem('cliente', JSON.stringify(response));
                   this.router.navigateByUrl(NAV.dashboard);
-                }else{
-                  //this.router.navigateByUrl(NAV.dashboard);
                 }
-                
               }
             },
             error: (_) => {
+              this.openDialog()
               console.log("Error: ", _)
             }
           });
-        } else {
-          //nuevo proceso. Flujo normal
-          //this.$store.state.sesion.step = "proceso";
-          //this.router.navigateByUrl(NAV.dashboard);
         }
-        
-        
       },
       error: (_) => {
+        this.openDialog()
           console.log("Error: ", _)
       }
     });
@@ -218,7 +165,6 @@ export class LoginComponent implements OnInit {
   }
 
   changePassword() {
-    /* localStorage.setItem('back-return', NAV.login); */
     this.router.navigateByUrl(NAV.recuperarContrasena); 
   }
 
@@ -236,7 +182,7 @@ export class LoginComponent implements OnInit {
   }
 
   openDialog(): void {
-    /* const dialogRef = this.dialog.open(ServiceErrorDialogComponent, {
+    const dialogRef = this.dialog.open(ServiceErrorDialogComponent, {
       width: '449px',
       height: '360px ',
       data:{numero: this._reintento, cerrarSesion: false},
@@ -246,9 +192,9 @@ export class LoginComponent implements OnInit {
     dialogRef.afterClosed().subscribe((data) => {
       if(data > 0){
         this._reintento++;
-        this.continueLogin();
+        this.login();
       }
-    }); */
+    });
   }
 
   public blockSpace(event) {

@@ -61,7 +61,6 @@ export class CuadranteFiscalesComponent implements OnInit {
     this.dashboardService.obtenerIngresosGastos(this._consultaRequest).subscribe(
       (response) => {
         this.spinnerLoading = false;
-        console.log('Res gatos: ', response);
         this.baseGravable.egresos = 0
         this.baseGravable.ingresos = 0
         if(response.listaReporteIngresosEgresosBean.find((element) => element.tipoComprobante === 'GASTOS')){
@@ -81,7 +80,6 @@ export class CuadranteFiscalesComponent implements OnInit {
   obtenerSaludFiscal(){
     this.dashboardService.obtenerSaludFiscal(this._consultaRequest).subscribe(
       (response) => {
-        console.log('Res saludFiscal: ', response);
         this.baseGravable = response.baseGravable
         this.calcularSpeed()
       },(_error) => {

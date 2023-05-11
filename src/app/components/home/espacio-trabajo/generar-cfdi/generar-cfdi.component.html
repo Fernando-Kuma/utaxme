@@ -35,7 +35,9 @@
                   <div class="image-workspace-back-2" style="width: 30px; height: 20px; float: right; cursor: pointer;"
                     (click)="regresar()"></div>
                 </div>
-                <span style="font-weight: 600; width: 350px; font-size: 18px; color: #0B112A;"> Crear Nueva Factura</span>
+                <div class="col-11">
+                  <span style="font-weight: 600; width: 350px; font-size: 18px; color: #0B112A;"> Crear Nueva Factura</span>
+                </div>
               </div>
             </div>
           </div>
@@ -191,7 +193,7 @@
                             <mat-icon class="image-workspace-buscardor" matPrefix></mat-icon>
                             <mat-icon class="image-workspace-select" matSuffix></mat-icon>
                             <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                              <mat-option *ngFor="let item of filteredOptions | async" [value]="item.rfcCliente" (click)="selecionarCliente(item)">
+                              <mat-option *ngFor="let item of filteredOptions | async" [value]="item.rfcReceptor" (click)="selecionarCliente(item)">
                                 {{item.rfcReceptor}}
                               </mat-option>
                             </mat-autocomplete>
@@ -273,22 +275,15 @@
                         <div class="col-2"></div>
                         <div class="col-5 input-mob">
                           <div class="check-mobile" style="width: 100%; font-size: 16px; min-height: 80px;" [ngClass]="{'isDisabled ': formularioAvanzado.configuracionGeneral}" (click)="clienteFrecuente()">
-                            <!-- <div class="">
-                              <p style="margin-left: 10px; margin-right: 30px; font-size: 12px;">
-                                <mat-checkbox  ></mat-checkbox>
-                              </p>
-                            </div> -->
-                            
                             <div>
                               <span class="texto-hipervinculo" style="color: #0B112A !important; ">¿Es un cliente frecuente? </span><span class="texto-hipervinculo" (click)="crearCliente()">Haz clic para guardar como cliente fecuente</span>
                             </div>
-                            
                           </div>
                         </div>
                       </div>
                       <div class="row" style="margin-top: 2%;">
                         <div class="col-12">
-                          <div class="texto-card aviso" style="" >
+                          <div class="texto-card aviso" >
                             <span style="font-weight: 600;"> 
                               ¿Deseas crear una factura al Público en General? 
                             </span>
@@ -317,12 +312,12 @@
                                 Haz clic en ¨Agregar concepto¨ para ingresar servicios y montos a tu factura
                               </div>
                               <div class="col-4 pos-mas">
-                                <button mat-button class="btn-utaxme btn-concepto" style="" 
+                                <button mat-button class="btn-utaxme btn-concepto" 
                                 (click)="listaConcepto()">
                                   <mat-icon class="img-inicio-acceso"></mat-icon>
                                   Agregar concepto
                                 </button>
-                                <button mat-button class="btn-utaxme btn-concepto-mb" style="" 
+                                <button mat-button class="btn-utaxme btn-concepto-mb" 
                                 (click)="listaConcepto()">
                                   <mat-icon class="img-inicio-mas"></mat-icon>
                                   
@@ -331,7 +326,7 @@
                             </div>
                           </div>
 
-                          <div class="col-12" style="margin-top: 3%;">
+                          <div class="col-12" style="margin-top: 3%;" *ngIf="width > 450">
                             <div class="row tableFixHead disable-scrollbars" style="max-height: 250px; overflow-x: auto; width: 100%; margin: 0; padding: 0;">
                               <table aria-describedby="tabla" class="table table-responsive table-striped ">
                                   <thead style="margin-bottom: 10px;">
@@ -399,6 +394,48 @@
                               </table>
                             </div>
                           </div>
+
+                          <div class="col-12" style="margin-top: 3%; padding: 0;" *ngIf="width <= 450">
+                            <div class="row tableFixHead disable-scrollbars" style="max-height: 250px; overflow-x: auto; width: 100%; margin: 0; padding: 0;">
+                              <table aria-describedby="tabla" class="table table-responsive table-striped ">
+                                  <thead style="margin-bottom: 10px;">
+                                      <tr class="textoM">
+                                          <th class="punta-tittle" style="text-align: center;">
+                                              <span style="cursor:default!important;">
+                                                descripción
+                                              </span>
+                                          </th>
+                                          <th class="punta-tittle" style="text-align: center;">
+                                              <span style="cursor:default!important;">
+                                                importe
+                                              </span>
+                                          </th>
+                                          <th class="punta-tittle" style="text-align: center;">
+                                              <span style="width: 70px; cursor:default!important;">
+                                                acciones
+                                              </span>
+                                          </th>
+                                      </tr>
+                                  </thead>
+                                  <tbody class="table-scroll" style="border: solid 1px #ffffff; ">
+                                    <tr *ngFor="let item of tablaListaConceptos">
+                                      <td class="tabla-descripcion">
+                                        {{item.descripcion | slice:0:30}} 
+                                      </td>
+                                      <td class="tabla-importe">
+                                        ${{item.valorUnitario | thousandsPipe}}
+                                      </td>
+                                      <td class="d-flex justify-content-center ">
+                                        <div class="card-accion" (click)="eliminarConcepto(item.idConceptoCliente)">
+                                          <mat-icon class="img-accion-borrar"></mat-icon>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                              </table>
+                            </div>
+                          </div>
+
 
                           <div class="col-12" style="margin-top: 2%;">
                             <div class="row total-conceptos">

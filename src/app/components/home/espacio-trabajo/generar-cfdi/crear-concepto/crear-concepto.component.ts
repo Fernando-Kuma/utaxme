@@ -172,7 +172,6 @@ export class CrearConceptoComponent {
     if(this.opcionCrear){
       this.espacioTrabajoService.crearNuevoConcepto(request)
       .subscribe((resp) => {
-        console.log(resp)
         //agregar alerta de listo
         this.dialogRef.close(true);
       },(_error) => {
@@ -182,7 +181,6 @@ export class CrearConceptoComponent {
       request.idConceptoCliente = this.data.concepto.idConceptoCliente
       this.espacioTrabajoService.actualizarConcepto(request)
       .subscribe((resp) => {
-        console.log(resp)
         //agregar alerta de listo
         this.dialogRef.close(true);
       },(_error) => {
@@ -193,7 +191,6 @@ export class CrearConceptoComponent {
 
   private _filter(value: any): any[] {
     const filterValue = value.toLowerCase();
-    console.log(filterValue)
     return this.listaCatalogoProductos;
   }
 

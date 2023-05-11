@@ -20,8 +20,8 @@ export class VelocimetroComponent implements AfterViewInit, OnInit {
   @Input() sizex: number;
   @Input() sizey: number;
   @Input() size: number = 400;
-  @Input() ringWidth: number = 60;
-  @Input() proportion: number = 1;
+  @Input() ringWidth: number = 40;
+  @Input() proportion: number = 1.1;
   @Input() pointerLengthPercent: number = 0.2;
   @Input() positionText: number[]= [230, 155, 48, 155];
   @Input() fontSize: string = "17px";

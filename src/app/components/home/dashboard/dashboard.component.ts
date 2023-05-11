@@ -72,6 +72,7 @@ export class DashboardComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
+    localStorage.removeItem('back-return');
     this.usuario = this.auth.usuario 
     if(this.usuario == null){
       this.auth.logout()
@@ -104,10 +105,6 @@ export class DashboardComponent implements OnInit {
 
     this.obtenerIngresosEngresos()
     this.obtenerCumplimientoFiscal()
-  }
-
-  crearFactura(){
-    this.router.navigateByUrl(NAV.crearCfdi)
   }
 
   obtenerIngresosEngresos(): void {
@@ -173,6 +170,7 @@ export class DashboardComponent implements OnInit {
   }
 
   nuevaFactura(){
+    localStorage.setItem('back-return', 'home');
     this.router.navigateByUrl(NAV.generarCfdi);
   }
   

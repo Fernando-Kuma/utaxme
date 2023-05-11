@@ -106,7 +106,14 @@ export class GenerarCfdiComponent implements OnInit {
   }
 
   regresar(){
-    this.router.navigateByUrl(NAV.espacioTrabajo)
+    console.log(localStorage.getItem('back-return'))
+    if(localStorage.getItem('back-return') != null){
+      localStorage.removeItem('back-return');
+      this.router.navigateByUrl(NAV.dashboard);
+    }else{
+      this.router.navigateByUrl(NAV.espacioTrabajo);
+    }
+
   }
 
   cancelarCFDI(){
@@ -167,7 +174,6 @@ export class GenerarCfdiComponent implements OnInit {
         data => {
           if(data){
             this.tablaListaConceptos = data;
-            console.log(this.tablaListaConceptos)
           }
         }
       );
@@ -183,9 +189,7 @@ export class GenerarCfdiComponent implements OnInit {
   }
 
   eliminarConcepto(concepto: any){
-    console.log(concepto)
     let index = this.tablaListaConceptos.findIndex(element => element.idConceptoCliente == concepto)
-    console.log(index)
     this.tablaListaConceptos.splice(index, 1)
     this.calcularTotal()
   }
@@ -268,7 +272,7 @@ export class GenerarCfdiComponent implements OnInit {
 
   confirmarGenerarCFDI() {
     if(this.tablaListaConceptos.length <= 0){
-      console.log("Agregue al menos un concepto para generar una factura")
+      this.alertService.warn("<b>Agregue al menos un concepto para generar una factura</b>")
       return;
     }
     if(this.form.invalid){
@@ -283,30 +287,30 @@ export class GenerarCfdiComponent implements OnInit {
     let tasaLocal = this.tablaListaConceptos[0].tasaLocal;
     this.tablaListaConceptos.forEach(element => {
       if(element.importe <= 0){
-        console.log("No se permite facturar importes en cero o negativos, por favor rectifique")
+        this.alertService.error("<b>No se permite facturar importes en cero o negativos, por favor rectifique</b>")
         return;
       }
       if (element.tasaLocal != tasaLocal) {
-        console.log("En el CFDI no pueden haber más de 1 concepto con el impuesto local con diferentes tasas")
+        this.alertService.error("<b>En el CFDI no pueden haber más de 1 concepto con el impuesto local con diferentes tasas</b>")
         return;
       }
       if(this.tipoFactura == "AIRBNB"){
         if (element.tasa == null) {
-          console.log("Para la plataforma de AIRBNB, no se permite generar un CFDI sin IVA trasladado.")
+          this.alertService.error("<b>Para la plataforma de AIRBNB, no se permite generar un CFDI sin IVA trasladado.</b>")
           return;
         }
         if (element.tasa == 0) {
-          console.log("Para la plataforma de AIRBNB, no se permite generar un CFDI con IVA tasa 0%.")
+          this.alertService.error("<b>Para la plataforma de AIRBNB, no se permite generar un CFDI con IVA tasa 0%.</b>")
           return;
         }
         if (element.ieps != null) {
-          console.log("Para la pataforma de ARIBNB, no se permite agregar el impuesto IEPS.")
+          this.alertService.error("<b>Para la pataforma de ARIBNB, no se permite agregar el impuesto IEPS.</b>")
           return;
         }
       }
     });
     if(this.totalConceptos == 0.0){
-      console.log("El monto de la factura debe ser mayor a cero")
+      this.alertService.warn("<b>El monto de la factura debe ser mayor a cero</b>")
       return;
     }
     this.dialogCFDI();
@@ -407,7 +411,6 @@ export class GenerarCfdiComponent implements OnInit {
     });
 
     _conceptos.forEach(element => {
-      console.log(element.impuestos)
       let _impuestosAux = element.impuestos.filter((obj) => {
         return obj.tasa != "remove";
       });
@@ -438,8 +441,6 @@ export class GenerarCfdiComponent implements OnInit {
       informacionGlobal: _informacionGlobal,
       conceptos: _conceptos
     }
-
-    console.log(requestDashboard)
 
     this.espacioTrabajoService.emitirCFDI(requestDashboard)
       .subscribe((response) => {
@@ -510,7 +511,6 @@ export class GenerarCfdiComponent implements OnInit {
 
 
   clienteFrecuente(){
-    console.log('Saludos')
   }
   
   public onlyNumbers(event) {

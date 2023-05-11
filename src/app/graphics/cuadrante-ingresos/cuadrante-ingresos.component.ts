@@ -48,8 +48,8 @@ export class CuadranteIngresosComponent implements OnInit {
 
   marginBarChartFull?: MarginConf = {
     top: 10,
-    right: 30,
-    bottom: 30,
+    right: 10,
+    bottom: 50,
     left: 80,
   };
   
@@ -69,7 +69,6 @@ export class CuadranteIngresosComponent implements OnInit {
     this.spinnerLoading = true;
     this.dashboardService.obtenerIngresosGastos(this._consultaRequest).subscribe({
       next: (result) => {
-        console.log(result)
         this.spinnerLoading = false;
         this.ingresosPeriodo = new ComprobantePeriodo;
         if(result.listaReporteIngresosEgresosBean){

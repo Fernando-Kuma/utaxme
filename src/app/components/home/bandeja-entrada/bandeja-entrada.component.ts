@@ -72,7 +72,6 @@ export class BandejaEntradaComponent implements OnInit {
     this.notificationService.obtenerNotificacion(this.auth.usuario.cliente.rfc).subscribe({
       next: (result) => {
         if(result.notificaciones.length > 0){
-          console.log(this.estatus)
           if(this.estatus === "leidas"){
             this.estatus = "leidas";
             this.notificaciones = result.notificaciones.filter(ele => ele.leida == true);

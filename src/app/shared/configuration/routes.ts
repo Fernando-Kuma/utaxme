@@ -85,11 +85,6 @@ export const appRoutes: Routes = [
     component: FullSizeComponent,
     canActivate: [AuthGuardHelper],
   },{
-    path: NAV.crearCfdi,
-    pathMatch: 'full',
-    component: GenerarCfdiComponent,
-    canActivate: [AuthGuardHelper],
-  },{
     path: NAV.perfil,
     pathMatch: 'full',
     component: PerfilComponent,

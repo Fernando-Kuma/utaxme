@@ -81,7 +81,6 @@ export class CuadranteGastosComponent implements OnInit {
   }
 
   descargarExcelPeticion(){
-    console.log(this._consultaRequest)
     this.dashboardService.obtenerReporte(this._consultaRequest).subscribe({
       next: (response) => {
         if(response != null){

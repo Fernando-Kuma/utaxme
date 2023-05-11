@@ -68,7 +68,7 @@
                           </mat-panel-title>
                         </mat-expansion-panel-header>
                           <div class="row dts-mobile" style="margin-top: 3%;">
-                            <div class="col-5 input-mob">
+                            <div class="col-6 input-mob">
                               <div class="card-datos">
                                 <div class="card-titulo">
                                   Datos Fiscales
@@ -80,8 +80,7 @@
                                 </div>
                               </div>  
                             </div>
-                            <div class="col-2"></div>
-                            <div class="col-5 input-mob espacio-card">
+                            <div class="col-6 input-mob espacio-card">
                               <div class="card-datos">
                                 <div class="card-titulo">
                                   Dirección Fiscal
@@ -94,17 +93,16 @@
                           </div>
   
                           <div class="row dts-mobile" style="margin: 2% 0 1%;">
-                            <div class="col-5 card-titulo espacio-card">
+                            <div class="col-6 card-titulo espacio-card">
                                 Datos del CFDI
                             </div>
-                            <div class="col-2 not-mobile"></div>
-                            <div class="col-5 not-mobile texto-hipervinculo" style="text-align: end;" (click)="configuracionAvanzada()">
+                            <div class="col-6 not-mobile texto-hipervinculo" style="text-align: end;" (click)="configuracionAvanzada()">
                                 Configuración avanzada
                             </div>
                           </div>
   
                           <div class="row dts-mobile" style="margin-top: 2%;">
-                            <div class="col-5 input-mob">
+                            <div class="col-6 input-mob">
                               <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                                 <mat-label>Número de orden (Mínimo 3 caracteres)</mat-label>
                                 <input matInput formControlName="numeroOrden" id="numeroOrden" name="numeroOrden" minlength="3" (keypress)="caracteresValidos($event)" />
@@ -118,8 +116,7 @@
                                 </mat-error>
                               </mat-form-field>
                             </div>
-                            <div class="col-2"></div>
-                            <div class="col-5 input-mob">
+                            <div class="col-6 input-mob">
                               <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                                 <mat-label>Selecciona un Régimen Fiscal</mat-label>
                                 <mat-select formControlName="regimenFiscal" id="regimenFiscal" name="regimenFiscal">
@@ -138,7 +135,7 @@
                           </div>
   
                           <div class="row" style="margin-top: 2%;">
-                            <div class="col-5 input-mob">
+                            <div class="col-6 input-mob">
                               <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                                 <mat-label>Selecciona Uso de CFDI</mat-label>
                                 <mat-select formControlName="usoCFDI" id="usoCFDI" name="usoCFDI">
@@ -154,8 +151,7 @@
                                 </mat-error>
                               </mat-form-field>
                             </div>
-                            <div class="col-2"></div>
-                            <div class="col-5 input-mob">
+                            <div class="col-6 input-mob">
                               <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                                 <mat-label>Selecciona una Forma de Pago</mat-label>
                                 <mat-select formControlName="formaPago" id="formaPago" name="formaPago">
@@ -186,7 +182,7 @@
                         </mat-panel-title>
                       </mat-expansion-panel-header>
                       <div class="row " style="margin-top: 3%;">
-                        <div class="col-5 input-mob">
+                        <div class="col-6 input-mob">
                           <mat-form-field class="espacio-card" appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                             <mat-label>Escribe el RFC Receptor</mat-label>
                             <input matInput formControlName="rfc" [matAutocomplete]="auto" id="rfc" name="rfc" minlength="12"  maxlength="13" (keypress)="caracteresValidosRFC($event)" (keyup)="setMayusculas($event, 'rfc')">
@@ -207,8 +203,7 @@
                             </mat-error>
                           </mat-form-field>
                         </div>
-                        <div class="col-2"></div>
-                        <div class="col-5 input-mob">
+                        <div class="col-6 input-mob">
                           <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                             <mat-label>Escribe la Razón Social Receptor (Sin espacios)</mat-label>
                             <input matInput formControlName="razonSocial" id="razonSocial" name="razonSocial" minlength="3" (keypress)="caracteresValidosRS($event)" (keyup)="setMayusculas($event, 'razonSocial')" />
@@ -225,7 +220,7 @@
                       </div>
 
                       <div class="row" style="margin-top: 2%;">
-                        <div class="col-5 input-mob">
+                        <div class="col-6 input-mob">
                           <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                             <mat-label class="textoM">régimen fiscal receptor</mat-label>
                             <mat-select formControlName="regimenFiscalCliente" id="regimenFiscalCliente" name="regimenFiscalCliente">
@@ -240,8 +235,7 @@
                             </mat-error>
                           </mat-form-field>
                         </div>
-                        <div class="col-2"></div>
-                        <div class="col-5 input-mob">
+                        <div class="col-6 input-mob">
                           <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                             <mat-label class="textoM">código postal</mat-label>
                             <input matInput formControlName="codigoPostal" id="codigoPostal" name="codigoPostal" minlength="5"  maxlength="5" (keypress)="onlyNumbers($event);"/>
@@ -258,7 +252,7 @@
                       </div>
 
                       <div class="row" style="margin-top: 2%;">
-                        <div class="col-5 input-mob">
+                        <div class="col-6 input-mob">
                           <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                             <mat-label class="textoM">correo electrónico</mat-label>
                             <input matInput formControlName="correo" id="correo" name="correo" minlength="3"/>
@@ -272,8 +266,7 @@
                             </mat-error>
                           </mat-form-field>
                         </div>
-                        <div class="col-2"></div>
-                        <div class="col-5 input-mob">
+                        <div class="col-6 input-mob">
                           <div class="check-mobile" style="width: 100%; font-size: 16px; min-height: 80px;" [ngClass]="{'isDisabled ': formularioAvanzado.configuracionGeneral}" (click)="clienteFrecuente()">
                             <div>
                               <span class="texto-hipervinculo" style="color: #0B112A !important; ">¿Es un cliente frecuente? </span><span class="texto-hipervinculo" (click)="crearCliente()">Haz clic para guardar como cliente fecuente</span>
@@ -406,6 +399,11 @@
                                               </span>
                                           </th>
                                           <th class="punta-tittle" style="text-align: center;">
+                                            <span style="cursor:default!important;">
+                                              cantidad
+                                            </span>
+                                          </th>
+                                          <th class="punta-tittle" style="text-align: center;">
                                               <span style="cursor:default!important;">
                                                 importe
                                               </span>
@@ -421,6 +419,11 @@
                                     <tr *ngFor="let item of tablaListaConceptos">
                                       <td class="tabla-descripcion">
                                         {{item.descripcion | slice:0:30}} 
+                                      </td>
+                                      <td style="text-align: center;">
+                                        <div class="card-accion-cantidad" (click)="actualizarValor('cantidad', item)">
+                                          {{item.cantidad}} 
+                                        </div>
                                       </td>
                                       <td class="tabla-importe">
                                         ${{item.valorUnitario | thousandsPipe}}

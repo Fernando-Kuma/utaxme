@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import * as moment from 'moment';
 import { DatosFiscales } from 'src/app/shared/model/dashboard.mode';
 import { AuthService } from 'src/app/shared/service/auth.service';
 import { DashboardService } from 'src/app/shared/service/dashboard.service';
@@ -13,6 +14,10 @@ export class CuadranteFiscalesComponent implements OnInit {
   _consultaRequest: any;
   @Input() set consultaRequest(val: any) {
     this._consultaRequest = val;
+    this.fechaActual =  moment(new Date(val.anio + '/' +val.mes)).locale('es')
+    this.fechaActual = this.fechaActual.format('MMMM YYYY')
+    
+    console.log(this.fechaActual)
     this.obtenerSaludFiscal()
   }
 
@@ -29,21 +34,26 @@ export class CuadranteFiscalesComponent implements OnInit {
     //this.obtenerDato();
   } */
 
-  tipoPeriodo: boolean = true;
+  tipoPeriodo: boolean = false;
 
   response: DatosFiscales;
   urlConstancia: any;
   spinnerLoading: boolean = true;
 
-
+  
   speedValue: any;
+  selectedValue: string;
+  
+  fechaActual: any;
 
   constructor(
     private dashboardService: DashboardService,
     private auth: AuthService,
-  ) { }
+  ) { 
+  }
 
   ngOnInit(): void {
+    this.selectedValue =  'Enero a ' + String(this.fechaActual)
     this.obtenerDatosFiscales()
   }
 
@@ -78,8 +88,23 @@ export class CuadranteFiscalesComponent implements OnInit {
   }
 
   obtenerSaludFiscal(){
-    this.dashboardService.obtenerSaludFiscal(this._consultaRequest).subscribe(
+    let _request
+    if(this.tipoPeriodo){
+      _request = {
+        rfc: this._consultaRequest.rfc,
+        mes: null,
+        anio: this._consultaRequest.anio,
+      }
+    }else{
+      _request = {
+        rfc: this._consultaRequest.rfc,
+        mes: this._consultaRequest.mes,
+        anio: this._consultaRequest.anio
+      }
+    }
+    this.dashboardService.obtenerSaludFiscal(_request).subscribe(
       (response) => {
+        console.log(response)
         this.baseGravable = response.baseGravable
         this.calcularSpeed()
       },(_error) => {

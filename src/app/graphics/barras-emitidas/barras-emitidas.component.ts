@@ -204,7 +204,6 @@ export class BarrasEmitidasComponent implements AfterViewInit, OnInit, OnDestroy
 
   private defineXAxis() {
     let widthBarra = (this.sizex / (this._data.length * 9)).toFixed(0)
-    console.log(widthBarra)
     this.svg
       .append('g')
       .attr(
@@ -337,7 +336,6 @@ export class BarrasEmitidasComponent implements AfterViewInit, OnInit, OnDestroy
 
     this.svg.call(tip);
     let widthBarra = (this.sizex / (this._data.length * 4))
-    console.log(Number(widthBarra).toFixed(0))
     let rects = this.svg
       .selectAll('rect')
       .data(this.data)

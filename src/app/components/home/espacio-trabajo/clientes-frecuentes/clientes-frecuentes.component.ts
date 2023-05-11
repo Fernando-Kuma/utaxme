@@ -161,6 +161,9 @@ export class ClientesFrecuentesComponent implements OnInit {
     );
   }
 
+public get width() {
+  return window.innerWidth;
+}
 
 
 }

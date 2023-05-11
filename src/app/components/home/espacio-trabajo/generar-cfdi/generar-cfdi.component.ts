@@ -17,6 +17,7 @@ import { ConfirmDialogComponent } from 'src/app/shared/utils/confirm-dialog/conf
 import { ConfirmDialogService } from 'src/app/shared/utils/confirm-dialog/confirm-dialog.service';
 import { ModificarValorComponent } from './modificar-valor/modificar-valor.component';
 import { NuevoClienteComponent } from '../clientes-frecuentes/nuevo-cliente/nuevo-cliente.component';
+import { AlertService } from 'src/app/shared/utils/alertas';
 
 
 
@@ -53,6 +54,7 @@ export class GenerarCfdiComponent implements OnInit {
   costoFactura: TotalFactura = new  TotalFactura;
 
   constructor(
+    private alertService: AlertService,
     public dialog: MatDialog,  
     private dialogService: DialogService,
     private confirmDialogService: ConfirmDialogService,
@@ -230,13 +232,14 @@ export class GenerarCfdiComponent implements OnInit {
  
   calcularTotal(){
     this.costoFactura = new  TotalFactura;
-    console.log('Paso 1: ', this.costoFactura)
     this.tablaListaConceptos.forEach(element => {
-      console.log(element)
       if(element.cantidad){
         this.costoFactura.ivaT = Number(((element.valorUnitario * (element.tasa/100)) + this.costoFactura.ivaT).toFixed(2))
         this.costoFactura.isrR = Number(((element.valorUnitario * (element.isrRet/100)) + this.costoFactura.isrR).toFixed(2))
         this.costoFactura.ivaR = Number(((element.valorUnitario * (element.ivaRet/100)) + this.costoFactura.ivaR).toFixed(2))
+
+        this.costoFactura.ieps = Number(((element.valorUnitario * (element.ieps/100)) + this.costoFactura.ieps).toFixed(2))
+        
         this.costoFactura.localTraslado = Number(((element.valorUnitario * (element.tasaLocal/100)) + this.costoFactura.localTraslado).toFixed(2))
         this.costoFactura.descuento = Number(element.descuento)+ this.costoFactura.descuento
         this.costoFactura.subtotalSinDescuento = element.descuento ?
@@ -246,7 +249,6 @@ export class GenerarCfdiComponent implements OnInit {
         Number((this.costoFactura.subtotal + this.costoFactura.ivaT + this.costoFactura.ieps - this.costoFactura.isrR - this.costoFactura.ivaR).toFixed(2))
       }
     });
-    console.log('Paso 3: ',this.costoFactura)
   }
 
   crearCliente(){
@@ -317,7 +319,9 @@ export class GenerarCfdiComponent implements OnInit {
     );
     dialogRef.afterClosed().subscribe(
       data => {
-        console.log(data)
+        if(data){
+          this.generarCFDI()
+        }
       }
     );
 
@@ -325,11 +329,10 @@ export class GenerarCfdiComponent implements OnInit {
 
   generarCFDI() {
     let _emisor = {
-      regimenFiscal: this.form.controls['regimenFiscal'].value,
-      razonSocial: this.form.controls['razonSocial'].value, // Es del cliente o el usuario
-      rfc: this.form.controls['rfc'].value,
+      regimenFiscal: this.datosFiscales.idSat,
+      razonSocial: this.datosFiscales.razonSocial, // Es del cliente o el usuario
+      rfc: this.datosFiscales.rfc,
     };
-
     let _receptor = {
       razonSocial: this.form.controls['razonSocial'].value,
       rfc: this.form.controls['rfc'].value,
@@ -338,127 +341,113 @@ export class GenerarCfdiComponent implements OnInit {
       regimenFiscal: this.form.controls['regimenFiscalCliente'].value,
       usoCfdi: this.form.controls['usoCFDI'].value
     };
-
-    let _informacionGlobal = {
-      periodicidad: this.formularioAvanzado.periodicidad,
-      meses: this.formularioAvanzado.meses,
-      anio: this.formularioAvanzado.anio
-    }
-
+    let _informacionGlobal = null
     if(this.formularioAvanzado.configuracionGeneral){
-      let _informacionGlobal = {
+      _informacionGlobal = {
         periodicidad: this.formularioAvanzado.periodicidad,
         meses: this.formularioAvanzado.meses,
         anio: this.formularioAvanzado.anio
       }
     };
+
     let _conceptos = [];
     this.tablaListaConceptos.forEach(element => {
-      let _subtotal = element.cantidad * element.valorUnitario - element.descuento;
+      let _subtotal = Number((element.cantidad * element.valorUnitario - element.descuento).toFixed(2));
       _conceptos.push({
         nombreProductoServicio: element.productoServicio,
         numeroIdentificacion: element.identificadorSat,
         descripcion: element.descripcion,
         claveUnidad: element.claveUnidad.trim().toUpperCase(),
         precioUnitario: element.valorUnitario.toFixed(2),
-        cantidad: element.cantidad.toFixed(2),
-        subTotal: _subtotal + element.descuento.toFixed(2),
+        cantidad: element.cantidad.toFixed(0),
+        subTotal: Number(_subtotal + element.descuento).toFixed(2),
         descuento: element.descuento.toFixed(2),
         taxObject: element.taxObject,
+
         impuestos: [
           {
             nombreImpuesto: "IVA",
-            tasa: element.tasa == null ? "remove" : element.tasa.toFixed(4),
+            tasa: element.tasa == null ? "remove" : element.tasa.toFixed(2),
             base: _subtotal,
-            total: ((_subtotal * element.tasa)/100).toFixed(4),
+            total: ((_subtotal * element.tasa)/100).toFixed(2),
             isRetencion: "false",
           },
           {
             nombreImpuesto: "IEPS",
-            tasa: element.ieps == null ? "remove" : element.ieps.toFixed(4),
+            tasa: element.ieps == null ? "remove" : element.ieps.toFixed(2),
             base: _subtotal,
-            total: ((_subtotal * element.ieps)/100).toFixed(4),
+            total: ((_subtotal * element.ieps)/100).toFixed(2),
             isRetencion: "false",
           },
 
           {
             nombreImpuesto: "ISR",
-            tasa: element.isrRet == null ? "remove" : element.isrRet.toFixed(4),
+            tasa: element.isrRet == null ? "remove" : element.isrRet.toFixed(2),
             base: _subtotal,
-            total: ((_subtotal * element.isrRet)/100).toFixed(4),
-            isRetencion: "false",
+            total: ((_subtotal * element.isrRet)/100).toFixed(2),
+            isRetencion: "true",
           },
           {
             nombreImpuesto: "IVA",
-            tasa: element.ivaRet == null ? "remove" : element.ivaRet.toFixed(4),
+            tasa: element.ivaRet == null ? "remove" : element.ivaRet.toFixed(2),
             base: _subtotal,
-            total: ((_subtotal * element.ivaRet)/100).toFixed(4),
-            isRetencion: "false",
+            total: ((_subtotal * element.ivaRet)/100).toFixed(2),
+            isRetencion: "true",
           },
           {
             nombreImpuesto: "ISH",
-            tasa: element.tasaLocal == null ? "remove" : element.tasaLocal.toFixed(4),
+            tasa: element.tasaLocal == null ? "remove" : element.tasaLocal.toFixed(2),
             base: _subtotal,
-            total: ((_subtotal * element.tasaLocal)/100).toFixed(4),
+            total: ((_subtotal * element.tasaLocal)/100).toFixed(2),
             isRetencion: "false",
           },
         ],
+        
       });
     });
-    let tipocfdi = this.catalogos.catalogoTiposComprobantes[0]
-    let _loadingCFDI = true;
-    let pagoSeleccionadox = this.form.controls['formaPago'].value;
 
     _conceptos.forEach(element => {
-      let _impuestosAux = element.impuesto.filter((obj) => {
+      console.log(element.impuestos)
+      let _impuestosAux = element.impuestos.filter((obj) => {
         return obj.tasa != "remove";
       });
       element.impuestos = _impuestosAux;
       element.impuestos.length === 0 ?  element.taxObject = "01": element.taxObject = "02";
     });
-
-
-    let tipoFacturaAux = "";
-    if (this.tipoFactura == "Ingreso") {
-      tipoFacturaAux = "I";
-    } else if (this.tipoFactura == "Traslado") {
-      tipoFacturaAux = "T";
-    } else {
-      tipoFacturaAux = this.tipoFactura;
-      }
       
       //Emitir CFDI 4.0
-      let requestDashboard = {
-        usoCfdi: this.form.controls['usoCFDI'].value,
-        tipoCfdi: this.checkPlataformas == true ? "I" : tipoFacturaAux, 
-        lugarExpedicion: this.datosFiscales.cp,
-        formaPago: pagoSeleccionadox,
-        metodoPago:this.formularioAvanzado.metodoPago,
-        moneda: this.formularioAvanzado.moneda,
+    let requestDashboard = {
+      usoCfdi: this.form.controls['usoCFDI'].value,
+      tipoCfdi: this.checkPlataformas == true ? "I" : 
+        this.tipoFactura == "Ingreso" ? "I" : this.tipoFactura == "Ingreso" ? "I" : this.tipoFactura, 
+      lugarExpedicion: this.datosFiscales.cp,
+      formaPago: this.form.controls['formaPago'].value,
+      metodoPago:this.formularioAvanzado.metodoPago,
+      moneda: this.formularioAvanzado.moneda,
+      condicionesPago: this.formularioAvanzado.condiciones,
+      plataformaTecnologica: this.checkPlataformas == false ? "UTAXME" : this.idTipoFactura, //new
+      observaciones: "",
+      bancoPago: "",
+      cuentaBancaria: "0000",
+      numeroOrden: this.form.controls['numeroOrden'].value,
 
-        plataformaTecnologica: this.checkPlataformas == false ? "UTAXME" : this.idTipoFactura, //new
-        
-        observaciones: "",
-        bancoPago: "",
-        cuentaBancaria: "0000",
+      subTotal: this.costoFactura.subtotal,
+      total: this.costoFactura.total,
+      emisor: _emisor,
+      receptor: _receptor,
+      informacionGlobal: _informacionGlobal,
+      conceptos: _conceptos
+    }
 
-        numeroOrden: this.form.controls['numeroOrden'].value,
-        subTotal: (this.subTotal + this.descuentoTotal).toFixed(2),
-        total: this.totalCFDI,
-        condicionesPago: this.formularioAvanzado.condiciones,
-        emisor: _emisor,
-        receptor: _receptor,
-        informacionGlobal: _informacionGlobal,
-        conceptos: _conceptos
-      }
+    console.log(requestDashboard)
 
-
-      this.espacioTrabajoService.emitirCFDI(requestDashboard)
-        .subscribe((response) => {
-          console.log(response)
-        },(_error) => {
-          console.log("Error en emitit el cfdi: ", _error);
-        });
+    this.espacioTrabajoService.emitirCFDI(requestDashboard)
+      .subscribe((response) => {
+        this.alertService.error('<b>Se genero tu CFDI.</b>');
+      },(_error) => {
+        this.alertService.error('<b>Hubo un error al generar tu CFDI, inténtelo de nuevo.</b>');
+        console.log("Error en emitit el cfdi: ", _error);
+      });
   }
 
   publicoGeneral(value: boolean){
@@ -536,7 +525,7 @@ export class GenerarCfdiComponent implements OnInit {
 
   private _filter(value: any): any[] {
     const filterValue = value.toLowerCase();
-    return this.listaClientes.filter(item => item.rfcCliente.toLowerCase().includes(filterValue));
+    return this.listaClientes.filter(item => item.rfcReceptor.toLowerCase().includes(filterValue));
   }
 
   public caracteresValidos(event) {
@@ -565,6 +554,10 @@ export class GenerarCfdiComponent implements OnInit {
   
   public setMayusculas(event, form){
     this.form.controls[form].setValue(event.target.value.toUpperCase())
+  }
+
+  public get width() {
+    return window.innerWidth;
   }
   
 }

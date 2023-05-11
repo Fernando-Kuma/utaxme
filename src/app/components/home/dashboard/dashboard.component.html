@@ -3,6 +3,7 @@
   <div class="sticky-header">
     <app-header-home></app-header-home>
   </div>
+  <alert></alert>
   <div class="content-wrapper disable-scrollbars page-background" style="overflow: scroll;">
     <div class="content-home">
       <div class="home-container-accesos" style="margin-top: 30px;">
@@ -21,32 +22,36 @@
           </div>
         </div>
 
-        <div class=" disable-scrollbars style-desk" style="">
+        <div class=" disable-scrollbars style-desk">
           <div class="columna-cuadrante1">
             <div class="container">
               <div class="row cuadrante1 otro-style" >
                 <div class="col-8  aling-head">
-                  <span class="bienvenido-usuario" style="">Bienvenido, {{usuario.nombre + '' + usuario.apellidos}}</span>
+                  <span class="bienvenido-usuario">Bienvenido, {{usuario.nombre + '' + usuario.apellidos}}</span>
                   <br>
-                  <span class="gestiona" style="">Gestiona tus actividades:</span>
+                  <span class="gestiona">Gestiona tus actividades:</span>
                 </div>
 
                 <div class="btn-cfdi-mobile">
-                  <div class="d-flex justify-content-between" style="padding: 0;">
-                    <button mat-button class="btn-utaxme"
-                      style="max-width: 132px; font-size: 14px; font-weight: 500; height: 48px;display: flex; align-items: center; justify-content: center; border-radius: 4px !important;"
+                  <div class="row m0p0">
+                    <div class="col-6">
+                      <button mat-button class="btn-utaxme"
+                      style="font-size: 10px; font-weight: 500; height: 48px;display: flex; align-items: center; justify-content: center; border-radius: 4px !important;"
                       (click)="crearFactura()"
                       >
                       <mat-icon class="image-edit-doc-blanco image-size-22" ></mat-icon>
                       Crear factura
                     </button>
-                    <button mat-button class="btn-utaxme"
-                      style="max-width: 175px; font-size: 14px; font-weight: 500; height: 48px;display: flex; align-items: center; justify-content: center; border-radius: 4px !important;"
+                    </div>
+                    <div class="col-6">
+                      <button mat-button class="btn-utaxme"
+                      style="font-size: 10px; font-weight: 500; height: 48px;display: flex; align-items: center; justify-content: center; border-radius: 4px !important;"
                       (click)="contacto()"
                       >
                       <mat-icon class="image-user-call-blanco image-size-22"></mat-icon>
                       Contactar Contador
                     </button>
+                    </div>
                   </div>
                 </div>
                   <mat-divider></mat-divider>
@@ -108,7 +113,7 @@
             <div class="row">
               <div class="col cuadrante-ingresos">
                 <ng-container *ngIf="!spinnerLoadingIngresos">
-                  <app-cuadrante-ingresos [data]="ingresosPeriodo"></app-cuadrante-ingresos>
+                  <app-cuadrante-ingresos [data]="ingresosPeriodo" [consultaRequest]="requestDashboard"></app-cuadrante-ingresos>
                 </ng-container>
                 <div *ngIf="spinnerLoadingIngresos" style="min-height: 350px;" class="d-flex justify-content-center align-items-center">
                   <mat-spinner [diameter]="30"></mat-spinner>
@@ -157,19 +162,17 @@
             <div class="btn-cfdi-mobile">
               <div class="" style="padding: 0;">
                 <button mat-button class="btn-utaxme"
-                  style="width: 100%; font-size: 14px; font-weight: 500; height: 48px;display: flex; align-items: center; justify-content: center; border-radius: 15px !important;"
-                  (click)="verAcuse()"
-                  >
-                  <mat-icon class="image-ver-acuse-blanco image-size-22" ></mat-icon>
+                  style="font-size: 14px; font-weight: 500; height: 48px;display: flex; align-items: center; justify-content: center; border-radius: 15px !important;"
+                  (click)="verAcuse()">
+                  <mat-icon class="image-ver-acuse-blanco image-size-22"></mat-icon>
                   Ver acuse
                 </button>
-                <div class=" boton-cumplimiento">
-                  <button type="button" class="btn btn-outline-primary btn-cumplimiento" 
-                  (click)="verOpinion()">
-                    <div class="image-ver-opinion image-size-22" style="padding-right: 22px;">&nbsp; </div>  
-                    Ver opinión
-                  </button>
-                </div>
+                <button mat-button class="btn-utaxme-secondary"
+                style="border: 2px solid #285ced; font-size: 14px; font-weight: 500; height: 48px;display: flex; align-items: center; justify-content: center; border-radius: 15px !important; margin: 20px 0 20px 0;"
+                                  (click)="verOpinion()">
+                  <mat-icon class="image-ver-opinion image-size-22"></mat-icon>  
+                  Ver opinión
+                </button>
               </div>
             </div>
 

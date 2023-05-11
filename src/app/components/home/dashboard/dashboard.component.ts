@@ -16,6 +16,7 @@ import { ContactoService } from 'src/app/shared/utils/contacto/contacto.service'
 import { Router } from '@angular/router';
 import { NAV } from 'src/app/shared/configuration/navegacion';
 import { ComprobantePeriodo, CumplimientoFiscal } from 'src/app/shared/model/dashboard.mode';
+import { AlertService } from 'src/app/shared/utils/alertas';
 export const MY_FORMATS = {
   parse: {
     dateInput: 'LL', 
@@ -63,6 +64,7 @@ export class DashboardComponent implements OnInit {
   
   
   constructor(
+    private alertService: AlertService,
     private auth: AuthService, 
     private dashboardService: DashboardService, 
     private dialog: MatDialog, 
@@ -112,7 +114,6 @@ export class DashboardComponent implements OnInit {
     this.spinnerLoadingIngresos = true;
     this.dashboardService.obtenerIngresosGastos(this.requestDashboard).subscribe(
       (response) => {
-        console.log('Res gatos: ', response);
         this.ingresosPeriodo = new ComprobantePeriodo
         this.gastosPeriodo = new ComprobantePeriodo
         if(response.listaReporteIngresosEgresosBean != null){
@@ -208,7 +209,7 @@ export class DashboardComponent implements OnInit {
 
   descargarExcel(){
     if(this.gastosPeriodo.total == 0){
-      console.log("No hay ingresos ni egresos en este periodo.")
+      this.alertService.warn('<b>No hay ingresos ni egresos en este periodo.</b>');
     }else{
       this.descargarExcelPeticion()
     }

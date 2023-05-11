@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BarrasEmitidasComponent } from './barras-emitidas/barras-emitidas.component';
-import { BarrasRecibidasComponent } from './barras-recibidas/barras-recibidas.component';
 import { VelocimetroComponent } from './velocimetro/velocimetro.component';
 import { CuadranteIngresosComponent } from './cuadrante-ingresos/cuadrante-ingresos.component';
 import { CuadranteGastosComponent } from './cuadrante-gastos/cuadrante-gastos.component';
@@ -28,6 +27,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { AlertModule } from '../shared/utils/alertas';
 
 
 
@@ -35,7 +35,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 @NgModule({
   declarations: [
     BarrasEmitidasComponent,
-    BarrasRecibidasComponent,
     VelocimetroComponent,
     CuadranteIngresosComponent,
     CuadranteGastosComponent,
@@ -63,11 +62,11 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatTooltipModule,
     MatMenuModule,
     MatChipsModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    AlertModule
   ],
   exports: [
     BarrasEmitidasComponent,
-    BarrasRecibidasComponent,
     VelocimetroComponent,
     CuadranteIngresosComponent,
     CuadranteGastosComponent,

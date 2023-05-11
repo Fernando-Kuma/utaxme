@@ -2,15 +2,23 @@
   <mat-dialog-content>
       <div class="container" style="width: 100%; margin: 0; padding: 0; overflow: hidden;">
           <div class="row" style="width: 100%; margin: 0; padding: 0;">
-            <div class="col-2">
+
+            <div class="col-2" *ngIf="width <= 450">
               <button mat-icon-button style="float: right; position: relative;" (click)="closeDialog()">
                   <mat-icon class="img-close"></mat-icon>
               </button>
-          </div>  
+            </div>  
+
             <div class="col-10"  style="padding: 0; display: flex; align-items: center;">
-                <span class="dialog-titulo">{{titulo}}</span> 
-              </div>
-              
+              <span class="dialog-titulo">{{titulo}}</span> 
+            </div>
+
+            <div class="col-2" *ngIf="width > 450">
+                <button mat-icon-button style="float: right; position: relative;" (click)="closeDialog()">
+                    <mat-icon class="img-close"></mat-icon>
+                </button>
+            </div>
+
           </div>
       </div>
   </mat-dialog-content>
@@ -19,8 +27,8 @@
     <form [formGroup]="form" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
       <div class="container" style="margin: 0; padding: 20px 30px;">
         <div class="cotainer" *ngIf="opcionCrear">
-          <div class="row w100m0p0 inp-mob" style="margin-top: 3% !important;">
-            <div class="col-6 head-mb dialog-texto">
+          <div class="row w100m0p0 formulario-configuracion" style="margin-top: 3% !important;">
+            <div class="col-6 dialog-texto">
               Puedes realizar búsquedas de conceptos y seleccionarlas dentro del buscador para completar los datos del formulario.
             </div>
             <div class="col-6 head-mb">
@@ -40,8 +48,8 @@
           </div> 
         </div>
         <mat-divider  *ngIf="opcionCrear"></mat-divider>
-        <div class="cotainer disable-scrollbars form-mb" style="" [ngStyle]="{'max-height': opcionCrear ? '500px' : '600px'}">  
-          <div class="row w100m0p0 inp-mob" style="margin-top: 3% !important;">
+        <div class="cotainer disable-scrollbars" style="overflow: scroll;" [ngStyle]="{'max-height': opcionCrear ? '500px' : '600px'}">  
+          <div class="row w100m0p0 formulario-configuracion" style="margin-top: 3% !important;">
             <div class="col-12 dialog-texto-titulo">
               Detalles del concepto
             </div>
@@ -120,7 +128,7 @@
               </div>
             </div>
           </div>
-          <div class="row w100m0p0" style="margin-top: 3% !important;">
+          <div class="row w100m0p0 formulario-configuracion" style="margin-top: 3% !important;">
             <div class="col-12 dialog-texto-titulo" style="margin-top: 3%;">
               Impuestos
             </div>
@@ -136,18 +144,35 @@
                   <div class="col-6 head-mb textoM" style="margin-top: 3%;">
                     <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                       <mat-label>IVA</mat-label>
-                      <input matInput formControlName="iva" id="iva" name="iva" (keypress)="caracteresValidosDecimales($event)"/>
+                      <input matInput formControlName="iva" id="iva" name="iva" 
+                      (keyup)="validarCaracteres($event, 'iva')" (keypress)="onlyNumbers($event);"/>
                       <span matSuffix style="display: table-caption; height: 22px;">%</span>
                     </mat-form-field>
+                    <mat-error *ngIf="formulario.iva.invalid && formulario.iva.touched && formulario.iva.errors">
+                      <ng-container *ngIf="formulario.iva.errors.valor">
+                        El numero debe contar con un numero entero hasta 4 decimales
+                      </ng-container>
+                      <ng-container *ngIf="formulario.iva.errors.mayor">
+                        El valor no debe ser mayor a %16
+                      </ng-container>
+                      <ng-container *ngIf="formulario.iva.errors.impuesto">
+                        Debes de agregar un valor al IVA impuesto
+                      </ng-container>
+                    </mat-error>
                   </div>
-                  <div class="col-6 head-mb textoM" style="margin-top: 3%;">
-                    <ng-container >
+                  <div class="col-6 textoM" style="margin-top: 3%;">
                       <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                         <mat-label>IEPS</mat-label>
-                        <input matInput formControlName="ieps" id="ieps" name="ieps"/>
+                        <input matInput formControlName="ieps" id="ieps" name="ieps"
+                        (keyup)="validarCaracteres($event, 'ieps')" (keypress)="onlyNumbers($event);"/>
                         <span matSuffix style="display: table-caption; height: 22px;">%</span>
                       </mat-form-field>
-                    </ng-container>
+                      <mat-error *ngIf="formulario.ieps.invalid && formulario.ieps.touched && formulario.ieps.errors">
+                        <ng-container *ngIf="formulario.ieps.errors.valor">
+                          El numero debe contar con un numero entero hasta 4 decimales
+                        </ng-container>
+                      </mat-error>
+
                   </div>
                 </ng-container>
               </div>
@@ -161,16 +186,33 @@
                   <div class="col-6 head-mb textoM" style="margin-top: 3%;">
                     <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                       <mat-label>isr</mat-label>
-                      <input matInput formControlName="isr" id="isr" name="isr"/>
+                      <input matInput formControlName="isr" id="isr" name="isr"
+                      (keyup)="validarCaracteres($event, 'isr')" (keypress)="onlyNumbers($event);"/>
                       <span matSuffix style="display: table-caption; height: 22px;">%</span>
                     </mat-form-field>
+                    <mat-error *ngIf="formulario.isr.invalid && formulario.isr.touched && formulario.isr.errors">
+                      <ng-container *ngIf="formulario.isr.errors.valor">
+                        El numero debe contar con un numero entero hasta 4 decimales
+                      </ng-container>
+                    </mat-error>
+
                   </div>
                   <div class="col-6 head-mb textoM" style="margin-top: 3%;">
                     <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                       <mat-label>iva</mat-label>
-                      <input matInput formControlName="ivaR" id="ivaR" name="ivaR"/>
+                      <input matInput formControlName="ivaR" id="ivaR" name="ivaR"
+                      (keyup)="validarCaracteres($event, 'ivaR')" (keypress)="onlyNumbers($event);"/>
                       <span matSuffix style="display: table-caption; height: 22px;">%</span>
                     </mat-form-field>
+                    <mat-error *ngIf="formulario.ivaR.invalid && formulario.ivaR.touched && formulario.ivaR.errors">
+                      <ng-container *ngIf="formulario.ivaR.errors.valor">
+                        El numero debe contar con un numero entero hasta 4 decimales
+                      </ng-container>
+                      <ng-container *ngIf="formulario.ivaR.errors.mayor">
+                        El valor no debe ser mayor a %16
+                      </ng-container>
+                    </mat-error>
+
                   </div>
                 </ng-container>
               </div>
@@ -193,10 +235,17 @@
                   </div>
                   <div class="col-6 head-mb textoM" style="margin-top: 3%;">
                     <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
-                      <mat-label>tasa local</mat-label>
-                      <input matInput formControlName="tasaLocal" id="tasaLocal" name="tasaLocal"/>
+                      <mat-label>tasa trasladado</mat-label>
+                      <input matInput formControlName="tasaLocal" id="tasaLocal" name="tasaLocal"
+                      (keyup)="validarCaracteres($event, 'tasaLocal')" (keypress)="onlyNumbers($event);"/>
                       <span matSuffix style="display: table-caption; height: 22px;">%</span>
                     </mat-form-field>
+                    <mat-error *ngIf="formulario.tasaLocal.invalid && formulario.tasaLocal.touched && formulario.tasaLocal.errors">
+                      <ng-container *ngIf="formulario.tasaLocal.errors.valor">
+                        El numero debe contar con un numero entero hasta 4 decimales
+                      </ng-container>
+                    </mat-error>
+
                   </div>
                 </ng-container>
               </div>

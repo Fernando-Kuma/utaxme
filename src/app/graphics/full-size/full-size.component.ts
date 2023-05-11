@@ -13,13 +13,15 @@ export class FullSizeComponent implements OnInit {
   tituloDashboard: string;
   textoDashboard: string;
 
+  consultaRequest: any;
+
   constructor(public router: Router) { }
 
   ngOnInit(): void {
     this.tipoDashboard = localStorage.getItem('dashboard');
     this.tituloDashboard = localStorage.getItem('titulo-dashboard');
     this.textoDashboard = localStorage.getItem('texto-dashboard');
-    
+    this.consultaRequest = JSON.parse(localStorage.getItem('consulta-dashboard'))
   }
 
   regresar(){

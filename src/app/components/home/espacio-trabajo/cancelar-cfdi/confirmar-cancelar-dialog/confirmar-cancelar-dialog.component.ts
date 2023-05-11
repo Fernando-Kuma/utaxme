@@ -18,6 +18,7 @@ export class ConfirmarCancelarDialogComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<ConfirmarCancelarDialogComponent>,
     public dialogRef2: MatDialogRef<CancelarDialogComponent>,
+    public dialogRef3: MatDialogRef<CancelarDialogComponent>,
     public dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogService: DialogService,
@@ -43,7 +44,8 @@ export class ConfirmarCancelarDialogComponent implements OnInit {
   }
 
   cancelar(){
-    
+    this.dialogRef3.close(true);
+    /* this.closeDialog(true); */
   }
 
 }

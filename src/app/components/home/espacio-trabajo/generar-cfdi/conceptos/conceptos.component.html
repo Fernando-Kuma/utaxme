@@ -1,3 +1,4 @@
+<alert></alert>
 <div class="modal-cfdi">
   <mat-dialog-content>
       <div class="container" style="width: 100%; margin: 0; padding: 0; overflow: hidden;">
@@ -30,7 +31,7 @@
         <div class="row w100m0p0" style="margin-top: 3% !important;">
           <form [formGroup]="form" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
             <div class="col-12 d-flex justify-content-end align-items-center">
-              <mat-form-field appearance="outline" style="min-width: 280px; font-size: 12px; height: 48px;">
+              <mat-form-field appearance="outline" style="font-size: 12px; height: 48px;" [ngStyle]="{'min-width': width > 450}">
                 <mat-label>Buscar concepto</mat-label>
                 <input matInput formControlName="busqueda" id="busqueda" name="busqueda" minlength="3" (keyup)="onKeyDownEvent($event)"/>
                 <mat-icon class="image-workspace-buscardor" matSuffix></mat-icon>
@@ -40,7 +41,7 @@
                 Crear nuevo concepto
               </button>
 
-              <button type="button" *ngIf="width <= 450" class="btn-utaxme" style="height: 48px; display: flex; align-items: center; justify-content: center; margin: 0 10px;" (click)="crearConcepto()">
+              <button type="button" *ngIf="width <= 450" class="btn-utaxme" style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; margin: 0 10px;" (click)="crearConcepto()">
                 <mat-icon class="image-workspace-agregar"></mat-icon>
               </button>
 
@@ -49,7 +50,7 @@
         </div>
 
         <div class="row w100m0p0" style="margin-top: 3% !important;">
-          <div class="col-12 tableFixHead disable-scrollbars" style="max-height: 300px; overflow-x: auto;">
+          <div class="col-12 tableFixHead disable-scrollbars" style="max-height: 300px; overflow-x: auto;" *ngIf="width > 450">
             <table aria-describedby="tabla" class="table table-responsive table-striped">
               <thead style="margin-bottom: 10px;">
                   <tr class="textoM">
@@ -109,7 +110,52 @@
                   </td>
                 </tr>
               </tbody>
-          </table>
+            </table>
+          </div>
+
+          <div class="col-12 tableFixHead disable-scrollbars" style="max-height: 300px; overflow-x: auto;" *ngIf="width <= 450">
+            <table aria-describedby="tabla" class="table table-responsive table-striped">
+              <thead style="margin-bottom: 10px;">
+                  <tr class="textoM">
+                      <th class="punta-tittle" style="text-align: center;">
+                          <span style="cursor:default!important;">
+                            descripción
+                          </span>
+                      </th>
+                      <th class="punta-tittle" style="text-align: center;">
+                          <span style="cursor:default!important;">
+                            importe
+                          </span>
+                      </th>
+                      <th class="punta-tittle" style="text-align: center;">
+                          <span style="width: 70px; cursor:default!important;">
+                            acciones
+                          </span>
+                      </th>
+                  </tr>
+              </thead>
+              <tbody class="table-scroll" style="border: solid 1px #ffffff; ">
+                <tr *ngFor="let item of tablaLista">
+                  <td>
+                    <div class="tabla-descripcion">
+                      <mat-checkbox class="example-margin" [(ngModel)]="item.estatus"></mat-checkbox>
+                      <span style="text-align: start; margin-left: 10px;">
+                        {{item.descripcion | slice:0:30}}
+                      </span>
+                    </div>
+                  </td>
+                  <td class="tabla-importe" >
+                    ${{item.valorUnitario | thousandsPipe}} 
+                  </td>
+                  <td>
+                    <div style="display: flex;  justify-content: space-evenly;">
+                      <mat-icon class="img-accion-editar" (click)="editarConcepto(item)"></mat-icon>
+                      <mat-icon class="img-accion-borrar" (click)="borrarConcepto(item)"></mat-icon>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
@@ -118,7 +164,7 @@
             <button type="button" class="btn-utaxme-secondary" (click)="closeDialog()" style="max-width: 120px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;">
               Cancelar
             </button>
-            <button type="button" class="btn-utaxme" (click)="closeDialog()" style="max-width: 225px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;">
+            <button type="button" class="btn-utaxme" (click)="confirmDialog()" style="max-width: 225px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;">
               Agregar conceptos
             </button>
           </div>

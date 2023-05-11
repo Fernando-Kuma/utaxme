@@ -158,6 +158,10 @@
   align-items: center;
 }
 
+.txt-tab{
+  text-align: center;
+}
+
 @media(max-width: 425px) {
   .content-home {
     background: white;
@@ -246,4 +250,19 @@
     padding: 25px;
   }
 
+  .card-accion{
+    Width: 25px;
+    Height: 25px;
+}
+
+.punta-tittle {
+  
+  height: 40px;
+  padding-bottom: 15px;
+  /* text-align-last: justify; */
+}
+
+.txt-tab{
+  text-align: start;
+}
 }

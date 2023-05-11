@@ -10,14 +10,15 @@
   margin: 40px 0 10px;
 }
 
-.btn-cumplimiento{
-   display: flex;
-  align-items: center;
-  justify-content: space-around;
-  min-width: 100%;
-  min-height: 45px;
-  border-radius: 25px;
+.btn-factura{
+  height: 55px; 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-evenly;
+  margin: 0 10px;
+  border-radius: 25px !important;
 }
+
 
 .ver-btns-cumplimiento{
   display: block;

@@ -6,7 +6,6 @@ import { MatSelect } from '@angular/material/select';
 import { Paginator } from 'array-paginator';
 import { DeduccionesFiscale } from 'src/app/shared/model/dashboard.mode';
 import { DashboardService } from 'src/app/shared/service/dashboard.service';
-import { ConfirmDialogComponent } from 'src/app/shared/utils/confirm-dialog/confirm-dialog.component';
 import { DetalleDeducPersonalComponent } from 'src/app/shared/utils/detalle-deduc-personal';
 import { DetalleDeducPersonalService } from 'src/app/shared/utils/detalle-deduc-personal/detalle-deduc-personal.service';
 
@@ -121,7 +120,7 @@ export class CuadranteDeduccionesComponent implements OnInit {
   }
 
   paginador(value: any) {
-    this.pager = new Paginator(value, 4, 1);
+    this.pager = new Paginator(value, 3, 1);
     if (value.length > 0) {
       this.tablaDeducciones = this.pager.page(1);
     } else {
@@ -130,7 +129,7 @@ export class CuadranteDeduccionesComponent implements OnInit {
   }
 
   openDetalleDialog(item) {
-    const dialogRef = this.dialog.open(
+    this.dialog.open(
       DetalleDeducPersonalComponent,
       this.dialogService.detalleDeducPersonal(item)
     );

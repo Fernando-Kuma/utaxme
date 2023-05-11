@@ -26,8 +26,10 @@
                     <div class="image-workspace-back" style="width: 30px; height: 20px; float: right; cursor: pointer;"
                       (click)="regresar()"></div>
                   </div>
-                  <span style="font-weight: 600; width: 350px; font-size: 18px; color: #0B112A;"> Tu Espacio de
-                    Trabajo</span>
+                  <div class="col-11">
+                    <span style="font-weight: 600; width: 350px; font-size: 18px; color: #0B112A;"> Tu Espacio de
+                      Trabajo</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -57,41 +59,41 @@
 
                       <div class="row btns-mob">
                         <div class="row  btns-crea-productos" style="">
-                          <div class="col d-flex justify-content-center align-items-center btn-accion"
+                          <div class="col  btn-accion"
                             (click)="nuevaFactura()">
                             <div class="row background-icon">
                               <div class="image-nueva-factura">&nbsp;</div>
                             </div>
-                            <div class="row label-btn" style="margin-top: 15px;">
-                              <div class="respuesta-cuadrante">Crear <br> nueva factura</div>
+                            <div class="row label-btn">
+                              <span class="respuesta-cuadrante">Crear <br> nueva factura</span>
                             </div>
                           </div>
-                          <div class="col d-flex justify-content-center align-items-center btn-accion"
+                          <div class="col  btn-accion"
                             (click)="crearProdServ()">
                             <div class="row background-icon">
                               <div class="image-crear-prod-serv">&nbsp;</div>
                             </div>
-                            <div class="row label-btn" style="margin-top: 15px;">
-                              <div class="respuesta-cuadrante">Administra <br> productos/servicios</div>
+                            <div class="row label-btn" >
+                              <span class="respuesta-cuadrante">Administra <br> productos/servicios</span>
                             </div>
                           </div>
                         </div>
                         <div class="row btns-administra-cancela" style="">
-                          <div class="col d-flex justify-content-center align-items-center btn-accion"
+                          <div class="col  btn-accion"
                             (click)="clientesFrecuentes()">
                             <div class="row background-icon">
                               <div class="image-cliente-frecuente">&nbsp;</div>
                             </div>
-                            <div class="row label-btn" style="margin-top: 30px;">
+                            <div class="row label-btn2">
                               <div class="respuesta-cuadrante">Administra <br> Clientes frecuentes</div>
                             </div>
                           </div>
-                          <div class="col d-flex justify-content-center align-items-center btn-accion"
+                          <div class="col  btn-accion"
                             (click)="cancelarFactura()">
                             <div class="row background-icon">
-                              <div class="image-cancelar-factura" style="padding-right: 22px;">&nbsp;</div>
+                              <div class="image-cancelar-factura" >&nbsp;</div>
                             </div>
-                            <div class="row label-btn" style="margin-top: 30px;">
+                            <div class="row label-btn2">
                               <div class=" respuesta-cuadrante">Cancelar facturas</div>
                             </div>
                           </div>

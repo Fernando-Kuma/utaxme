@@ -76,7 +76,7 @@ export class CancelarDialogComponent implements OnInit {
   crearForm() {
     this.form = this.formBuilder.group({
       nOrden: [{ value: this.data.cfdi.referencia, disabled: this.disabled }],
-      motivoCancelacion: [null, []],
+      motivoCancelacion: [null, [Validators.required]],
       nOrdenNuevo: [null, []],
     });
   }

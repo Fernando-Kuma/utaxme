@@ -4,6 +4,7 @@ import { ComprobantePeriodo } from 'src/app/shared/model/dashboard.mode';
 import { DateValue } from 'src/app/shared/model/date-value';
 import { MarginConf } from 'src/app/shared/model/margin-conf';
 import { DashboardService } from 'src/app/shared/service/dashboard.service';
+import { AlertService } from 'src/app/shared/utils/alertas';
 
 @Component({
   selector: 'app-cuadrante-gastos',
@@ -49,7 +50,8 @@ export class CuadranteGastosComponent implements OnInit {
 
   scale: 'week' | 'day'  = 'week' ;
 
-  constructor(private dashboardService: DashboardService) { }
+  constructor(private dashboardService: DashboardService,
+    private alertService: AlertService) { }
 
   ngOnInit(): void {
     
@@ -71,7 +73,7 @@ export class CuadranteGastosComponent implements OnInit {
 
   descargarExcel(){
     if(this.gastosPeriodo.total == 0){
-      console.log("No hay ingresos ni egresos en este periodo.")
+      this.alertService.warn('<b>No hay ingresos ni egresos en este periodo.</b>');
     }else{
       this.descargarExcelPeticion()
     }
@@ -102,9 +104,13 @@ export class CuadranteGastosComponent implements OnInit {
 
   obtenerData(){
     this.dateValue = []
-    this.gastosPeriodo.detalles.forEach((element, index) => {
-      this.dateValue.push({id: index+1, total: element.total })
-    });
+    if(this.gastosPeriodo.facturas > 0){
+      this.gastosPeriodo.detalles.forEach((element, index) => {
+        this.dateValue.push({id: index+1, total: element.total })
+      });
+    }else{
+      this.dateValue = [{id: 0, total: 0}]
+    }
   }
 
   public get width() {

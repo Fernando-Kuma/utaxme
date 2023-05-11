@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from 'src/app/components/home/home.component';
 import { NAV } from './navegacion';
 import { DashboardComponent } from 'src/app/components/home/dashboard/dashboard.component';
 import { LoginComponent } from 'src/app/components/auth/login/login.component';

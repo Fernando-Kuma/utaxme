@@ -1,11 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-/* import { AdministratorService } from '../../services/administrator.service'; */
 
 @Component({
   selector: 'app-service-error-dialog',
-  templateUrl: './service-error-dialog.component.html',
-  styleUrls: ['./service-error-dialog.component.css']
+  templateUrl: './service-error-dialog.component.html'
 })
 export class ServiceErrorDialogComponent implements OnInit {
 
@@ -14,12 +12,11 @@ export class ServiceErrorDialogComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<ServiceErrorDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    /* private adminService: AdministratorService */
     ) { }
 
   ngOnInit(): void {
     if(this.data){
-      this.cerrarSesion = this.data.cerrarSesion == false ? false : true;
+      this.cerrarSesion = this.data.cerrarSesion;
     }
   }
 
@@ -33,6 +30,5 @@ export class ServiceErrorDialogComponent implements OnInit {
 
   logout(){
     this.dialogRef.close();
-    /* this.adminService.logout(); */
   }
 }

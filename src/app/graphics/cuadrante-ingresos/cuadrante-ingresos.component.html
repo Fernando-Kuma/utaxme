@@ -95,8 +95,8 @@
       </div>
       <div class="row">
         <app-barras-emitidas 
-        [sizex]="width > 1440 ? 750 : width > 450 ?  550 : 320" 
-        [sizey]="width > 450 ? 220 : 150" 
+        [sizex]="width > 1440 ? 750 : width > 450 ?  550 : 300" 
+        [sizey]="width > 450 ? 220 : 130" 
         [barWidth]="20"
         [data]="dateValue" color="#1D2640" [showDomain]="true"
            [showLimits]="false" [showXLabels]="true" [showYLabels]="true" [border]="true"
@@ -108,11 +108,10 @@
 
   <div class="row" *ngIf="isFull">
     <app-barras-emitidas 
-    [sizex]="1300" [sizey]="500" 
-        [sizex]="width > 1440 ? 1800 : width > 450 ?  1300 : 400" 
-        [sizex]="width > 1440 ? 800 : width > 450 ?  500 : 400" 
-      [data]="dateValueWeek" color="#1D2640" [barWidth]="40"
+        [sizex]="width > 1440 ? 1800 : width > 450 ?  1300 : 350" 
+        [sizey]="width > 1440 ? 800 : width > 450 ?  500 : 400" 
+      [data]="dateValue" color="#1D2640" [barWidth]="40"
       [full]="true" [showDomain]="true" [showLimits]="false" [showXLabels]="true" [showYLabels]="true" [border]="true"
-      [margin]="marginBarChart" [general]="true" [isDynamicRange]="false" unit="$"></app-barras-emitidas>
+      [margin]="marginBarChartFull" [general]="true" [isDynamicRange]="false" unit="$"></app-barras-emitidas>
   </div>
 </div>

@@ -74,9 +74,9 @@ export class BandejaEntradaComponent implements OnInit {
         if(result.notificaciones.length > 0){
           if(this.estatus === "leidas"){
             this.estatus = "leidas";
-            this.notificaciones = result.notificaciones.filter(ele => ele.leida == true);
+            this.notificaciones = result.notificaciones.filter(ele => ele.leida);
           }else{
-            this.notificaciones = result.notificaciones.filter(ele => ele.leida == false);
+            this.notificaciones = result.notificaciones.filter(ele => !ele.leida);
             this.estatus = "noleidas";
           }
 

@@ -1,7 +1,6 @@
 import { formatDate } from '@angular/common';
 import { Component, OnInit, Input, EventEmitter, Output, } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
 import { NAV } from '../../configuration/navegacion';
 import { ListaNotificaciones } from '../../model/notifications.model';
 import { NotificacionesService } from '../../service/notificaciones.service';

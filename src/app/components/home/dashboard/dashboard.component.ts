@@ -162,11 +162,10 @@ export class DashboardComponent implements OnInit {
   }
 
   openDetalleDialog() {
-    const dialogRef = this.dialog.open(
+    this.dialog.open(
       ContactoComponent,
       this.dialogService.contacto()
     );
-    
   }
 
   nuevaFactura(){

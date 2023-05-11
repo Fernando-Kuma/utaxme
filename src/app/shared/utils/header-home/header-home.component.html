@@ -49,14 +49,14 @@
         </div>
         <mat-menu class="header-menu" #userMenu="matMenu" xPosition="before">
             <ng-container *ngIf="width < 850">
-              <button mat-menu-item style="font-size: 14px; font-weight: 400; text-align: left;" disabled>
+              <button mat-menu-item style="font-size: 14px; font-weight: 400; text-align: left;" (click)="notificaciones()">
                 <mat-icon class="image-home-notificacion image-size-20"></mat-icon>
                 <span>Notificaciones</span>
               </button>
-              <button mat-menu-item style="font-size: 14px; font-weight: 400; text-align: left;" disabled>
+              <!-- <button mat-menu-item style="font-size: 14px; font-weight: 400; text-align: left;" disabled>
                 <mat-icon class="image-home-ayuda image-size-20"></mat-icon>
                 <span>Ayuda</span>
-              </button>
+              </button> -->
             </ng-container>
             <button mat-menu-item style="font-size: 14px; font-weight: 400;" (click)="salir()">
                 <mat-icon class="image-home-logout image-size-20"></mat-icon>
@@ -104,9 +104,9 @@
           </div>
       </mat-menu>
 
-      <div class="home-header-icon" (click)="abrirModuloAyuda()">
+      <!-- <div class="home-header-icon" (click)="abrirModuloAyuda()">
         <mat-icon class="image-home-ayuda image-size-20"></mat-icon>
-      </div>
+      </div> -->
     </div>
   </div>
 </mat-toolbar>

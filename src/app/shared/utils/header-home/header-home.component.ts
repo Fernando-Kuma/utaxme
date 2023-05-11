@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NAV } from '../../configuration/navegacion';
 import { AuthService } from '../../service/auth.service';
@@ -61,7 +61,7 @@ export class HeaderHomeComponent implements OnInit {
   }
 
   abrirModuloAyuda(){
-    //this.router.navigateByUrl(NAV.login);
+    console.log('Modulo de ayuda')
   }
 
   selectTab(index: number){
@@ -70,6 +70,10 @@ export class HeaderHomeComponent implements OnInit {
 
   openMenu(){
     this.selected.reset();
+  }
+
+  notificaciones(){
+    this.router.navigateByUrl(NAV.bandejaEntrada)
   }
 
   public get width() {

@@ -81,38 +81,38 @@ border: 1px solid #E6EDF6;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-  .cuadrante-deducciones{
-    background-color: #FFFFFF; 
-    width: 975px; 
-    height: 575px; 
-    margin-bottom: 39px; 
-    border-radius: 15px; 
-    padding: 15px 12px; 
-    border: 1px solid #E6EDF6; 
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  }
+.cuadrante-deducciones{
+  background-color: #FFFFFF; 
+  width: 975px; 
+  height: 575px; 
+  margin-bottom: 39px; 
+  border-radius: 15px; 
+  padding: 15px 12px; 
+  border: 1px solid #E6EDF6; 
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
 
-  .cuadrante-cumplimiento{
-    background-color: #FFFFFF; 
-    width: 489px; 
-    height: 424px; 
-    margin-bottom: 39px; 
-    border-radius: 15px; 
-    padding: 15px 12px; 
-    border: 1px solid #E6EDF6; 
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  }
+.cuadrante-cumplimiento{
+  background-color: #FFFFFF; 
+  width: 489px; 
+  min-height: 424px; 
+  margin-bottom: 39px; 
+  border-radius: 15px; 
+  padding: 15px 12px; 
+  border: 1px solid #E6EDF6; 
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
 
-  .cuadrante-fiscales{
-    background-color: #FFFFFF; 
-    width: 489px; 
-    height: 1147px;
-    margin-bottom: 39px;
-    border-radius: 15px;
-    padding: 15px 12px;
-    border: 1px solid #E6EDF6;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  }
+.cuadrante-fiscales{
+  background-color: #FFFFFF; 
+  width: 489px; 
+  height: 1147px;
+  margin-bottom: 39px;
+  border-radius: 15px;
+  padding: 15px 12px;
+  border: 1px solid #E6EDF6;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
 
 .example-month-picker .mat-calendar-period-button {
   pointer-events: none;

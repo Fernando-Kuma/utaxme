@@ -32,7 +32,6 @@
 }
 
 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-suffix {
-  background: #F4F4F4;
   width: 30px;
   height: 30px;
   border-radius: 15px;

@@ -165,7 +165,7 @@ export class GenerarCfdiComponent implements OnInit {
   }
   
   listaConcepto(){
-    if(!this.form.valid){
+    if(this.form.valid){
       const dialogRef = this.dialog.open(
         ConceptosComponent, 
         this.dialogService.tablaConceptos(this.tablaListaConceptos)
@@ -185,6 +185,8 @@ export class GenerarCfdiComponent implements OnInit {
               control.markAsTouched({ onlySelf: true });
           }
       });
+
+      this.alertService.warn("<b>Debes de rellenar todos los campos</b>")
     }
   }
 
@@ -324,14 +326,14 @@ export class GenerarCfdiComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       data => {
         if(data){
-          this.generarCFDI()
+          this.generarServicioCFDI()
         }
       }
     );
 
   }
 
-  generarCFDI() {
+  generarServicioCFDI() {
     let _emisor = {
       regimenFiscal: this.datosFiscales.idSat,
       razonSocial: this.datosFiscales.razonSocial, // Es del cliente o el usuario
@@ -421,14 +423,14 @@ export class GenerarCfdiComponent implements OnInit {
       //Emitir CFDI 4.0
     let requestDashboard = {
       usoCfdi: this.form.controls['usoCFDI'].value,
-      tipoCfdi: this.checkPlataformas == true ? "I" : 
+      tipoCfdi: this.checkPlataformas ? "I" : 
         this.tipoFactura == "Ingreso" ? "I" : this.tipoFactura == "Ingreso" ? "I" : this.tipoFactura, 
       lugarExpedicion: this.datosFiscales.cp,
       formaPago: this.form.controls['formaPago'].value,
       metodoPago:this.formularioAvanzado.metodoPago,
       moneda: this.formularioAvanzado.moneda,
       condicionesPago: this.formularioAvanzado.condiciones,
-      plataformaTecnologica: this.checkPlataformas == false ? "UTAXME" : this.idTipoFactura, //new
+      plataformaTecnologica: !this.checkPlataformas ? "UTAXME" : this.idTipoFactura, //new
       observaciones: "",
       bancoPago: "",
       cuentaBancaria: "0000",
@@ -476,7 +478,6 @@ export class GenerarCfdiComponent implements OnInit {
       this.form.controls['usoCFDI'].setValue(this.cacheFormulario.usoCFDI);
       this.form.controls['formaPago'].setValue(this.cacheFormulario.formaPago);
       this.form.controls['rfc'].setValue(this.cacheFormulario.rfc);
-      //this.selecionarCliente(this.form.controls['rfc'].value);
       this.form.controls['razonSocial'].setValue(this.cacheFormulario.razonSocial);
       this.form.controls['regimenFiscalCliente'].setValue(this.cacheFormulario.regimenFiscalCliente);
       this.form.controls['codigoPostal'].setValue(this.cacheFormulario.codigoPostal);

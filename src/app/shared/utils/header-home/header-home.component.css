@@ -125,14 +125,6 @@ mat-toolbar{
 }
 
 
-/* TABS */
-::ng-deep .worskpace-tab .mat-tab-label-active {
-  font-size: 15px;
-  font-weight: bold!important;
-  color: #000000!important;
-
-  /* margin-left: 10px!important; */
-}
 
 ::ng-deep .notification-tab .mat-ripple-container-active{
   background-color: none!important;

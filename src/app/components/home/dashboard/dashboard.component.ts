@@ -178,6 +178,7 @@ export class DashboardComponent implements OnInit {
   }
 
   cancelarFactura(){
+    localStorage.setItem('back-return', 'home');
     this.router.navigateByUrl(NAV.cancelarCfdi);
   }
 

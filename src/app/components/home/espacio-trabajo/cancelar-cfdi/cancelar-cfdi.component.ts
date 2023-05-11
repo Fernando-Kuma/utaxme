@@ -51,6 +51,7 @@ export class CancelarCfdiComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.nombreCliente = this.auth.usuario.nombre;
     this.crearForm();
   }
 
@@ -67,7 +68,13 @@ export class CancelarCfdiComponent implements OnInit {
   }
 
   regresar() {
-    this.router.navigateByUrl(NAV.dashboard);
+    console.log(localStorage.getItem('back-return'))
+    if(localStorage.getItem('back-return') != null){
+      localStorage.removeItem('back-return');
+      this.router.navigateByUrl(NAV.dashboard);
+    }else{
+      this.router.navigateByUrl(NAV.espacioTrabajo);
+    }
   }
 
   onPaged(page) {

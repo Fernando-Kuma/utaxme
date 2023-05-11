@@ -97,14 +97,12 @@ El monto total de las deducciones personales no debe exceder 5 (UMA) anuales o d
                   </button>  
                 </div>
                 <div class="col-4" style="margin-right: 0; padding-right: 0;">
-                  <button mat-button class="btn-utaxme" style="height: 45px; font-size: 14px;" id="btnsend">
+                  <button mat-button class="btn-utaxme" style="height: 45px; font-size: 14px;" id="btnsend" (click)="filtrarDeducciones()">
                     Buscar
                   </button>
                 </div>
               </div>
             </mat-menu>
-
-
           </mat-form-field>
         </div>
       </form>

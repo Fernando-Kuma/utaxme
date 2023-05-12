@@ -205,7 +205,10 @@ mat-toolbar{
 @media(max-width: 450px){
   mat-toolbar{
     height: 45px;
+    bottom: 0;
   }
+
+  
 }
 .menu-movil-home{
   background-image: url("src\assets\icon\home-black.svg");

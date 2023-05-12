@@ -21,6 +21,7 @@ export class BandejaEntradaComponent implements OnInit {
 
 
   notificaciones : any[];
+  notificacionesGuardado : any[];
   notificacionSeleccionado: any;
   idNotificacionSeleccionado: number = 0;
 
@@ -92,6 +93,8 @@ export class BandejaEntradaComponent implements OnInit {
               this.selecionarNotificacion(this.notificaciones.find( ele => ele.idNotificacion ==  idNotificacion))
               localStorage.removeItem('id-notificacion')
             }
+
+            this.notificacionesGuardado = this.notificaciones
           }else{
             this.mostrarData = true;
             
@@ -129,6 +132,15 @@ export class BandejaEntradaComponent implements OnInit {
         console.log('error')
       }
     });
+  }
+
+  onKeyDownEvent(event: any){
+    let filtro = event.target.value;
+    if(this.notificacionesGuardado.length > 0){
+      this.notificaciones = this.notificacionesGuardado.filter( item =>
+        item?.titulo?.toLowerCase().includes(filtro.toLowerCase())
+      );
+    }
   }
 
   returnFilter(){

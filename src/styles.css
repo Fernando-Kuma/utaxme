@@ -598,7 +598,7 @@ body {
 
 /* SCROLL FIGMA */
 
-@media(max-width: 425px){
+@media(max-width: 450px){
   .content-wrapper{
    background: #FFFFFF !important;
    overflow-y: hidden;

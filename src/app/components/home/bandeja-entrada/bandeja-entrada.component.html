@@ -24,7 +24,7 @@
                     <form [formGroup]="form" style="margin: 0;" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
                         <mat-form-field appearance="outline" style="font-size: 12px; height: 80px; width: 100%;">
                             <mat-label>Buscar</mat-label>
-                            <input matInput formControlName="busqueda" style="font-size: 13px!important;"/>
+                            <input matInput formControlName="busqueda" style="font-size: 13px!important;" (keyup)="onKeyDownEvent($event)"/>
                             <mat-icon class="image-workspace-buscardor" matSuffix style="margin-top: 10px!important;" ></mat-icon>
                         </mat-form-field>
                     </form>
@@ -134,7 +134,7 @@
                     <form [formGroup]="form" style="margin: 0;" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
                         <mat-form-field appearance="outline" style="font-size: 16px; height: 80px; width: 100%;">
                             <mat-label>Buscar</mat-label>
-                            <input matInput formControlName="busqueda" style="font-size: 13px!important;"/>
+                            <input matInput formControlName="busqueda" style="font-size: 13px!important;" (keyup)="onKeyDownEvent($event)"/>
                             <mat-icon class="image-workspace-buscardor" matSuffix style="margin-top: 10px!important;" ></mat-icon>
                         </mat-form-field>
                     </form>

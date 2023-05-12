@@ -7,3 +7,22 @@
   min-width: 380px!important;
   min-height: 220px!important;
 }
+
+
+@media(max-width: 450px) {
+  ::ng-deep .confirm .mat-dialog-content{
+    max-width: 300px!important;
+  }
+  
+  ::ng-deep .mat-dialog-container:has(.confirm){
+    border-radius: 4px;
+    min-width: 100px!important;
+    min-height: 150px!important;
+  }
+
+  .confirm-dialog .col-5,
+  .confirm-dialog .col-6{
+    margin-top: 10px !important;
+    width: 100%;
+  }
+}

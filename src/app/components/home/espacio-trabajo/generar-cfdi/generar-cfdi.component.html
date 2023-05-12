@@ -311,11 +311,12 @@
                                   <mat-icon class="img-inicio-acceso"></mat-icon>
                                   Agregar concepto
                                 </button>
-                                <button mat-button class="btn-utaxme btn-concepto-mb" 
-                                (click)="listaConcepto()">
+
+
+                                <button mat-button class="btn-utaxme btn-concepto-mb" (click)="listaConcepto()">
                                   <mat-icon class="img-inicio-mas"></mat-icon>
-                                  
                                 </button>
+
                               </div>
                             </div>
                           </div>
@@ -441,7 +442,7 @@
                           </div>
 
 
-                          <div class="col-12" style="margin-top: 2%;">
+                          <div class="col-12" style="margin-top: 2%;" *ngIf="width > 450">
                             <div class="row total-conceptos">
                               <div class="col-7"></div>
                               <div class="col-2">
@@ -457,6 +458,34 @@
                                 
                               </div>
                               <div class="col-3" style="text-align: end;">
+                                <span *ngIf="costoFactura.subtotalSinDescuento">${{costoFactura.subtotalSinDescuento | thousandsPipe}}</span>
+                                <span *ngIf="costoFactura.descuento"><br>${{costoFactura.descuento | thousandsPipe}}</span>
+                                <span><br>${{costoFactura.subtotal | thousandsPipe}}</span>
+                                <span *ngIf="costoFactura.ivaT"><br>${{costoFactura.ivaT | thousandsPipe}}</span>
+                                <span *ngIf="costoFactura.ieps"><br>${{costoFactura.ieps | thousandsPipe}}</span>
+                                <span *ngIf="costoFactura.isrR"><br>${{costoFactura.isrR | thousandsPipe}}</span>
+                                <span *ngIf="costoFactura.ivaR"><br>${{costoFactura.ivaR | thousandsPipe}}</span>
+                                <span *ngIf="costoFactura.localTraslado"><br>${{costoFactura.localTraslado | thousandsPipe}}</span>
+                                <span style="font-weight: 600;"><br>${{costoFactura.total | thousandsPipe}}</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="col-12" style="margin-top: 2%;" *ngIf="width <= 450">
+                            <div class="row total-conceptos">
+                              <div class="col-6" style="text-align: end;">
+                                <span *ngIf="costoFactura.subtotalSinDescuento > 0">Sub sin Desc:</span>
+                                <span *ngIf="costoFactura.descuento"><br>Descuento:</span>
+                                <span><br>Subtotal:</span>
+                                <span *ngIf="costoFactura.ivaT"><br>IVA Tras.:</span>
+                                <span *ngIf="costoFactura.ieps"><br>IEPS:</span>
+                                <span *ngIf="costoFactura.isrR"><br>ISR Ret.:</span>
+                                <span *ngIf="costoFactura.ivaR"><br>IVA Ret.:</span>
+                                <span *ngIf="costoFactura.localTraslado"><br>Local.:</span>
+                                <span style="font-weight: 600;"><br>Total:</span>
+                                
+                              </div>
+                              <div class="col-6" style="text-align: end;">
                                 <span *ngIf="costoFactura.subtotalSinDescuento">${{costoFactura.subtotalSinDescuento | thousandsPipe}}</span>
                                 <span *ngIf="costoFactura.descuento"><br>${{costoFactura.descuento | thousandsPipe}}</span>
                                 <span><br>${{costoFactura.subtotal | thousandsPipe}}</span>

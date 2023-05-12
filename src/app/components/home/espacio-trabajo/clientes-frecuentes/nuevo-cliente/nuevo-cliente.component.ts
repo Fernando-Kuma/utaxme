@@ -57,7 +57,7 @@ export class NuevoClienteComponent {
     this.form = this.formBuilder.group({      
       rfc: [null, [Validators.required, Validators.minLength(12), Validators.maxLength(13), Validators.pattern("^[A-Za-z0-9]+$")]],
       razonSocial: [null, [Validators.required, Validators.minLength(3)]],
-      regimenFiscalCliente: [null, [Validators.required]],
+      regimenFiscal: [null, [Validators.required]],
       codigoPostal: [null, [Validators.required, Validators.minLength(5)]],
       correo: [null, [Validators.required, Validators.pattern(".+@.+\..+")]],
     });

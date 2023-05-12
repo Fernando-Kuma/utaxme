@@ -36,23 +36,13 @@ export class CuadranteDeduccionesComponent implements OnInit {
     {
       estatus: false,
       tipo: 1,
-      nombre: 'Personales',
+      nombre: 'Personal',
     },
     {
       estatus: false,
       tipo: 1,
-      nombre: 'Autorizadas',
-    },
-    {
-      estatus: false,
-      tipo: 1,
-      nombre: 'Anual',
-    },
-    {
-      estatus: false,
-      tipo: 2,
-      nombre: 'Mensual',
-    },
+      nombre: 'Autorizada',
+    }
   ];
   Options = [
     {
@@ -166,6 +156,7 @@ export class CuadranteDeduccionesComponent implements OnInit {
   }
 
   onKeyDownEvent(event: any) {
+    this.form.get('dispositivos').setValue([]);
     let filtro = event.target.value;
     if(filtro.length > 2 ){
       this.deduccionesBusqueda.forEach(element => {
@@ -184,13 +175,21 @@ export class CuadranteDeduccionesComponent implements OnInit {
 
   filtrarDeducciones() {
     this.form.get('buscar').setValue("");
+
     console.log(this.deduccionesBusqueda);
+
     let aplica = [];
+
     this.deduccionesBusqueda.forEach(element => {
       if(element.estatus === true){
         aplica.push(element.nombre);
       }
     });
+
+    if(aplica.length == 2){
+      aplica = ["Ambos"];
+    }
+
     let tipo = this.form.controls['dispositivos'].value ?  this.form.controls['dispositivos'].value : [];
 
     if(aplica.length == 0 && tipo.length == 0){
@@ -198,11 +197,33 @@ export class CuadranteDeduccionesComponent implements OnInit {
     }else{
       console.log("tipos seleccionados:",tipo);
       console.log("aplica seleccionados:",aplica);
+      /* this.tablaDeducciones =this.deducciones.filter((item) =>
+        (item?.tipoDeduccion.toLowerCase().includes(aplica[0]?.toLowerCase()) || item?.tipoDeduccion.toLowerCase().includes(aplica[1]?.toLowerCase())) || (item?.tipo.toLowerCase().includes(tipo[0]?.toLowerCase()) || 
+        item?.tipo.toLowerCase().includes(tipo[1]?.toLowerCase()) || item?.tipo.toLowerCase().includes(tipo[2]?.toLowerCase()) || item?.tipo.toLowerCase().includes(tipo[3]?.toLowerCase()) || 
+        item?.tipo.toLowerCase().includes(tipo[4]?.toLowerCase()) || item?.tipo.toLowerCase().includes(tipo[5]?.toLowerCase()))
+      ); */
+
       this.tablaDeducciones =this.deducciones.filter((item) =>
-        item?.aplica.toLowerCase().includes(aplica[0]?.toLowerCase()) || item?.aplica.toLowerCase().includes(aplica[1]?.toLowerCase()) || item?.aplica.toLowerCase().includes(aplica[2]?.toLowerCase()) || item?.aplica.toLowerCase().includes(aplica[3]?.toLowerCase())
-        || item?.tipo.toLowerCase().includes(tipo[0]?.toLowerCase()) || item?.tipo.toLowerCase().includes(tipo[1]?.toLowerCase()) || item?.tipo.toLowerCase().includes(tipo[2]?.toLowerCase()) || item?.tipo.toLowerCase().includes(tipo[3]?.toLowerCase()) 
-        || item?.tipo.toLowerCase().includes(tipo[4]?.toLowerCase()) || item?.tipo.toLowerCase().includes(tipo[5]?.toLowerCase())
+        item?.tipoDeduccion.toLowerCase().includes(aplica[0]?.toLowerCase()) || item?.tipoDeduccion.toLowerCase().includes(aplica[1]?.toLowerCase())
       );
+
+      if(this.tablaDeducciones.length == 0){
+        this.tablaDeducciones =this.deducciones.filter((item) =>
+          item?.tipo.toLowerCase().includes(tipo[0]?.toLowerCase()) || 
+          item?.tipo.toLowerCase().includes(tipo[1]?.toLowerCase()) || item?.tipo.toLowerCase().includes(tipo[2]?.toLowerCase()) || item?.tipo.toLowerCase().includes(tipo[3]?.toLowerCase()) || 
+          item?.tipo.toLowerCase().includes(tipo[4]?.toLowerCase()) || item?.tipo.toLowerCase().includes(tipo[5]?.toLowerCase())
+        );
+      }else{
+        if(tipo.length > 0){
+          this.tablaDeducciones = this.tablaDeducciones.filter((item) =>
+          item?.tipo.toLowerCase().includes(tipo[0]?.toLowerCase()) || 
+          item?.tipo.toLowerCase().includes(tipo[1]?.toLowerCase()) || item?.tipo.toLowerCase().includes(tipo[2]?.toLowerCase()) || item?.tipo.toLowerCase().includes(tipo[3]?.toLowerCase()) || 
+          item?.tipo.toLowerCase().includes(tipo[4]?.toLowerCase()) || item?.tipo.toLowerCase().includes(tipo[5]?.toLowerCase())
+        );
+        }
+      }
+
+
     }
     this.paginador(this.tablaDeducciones);
   }

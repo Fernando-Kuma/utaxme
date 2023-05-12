@@ -206,4 +206,10 @@ export class CuadranteDeduccionesComponent implements OnInit {
     }
     this.paginador(this.tablaDeducciones);
   }
+
+  returnFilter(){
+    this.form.reset();
+    this.paginador(this.deducciones);
+    this.borrarFiltro(3)
+  }
 }

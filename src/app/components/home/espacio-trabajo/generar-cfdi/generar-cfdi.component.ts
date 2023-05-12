@@ -240,16 +240,17 @@ export class GenerarCfdiComponent implements OnInit {
     this.costoFactura = new  TotalFactura;
     this.tablaListaConceptos.forEach(element => {
       if(element.cantidad){
-        this.costoFactura.ivaT = Number(((element.valorUnitario * (element.tasa/100)) + this.costoFactura.ivaT).toFixed(2))
-        this.costoFactura.isrR = Number(((element.valorUnitario * (element.isrRet/100)) + this.costoFactura.isrR).toFixed(2))
-        this.costoFactura.ivaR = Number(((element.valorUnitario * (element.ivaRet/100)) + this.costoFactura.ivaR).toFixed(2))
+        let valorTotal =  element.valorUnitario * element.cantidad
+        this.costoFactura.ivaT = Number((((valorTotal - element.descuento) * (element.tasa/100)) + this.costoFactura.ivaT).toFixed(2))
+        this.costoFactura.isrR = Number(((valorTotal * (element.isrRet/100)) + this.costoFactura.isrR).toFixed(2))
+        this.costoFactura.ivaR = Number(((valorTotal * (element.ivaRet/100)) + this.costoFactura.ivaR).toFixed(2))
 
-        this.costoFactura.ieps = Number(((element.valorUnitario * (element.ieps/100)) + this.costoFactura.ieps).toFixed(2))
+        this.costoFactura.ieps = Number(((valorTotal * (element.ieps/100)) + this.costoFactura.ieps).toFixed(2))
         
-        this.costoFactura.localTraslado = Number(((element.valorUnitario * (element.tasaLocal/100)) + this.costoFactura.localTraslado).toFixed(2))
+        this.costoFactura.localTraslado = Number(((valorTotal * (element.tasaLocal/100)) + this.costoFactura.localTraslado).toFixed(2))
         this.costoFactura.descuento = Number(element.descuento)+ this.costoFactura.descuento
         this.costoFactura.subtotalSinDescuento = element.descuento ?
-        this.costoFactura.subtotalSinDescuento + (element.valorUnitario * element.cantidad) : this.costoFactura.subtotalSinDescuento
+        this.costoFactura.subtotalSinDescuento + valorTotal : this.costoFactura.subtotalSinDescuento
         this.costoFactura.subtotal = Number((element.importe + this.costoFactura.subtotal).toFixed(4))
         this.costoFactura.total = 
         Number((this.costoFactura.subtotal + this.costoFactura.ivaT + this.costoFactura.ieps - this.costoFactura.isrR - this.costoFactura.ivaR).toFixed(2))
@@ -273,9 +274,10 @@ export class GenerarCfdiComponent implements OnInit {
   }
 
   confirmarGenerarCFDI() {
+    let validacion = true;
     if(this.tablaListaConceptos.length <= 0){
       this.alertService.warn("<b>Agregue al menos un concepto para generar una factura</b>")
-      return;
+      validacion = false
     }
     if(this.form.invalid){
       Object.keys(this.form.controls).forEach((field) => {
@@ -284,38 +286,40 @@ export class GenerarCfdiComponent implements OnInit {
               control.markAsTouched({ onlySelf: true });
           }
       });
-      return;
+      validacion = false
     }
     let tasaLocal = this.tablaListaConceptos[0].tasaLocal;
     this.tablaListaConceptos.forEach(element => {
       if(element.importe <= 0){
         this.alertService.error("<b>No se permite facturar importes en cero o negativos, por favor rectifique</b>")
-        return;
+        validacion = false
       }
       if (element.tasaLocal != tasaLocal) {
         this.alertService.error("<b>En el CFDI no pueden haber más de 1 concepto con el impuesto local con diferentes tasas</b>")
-        return;
+        validacion = false
       }
       if(this.tipoFactura == "AIRBNB"){
         if (element.tasa == null) {
           this.alertService.error("<b>Para la plataforma de AIRBNB, no se permite generar un CFDI sin IVA trasladado.</b>")
-          return;
+          validacion = false
         }
         if (element.tasa == 0) {
           this.alertService.error("<b>Para la plataforma de AIRBNB, no se permite generar un CFDI con IVA tasa 0%.</b>")
-          return;
+          validacion = false
         }
         if (element.ieps != null) {
           this.alertService.error("<b>Para la pataforma de ARIBNB, no se permite agregar el impuesto IEPS.</b>")
-          return;
+          validacion = false
         }
       }
     });
     if(this.totalConceptos == 0.0){
       this.alertService.warn("<b>El monto de la factura debe ser mayor a cero</b>")
-      return;
+      validacion = false
     }
-    this.dialogCFDI();
+    if(validacion ){
+      this.dialogCFDI();
+    }
   }
   
   dialogCFDI(){
@@ -436,8 +440,8 @@ export class GenerarCfdiComponent implements OnInit {
       cuentaBancaria: "0000",
       numeroOrden: this.form.controls['numeroOrden'].value,
 
-      subTotal: this.costoFactura.subtotal,
-      total: this.costoFactura.total,
+      subTotal: String(this.costoFactura.subtotal),
+      total: String(this.costoFactura.total),
       emisor: _emisor,
       receptor: _receptor,
       informacionGlobal: _informacionGlobal,

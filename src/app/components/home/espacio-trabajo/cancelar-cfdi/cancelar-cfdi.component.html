@@ -2,6 +2,7 @@
   <div class="sticky-header">
     <app-header-home></app-header-home>
   </div>
+  <alert></alert>
   <div class="content-wrapper disable-scrollbars" style="background-color: #F4F4F4; overflow: scroll;">
     <div class="content-home">
       <div class="home-container-accesos" style="margin-top: 30px;">
@@ -184,22 +185,11 @@
                     </div>
                   </div>
 
-                  <div *ngIf="verNoEncontrados" class="d-flex justify-content-center" style="text-align: center;">
-                    <div class="">
-                      <div fxLayout="row" fxLayoutAlign="space-around center">
-                        <div><img src="../../../../../assets/icon/error-pesando.svg"
-                            alt="Error en busca de resultado" /><br /></div>
-                      </div>
-                      <div fxLayout="row" fxLayoutAlign="space-around center">
-                        <div>
-                          <h4>
-                            No hay resultados que coincidan con tus criterios. Intenta ingresar otra fecha de búsqueda,
-                            trata <br> de validar tu N° de Orden o <a href="">vuelve a la página anterior</a>.
-                          </h4>
-                        </div>
-                      </div>
-                    </div>
+                  <div *ngIf="verNoEncontrados" style="min-height: 250px; padding: 0 40px;  display: flex; align-items: center;">
+                      <app-filter-error (clickReturn)="limpiarTabla()"></app-filter-error>
                   </div>
+
+
                 </div>
               </div>
             </form>

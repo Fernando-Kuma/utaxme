@@ -55,11 +55,11 @@ export class NuevoClienteComponent {
 
   crearForm(){
     this.form = this.formBuilder.group({      
-      rfc: [null, [Validators.required]],
-      razonSocial: [null, [Validators.required]],
-      regimenFiscal: [null, [Validators.required]],
-      codigoPostal: [null, [Validators.required]],
-      correo: [null, [Validators.required]],
+      rfc: [null, [Validators.required, Validators.minLength(12), Validators.maxLength(13), Validators.pattern("^[A-Za-z0-9]+$")]],
+      razonSocial: [null, [Validators.required, Validators.minLength(3)]],
+      regimenFiscalCliente: [null, [Validators.required]],
+      codigoPostal: [null, [Validators.required, Validators.minLength(5)]],
+      correo: [null, [Validators.required, Validators.pattern(".+@.+\..+")]],
     });
   }
 
@@ -68,24 +68,34 @@ export class NuevoClienteComponent {
   }
 
   guardarCliente(){
-    let request = {
-      rfcCliente: this.auth.usuario.cliente.rfc,
-      rfcReceptor: this.form.controls['rfc'].value,
-      razonSocial: this.form.controls['razonSocial'].value,
-      correoElectronico: this.form.controls['correo'].value,
-      regimenFiscal: this.form.controls['regimenFiscal'].value,
-      codigoPostal: this.form.controls['codigoPostal'].value,
-    }
-    if(this.opcionCrear){
-      this.espacioTrabajoService.crearCliente(request).subscribe((response) => {
-        console.log(response)
-      },(_error) => {
-        console.log("Error en crear cliente: ", _error);
+    if(this.form.invalid){
+      Object.keys(this.form.controls).forEach((field) => {
+          const control = this.form.get(field);
+          if (!control.valid) {
+              control.markAsTouched({ onlySelf: true });
+          }
       });
-      this.dialogRef.close(true);
-      
-    }else{
-      this.dialogRef.close(true);
+      return;
+    }
+    if(this.form.valid){
+      let request = {
+        rfcCliente: this.auth.usuario.cliente.rfc,
+        rfcReceptor: this.form.controls['rfc'].value,
+        razonSocial: this.form.controls['razonSocial'].value,
+        correoElectronico: this.form.controls['correo'].value,
+        regimenFiscal: this.form.controls['regimenFiscal'].value,
+        codigoPostal: this.form.controls['codigoPostal'].value,
+      }
+      if(this.opcionCrear){
+        this.espacioTrabajoService.crearCliente(request).subscribe((response) => {
+          console.log(response)
+        },(_error) => {
+          console.log("Error en crear cliente: ", _error);
+        });
+        this.dialogRef.close(true);
+      }else{
+        this.dialogRef.close(true);
+      }
     }
     
   }
@@ -100,6 +110,31 @@ export class NuevoClienteComponent {
   
   getErrorRequerido(){
     return 'Este campo es requerido';
+  }
+
+  public onlyNumbers(event) {
+    let k;
+    k = event.charCode;
+    return (!(k > 31 && (k < 48 || k > 57)));
+  }
+
+  public caracteresValidosRFC(event) {
+    let k = event.key;
+    let reg = /^[A-Za-z0-9]+$/g;
+    if(!reg.test(k)){
+      return false
+    }
+  }
+  public caracteresValidosRS(event) {
+    let k = event.key;
+    let reg = /^[ñÑA-Za-z0-9-. ]+$/g;
+    if(!reg.test(k)){
+      return false
+    }
+  }
+  
+  public setMayusculas(event, form){
+    this.form.controls[form].setValue(event.target.value.toUpperCase())
   }
 
 

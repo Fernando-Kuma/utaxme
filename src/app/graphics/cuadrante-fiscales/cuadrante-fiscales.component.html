@@ -45,10 +45,10 @@
           Selecciona una escala 
         </mat-option>
         <mat-option [value]="fechaActual" (click)="tipoPeriodo = true; obtenerSaludFiscal()">
-          {{fechaActual}}
+          {{fechaActual | titlecase}}
         </mat-option>
         <mat-option [value]="'Enero a ' + fechaActual" (click)="tipoPeriodo = false; obtenerSaludFiscal()" selected>
-          {{'Enero a ' + fechaActual}}
+          {{'Enero a ' + fechaActual | titlecase}}
         </mat-option>
       </mat-select>
     </mat-form-field>

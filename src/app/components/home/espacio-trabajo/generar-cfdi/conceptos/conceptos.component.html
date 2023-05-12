@@ -50,7 +50,7 @@
         </div>
 
         <div class="row w100m0p0" style="margin-top: 3% !important;">
-          <div class="col-12 tableFixHead disable-scrollbars" style="max-height: 300px; overflow-x: auto;" *ngIf="width > 450">
+          <div class="col-12 tableFixHead disable-scrollbars" style="max-height: 300px; overflow-x: auto;" *ngIf="width > 450 && tablaLista?.length > 0">
             <table aria-describedby="tabla" class="table table-responsive table-striped">
               <thead style="margin-bottom: 10px;">
                   <tr class="textoM">
@@ -113,7 +113,7 @@
             </table>
           </div>
 
-          <div class="col-12 tableFixHead disable-scrollbars" style="max-height: 300px; overflow-x: auto;" *ngIf="width <= 450">
+          <div class="col-12 tableFixHead disable-scrollbars" style="max-height: 300px; overflow-x: auto;" *ngIf="width <= 450 && tablaLista?.length > 0">
             <table aria-describedby="tabla" class="table table-responsive table-striped">
               <thead style="margin-bottom: 10px;">
                   <tr class="textoM">
@@ -157,6 +157,14 @@
               </tbody>
             </table>
           </div>
+
+          <div class="col-12"
+                style="min-height: 250px; padding: 0 40px;  display: flex; align-items: center;"
+                *ngIf="tablaLista?.length == 0">
+                <app-filter-error (clickReturn)="returnFilter()"></app-filter-error>
+              </div>
+
+
         </div>
 
         <div class="row" style="margin: 40px 0px 0px !important; width: 100%; padding: 0;">

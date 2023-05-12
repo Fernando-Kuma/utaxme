@@ -11,7 +11,7 @@ El monto total de las deducciones personales no debe exceder 5 (UMA) anuales o d
     </div>
 
     <div class="row busqueda-mobile">
-      <form [formGroup]="form" action="" class="busqueda-mobile">
+      <form [formGroup]="form" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" action="" class="busqueda-mobile">
         <div class="col-5 busqueda-mobile" style="margin-top: 53px;">
           <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
             <mat-icon matPrefix class="ico-search"></mat-icon>
@@ -107,76 +107,77 @@ El monto total de las deducciones personales no debe exceder 5 (UMA) anuales o d
         </div>
       </form>
     </div>
-    <div class="col-12" >
-
-
+    <div class="col-12" *ngIf="tablaDeducciones?.length> 0">
       <div class="col-12" style="margin-top: 20px;">
         <mat-divider></mat-divider>
       </div>
-
-          <table aria-describedby="tabla" class="table table-responsive table-striped">
-            <thead style="margin-bottom: 10px;">
-                <tr class="textoM">
-           
-                    <th class="subtitulo-cuadrante view-mobile" style="text-align: center;">
-                        <span style="cursor:default!important;">
-                          clave
-                        </span>
-                    </th>
-                    <th class="subtitulo-cuadrante" style="text-align: center;">
-                        <span style="cursor:default!important;">
-                          deducción
-                        </span>
-                    </th>
-                    <th class="subtitulo-cuadrante view-mobile" style="text-align: center;">
-                        <span style="cursor:default!important;">
-                          requisitos
-                        </span>
-                    </th>
-                    
-                    <th class="subtitulo-cuadrante" style="text-align: center;">
-                        <span style="width: 70px; cursor:default!important;">
-                          detalle
-                        </span>
-                    </th>
-                </tr>
-            </thead>
-            <tbody class="table-scroll" style="border: solid 1px #ffffff; ">
-              <tr *ngFor="let item of tablaDeducciones">
+      <table aria-describedby="tabla" class="table table-responsive table-striped">
+        <thead style="margin-bottom: 10px;">
+            <tr class="textoM">
+        
+                <th class="subtitulo-cuadrante view-mobile" style="text-align: center;">
+                    <span style="cursor:default!important;">
+                      clave
+                    </span>
+                </th>
+                <th class="subtitulo-cuadrante" style="text-align: center;">
+                    <span style="cursor:default!important;">
+                      deducción
+                    </span>
+                </th>
+                <th class="subtitulo-cuadrante view-mobile" style="text-align: center;">
+                    <span style="cursor:default!important;">
+                      requisitos
+                    </span>
+                </th>
                 
-                <td class="view-mobile" style="text-align: center;">
-                  {{item.clave}}
-                </td>
-                <td  style="text-align: center;">
-                  {{item.descripcion}} 
-                </td>
-                <td class="view-mobile" style="text-align: center;">
-                  {{item.requisitos}}
-                </td>
-               
-                <td class="justify-content-center ">
-                  <div class="icon-detalle" (click)="send(item)">
-                    <div class="image-document" style="padding-right: 22px; padding-left: 6px;">&nbsp; </div>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-        </table>
-
-          <div class="col-12" style="margin-top: 13px;">
-            <mat-divider></mat-divider>
-          </div>
-          <div class="col-12" *ngIf="tablaDeducciones?.length> 0">
-            <div class="col-6"
-              style="margin: 0; padding: 0; font-weight: 600; font-size: 10px; letter-spacing: 3px; color: #7B8AA0; padding-top: 7px;">
-              Mostrando pág {{ this.pager?.current }} de {{ this.pager?.total }} de
-              {{ this.pager?.data.length }} resultados
-            </div>
-            <div class="col 6">
-              <app-pager [pageModel]="pager" (paged)="onPaged($event)" style="float: right;"></app-pager>
-            </div>
-          </div>
-
+                <th class="subtitulo-cuadrante" style="text-align: center;">
+                    <span style="width: 70px; cursor:default!important;">
+                      detalle
+                    </span>
+                </th>
+            </tr>
+        </thead>
+        <tbody class="table-scroll" style="border: solid 1px #ffffff; ">
+          <tr *ngFor="let item of tablaDeducciones">
+            
+            <td class="view-mobile" style="text-align: center;">
+              {{item.clave}}
+            </td>
+            <td  style="text-align: center;">
+              {{item.descripcion}} 
+            </td>
+            <td class="view-mobile" style="text-align: center;">
+              {{item.requisitos}}
+            </td>
+            
+            <td class="justify-content-center ">
+              <div class="icon-detalle" (click)="send(item)">
+                <div class="image-document" style="padding-right: 22px; padding-left: 6px;">&nbsp; </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="col-12" style="margin-top: 13px;">
+        <mat-divider></mat-divider>
+      </div>
+      <div class="col-12">
+        <div class="col-6"
+          style="margin: 0; padding: 0; font-weight: 600; font-size: 10px; letter-spacing: 3px; color: #7B8AA0; padding-top: 7px;">
+          Mostrando pág {{ this.pager?.current }} de {{ this.pager?.total }} de
+          {{ this.pager?.data.length }} resultados
+        </div>
+        <div class="col 6">
+          <app-pager [pageModel]="pager" (paged)="onPaged($event)" style="float: right;"></app-pager>
+        </div>
+      </div>
     </div>
+
+    <div class="col-12"
+                style="min-height: 350px; padding: 0 40px;  display: flex; align-items: center;"
+                *ngIf="tablaDeducciones?.length == 0">
+                <app-filter-error (clickReturn)="returnFilter()"></app-filter-error>
+              </div>
   </div>
 </div>

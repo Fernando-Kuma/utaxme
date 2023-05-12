@@ -28,6 +28,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { AlertModule } from '../shared/utils/alertas';
+import { FilterErrorModule } from '../shared/utils/filter-error';
 
 
 
@@ -63,7 +64,8 @@ import { AlertModule } from '../shared/utils/alertas';
     MatMenuModule,
     MatChipsModule,
     MatCheckboxModule,
-    AlertModule
+    AlertModule,
+    FilterErrorModule
   ],
   exports: [
     BarrasEmitidasComponent,

@@ -15,6 +15,7 @@ import { AuthService } from 'src/app/shared/service/auth.service';
 import { EspacioTrabajoService } from 'src/app/shared/service/espacio-trabajo.service';
 import { CancelarDialogComponent } from './cancelar-dialog/cancelar-dialog.component';
 import { DialogService } from 'src/app/shared/service/dialog.service';
+import { AlertService } from 'src/app/shared/utils/alertas';
 
 @Component({
   selector: 'app-cancelar-cfdi',
@@ -42,6 +43,7 @@ export class CancelarCfdiComponent implements OnInit {
   disabledOrden: boolean = false;
 
   constructor(
+    private alertService: AlertService,
     private router: Router,
     private formBuilder: FormBuilder,
     private dialog: MatDialog,
@@ -109,6 +111,16 @@ export class CancelarCfdiComponent implements OnInit {
     this.form.controls['numeroOrden'].disable();
     this.disabledFechas = false;
     this.disabledOrden = true;
+
+    if(moment(this.form.get('final').value).diff(moment(this.form.get('inicial').value), 'days') < 0){
+      this.form.get('inicial').setErrors({ diff: true });
+      this.form.get('final').setErrors({ diff: true });
+      this.alertService.error("<b>La fecha fin no debe ser menor a la fecha inicio</b>")
+    }else{
+      this.form.get('inicial').setErrors(null);
+      this.form.get('final').setErrors(null);
+    }
+
   }
 
   actionDisabledFecha() {
@@ -121,13 +133,21 @@ export class CancelarCfdiComponent implements OnInit {
   listaCfdi() {
     if (this.disabledOrden) {
       this.listaFecha();
+      return
     }
     if (this.disabledFechas) {
       this.listaOrden();
+      return
     }
+    this.alertService.warn("<b>Llena alguno de los dos formularios para realizar una búsqueda</b>")
   }
 
   listaFecha() {
+    
+    if(moment(this.form.get('final').value).diff(moment(this.form.get('inicial').value), 'days') < 0){
+      this.alertService.error("<b>La fecha fin no debe ser menor a la fecha inicio</b>")
+      return ;
+    }
     let req = {
       rfc: this.auth.usuario.cliente.rfc,
       fechaInicialFilter: moment(this.form.get('inicial').value).format(

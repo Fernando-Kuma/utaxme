@@ -137,6 +137,11 @@ export class ConceptosComponent{
     });
   }
 
+  returnFilter(){
+    this.form.reset();
+    this.tablaLista = this.tablaListaConceptos
+  }
+
   onKeyDownEvent(event: any){
     let filtro = event.target.value;
     this.tablaLista = this.tablaListaConceptos.filter( item => 

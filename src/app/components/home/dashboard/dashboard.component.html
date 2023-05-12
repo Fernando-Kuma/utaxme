@@ -111,6 +111,61 @@
               </div>
             </div>
 
+
+
+
+
+
+
+
+
+
+
+
+            <div class="columna-cuadrante2 cum-mb">
+              <div class="row">
+                <div class="col cuadrante-cumplimiento">
+                  <ng-container *ngIf="!spinnerLoadingCumplimiento">
+                    <app-cuadrante-cumplimiento [data]="cumplimientoFiscal"></app-cuadrante-cumplimiento>
+                  </ng-container>
+                  <div *ngIf="spinnerLoadingCumplimiento" style="min-height: 400px;" class="d-flex justify-content-center align-items-center">
+                    <mat-spinner [diameter]="30"></mat-spinner>
+                  </div>
+                </div>
+              </div>
+  
+              <div class="btn-cfdi-mobile">
+                <div class="" style="padding: 0;">
+                  <button mat-button class="btn-utaxme"
+                    style="font-size: 14px; font-weight: 500; height: 48px;display: flex; align-items: center; justify-content: center; border-radius: 15px !important;"
+                    (click)="verAcuse()">
+                    <mat-icon class="image-ver-acuse-blanco image-size-22"></mat-icon>
+                    Ver acuse
+                  </button>
+                  <button mat-button class="btn-utaxme-secondary"
+                  style="border: 2px solid #285ced; font-size: 14px; font-weight: 500; height: 48px;display: flex; align-items: center; justify-content: center; border-radius: 15px !important; margin: 20px 0 20px 0;"
+                                    (click)="verOpinion()">
+                    <mat-icon class="image-ver-opinion image-size-22"></mat-icon>  
+                    Ver opinión
+                  </button>
+                </div>
+              </div>
+  
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <div class="row">
               <div class="col cuadrante-ingresos">
                 <ng-container *ngIf="!spinnerLoadingIngresos">
@@ -149,7 +204,7 @@
             </div>
           </div>
           <div class="columna-cuadrante2">
-            <div class="row">
+            <div class="row cum-mb-2">
               <div class="col cuadrante-cumplimiento">
                 <ng-container *ngIf="!spinnerLoadingCumplimiento">
                   <app-cuadrante-cumplimiento [data]="cumplimientoFiscal"></app-cuadrante-cumplimiento>
@@ -160,7 +215,7 @@
               </div>
             </div>
 
-            <div class="btn-cfdi-mobile">
+           <!--  <div class="btn-cfdi-mobile btn-cum-mb">
               <div class="" style="padding: 0;">
                 <button mat-button class="btn-utaxme"
                   style="font-size: 14px; font-weight: 500; height: 48px;display: flex; align-items: center; justify-content: center; border-radius: 15px !important;"
@@ -175,7 +230,7 @@
                   Ver opinión
                 </button>
               </div>
-            </div>
+            </div> -->
 
             <div class="row">
               <div class="col cuadrante-fiscales">

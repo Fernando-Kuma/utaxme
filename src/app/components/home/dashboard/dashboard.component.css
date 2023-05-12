@@ -1,111 +1,113 @@
-.home-container-accesos{
-  width: 100%!important;
+.home-container-accesos {
+  width: 100% !important;
   margin: 0;
   padding: 0;
 }
 
-.style-desk{
+.style-desk {
   margin-top: 50px;
   display: flex;
   flex-direction: row;
 }
 
-.home-acceso-card{
-  background-color: #FFFFFF; 
-  height: 130px; 
-  border: 2px solid #E6EDF6; 
+.home-acceso-card {
+  background-color: #FFFFFF;
+  height: 130px;
+  border: 2px solid #E6EDF6;
   box-shadow: 4px 8px 16px #E6EDF6;
   cursor: pointer;
 }
 
-.acceso-ico{
-  width: 30px; 
-  height: 30px; 
-  background-color: #E6EDF6; 
-  border-radius: 8px; 
-  position: relative; 
-  top: 10px; 
+.acceso-ico {
+  width: 30px;
+  height: 30px;
+  background-color: #E6EDF6;
+  border-radius: 8px;
+  position: relative;
+  top: 10px;
   left: 10px;
 }
 
-.acceso-tittle{
+.acceso-tittle {
   font-weight: 600;
   word-wrap: break-word;
-  position: relative; 
-  top: 0px; 
+  position: relative;
+  top: 0px;
   left: 10px;
   font-size: 18px;
   color: #0B112A;
   /* max-width: 50%; */
 }
 
-.acceso-arrow{
+.acceso-arrow {
   height: 40px;
   width: 70px;
   margin-left: auto;
   background-color: #285CED;
-  position: relative; 
+  position: relative;
   border-radius: 2px 0px 0px 2px;
   top: 0px;
   left: 4px;
   right: 0px;
 }
 
-.columna-cuadrante1{
-  width: 74%; padding: 0px 30px;
+.columna-cuadrante1 {
+  width: 74%;
+  padding: 0px 30px;
 }
 
-.columna-cuadrante2{
-  width: 25%; padding: 0px 30px;
+.columna-cuadrante2 {
+  width: 25%;
+  padding: 0px 30px;
 }
 
-.cuadrante-ingresos{
-background-color: #FFFFFF; 
-width: 975px; 
-height: 351px; 
-margin-bottom: 39px; 
-border-radius: 15px;
-padding: 15px 12px;
-border: 1px solid #E6EDF6;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.cuadrante-gastos{
-background-color: #FFFFFF; 
-width: 975px; 
-height: 351px; 
-margin-bottom: 39px; 
-border-radius: 15px; 
-padding: 15px 12px; 
-border: 1px solid #E6EDF6; 
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.cuadrante-deducciones{
-  background-color: #FFFFFF; 
-  width: 975px; 
-  height: 575px; 
-  margin-bottom: 39px; 
-  border-radius: 15px; 
-  padding: 15px 12px; 
-  border: 1px solid #E6EDF6; 
+.cuadrante-ingresos {
+  background-color: #FFFFFF;
+  width: 975px;
+  height: 351px;
+  margin-bottom: 39px;
+  border-radius: 15px;
+  padding: 15px 12px;
+  border: 1px solid #E6EDF6;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.cuadrante-cumplimiento{
-  background-color: #FFFFFF; 
-  width: 489px; 
-  min-height: 424px; 
-  margin-bottom: 39px; 
-  border-radius: 15px; 
-  padding: 15px 12px; 
-  border: 1px solid #E6EDF6; 
+.cuadrante-gastos {
+  background-color: #FFFFFF;
+  width: 975px;
+  height: 351px;
+  margin-bottom: 39px;
+  border-radius: 15px;
+  padding: 15px 12px;
+  border: 1px solid #E6EDF6;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.cuadrante-fiscales{
-  background-color: #FFFFFF; 
-  width: 489px; 
+.cuadrante-deducciones {
+  background-color: #FFFFFF;
+  width: 975px;
+  height: 575px;
+  margin-bottom: 39px;
+  border-radius: 15px;
+  padding: 15px 12px;
+  border: 1px solid #E6EDF6;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.cuadrante-cumplimiento {
+  background-color: #FFFFFF;
+  width: 489px;
+  min-height: 424px;
+  margin-bottom: 39px;
+  border-radius: 15px;
+  padding: 15px 12px;
+  border: 1px solid #E6EDF6;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.cuadrante-fiscales {
+  background-color: #FFFFFF;
+  width: 489px;
   height: 1147px;
   margin-bottom: 39px;
   border-radius: 15px;
@@ -122,17 +124,17 @@ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   display: none;
 }
 
-.calendario-dashboard{
+.calendario-dashboard {
   display: flex;
   justify-content: flex-end;
   align-items: flex-start;
 }
 
-.boton-enlace{
-  background-color: #FFFFFF; 
-  height: 98px;  
-  border-radius: 8px; 
-  font-size: 18px; 
+.boton-enlace {
+  background-color: #FFFFFF;
+  height: 98px;
+  border-radius: 8px;
+  font-size: 18px;
   font-weight: 500;
   color: #0B112A;
   display: flex;
@@ -145,8 +147,8 @@ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   height: 98px;
   background-color: #FFFFFF;
   transition: 1s;
-  border-radius: 8px; 
-  font-size: 18px; 
+  border-radius: 8px;
+  font-size: 18px;
   font-weight: 500;
   color: #0B112A;
   display: flex;
@@ -158,20 +160,22 @@ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   background-color: rgb(200, 200, 204);
 }
 
-.bienvenido-usuario{
-  font-weight: 500; 
-  font-size: 40px; 
-  color: #0B112A; 
-  line-height: 50px; 
+.bienvenido-usuario {
+  font-weight: 500;
+  font-size: 40px;
+  color: #0B112A;
+  line-height: 50px;
   text-transform: capitalize;
 }
 
-.gestiona{
-  color: #838383; 
-  font-weight: 500; font-size: 16; line-height: 20px;
+.gestiona {
+  color: #838383;
+  font-weight: 500;
+  font-size: 16;
+  line-height: 20px;
 }
 
-.btn-cfdi-mobile{
+.btn-cfdi-mobile {
   display: none;
 }
 
@@ -179,94 +183,105 @@ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   display: none;
 }
 
+.cum-mb {
+  display: none;
+}
 
-@media(max-width: 425px){
-  .content-home{
+.cum-mb-2 {
+  display: revert;
+}
+
+@media(max-width: 425px) {
+  .content-home {
     background: #FFFFFF;
   }
 
-  .head-mobile-title{
+  .head-mobile-title {
     display: none;
   }
 
-  .bienvenido-usuario{
-    font-weight: 600; 
-    font-size: 18px; 
-    color: #0B112A; 
-    line-height: 22px; 
+  .bienvenido-usuario {
+    font-weight: 600;
+    font-size: 18px;
+    color: #0B112A;
+    line-height: 22px;
     text-transform: capitalize;
   }
-  
-  .style-desk{
+
+  .style-desk {
     margin-top: 20px;
     flex-direction: column;
   }
-  .gestiona{
-    color: #838383; 
-    font-weight: 400; font-size: 12px; line-height: 24px;
+
+  .gestiona {
+    color: #838383;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 24px;
   }
 
   .cuadrante {
     width: 100%;
     padding: 0px 30px;
     flex-wrap: wrap;
-    
-}
 
-.calendario-dashboard {
-  display: contents;
-}
+  }
 
-.input-mobile{
-  width: 100%;
-}
+  .calendario-dashboard {
+    display: contents;
+  }
 
-  .columna-cuadrante1{
+  .input-mobile {
+    width: 100%;
+  }
+
+  .columna-cuadrante1 {
     width: 100%;
     padding: 0px 30px;
-}
-
-.columna-cuadrante2{
-  width: 100%;
-  padding: 0px 30px;
-}
-
-
-.cuadrante-ingresos{
-  background-color: #FFFFFF; 
-  height: auto;
   }
-  
-  .cuadrante-gastos{
-  background-color: #FFFFFF; 
- height: auto;
-  }
-  
-.cuadrante-deducciones{
-      background-color: #FFFFFF; 
-      height: auto; 
-    }
-  
-    .cuadrante-cumplimiento{
-      background-color: #FFFFFF; 
-      height: auto; 
 
-    }
-  
-    .cuadrante-fiscales{
-     /*  background-color: #FFFFFF; 
+  .columna-cuadrante2 {
+    width: 100%;
+    padding: 0px 30px;
+  }
+
+
+  .cuadrante-ingresos {
+    background-color: #FFFFFF;
+    height: auto;
+  }
+
+  .cuadrante-gastos {
+    background-color: #FFFFFF;
+    height: auto;
+  }
+
+  .cuadrante-deducciones {
+    background-color: #FFFFFF;
+    height: auto;
+    margin-bottom: 60px;
+  }
+
+  .cuadrante-cumplimiento {
+    background-color: #FFFFFF;
+    height: auto;
+
+  }
+
+  .cuadrante-fiscales {
+    /*  background-color: #FFFFFF; 
       height: auto; */
-      display: none;
-    }
+    display: none;
+  }
 
-    
-.style-btn-mobile{
- /*  flex-wrap: wrap;
+
+  .style-btn-mobile {
+    /*  flex-wrap: wrap;
   flex-direction: column; */
-  display: none;
-}
+    display: none;
+  }
 
-  .aling-head{
+  .aling-head {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -279,34 +294,41 @@ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-top-style: solid;
     width: 100%;
     margin: 18px 0px;
-}
+  }
 
-  .btn-cfdi-mobile{
+  .btn-cfdi-mobile {
     display: block;
     padding: 0%;
   }
 
-.font-blue{
-  color: #285CED;
+  .font-blue {
+    color: #285CED;
+  }
+
+  ::ng-deep.mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-outline-start {
+    border-radius: 5px 0 0 5px;
+    border-right-style: none;
+    border-color: #285CED;
+  }
+
+  ::ng-deep.mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-outline-gap {
+    border-top-color: transparent;
+    border-bottom-color: #285CED;
+  }
+
+  ::ng-deep.mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-outline-end {
+    border-radius: 0 5px 5px 0;
+    border-left-style: none;
+    flex-grow: 1;
+    border-color: #285CED;
+  }
+
+  .cum-mb {
+    display: contents;
+  }
+
+  .cum-mb-2 {
+    display: none;
+  }
+
 }
-
-::ng-deep.mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-outline-start {
-  border-radius: 5px 0 0 5px;
-  border-right-style: none;
-  border-color: #285CED;
-}
-
-::ng-deep.mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-outline-gap {
-  border-top-color: transparent;
-  border-bottom-color: #285CED;
-}
-
-::ng-deep.mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-outline-end {
-  border-radius: 0 5px 5px 0;
-  border-left-style: none;
-  flex-grow: 1;
-  border-color: #285CED;
-}
-
-
- }

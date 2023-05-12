@@ -70,6 +70,7 @@ export interface DeduccionesFiscale {
   requisitos?:  string;
   detalle?:     string;
   estatus?:     boolean;
+  tipoDeduccion?: string;
 }
 
 export enum Aplica {

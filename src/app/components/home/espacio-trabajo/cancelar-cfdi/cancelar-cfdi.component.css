@@ -107,6 +107,7 @@
     justify-content: center;
     align-items: center;
     border-radius: 8px;
+    cursor: pointer;
   }
 
   .head-mob {
@@ -128,6 +129,41 @@
 
   .tab-colum {
     display: revert;
+  }
+
+  .dialog-texto{
+    font-weight: 400;
+    font-size: 16px;
+    color: #7B8AA0;
+  }
+
+  .btn-reg{
+    max-width: 120px;
+    font-size: 16px;
+    font-weight: 600;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+    border: 2px solid #285ced !important;
+    color: #285ced;
+  }
+
+  .btns-busq{
+    display: flex;
+    justify-content: end;
+  }
+
+  .btn-busq-cfdi{
+    max-width: 160px; 
+    font-size: 16px; 
+    font-weight: 600; 
+    height: 48px;
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    margin: 20px;
   }
 
   @media(max-width: 425px) {
@@ -206,5 +242,15 @@
     .respuesta-cuadrante2 {
       font-weight: 400;
       margin-top: 20px;
+    }
+
+    .btns-busq{
+      display: flex;
+      flex-direction: column;
+    }
+
+    .btn-busq-cfdi{
+      max-width: 100%; 
+      margin: 20px 0;
     }
   }

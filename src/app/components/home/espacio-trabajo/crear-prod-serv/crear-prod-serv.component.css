@@ -122,9 +122,9 @@
 
 .img-inicio-mas {
   background-image: url("src\assets\icon\mas.svg");
-  background-size: 20px 20px;
+  background-size: 50px 50px;
   background-repeat: no-repeat;
-  background-position: left;
+  background-position: center;
 }
 
 .btn-concepto-mb {
@@ -160,6 +160,12 @@
 
 .txt-tab{
   text-align: center;
+}
+
+.cl-inp{
+  min-width: 280px; 
+  font-size: 12px; 
+  height: 48px;
 }
 
 @media(max-width: 425px) {
@@ -234,14 +240,17 @@
 
 
   .btn-concepto-mb {
-    max-width: 30px !important;
+    max-width: 40px;
     font-size: 16px;
     font-weight: 600;
-    height: 30px;
+    height: 40px;
     display: flex;
     align-items: center;
+    border-radius: 5px;
+    width: 50px;
+    padding: 0;
+    margin: 0 10px;
     justify-content: center;
-    border-radius: 5px !important;
   }
 
   .cont-prod {
@@ -253,6 +262,8 @@
   .card-accion{
     Width: 25px;
     Height: 25px;
+    background: none;
+    margin: 0;
 }
 
 .punta-tittle {
@@ -264,5 +275,11 @@
 
 .txt-tab{
   text-align: start;
+}
+
+.cl-inp{
+  min-width: 0; 
+  font-size: 12px; 
+  height: 48px;
 }
 }

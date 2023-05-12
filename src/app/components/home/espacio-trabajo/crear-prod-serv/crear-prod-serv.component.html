@@ -36,7 +36,7 @@
                   <div class="img-close" style="width: 30px; height: 20px; float: right; cursor: pointer;"
                     (click)="regresar()"></div>
                 </div>
-                  <span class="in-mobile" style="font-weight: 600; width: 350px; font-size: 18px; color: #0B112A;"> Administra
+                  <span class="in-mobile" style="font-weight: 600; width: 300px; font-size: 18px; color: #0B112A;"> Administra
                     productos</span>
                 
               </div>
@@ -57,7 +57,7 @@
               <div class="row" style="margin-top: 4% !important;">
                 <form [formGroup]="form" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
                   <div class="col-12 busq">
-                    <mat-form-field appearance="outline" style="min-width: 280px; font-size: 12px; height: 48px;">
+                    <mat-form-field appearance="outline" class="cl-inp" style="">
                       <mat-label>Buscar concepto</mat-label>
                       <input matInput formControlName="buscar" id="buscar" name="buscar"
                         (keyup)="onKeyDownEvent($event)" />

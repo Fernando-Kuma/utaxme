@@ -36,7 +36,7 @@
                   <div class="image-workspace-back-2" style="width: 30px; height: 20px; float: right; cursor: pointer;"
                     (click)="regresar()"></div>
                 </div>
-                <span style="font-weight: 600; width: 350px; font-size: 18px; color: #0B112A;"> Cancelar Factura</span>
+                <span style="font-weight: 600; width: 300px; font-size: 18px; color: #0B112A;"> Cancelar Factura</span>
               </div>
             </div>
           </div>
@@ -149,12 +149,12 @@
                     <table aria-describedby="tabla" class="table table-responsive table-striped">
                       <thead style="margin-bottom: 10px;">
                         <tr class="textoM">
-                          <th class="punta-tittle" style="text-align: center;">
+                          <th class="punta-tittle tab-colum" style="text-align: center;">
                             <span style="cursor:default!important;">
                               N° DE ORDEN
                             </span>
                           </th>
-                          <th class="punta-tittle tab-colum" style="text-align: center;">
+                          <th class="punta-tittle " style="text-align: center;">
                             <span style="cursor:default!important;">
                               RFC RECEPTOR
                             </span>
@@ -178,22 +178,25 @@
                       </thead>
                       <tbody class="table-scroll" style="border: solid 1px #ffffff; ">
                         <tr *ngFor="let item of tablaCfdi">
-                          <td style="text-align: center;">
+                          <td class="tab-colum" style="text-align: center; vertical-align: middle;">
                             {{item.referencia}}
                           </td>
-                          <td class="tab-colum" style="text-align: center;">
+                          <td  style="text-align: center; vertical-align: middle;">
                             {{item.rfcReceptor}}
                           </td>
-                          <td class="tab-colum" style="text-align: center;">
+                          <td class="tab-colum" style="text-align: center; vertical-align: middle;">
                             {{item.fechaTimbrado | date:'shortDate'}}
                           </td>
-                          <td class="" style="text-align: center;">
+                          <td class="" style="text-align: center; vertical-align: middle;">
                             $ {{item.total | thousandsPipe}}
                           </td>
-                          <td class="d-flex justify-content-center">
-                            <div class="icon-detalle" (click)="cancelar(item)">
-                              <div class="img-cancelacion" style="padding-right: 15px;">&nbsp; </div>
+                          <td class="">
+                            <div class="d-flex justify-content-center">
+                              <div class="icon-detalle d-flex justify-content-center" (click)="cancelar(item)">
+                                <div class="img-cancelacion" style="padding-right: 15px;">&nbsp; </div>
+                              </div>
                             </div>
+                            
                           </td>
                         </tr>
                       </tbody>

@@ -205,62 +205,64 @@ mat-toolbar{
 @media(max-width: 450px){
   mat-toolbar{
     height: 45px;
+    position: fixed !important;
+    top: inherit;
     bottom: 0;
   }
 
   
 }
 .menu-movil-home{
-  background-image: url("src\assets\icon\home-black.svg");
+  background-image: url("src\assets\img\icon\home-black.svg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .menu-movil-home-activo{
-  background-image: url("src\assets\icon\home-relleno.svg");
+  background-image: url("src\assets\img\icon\home-relleno.svg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .menu-movil-espacio{
-  background-image: url("src\assets\icon\espacio-black.svg");
+  background-image: url("src\assets\img\icon\espacio-black.svg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .menu-movil-espacio-activo{
-  background-image: url("src\assets\icon\espacio-relleno.svg");
+  background-image: url("src\assets\img\icon\espacio-relleno.svg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .menu-movil-fiscal{
-  background-image: url("src\assets\icon\salud-fiscal-black.svg");
+  background-image: url("src\assets\img\icon\salud-fiscal-black.svg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .menu-movil-fiscal-activo{
-  background-image: url("src\assets\icon\salud-fiscal-relleno.svg");
+  background-image: url("src\assets\img\icon\salud-fiscal-relleno.svg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .menu-movil-usuario{
-  background-image: url("src\assets\icon\usuario-black.svg");
+  background-image: url("src\assets\img\icon\usuario-black.svg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .menu-movil-usuario-activo{
-  background-image: url("src\assets\icon\usuario-relleno.svg");
+  background-image: url("src\assets\img\icon\usuario-relleno.svg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;

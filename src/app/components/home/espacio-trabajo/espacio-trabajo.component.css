@@ -171,7 +171,7 @@ color: #0B112A;
 }
 
 .image-workspace-back {
-  background-image: url("src\assets\icon\back.svg");
+  background-image: url("src\assets\img\icon\back.svg");
   background-size: 20px 20px;
   background-position: right;
   background-repeat: no-repeat;

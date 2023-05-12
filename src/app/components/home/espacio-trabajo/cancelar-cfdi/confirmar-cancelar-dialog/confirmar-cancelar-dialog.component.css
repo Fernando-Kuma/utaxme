@@ -36,7 +36,7 @@
 }
 
 .img-close {
-  background-image: url("src\assets\icon\close.svg");
+  background-image: url("src\assets\img\icon\close.svg");
   background-size: 24px 24px;
   background-repeat: no-repeat;
   background-position: left;
@@ -101,7 +101,7 @@
   }
 
   .img-close{
-    background-image: url("src\assets\icon\back.svg");
+    background-image: url("src\assets\img\icon\back.svg");
     background-size: 20px 20px;
   }
 

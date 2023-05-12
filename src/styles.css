@@ -220,166 +220,166 @@ body {
 /* Iconos */
 
 .img-inicio-home {
-  background-image: url("src\assets\icon\home.svg");
+  background-image: url("src\assets\img\icon\home.svg");
   background-size: 20px 20px;
   background-repeat: no-repeat;
   background-position: left;
 }
 
 .image-home {
-  background-image: url("src\assets\icon\home.svg");
+  background-image: url("src\assets\img\icon\home.svg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .image-home-black{
-  background-image: url("src\assets\icon\home-black.svg");
+  background-image: url("src\assets\img\icon\home-black.svg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .image-home-user {
-  background-image: url("src\assets\icon\home-user.svg");
+  background-image: url("src\assets\img\icon\home-user.svg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .image-home-down {
-  background-image: url("src\assets\icon\home-down.svg");
+  background-image: url("src\assets\img\icon\home-down.svg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .image-home-notificacion {
-  background-image: url("src\assets\icon\home-notificacion.svg");
+  background-image: url("src\assets\img\icon\home-notificacion.svg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .image-home-ayuda {
-  background-image: url("src\assets\icon\home-ayuda.svg");
+  background-image: url("src\assets\img\icon\home-ayuda.svg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .image-home-logout {
-  background-image: url("src\assets\icon\home-logout.svg");
+  background-image: url("src\assets\img\icon\home-logout.svg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .image-home-version {
-  background-image: url("src\assets\icon\home-version.svg");
+  background-image: url("src\assets\img\icon\home-version.svg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .image-dashboard-descargar {
-  background-image: url("src\assets\icon\dashboard-descargar.svg");
+  background-image: url("src\assets\img\icon\dashboard-descargar.svg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .image-dashboard-descargar-blanco {
-  background-image: url("src\assets\icon\download-blanco.svg");
+  background-image: url("src\assets\img\icon\download-blanco.svg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .image-dashboard-info {
-  background-image: url("src\assets\icon\dashboard-info.svg");
+  background-image: url("src\assets\img\icon\dashboard-info.svg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
 }
 .image-edit-doc {
-  background-image: url("src\assets\icon\edit.svg");
+  background-image: url("src\assets\img\icon\edit.svg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
 }
 .image-edit-doc-blanco {
-  background-image: url("src\assets\icon\edit-blanco.svg");
+  background-image: url("src\assets\img\icon\edit-blanco.svg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .image-user-call {
-  background-image: url("src\assets\icon\user-call.svg");
+  background-image: url("src\assets\img\icon\user-call.svg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .image-user-call-blanco {
-  background-image: url("src\assets\icon\user-call-blanco.svg");
+  background-image: url("src\assets\img\icon\user-call-blanco.svg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .image-cancel-doc {
-  background-image: url("src\assets\icon\cancelar-doc.svg");
+  background-image: url("src\assets\img\icon\cancelar-doc.svg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .image-ver-acuse {
-  background-image: url("src\assets\icon\fact.svg");
+  background-image: url("src\assets\img\icon\fact.svg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .image-ver-acuse-blanco {
-  background-image: url("src\assets\icon\acuse-blanco.svg");
+  background-image: url("src\assets\img\icon\acuse-blanco.svg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .image-ver-opinion {
-  background-image: url("src\assets\icon\opinion.svg");
+  background-image: url("src\assets\img\icon\opinion.svg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .image-download {
-  background-image: url("src\assets\icon\download.svg");
+  background-image: url("src\assets\img\icon\download.svg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .image-info {
-  background-image: url("src\assets\icon\info.svg");
+  background-image: url("src\assets\img\icon\info.svg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .image-document {
-  background-image: url("src\assets\icon\document.svg");
+  background-image: url("src\assets\img\icon\document.svg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .image-paginator-start-enabled {
-  background-image: url("src\assets\icon\paginator-end-enabled.svg");
+  background-image: url("src\assets\img\icon\paginator-end-enabled.svg");
   background-size: 24px 24px;
   background-position: center;
   background-repeat: no-repeat;
@@ -387,108 +387,108 @@ body {
 }
 
 .image-paginator-end-enabled {
-  background-image: url("src\assets\icon\paginator-end-enabled.svg");
+  background-image: url("src\assets\img\icon\paginator-end-enabled.svg");
   background-size: 24px 24px;
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .ico-password {
-  background-image: url("src\assets\icon\password.svg");
+  background-image: url("src\assets\img\icon\password.svg");
   background-size: 21px 21px;
   background-position: left;
   background-repeat: no-repeat;
 }
 
 .ico-login {
-  background-image: url("src\assets\icon\contrato.svg");
+  background-image: url("src\assets\img\icon\contrato.svg");
   background-size: 20px 20px;
   background-position: left;
   background-repeat: no-repeat;
 }
 
 .ico-search {
-  background-image: url("src\assets\icon\Search.svg");
+  background-image: url("src\assets\img\icon\Search.svg");
   background-size: 20px 20px;
   background-position: left;
   background-repeat: no-repeat;
 }
 
 .img-calendar{
-  background-image: url("src\assets\icon\calendar-voz.svg");
+  background-image: url("src\assets\img\icon\calendar-voz.svg");
   background-size: 15px 15px;
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .image-calendar-date-picker {
-  background-image: url("src\assets\icon\datepicker-calendar.svg");
+  background-image: url("src\assets\img\icon\datepicker-calendar.svg");
   background-size: 20px 20px;
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .image-check {
-  background-image: url("src\assets\icon\check.svg");
+  background-image: url("src\assets\img\icon\check.svg");
   background-size: 22px 24px;
 }
 
 .image-warn {
-  background-image: url("src\assets\icon\warn.svg");
+  background-image: url("src\assets\img\icon\warn.svg");
   background-size: 22px 24px;
 }
 
 .image-administrator-workspace {
-  background-image: url("src\assets\icon\administrator-workspace.svg");
+  background-image: url("src\assets\img\icon\administrator-workspace.svg");
   background-size: 20px 20px;
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .image-nueva-factura {
-  background-image: url("src\assets\icon\nuevaFactura.svg");
+  background-image: url("src\assets\img\icon\nuevaFactura.svg");
   background-size: 36px 37px;
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .image-crear-prod-serv {
-  background-image: url("src\assets\icon\crearProdServ.svg");
+  background-image: url("src\assets\img\icon\crearProdServ.svg");
   background-size: 38px 33px;
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .image-cliente-frecuente {
-  background-image: url("src\assets\icon\clienteFrecuente.svg");
+  background-image: url("src\assets\img\icon\clienteFrecuente.svg");
   background-size: 30px 30px;
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .image-cancelar-factura {
-  background-image: url("src\assets\icon\cancelarFactura.svg");
+  background-image: url("src\assets\img\icon\cancelarFactura.svg");
   background-size: 33px 38px;
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .img-header-work {
-  background-image: url("src\assets\icon\header-work.svg");
+  background-image: url("src\assets\img\icon\header-work.svg");
   background-size: 19px 19px;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .img-header-work-active {
-  background-image: url("src\assets\icon\header-work-active.svg");
+  background-image: url("src\assets\img\icon\header-work-active.svg");
   background-size: 19px 19px;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .img-whatsapp{
-  background-image: url("src\assets\icon\whatsapp.svg");
+  background-image: url("src\assets\img\icon\whatsapp.svg");
   background-size: 19px 19px;
   background-repeat: no-repeat;
   background-position: center;
@@ -502,28 +502,28 @@ body {
 }
 
 .perfil-mobile-fiscales {
-  background-image: url("src\assets\icon\fiscales-perfil.svg");
+  background-image: url("src\assets\img\icon\fiscales-perfil.svg");
   background-size: 20px 20px;
   background-repeat: no-repeat;
   background-position: left;
 }
 
 .perfil-mobile-notificacion {
-  background-image: url("src\assets\icon\notificacion-perfil.svg");
+  background-image: url("src\assets\img\icon\notificacion-perfil.svg");
   background-size: 20px 20px;
   background-repeat: no-repeat;
   background-position: left;
 }
 
 .perfil-mobile-ayuda {
-  background-image: url("src\assets\icon\ayuda-perfil.svg");
+  background-image: url("src\assets\img\icon\ayuda-perfil.svg");
   background-size: 20px 20px;
   background-repeat: no-repeat;
   background-position: left;
 }
 
 .perfil-mobile-salir {
-  background-image: url("src\assets\icon\salir-perfil.svg");
+  background-image: url("src\assets\img\icon\salir-perfil.svg");
   background-size: 20px 20px;
   background-repeat: no-repeat;
   background-position: left;

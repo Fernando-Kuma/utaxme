@@ -42,7 +42,7 @@
 }
 
 .img-close {
-  background-image: url("src\assets\icon\close.svg");
+  background-image: url("src\assets\img\icon\close.svg");
   background-size: 24px 24px;
   background-repeat: no-repeat;
   background-position: left;
@@ -68,14 +68,14 @@
 }
 
 .img-accion-borrar {
-  background-image: url("src\assets\icon\delete.svg");
+  background-image: url("src\assets\img\icon\delete.svg");
   background-size: 24px 24px;
   background-repeat: no-repeat;
   background-position: left;
 }
 
 .img-accion-editar {
-  background-image: url("src\assets\icon\edit-concepto.svg");
+  background-image: url("src\assets\img\icon\edit-concepto.svg");
   background-size: 22px 22px;
   background-repeat: no-repeat;
   background-position: left;
@@ -96,13 +96,13 @@
 }
 
 .image-workspace-buscardor {
-  background-image: url("src\assets\icon\buscar.svg");
+  background-image: url("src\assets\img\icon\buscar.svg");
   background-size: 24px 24px;
   background-position: right;
   background-repeat: no-repeat;
 }
 .image-workspace-agregar {
-  background-image: url("src\assets\icon\crear.svg");
+  background-image: url("src\assets\img\icon\crear.svg");
   background-size: 24px 24px;
   background-position: right;
   background-repeat: no-repeat;
@@ -126,7 +126,7 @@
   }
 
   .img-close{
-    background-image: url("src\assets\icon\back.svg");
+    background-image: url("src\assets\img\icon\back.svg");
     background-size: 20px 20px;
   }
 
@@ -145,7 +145,7 @@
   }
 
   .image-workspace-agregar {
-    background-image: url("src\assets\icon\mas.svg");
+    background-image: url("src\assets\img\icon\mas.svg");
     background-size: 60px 60px;
     background-position: center;
     background-repeat: no-repeat;

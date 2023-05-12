@@ -44,8 +44,8 @@ export class CuadranteGastosComponent implements OnInit {
   marginBarChart?: MarginConf = {
     top: 10,
     right: 10,
-    bottom: 5,
-    left: 35,
+    bottom: 20,
+    left: 50,
   };
 
   scale: 'week' | 'day'  = 'week' ;

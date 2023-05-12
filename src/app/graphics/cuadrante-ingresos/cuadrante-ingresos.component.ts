@@ -42,7 +42,7 @@ export class CuadranteIngresosComponent implements OnInit {
   marginBarChart?: MarginConf = {
     top: 10,
     right: 10,
-    bottom: 10,
+    bottom: 20,
     left: 50,
   };
 

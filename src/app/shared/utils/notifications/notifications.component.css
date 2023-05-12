@@ -23,7 +23,7 @@
 }
 
 .image-delete-notification {
-    background-image: url("src\assets\icon\delete-notification.svg");
+    background-image: url("src\assets\img\icon\delete-notification.svg");
     background-position: center;
     background-repeat: no-repeat;
   }

@@ -45,14 +45,43 @@
       <div class="home-container-accesos" style="margin-top: 30px;">
         <div class="row w100m0p0">
           <div class="col-1 not-mobile"></div>
-          <div class="col-10 px-4 p-4 input-mob p-mb" style="background-color: #FFFFFF; min-height: 350px;">
+          <div class="col-10 px-4 p-4 input-mob p-mb" style="background-color: #FFFFFF; min-height: 850px;">
             <div class="titulo-formulario not-mobile">
               Cancelar CFDI
             </div>
+
+            <div class="row w100m0p0 in-mobile" style="margin-top: 3% !important;">
+              <div class="col-12 dialog-texto">
+                Puedes cancelar los CFDIs que has emitido, recuerda comunicarte con tu contador previo a  realizar cualquier cancelación
+              </div>
+            </div>
+
             <form [formGroup]="form" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
               <div class="row">
                 <div class="col-12">
                   <div class="row inp-mob" style="margin-top: 2%;">
+
+                    
+
+                    <div class="col-5 input-mob in-mobile" >
+                      <mat-form-field appearance="outline" class="input-mob" style="width: 100%; font-size: 16px; height: 80px;">
+                        <mat-icon matPrefix class="ico-search"></mat-icon>
+                        <mat-label>Buscar por número de orden</mat-label>
+                        <input matInput formControlName="numeroOrden" id="inputOrden" name="tituloPaquete"
+                          (keyup)="actionDisabledFecha()" />
+                        <!-- <mat-error *ngIf="!form.controls['tituloPaquete'].valid && form.controls['tituloPaquete'].touched">
+                      {{ getError() }}
+                    </mat-error> -->
+                      </mat-form-field>
+                    </div>
+
+
+
+                    <div class="col-12 in-mobile" style="margin: 22px 0 22px 0;">
+                      <mat-divider></mat-divider>
+                      </div>
+
+
                     <div class="col-3 input-mob">
                       <mat-form-field appearance="outline" class="input-mob" style="font-size: 13px; height: 80px;"
                         (click)="picker.open()">
@@ -82,11 +111,11 @@
                     <div class="col-1 d-flex justify-content-end">
                       <mat-divider vertical style="height: 100%;"></mat-divider>
                     </div>
-                    <div class="col-5 input-mob" >
+                    <div class="col-5 not-mobile" >
                       <mat-form-field appearance="outline" class="input-mob" style="width: 100%; font-size: 16px; height: 80px;">
                         <mat-icon matPrefix class="ico-search"></mat-icon>
                         <mat-label>Buscar por número de orden</mat-label>
-                        <input matInput formControlName="numeroOrden" id="inputOrden" name="tituloPaquete" minlength="3"
+                        <input matInput formControlName="numeroOrden" id="inputOrden" name="tituloPaquete"
                           (keyup)="actionDisabledFecha()" />
                         <!-- <mat-error *ngIf="!form.controls['tituloPaquete'].valid && form.controls['tituloPaquete'].touched">
                       {{ getError() }}
@@ -96,14 +125,13 @@
                   </div>
 
                   <div class="row">
-                    <div class="col-12 d-flex justify-content-end">
-                      <button mat-button class="btn-utaxme-secondary"
-                        style="max-width: 120px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;"
+                    <div class="col-12 btns-busq">
+                      <button mat-button class="btn-utaxme-secondary btn-reg not-mobile"
                         (click)="limpiarTabla()">
                         Regresar
                       </button>
-                      <button mat-button class="btn-utaxme"
-                        style="max-width: 160px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;"
+                      <button mat-button class="btn-utaxme btn-busq-cfdi"
+                        style=""
                         (click)="listaCfdi()">
                         Buscar facturas
                       </button>
@@ -184,7 +212,14 @@
                     </div>
                   </div>
 
+                  <div class="col-12 in-mobile" *ngIf="verNoEncontrados" style="margin: 22px 0 22px 0;">
+                    <mat-divider></mat-divider>
+                    </div>
+
                   <div *ngIf="verNoEncontrados" class="d-flex justify-content-center" style="text-align: center;">
+                    
+                    
+
                     <div class="">
                       <div fxLayout="row" fxLayoutAlign="space-around center">
                         <div><img src="../../../../../assets/icon/error-pesando.svg"

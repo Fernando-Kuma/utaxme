@@ -204,7 +204,7 @@ mat-toolbar{
 
 @media(max-width: 450px){
   mat-toolbar{
-    height: 45px;
+    height: 50px;
     position: fixed !important;
     top: inherit;
     bottom: 0;

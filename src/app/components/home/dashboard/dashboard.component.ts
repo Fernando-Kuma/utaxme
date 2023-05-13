@@ -40,6 +40,7 @@ export const MY_FORMATS = {
     },
 
     {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+    {provide: MAT_DATE_LOCALE, useValue: 'es-ES'},
   ],
 })
 export class DashboardComponent implements OnInit {
@@ -82,18 +83,13 @@ export class DashboardComponent implements OnInit {
   }
 
 
-  chosenYearHandler(normalizedYear: any) {
-    const ctrlValue = this.date.value;
-    ctrlValue.year(normalizedYear.year());
-    this.date.setValue(ctrlValue);
-  }
-
   chosenMonthHandler(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) {
+    datepicker.close();
     const ctrlValue = this.date.value;
+    ctrlValue.year(normalizedMonth.year());
     ctrlValue.month(normalizedMonth.month());
     this.date.setValue(ctrlValue);
     this.cambiarRequest()
-    datepicker.close();
   }
 
   cambiarRequest(){

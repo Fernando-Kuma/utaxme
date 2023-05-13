@@ -604,4 +604,7 @@ body {
    overflow-y: hidden;
   }
  
+  .sticky-header, .modal-cfdi{
+    margin-bottom: 60px;
+  }
  }

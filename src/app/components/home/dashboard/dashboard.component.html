@@ -64,8 +64,7 @@
                     <input matInput readonly [matDatepicker]="dp" [formControl]="date" [max]="maxDate" class="font-blue">
                     <mat-datepicker-toggle matPrefix [for]="dp"></mat-datepicker-toggle>
                     <mat-datepicker #dp
-                                    startView="multi-year"
-                                    (yearSelected)="chosenYearHandler($event)"
+                                    startView="year"
                                     (monthSelected)="chosenMonthHandler($event, dp)"
                                     panelClass="example-month-picker">
                     </mat-datepicker>

@@ -100,8 +100,16 @@ cursor: pointer;
 margin: 0 10px;
 }
 
+.inp-bq{
+  font-size: 12px; 
+  height: 48px; 
+}
 
 @media(max-width: 450px){
+
+  .inp-bq{
+    width: 100%;
+  }
 
   .image-workspace-back{
     background-image: url("src\assets\img\icon\back.svg");

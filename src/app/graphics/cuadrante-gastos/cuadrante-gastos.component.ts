@@ -13,12 +13,37 @@ import { AlertService } from 'src/app/shared/utils/alertas';
 })
 export class CuadranteGastosComponent implements OnInit {
 
+  dateValue = [
+    {
+        "id": 1,
+        "total": 0
+    },
+    {
+        "id": 2,
+        "total": 0
+    },
+    {
+        "id": 3,
+        "total": 0
+    },
+    {
+        "id": 4,
+        "total": 0
+    },
+    {
+        "id": 5,
+        "total": 0
+    },
+    {
+        "id": 6,
+        "total": 0
+    }
+];
+
   _consultaRequest: any;
   @Input() set consultaRequest(val: any) {
     this._consultaRequest = val;
   }
-
-  dateValue: Array<DateValue> = []
   
   gastosPeriodo: ComprobantePeriodo = new ComprobantePeriodo;
   @Input() set data(val: any) {
@@ -102,10 +127,9 @@ export class CuadranteGastosComponent implements OnInit {
   }
 
   obtenerData(){
-    this.dateValue = []
     if(this.gastosPeriodo.facturas > 0){
-      this.gastosPeriodo.detalles.forEach((element, index) => {
-        this.dateValue.push({id: index+1, total: element.total })
+      this.gastosPeriodo.detalles.forEach((element,index) => {
+        this.dateValue[index].total = element.total;
       });
     }else{
       this.dateValue = [{id: 0, total: 0}]

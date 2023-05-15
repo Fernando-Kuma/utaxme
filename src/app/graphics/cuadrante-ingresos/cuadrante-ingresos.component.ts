@@ -16,8 +16,60 @@ import { AlertService } from 'src/app/shared/utils/alertas';
 export class CuadranteIngresosComponent implements OnInit {
 
   @Input() isFull: boolean = false;
-  
-  
+
+   dateValue = [
+    {
+        "id": 1,
+        "total": 0
+    },
+    {
+        "id": 2,
+        "total": 0
+    },
+    {
+        "id": 3,
+        "total": 0
+    },
+    {
+        "id": 4,
+        "total": 0
+    },
+    {
+        "id": 5,
+        "total": 0
+    },
+    {
+        "id": 6,
+        "total": 0
+    }
+];
+
+private datosFull = [
+  {
+      "id": 1,
+      "total": 0
+  },
+  {
+      "id": 2,
+      "total": 0
+  },
+  {
+      "id": 3,
+      "total": 0
+  },
+  {
+      "id": 4,
+      "total": 0
+  },
+  {
+      "id": 5,
+      "total": 0
+  },
+  {
+      "id": 6,
+      "total": 0
+  }
+];
 
   ingresosPeriodo: ComprobantePeriodo = new ComprobantePeriodo;
   @Input() set data(val: any) {
@@ -30,7 +82,7 @@ export class CuadranteIngresosComponent implements OnInit {
     this._consultaRequest = val;
   }
 
-  dateValue: Array<DateValue> = []
+  /* dateValue: Array<DateValue> = [] */
 
   spinnerLoading: boolean = true;
 
@@ -85,13 +137,22 @@ export class CuadranteIngresosComponent implements OnInit {
   }
 
   obtenerData(){
-    this.dateValue = []
-    if(this.ingresosPeriodo.facturas > 0){
-      this.ingresosPeriodo.detalles.forEach((element, index) => {
-        this.dateValue.push({id: index+1, total: element.total })
-      });
+    if(this.isFull){
+      if(this.ingresosPeriodo.facturas > 0){
+        this.ingresosPeriodo.detalles.forEach((element,index) => {
+          this.dateValue[index].total = element.total;
+        });
+      }else{
+        this.dateValue = [{id: 0, total: 0}]
+      }
     }else{
-      this.dateValue = [{id: 0, total: 0}]
+      if(this.ingresosPeriodo.facturas > 0){
+        this.ingresosPeriodo.detalles.forEach((element,index) => {
+          this.dateValue[index].total = element.total;
+        });
+      }else{
+        this.dateValue = [{id: 0, total: 0}]
+      }
     }
     console.log("Object:",this.dateValue);
   }

@@ -30,6 +30,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { AlertModule } from '../shared/utils/alertas';
 import { FilterErrorModule } from '../shared/utils/filter-error';
 import { PruebaBarComponent } from './prueba-bar/prueba-bar.component';
+import { BarraIngresosComponent } from './barra-ingresos/barra-ingresos.component';
 
 
 
@@ -45,7 +46,8 @@ import { PruebaBarComponent } from './prueba-bar/prueba-bar.component';
     CuadranteFiscalesComponent,
     ThousandsPipe,
     FullSizeComponent,
-    PruebaBarComponent
+    PruebaBarComponent,
+    BarraIngresosComponent
   ],
   imports: [
     CommonModule,

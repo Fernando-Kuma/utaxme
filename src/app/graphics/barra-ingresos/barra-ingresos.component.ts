@@ -5,11 +5,12 @@ import { DateValue } from 'src/app/shared/model/date-value';
 import { MarginConf } from 'src/app/shared/model/margin-conf';
 
 @Component({
-  selector: 'app-prueba-bar',
-  templateUrl: './prueba-bar.component.html',
-  styleUrls: ['./prueba-bar.component.css']
+  selector: 'app-barra-ingresos',
+  templateUrl: './barra-ingresos.component.html',
+  styleUrls: ['./barra-ingresos.component.css']
 })
-export class PruebaBarComponent implements OnInit {
+
+export class BarraIngresosComponent implements OnInit {
 
 _data: Array<DateValue> = [];
   range: any;
@@ -61,7 +62,7 @@ yScale: any;
   }
 
    createSvg(): void {
-    this.svg = d3.select("#barchar")
+    this.svg = d3.select("#barcharIngresos")
     .append("svg")
     .attr('width', this.width + this.margin.left + this.margin.right)
     .attr('height', this.height + this.margin.top + this.margin.bottom)
@@ -99,7 +100,7 @@ yScale: any;
 
     this.xAxis = d3
       .axisBottom(this.xScale)
-      .tickSize(50)
+      .tickSize(0)
       .tickFormat((d) => {
         const valor = this.Y[(+d)-1];
         if(valor == 0){
@@ -111,9 +112,7 @@ yScale: any;
       })
       .tickSizeInner(this.margin.top + this.margin.bottom - this.height)
       .tickSizeOuter(0)
-      .tickPadding(5);
-
-      
+      .tickPadding(2);
 
     this.yAxis = d3
       .axisLeft(this.yScale)
@@ -139,15 +138,8 @@ yScale: any;
       this.yAxis.tickValues(
         this.yScale.ticks(0).concat(array)
       ).tickPadding(5);
-
-
-    // Create the X-axis band scale
-    const x = d3.scaleBand()
-    .range([0, this.width])
-    .domain(data.map(d => d.id));
   
     // Draw the X-axis on the DOM
-    let widthBarra = (this.sizex / (this._data.length * 9)).toFixed(0)
     this.svg.append("g")
     .attr(
       'transform',
@@ -157,14 +149,8 @@ yScale: any;
     .attr('class', 'ejeXBarra')
     .call((g: any) => g.selectAll('.tick line').remove())
     .selectAll("text")
-    .attr("transform", "translate(8,0)");
-  
-    // Create the Y-axis band scale
-    let range = [Math.round(d3.min(this.Y) - (d3.min(this.Y) * .1)), Math.round(d3.max(this.Y) + (d3.max(this.Y) * .1))];
-    console.log("range:",range)
-    const y = d3.scaleLinear()
-    .domain(range)
-    .range([this.height, 0]);
+    .attr(
+    'transform',`translate(12,0)`);
   
     // Draw the Y-axis on the DOM
     this.svg.append("g")
@@ -192,9 +178,10 @@ yScale: any;
     .append("rect")
     .attr("x", (_: DateValue, i: number) => this.xScale(this.X[i]))
     .attr('y', (_: DateValue, i: number) => this.yScale(this.Y[i]))
-    .attr("width", this.barWidth)
+    .attr("width",this.barWidth)
     .attr('height',(_: DateValue, i: number) => this.height - this.margin.bottom - this.yScale(this.Y[i]))
-    .attr('rx', 5)
+    .attr('rx', 2)
+    .attr("transform", "translate(5,0)")
     .on('mouseover', tip.show )
     .on('mouseleave', tip.hide)
     .attr("fill", "#1D2640").style('stroke-width', (d) => {
@@ -233,3 +220,4 @@ yScale: any;
     this.drawBars(this.data);
   }
 }
+

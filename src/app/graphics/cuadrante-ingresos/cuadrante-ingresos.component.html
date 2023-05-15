@@ -94,13 +94,16 @@
         </div>
       </div>
       <div class="row">
-        <app-barras-emitidas 
+        <!-- <app-barras-emitidas 
         [sizex]="width > 1440 ? 750 : width > 450 ?  550 : 300" 
         [sizey]="width > 450 ? 220 : 130" 
         [barWidth]="20"
         [data]="dateValue" color="#1D2640" [showDomain]="true"
            [showLimits]="false" [showXLabels]="true" [showYLabels]="true" [border]="true"
-          [margin]="marginBarChart" [general]="true" [isDynamicRange]="false" unit="$"></app-barras-emitidas>
+          [margin]="marginBarChart" [general]="true" [isDynamicRange]="false" unit="$"></app-barras-emitidas> -->
+          
+          <app-prueba-bar  [sizex]="width > 1440 ? 750 : width > 450 ?  550 : 300" 
+            [sizey]="width > 450 ? 220 : 130" [data]="dateValue" [barWidth]="15" unit="$"></app-prueba-bar>
       </div>
     </div>
 

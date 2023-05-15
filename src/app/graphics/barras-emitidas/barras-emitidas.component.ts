@@ -291,7 +291,6 @@ export class BarrasEmitidasComponent implements AfterViewInit, OnInit, OnDestroy
         .attr('x2', this.width + this.barWidth)
         .attr('y1', this.margin.top)
         .attr('y2', this.margin.top);
-
       this.svg
         .append('line')
         .attr('class', 'line')
@@ -337,7 +336,7 @@ export class BarrasEmitidasComponent implements AfterViewInit, OnInit, OnDestroy
     this.svg.call(tip);
     let widthBarra = (this.sizex / (this._data.length * 4))
     let rects = this.svg
-      .selectAll('rect')
+      .selectAll('bars')
       .data(this.data)
       .enter()
       .append('rect')

@@ -93,6 +93,7 @@ export class CuadranteIngresosComponent implements OnInit {
     }else{
       this.dateValue = [{id: 0, total: 0}]
     }
+    console.log("Object:",this.dateValue);
   }
 
   public get width() {

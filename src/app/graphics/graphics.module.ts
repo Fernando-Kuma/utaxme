@@ -28,11 +28,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { AlertModule } from '../shared/utils/alertas';
-<<<<<<< Updated upstream
 import { FilterErrorModule } from '../shared/utils/filter-error';
-=======
 import { PruebaBarComponent } from './prueba-bar/prueba-bar.component';
->>>>>>> Stashed changes
 
 
 

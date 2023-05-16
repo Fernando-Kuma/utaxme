@@ -3,7 +3,7 @@
           Gastos del periodo
         </div>
 
-  <div class="row vista-mobile">
+  <div class="row vista-mobile" *ngIf="!isFull">
     <div class="col-4 datos-mobile">
       <div class="row datos-mobile" style="margin-right: -55px;">
         
@@ -62,8 +62,9 @@
         <div class="col-12 titulo-cuadrante titulo-mobile">
           Facturas recibidas
         </div>
-        <div class="col-12 d-flex justify-content-start" style="margin-top: 29px;">
+        <div class="col-12 d-flex justify-content-between" style="margin-top: 29px;">
           <div class="texto-factura"><span class="titulo-cuadrante">{{ gastosPeriodo?.facturas }}</span> facturas</div>
+          <div class="texto-hipertexto" (click)="fullSize()">Ver más</div>
         </div>
       </div>
       <div class="row">
@@ -79,4 +80,14 @@
       </div>
     </div>
   </div>
+
+  <div class="row" *ngIf="isFull">
+    <app-barras-emitidas 
+        [sizex]="width > 1440 ? 1800 : width > 450 ?  1300 : 375" 
+        [sizey]="width > 1440 ? 800 : width > 450 ?  500 : 400" 
+      [data]="dateValue" color="#1D2640" [barWidth]="40"
+      [full]="true" [showDomain]="true" [showLimits]="false" [showXLabels]="true" [showYLabels]="true" [border]="true"
+      [margin]="marginBarChartFull" [general]="true" [isDynamicRange]="false" unit="$"></app-barras-emitidas>
+  </div>
+
 </div>

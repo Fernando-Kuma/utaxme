@@ -18,8 +18,12 @@
         </div>
       </div>
       <div class="row" style="margin-top: 50px;">
-        <ng-container *ngIf="true">
-          <app-cuadrante-ingresos [isFull]="true"  [consultaRequest]="consultaRequest"></app-cuadrante-ingresos>
+        <ng-container *ngIf="tipoDashboard == 'CUADRANTE-INGRESOS' ">
+          <app-cuadrante-ingresos [isFull]="true" [data]="ingresosPeriodo"></app-cuadrante-ingresos>
+        </ng-container>
+
+        <ng-container *ngIf="tipoDashboard == 'CUADRANTE-GASTOS' ">
+          <app-cuadrante-gastos [isFull]="true" [data]="ingresosPeriodo"></app-cuadrante-gastos>
         </ng-container>
       </div>
     </div>

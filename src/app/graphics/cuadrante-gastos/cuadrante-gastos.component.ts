@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import * as moment from 'moment';
+import { NAV } from 'src/app/shared/configuration/navegacion';
 import { ComprobantePeriodo } from 'src/app/shared/model/dashboard.mode';
 import { DateValue } from 'src/app/shared/model/date-value';
 import { MarginConf } from 'src/app/shared/model/margin-conf';
@@ -13,6 +15,8 @@ import { AlertService } from 'src/app/shared/utils/alertas';
 })
 export class CuadranteGastosComponent implements OnInit {
 
+  @Input() isFull: boolean = false;
+  
   dateValue = [
     {
         "id": 1,
@@ -73,9 +77,18 @@ export class CuadranteGastosComponent implements OnInit {
     left: 50,
   };
 
+  marginBarChartFull?: MarginConf = {
+    top: 10,
+    right: 10,
+    bottom: 50,
+    left: 80,
+  };
+  
   scale: 'week' | 'day'  = 'week' ;
 
-  constructor(private dashboardService: DashboardService,
+  constructor(
+    public router: Router,
+    private dashboardService: DashboardService,
     private alertService: AlertService) { }
 
   ngOnInit(): void {
@@ -134,6 +147,15 @@ export class CuadranteGastosComponent implements OnInit {
     }else{
       this.dateValue = [{id: 0, total: 0}]
     }
+  }
+
+  fullSize(){
+    localStorage.setItem('dashboard','CUADRANTE-GASTOS');
+    localStorage.setItem('titulo-dashboard','Factura recibidas');
+    localStorage.setItem('texto-dashboard',String(this.gastosPeriodo.facturas));
+
+    localStorage.setItem('consulta-dashboard', JSON.stringify(this._consultaRequest));
+    this.router.navigateByUrl(NAV.fullSize);
   }
 
   public get width() {

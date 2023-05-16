@@ -78,6 +78,11 @@ export class DashboardComponent implements OnInit {
     if(this.usuario == null){
       this.auth.logout()
     }
+    let consultaFull = JSON.parse(localStorage.getItem('consulta-dashboard')) 
+    if(consultaFull != null){
+      this.date.setValue(moment(new Date(consultaFull.anio + '/' +consultaFull.mes)).locale('es'))
+      localStorage.removeItem('consulta-dashboard')
+    }
     this.maxDate = new Date(moment().set({'hours': 0,'minute': 0, 'second': 0, 'millisecond': 0}).format());
     this.cambiarRequest()
   }

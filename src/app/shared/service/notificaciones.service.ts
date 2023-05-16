@@ -102,4 +102,22 @@ export class NotificacionesService {
       );
   }
 
+  eliminarNotificacion(request: any): Observable<any> {
+    let parametros = new HttpParams();
+    parametros = parametros.append('idNotificacion',request.idNotificacion);
+    const opciones = {
+      headers: new HttpHeaders({
+        'content-type': 'application/x-www-form-urlencoded'
+      }),
+      params: parametros
+    };
+    return this.http
+      .post<any>(`${API.eliminarNotificacion}`, request, opciones)
+      .pipe(
+        catchError((e) => {
+          return throwError(e);
+        })
+      );
+  }
+
 }

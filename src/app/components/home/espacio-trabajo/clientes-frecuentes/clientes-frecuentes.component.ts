@@ -133,8 +133,10 @@ export class ClientesFrecuentesComponent implements OnInit {
     );
     dialogRef.afterClosed().subscribe(
       data => {
-        const dialogRefConfirm = this.dialog.open( ConfirmDialogComponent, this.dialogServiceConfirm.editarCliente() );
-        dialogRefConfirm.afterClosed().subscribe( data => { this.listaClientes() });
+        if(data){
+          const dialogRefConfirm = this.dialog.open( ConfirmDialogComponent, this.dialogServiceConfirm.editarCliente() );
+          dialogRefConfirm.afterClosed().subscribe( data => { this.listaClientes() });
+        }
       }
     );
   }

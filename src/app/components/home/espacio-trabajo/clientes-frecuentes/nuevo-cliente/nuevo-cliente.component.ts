@@ -33,6 +33,7 @@ export class NuevoClienteComponent {
       this.opcionCrear = false
       this.modificarForm()
     }
+    console.log(this.data.cliente)
   }
 
   obtenerCatalogos(){
@@ -46,7 +47,7 @@ export class NuevoClienteComponent {
   }
 
   modificarForm(){
-    this.form.get('rfc').setValue(this.data.cliente.rfcCliente);
+    this.form.get('rfc').setValue(this.data.cliente.rfcReceptor);
     this.form.get('razonSocial').setValue(this.data.cliente.razonSocial);
     this.form.get('regimenFiscal').setValue(this.data.cliente.regimenFiscal);
     this.form.get('codigoPostal').setValue(this.data.cliente.codigoPostal);
@@ -78,7 +79,8 @@ export class NuevoClienteComponent {
       return;
     }
     if(this.form.valid){
-      let request = {
+      let request: any;
+      request = {
         rfcCliente: this.auth.usuario.cliente.rfc,
         rfcReceptor: this.form.controls['rfc'].value,
         razonSocial: this.form.controls['razonSocial'].value,
@@ -94,6 +96,12 @@ export class NuevoClienteComponent {
         });
         this.dialogRef.close(true);
       }else{
+        request.idEmisionServicios = this.data.cliente.idEmisionServicios
+        this.espacioTrabajoService.editarCliente(request).subscribe((response) => {
+          console.log(response)
+        },(_error) => {
+          console.log("Error en crear cliente: ", _error);
+        });
         this.dialogRef.close(true);
       }
     }

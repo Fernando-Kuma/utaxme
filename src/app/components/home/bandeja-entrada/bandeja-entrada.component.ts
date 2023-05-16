@@ -134,6 +134,22 @@ export class BandejaEntradaComponent implements OnInit {
     });
   }
 
+  eliminarNotificacion(notificacion){
+    let request = {
+      idNotificacion : notificacion.idNotificacion,
+    }
+    this.notificationService.eliminarNotificacion(request).subscribe({
+      next: (result) => {
+        console.log('Notificacion actualizado')
+        this.notificacionSeleccionado = null
+        this.fillnotifications();
+      },
+      error: () => {
+        console.log('error')
+      }
+    });
+  }
+
   onKeyDownEvent(event: any){
     let filtro = event.target.value;
     if(this.notificacionesGuardado.length > 0){

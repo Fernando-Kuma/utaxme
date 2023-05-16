@@ -39,8 +39,21 @@ export class NotificationsComponent implements OnInit {
     }
   }
 
-  public deleteNotification(index: number, event: any,item:any): void {
+  public deleteNotification(event: any,item:any): void {
     event.stopPropagation()
+
+    let request = {
+      idNotificacion : item.idNotificacion,
+    }
+    this.notificationService.eliminarNotificacion(request).subscribe({
+      next: (result) => {
+        console.log('Notificacion actualizado')
+        this.fillnotifications();
+      },
+      error: () => {
+        console.log('error')
+      }
+    });
     /* this.notificationService.borrarNotificacion(this.idUsuario,item.idNotificacion).subscribe({
       next: (result) => {
         if(this.typeUser == 0){
@@ -78,37 +91,41 @@ export class NotificationsComponent implements OnInit {
     this.notifications = [];
     this.notificationService.obtenerNotificacion(this.auth.usuario.cliente.rfc).subscribe({
       next: (result) => {
-        if(result.notificaciones.length > 0){
-          this.notifications = result.notificaciones.filter(ele => ele.leida == !this.leidas);
-          if(this.notifications.length > 0){
-            this.sinResultados = false;
+        if(result.codigo == "200"){
+          if(result.notificaciones.length > 0){
+            this.notifications = result.notificaciones.filter(ele => ele.leida == !this.leidas);
+            if(this.notifications.length > 0){
+              this.sinResultados = false;
+            }else{
+              this.sinResultados = true;
+            }
+            /* result.data.forEach(element => {
+              dateNotification = new Date(formatDate(new Date(element.fechaCreacion), 'YYYY-MM-dd', 'en'))
+              diff = this.fechaActual - dateNotification;
+              diferenciaDias = Math.floor(diff / (1000 * 60 * 60 * 24));
+              let agregarTitulo = true
+              let indexNotificacion = 0;
+              this.ordenNotificacion.forEach((elem, index) => {
+                if(elem.titulo == tituloDia){
+                  agregarTitulo = false
+                  indexNotificacion = index;
+                }
+              });
+              if(diferenciaDias == 0){
+                tituloDia = 'HOY'
+              }else if(diferenciaDias == 1){
+                tituloDia = 'AYER'
+              }else{
+                tituloDia = 'HACE MAS DE 3 DÍAS'   
+              }
+              if(agregarTitulo){
+                this.ordenNotificacion.push({ titulo: tituloDia, listaNotificacion: [element]})
+              }else{
+                this.ordenNotificacion[indexNotificacion].listaNotificacion.push(element)
+              }}); */
           }else{
             this.sinResultados = true;
           }
-          /* result.data.forEach(element => {
-            dateNotification = new Date(formatDate(new Date(element.fechaCreacion), 'YYYY-MM-dd', 'en'))
-            diff = this.fechaActual - dateNotification;
-            diferenciaDias = Math.floor(diff / (1000 * 60 * 60 * 24));
-            let agregarTitulo = true
-            let indexNotificacion = 0;
-            this.ordenNotificacion.forEach((elem, index) => {
-              if(elem.titulo == tituloDia){
-                agregarTitulo = false
-                indexNotificacion = index;
-              }
-            });
-            if(diferenciaDias == 0){
-              tituloDia = 'HOY'
-            }else if(diferenciaDias == 1){
-              tituloDia = 'AYER'
-            }else{
-              tituloDia = 'HACE MAS DE 3 DÍAS'   
-            }
-            if(agregarTitulo){
-              this.ordenNotificacion.push({ titulo: tituloDia, listaNotificacion: [element]})
-            }else{
-              this.ordenNotificacion[indexNotificacion].listaNotificacion.push(element)
-            }}); */
         }else{
           this.sinResultados = true;
         }

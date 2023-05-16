@@ -17,6 +17,7 @@ export const API = {
 
   listaFrecuentes: environment.apiDashboard + 'clientes/frecuentes/list',
   guardarCliente: environment.apiDashboard + 'clientes/frecuentes/save',
+  actualizarCliente: environment.apiDashboard + 'clientes/frecuentes/update',
   borrarCliente: environment.apiDashboard + 'clientes/frecuentes/delete',
 
   clientesCount: environment.apiDashboard + 'cfdis/clientes/count',
@@ -38,6 +39,7 @@ export const API = {
   actualizarNotificacion: environment.apiDashboard + 'Notificaciones/actualizar',
   asignarNotificacion: environment.apiDashboard + 'Notificaciones/asignar',
   notificacionesCliente: environment.apiDashboard + 'Notificaciones/por-cliente',
+  eliminarNotificacion: environment.apiDashboard + 'Notificaciones/eliminar',
 
   validarCorreo: environment.apiDashboard + 'EnviarTokenCambioContraseniaForm.htm',
   validarCodigo: environment.apiDashboard + 'ValidaTokenCambiaContraseniaForm.htm',

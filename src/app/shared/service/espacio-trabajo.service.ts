@@ -45,6 +45,16 @@ export class EspacioTrabajoService {
       );
   }
 
+  editarCliente(request: any): Observable<any> {
+    return this.http
+      .post<any>(`${API.actualizarCliente}`, request)
+      .pipe(
+        catchError((e) => {
+          return throwError(e);
+        })
+      );
+  }
+
   borrarCliente(request: any): Observable<any> {
     return this.http
       .post<any>(`${API.borrarCliente}`, request)

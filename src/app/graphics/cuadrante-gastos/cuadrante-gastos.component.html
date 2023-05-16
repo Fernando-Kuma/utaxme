@@ -76,7 +76,7 @@
         [showYLabels]="true" [border]="true" [margin]="marginBarChart" [general]="true" 
         [isDynamicRange]="false" unit="$"></app-barras-emitidas> -->
         <app-prueba-bar  [sizex]="width > 1440 ? 750 : width > 450 ?  550 : 300" 
-            [sizey]="width > 450 ? 220 : 130" [data]="dateValue" [barWidth]="15" unit="$" [tickEjeX]="15"></app-prueba-bar>
+            [sizey]="width > 450 ? 220 : 130" [data]="dateValue" [barWidth]="width > 1440 ? 30 : width > 450 ?  15 : 5" unit="$" [tickEjeX]="15"></app-prueba-bar>
       </div>
     </div>
   </div>
@@ -84,9 +84,9 @@
   <div class="row" *ngIf="isFull">
     <div class="col-12">
       <app-prueba-bar  
-        [sizex]="width > 1440 ? 1800 : width > 450 ?  1300 : 375" 
-        [sizey]="width > 1440 ? 800 : width > 450 ?  500 : 400" 
-        [data]="dateValue" [barWidth]="15" unit="$" [tickEjeX]="30"></app-prueba-bar>
+        [sizex]="width > 1440 ? 1780 : width > 450 ?  1300 : 330" 
+        [sizey]="width > 1440 ? 700 : width > 450 ?  450 : 350" 
+        [data]="dateValue" [barWidth]="width > 1440 ? 30 : width > 450 ?  15 : 5" unit="$" [tickEjeX]="30"></app-prueba-bar>
     </div>
     <div class="row">
       <div class="col-6"

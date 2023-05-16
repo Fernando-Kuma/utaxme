@@ -195,8 +195,8 @@
                                     <div class="titulo-notificacion">
                                         {{notificacionSeleccionado.titulo}}
                                     </div>
-                                    <div class="trash-can">
-                                        <!-- <mat-icon class="image-trash-can"></mat-icon> -->
+                                    <div class="trash-can" (click)="eliminarNotificacion(notificacionSeleccionado)">
+                                        <mat-icon class="image-trash-can"></mat-icon>
                                     </div>
                                 </div>
                                 <div class="col-12" style="margin-top: 20px; min-height: 100px; display: flex; align-items: stretch;">

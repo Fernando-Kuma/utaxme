@@ -1,78 +1,105 @@
-<mat-dialog-content *ngIf="error">
-    <div
-      fxLayout="row"
-      fxLayoutAlign="end center"
-    >
-    <button style="border: none;background: white;" (click)="close()">
-      <h1 style="color: #3B4559;"><b>X</b></h1>
-    </button>
-   </div>
-  <div fxLayout="row" fxLayoutAlign="space-around center">
-    <div><img src="assets/img/robot-error.svg" alt="Servicio no responde" /><br /></div>
-  </div>
-  <div fxLayout="row" fxLayoutAlign="space-around center">
-    <div>
-      <h2><strong>¡Ups! Es posible que hayas perdido conexión...</strong></h2>
-    </div>
-  </div>
-  <div fxLayout="row" fxLayoutAlign="space-around center">
-    <div>
-      <h4>
-        No te preocupes, tus servicios se encuentran bien, vamos <br />
-        a intentarlo de nuevo.
-      </h4>
-    </div>
-  </div>
+<ng-container *ngIf="tipoError">
 
-  <div fxLayout="row" fxLayoutAlign="end center">
-    <button
-      class="btn-totalplay-secondary"
-      style="height: 40px; width: auto; margin-right: 15px" (click)="logout()"
-      *ngIf="cerrarSesion"
-    >
-      Cerrar sesion
-    </button>
-    <button class="btn-totalplay" style="height: 40px; width: auto" (click)="reintentar()">
-      Reintentar
-    </button>
-  </div>
-</mat-dialog-content>
-<mat-dialog-content *ngIf="!error">
-    <div
-      fxLayout="row"
-      fxLayoutAlign="end center"
-    >
-    <button style="border: none;background: white;" mat-dialog-close>
-      <h1 style="color: #3B4559;"><b>X</b></h1>
-    </button>
-   </div>
-  <div fxLayout="row" fxLayoutAlign="space-around center">
-    <div><img src="assets/img/error-pesando.svg" alt="Error en busca de resultado"/><br /></div>
-  </div>
-  <div fxLayout="row" fxLayoutAlign="space-around center">
-    <div>
-      <h2><strong>¡Uy! Algo salio mal...</strong></h2>
+  <mat-dialog-content *ngIf="error">
+    <div class="row d-flex">
+      <div class="col-12 d-flex justify-content-end">
+        <button style="border: none;background: white;" (click)="close()">
+          <h1 style="color: #3B4559;"><b>X</b></h1>
+        </button>
+      </div>
+      <div class="col-12 d-flex justify-content-center">
+        <div><img src="assets/img/error-pesando.svg" alt="Error en busca de resultado" /><br /></div>
+      </div>
+      <div class="col-12">
+        <h2 style="text-align: center;"><strong>¡Ups! Es posible que hayas perdido conexión...</strong></h2>
+        <h4>
+          No te preocupes, tus servicios se encuentran bien, vamos <br />
+          a intentarlo de nuevo.
+        </h4>
+  
+      </div>
+      <div class="col-12 d-flex justify-content-end">
+        <button
+        class="btn-totalplay-secondary"
+        style="height: 40px; width: auto; margin-right: 15px" (click)="logout()"
+        *ngIf="cerrarSesion"
+      >
+        Cerrar sesion
+      </button>
+      <button class="btn-totalplay" style="height: 40px; width: auto" (click)="reintentar()">
+        Reintentar
+      </button>
+      </div>
     </div>
-  </div>
-  <div fxLayout="row" fxLayoutAlign="space-around center">
-    <div>
-      <h4>
-        No te preocupes, no es tu culpa. Vamos <br>a intentarlo de nuevo. 
-      </h4>
+  </mat-dialog-content>
+
+  <mat-dialog-content *ngIf="!error">
+    <div class="row d-flex">
+      <div class="col-12 d-flex justify-content-end">
+        <button style="border: none;background: white;" (click)="close()">
+          <h1 style="color: #3B4559;"><b>X</b></h1>
+        </button>
+      </div>
+      <div class="col-12 d-flex justify-content-center">
+        <div><img src="assets/img/error-pesando.svg" alt="Error en busca de resultado" /><br /></div>
+      </div>
+      <div class="col-12">
+        <h2 style="text-align: center;"><strong>¡Uy! Algo salio mal...</strong></h2>
+        <h4>
+          No te preocupes, no es tu culpa. Vamos <br>a intentarlo de nuevo. 
+        </h4>
+  
+      </div>
+      <div class="col-12 d-flex justify-content-end">
+        <button
+        class="btn-totalplay-secondary"
+        style="height: 40px; width: auto; margin-right: 15px" (click)="logout()"
+        *ngIf="cerrarSesion"
+      >
+        Cerrar sesion
+      </button>
+      <button class="btn-totalplay" style="height: 40px; width: auto" (click)="reintentar()">
+        Reintentar
+      </button>
+      </div>
     </div>
-  </div>
+  </mat-dialog-content>
 
-  <div fxLayout="row" fxLayoutAlign="end center">
-    <button
-      class="btn-totalplay-secondary"
-      style="height: 40px; width: auto; margin-right: 15px" (click)="logout()"
-      *ngIf="cerrarSesion"
-    >
-      Cerrar sesion
-    </button>
-    <button class="btn-totalplay" style="height: 40px; width: auto" (click)="reintentar()">
-      Reintentar
-    </button>
-  </div>
-</mat-dialog-content>
+</ng-container>
 
+<ng-container *ngIf="!tipoError">
+  <mat-dialog-content >
+    <div class="row d-flex">
+      <div class="col-12 d-flex justify-content-end">
+        <button style="border: none;background: white;" (click)="close()">
+          <h1 style="color: #3B4559;"><b>X</b></h1>
+        </button>
+      </div>
+      <div class="col-12 d-flex justify-content-center">
+        <div><img src="assets/img/error-pesando.svg" alt="Error en busca de resultado" /><br /></div>
+      </div>
+  
+      <div class="col-12">
+        <h2 style="text-align: center;"><strong>¡Ups! La resolucion de tu pantalla no es compatible</strong></h2>
+        <h4>
+          Tu resolucion de pantalla no es apto para poder visualizar los datos de manera correcta,
+          intenta ingresar desde un mobil o en una computadora con resolucion mayor a 1440.
+        </h4>
+  
+      </div>
+  
+      <div class="col-12 d-flex justify-content-end">
+        <button
+          class="btn-utaxme-secondary"
+          style="height: 40px; width: auto; margin-right: 15px" (click)="logout()"
+        >
+          Cerrar sesion
+        </button>
+        <button class="btn-utaxme" style="height: 40px; width: auto" (click)="close()">
+          Continuar
+        </button>
+      </div>
+  
+    </div>
+  </mat-dialog-content>
+</ng-container>

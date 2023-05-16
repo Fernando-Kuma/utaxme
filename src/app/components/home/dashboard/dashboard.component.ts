@@ -17,6 +17,7 @@ import { Router } from '@angular/router';
 import { NAV } from 'src/app/shared/configuration/navegacion';
 import { ComprobantePeriodo, CumplimientoFiscal } from 'src/app/shared/model/dashboard.mode';
 import { AlertService } from 'src/app/shared/utils/alertas';
+import { ServiceErrorDialogComponent } from 'src/app/shared/utils/service-error-dialog/service-error-dialog.component';
 export const MY_FORMATS = {
   parse: {
     dateInput: 'LL', 
@@ -85,8 +86,30 @@ export class DashboardComponent implements OnInit {
     }
     this.maxDate = new Date(moment().set({'hours': 0,'minute': 0, 'second': 0, 'millisecond': 0}).format());
     this.cambiarRequest()
+    this.validarPantalla()
+
+
   }
 
+
+  validarPantalla(){
+    let pantallaAncho = window.innerWidth
+    console.log(pantallaAncho)
+    if(pantallaAncho < 1200 && pantallaAncho > 450){
+      const dialogRef = this.dialog.open(ServiceErrorDialogComponent, {
+        width: '420px',
+        height: '415px ',
+        data:{tipoError: "servicio"},
+        disableClose: true
+      });
+  
+      dialogRef.afterClosed().subscribe((data) => {
+        if(!data){
+          this.auth.logout()
+        }
+      });
+    }
+  }
 
   chosenMonthHandler(normalizedMonth: Moment, datepicker: MatDatepicker<Moment>) {
     datepicker.close();

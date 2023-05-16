@@ -103,7 +103,7 @@
           [margin]="marginBarChart" [general]="true" [isDynamicRange]="false" unit="$"></app-barras-emitidas> -->
           
           <app-barra-ingresos  [sizex]="width > 1440 ? 750 : width > 450 ?  550 : 300" 
-            [sizey]="width > 450 ? 220 : 130" [data]="dateValue" [barWidth]="width > 1440 ? 30 : width > 450 ?  15 : 5" unit="$"></app-barra-ingresos>
+            [sizey]="width > 450 ? 220 : 130" [data]="dateValue" [barWidth]="width > 1440 ? 30 : width > 450 ?  15 : 5" unit="$" [tickEjeX]="15"></app-barra-ingresos>
       </div>
     </div>
 
@@ -114,7 +114,7 @@
       <app-barra-ingresos  
         [sizex]="width > 1440 ? 1800 : width > 450 ?  1300 : 375" 
         [sizey]="width > 1440 ? 800 : width > 450 ?  500 : 400" 
-        [data]="dateValue" [barWidth]="width > 1440 ? 30 : width > 450 ?  15 : 5" unit="$"></app-barra-ingresos>
+        [data]="dateValue" [barWidth]="width > 1440 ? 30 : width > 450 ?  15 : 5" unit="$" [tickEjeX]="30"></app-barra-ingresos>
     </div>
 
     <div class="row">

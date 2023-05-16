@@ -47,6 +47,7 @@ export class PruebaBarComponent implements OnInit {
      @Input() sizey: number;
      @Input() barWidth = 40;
      @Input() border = true;
+     @Input() tickEjeX = 15;
     constructor() { }
   
     ngOnInit(): void {
@@ -107,7 +108,7 @@ export class PruebaBarComponent implements OnInit {
         .tickSize(0)
         .tickFormat((d) => {
           const valor = this.Y[this.X.indexOf(+d)];
-          if(valor == null){
+          if(valor == 0){
             return '';
           }else{
             return + d;
@@ -117,6 +118,10 @@ export class PruebaBarComponent implements OnInit {
         .tickSizeInner(this.margin.top + this.margin.bottom - this.height)
         .tickSizeOuter(0)
         .tickPadding(2);
+
+        this.xAxis.tickValues(
+          this.xScale.ticks(this.tickEjeX)
+        ).tickPadding(5);
   
       this.yAxis = d3
         .axisLeft(this.yScale)

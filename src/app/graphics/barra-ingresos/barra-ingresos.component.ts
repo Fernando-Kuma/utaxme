@@ -48,6 +48,7 @@ yScale: any;
    @Input() sizey: number;
    @Input() barWidth = 40;
    @Input() border = true;
+   @Input() tickEjeX = 15;
   constructor() { }
 
   ngOnInit(): void {
@@ -122,7 +123,7 @@ yScale: any;
       .tickPadding(5);
 
       this.xAxis.tickValues(
-        this.xScale.ticks(20)
+        this.xScale.ticks(this.tickEjeX)  
       ).tickPadding(5);
 
     this.yAxis = d3

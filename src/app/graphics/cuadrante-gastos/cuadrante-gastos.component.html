@@ -82,12 +82,23 @@
   </div>
 
   <div class="row" *ngIf="isFull">
-    <app-barras-emitidas 
+    <div class="col-12">
+      <app-prueba-bar  
         [sizex]="width > 1440 ? 1800 : width > 450 ?  1300 : 375" 
         [sizey]="width > 1440 ? 800 : width > 450 ?  500 : 400" 
-      [data]="dateValue" color="#1D2640" [barWidth]="40"
-      [full]="true" [showDomain]="true" [showLimits]="false" [showXLabels]="true" [showYLabels]="true" [border]="true"
-      [margin]="marginBarChartFull" [general]="true" [isDynamicRange]="false" unit="$"></app-barras-emitidas>
+        [data]="dateValueFull" [barWidth]="15" unit="$"></app-prueba-bar>
+    </div>
+    <div class="row">
+      <div class="col-6"
+        style="margin: 0; padding: 0; font-weight: 600; font-size: 10px; letter-spacing: 3px; color: #7B8AA0; padding-top: 7px;">
+        Mostrando pág {{ this.pager?.current }} de {{ this.pager?.total }} de
+        {{ this.pager?.data.length }} resultados
+      </div>
+      <div class="col 6">
+        <app-pager [pageModel]="pager" (paged)="onPaged($event)" style="float: right;"></app-pager>
+      </div>
+    </div>
+
   </div>
 
 </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { Paginator } from 'array-paginator';
 import * as moment from 'moment';
 import { NAV } from 'src/app/shared/configuration/navegacion';
 import { ComprobantePeriodo } from 'src/app/shared/model/dashboard.mode';
@@ -20,30 +21,68 @@ export class CuadranteGastosComponent implements OnInit {
   dateValue = [
     {
         "id": 1,
-        "total": 0
+        "total": 30
     },
     {
         "id": 2,
-        "total": 0
+        "total": 30
     },
     {
         "id": 3,
-        "total": 0
+        "total": 30
     },
     {
         "id": 4,
-        "total": 0
+        "total": 80
     },
     {
         "id": 5,
-        "total": 0
+        "total": 30
     },
     {
         "id": 6,
-        "total": 0
+        "total": 90
+    },
+    {
+        "id": 7,
+        "total": 30
+    },
+    {
+        "id": 8,
+        "total": 30
+    },
+    {
+        "id": 9,
+        "total": 20
+    },
+    {
+        "id": 10,
+        "total": 30
+    },
+    {
+        "id": 11,
+        "total": 50
+    },
+    {
+        "id": 12,
+        "total": 10
+    },
+    {
+        "id": 13,
+        "total": 30
+    },
+    {
+        "id": 14,
+        "total": 80
+    },
+    {
+        "id": 15,
+        "total": 30
     }
 ];
 
+  dateValueFull: any[]
+  public pager: any;
   _consultaRequest: any;
   @Input() set consultaRequest(val: any) {
     this._consultaRequest = val;
@@ -146,6 +185,84 @@ export class CuadranteGastosComponent implements OnInit {
       });
     }else{
       this.dateValue = [{id: 0, total: 0}]
+    }
+
+    this.dateValue = [
+      {
+          "id": 1,
+          "total": 30
+      },
+      {
+          "id": 2,
+          "total": 30
+      },
+      {
+          "id": 3,
+          "total": 30
+      },
+      {
+          "id": 4,
+          "total": 80
+      },
+      {
+          "id": 5,
+          "total": 30
+      },
+      {
+          "id": 6,
+          "total": 90
+      },
+      {
+          "id": 7,
+          "total": 30
+      },
+      {
+          "id": 8,
+          "total": 30
+      },
+      {
+          "id": 9,
+          "total": 20
+      },
+      {
+          "id": 10,
+          "total": 30
+      },
+      {
+          "id": 11,
+          "total": 50
+      },
+      {
+          "id": 12,
+          "total": 10
+      },
+      {
+          "id": 13,
+          "total": 30
+      },
+      {
+          "id": 14,
+          "total": 80
+      },
+      {
+          "id": 15,
+          "total": 30
+      }
+  ];
+    this.paginador(this.dateValue)
+  }
+
+  onPaged(page) {
+    this.dateValueFull = this.pager.page(page);
+    console.log(this.dateValueFull)
+  }
+
+  paginador(value: any) {
+    this.pager = new Paginator(value, 5, 1);
+    if (value.length > 0) {
+      this.dateValueFull = this.pager.page(1);
+    } else {
+      this.dateValueFull = [];
     }
   }
 

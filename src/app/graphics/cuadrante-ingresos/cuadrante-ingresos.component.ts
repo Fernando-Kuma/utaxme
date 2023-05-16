@@ -99,7 +99,7 @@ export class CuadranteIngresosComponent implements OnInit {
   }
 
   onPaged(page) {
-    this.dateValue = this.pager.page(page);
+    this.dateValue = this.pager.page(page); 
   }
 
   paginador(value: any) {

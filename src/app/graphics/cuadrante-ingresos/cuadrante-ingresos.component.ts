@@ -17,61 +17,8 @@ export class CuadranteIngresosComponent implements OnInit {
 
   @Input() isFull: boolean = false;
 
-   dateValue = [
-    {
-        "id": 1,
-        "total": 0
-    },
-    {
-        "id": 2,
-        "total": 0
-    },
-    {
-        "id": 3,
-        "total": 0
-    },
-    {
-        "id": 4,
-        "total": 0
-    },
-    {
-        "id": 5,
-        "total": 0
-    },
-    {
-        "id": 6,
-        "total": 0
-    }
-];
-
-private datosFull = [
-  {
-      "id": 1,
-      "total": 0
-  },
-  {
-      "id": 2,
-      "total": 0
-  },
-  {
-      "id": 3,
-      "total": 0
-  },
-  {
-      "id": 4,
-      "total": 0
-  },
-  {
-      "id": 5,
-      "total": 0
-  },
-  {
-      "id": 6,
-      "total": 0
-  }
-];
-
   ingresosPeriodo: ComprobantePeriodo = new ComprobantePeriodo;
+  size: number = 15;
   @Input() set data(val: any) {
     this.ingresosPeriodo = val;
     this.obtenerData()
@@ -82,7 +29,7 @@ private datosFull = [
     this._consultaRequest = val;
   }
 
-  /* dateValue: Array<DateValue> = [] */
+  dateValue: Array<DateValue> = []
 
   spinnerLoading: boolean = true;
 
@@ -112,8 +59,11 @@ private datosFull = [
 
   ngOnInit(): void {
     if(this.isFull){
+      this.size = 30;
       this.consultaRequest = JSON.parse(localStorage.getItem('consulta-dashboard'))
       this.obtenerDato()
+    }else{
+      this.size = 15;
     }
   }
 
@@ -137,85 +87,13 @@ private datosFull = [
   }
 
   obtenerData(){
-    if(this.isFull){
-      if(this.ingresosPeriodo.facturas > 0){
-        this.ingresosPeriodo.detalles.forEach((element,index) => {
-          this.dateValue[index].total = element.total;
-        });
-      }else{
-        this.dateValue = [{id: 0, total: 0}]
-      }
+    if(this.ingresosPeriodo.facturas > 0){
+        for (var i = 0; i < this.size; i++) {
+            this.dateValue.push({id:i+1, total: this.ingresosPeriodo.detalles[i] ? this.ingresosPeriodo.detalles[i].total : 0});
+        }
     }else{
-      if(this.ingresosPeriodo.facturas > 0){
-        this.ingresosPeriodo.detalles.forEach((element,index) => {
-          this.dateValue[index].total = element.total;
-        });
-      }else{
-        this.dateValue = [{id: 0, total: 0}]
-      }
+      this.dateValue = [{id: 0, total: 0}]
     }
-    this.dateValue = [
-      {
-          "id": 1,
-          "total": 30
-      },
-      {
-          "id": 2,
-          "total": 30
-      },
-      {
-          "id": 3,
-          "total": 30
-      },
-      {
-          "id": 4,
-          "total": 30
-      },
-      {
-          "id": 5,
-          "total": 30
-      },
-      {
-          "id": 6,
-          "total": 30
-      },
-      {
-          "id": 7,
-          "total": 30
-      },
-      {
-          "id": 8,
-          "total": 30
-      },
-      {
-          "id": 9,
-          "total": 30
-      },
-      {
-          "id": 10,
-          "total": 30
-      },
-      {
-          "id": 11,
-          "total": 50
-      },
-      {
-          "id": 12,
-          "total": 30
-      },
-      {
-          "id": 13,
-          "total": 30
-      },
-      {
-          "id": 14,
-          "total": 30
-      },
-      {
-          "id": 15,
-          "total": 30
-      }
-  ];
     console.log("Object:",this.dateValue);
   }
 

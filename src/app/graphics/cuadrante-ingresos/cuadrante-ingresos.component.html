@@ -103,7 +103,7 @@
           [margin]="marginBarChart" [general]="true" [isDynamicRange]="false" unit="$"></app-barras-emitidas> -->
           
           <app-barra-ingresos  [sizex]="width > 1440 ? 750 : width > 450 ?  550 : 300" 
-            [sizey]="width > 450 ? 220 : 130" [data]="dateValue" [barWidth]="15" unit="$"></app-barra-ingresos>
+            [sizey]="width > 450 ? 220 : 130" [data]="dateValue" [barWidth]="width > 1440 ? 30 : width > 450 ?  15 : 5" unit="$"></app-barra-ingresos>
       </div>
     </div>
 

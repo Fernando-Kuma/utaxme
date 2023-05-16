@@ -154,6 +154,68 @@ private datosFull = [
         this.dateValue = [{id: 0, total: 0}]
       }
     }
+    this.dateValue = [
+      {
+          "id": 1,
+          "total": 30
+      },
+      {
+          "id": 2,
+          "total": 30
+      },
+      {
+          "id": 3,
+          "total": 30
+      },
+      {
+          "id": 4,
+          "total": 30
+      },
+      {
+          "id": 5,
+          "total": 30
+      },
+      {
+          "id": 6,
+          "total": 30
+      },
+      {
+          "id": 7,
+          "total": 30
+      },
+      {
+          "id": 8,
+          "total": 30
+      },
+      {
+          "id": 9,
+          "total": 30
+      },
+      {
+          "id": 10,
+          "total": 30
+      },
+      {
+          "id": 11,
+          "total": 50
+      },
+      {
+          "id": 12,
+          "total": 30
+      },
+      {
+          "id": 13,
+          "total": 30
+      },
+      {
+          "id": 14,
+          "total": 30
+      },
+      {
+          "id": 15,
+          "total": 30
+      }
+  ];
     console.log("Object:",this.dateValue);
   }
 

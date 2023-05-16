@@ -92,7 +92,14 @@ yScale: any;
     const xType = d3.scaleTime;
     const yType = d3.scaleLinear;
 
-    const xRange = [0, this.width - this.margin.right];
+    let xRange;
+
+    if(this.Y[0] == 0){
+      xRange = [0, this.width - this.margin.right];
+     }else{
+       xRange = [this.barWidth / 6, this.width - this.margin.right];
+     }
+
     const yRange = [this.height - this.margin.bottom, this.margin.top];
 
     this.xScale = xType(xDomain, xRange);
@@ -112,7 +119,11 @@ yScale: any;
       })
       .tickSizeInner(this.margin.top + this.margin.bottom - this.height)
       .tickSizeOuter(0)
-      .tickPadding(2);
+      .tickPadding(5);
+
+      this.xAxis.tickValues(
+        this.xScale.ticks(20)
+      ).tickPadding(5);
 
     this.yAxis = d3
       .axisLeft(this.yScale)
@@ -143,14 +154,14 @@ yScale: any;
     this.svg.append("g")
     .attr(
       'transform',
-      `translate(0, ${this.height - this.margin.bottom})`
+      `translate(${this.Y[0] == 0 ? '0' : '5'}, ${this.height - this.margin.bottom})`
     )
     .call((this.xAxis))
     .attr('class', 'ejeXBarra')
     .call((g: any) => g.selectAll('.tick line').remove())
     .selectAll("text")
     .attr(
-    'transform',`translate(12,0)`);
+    'transform',`translate(0,0)`);
   
     // Draw the Y-axis on the DOM
     this.svg.append("g")
@@ -180,8 +191,8 @@ yScale: any;
     .attr('y', (_: DateValue, i: number) => this.yScale(this.Y[i]))
     .attr("width",this.barWidth)
     .attr('height',(_: DateValue, i: number) => this.height - this.margin.bottom - this.yScale(this.Y[i]))
-    .attr('rx', 2)
-    .attr("transform", "translate(5,0)")
+    .attr('rx', 2).attr(
+      'transform',`translate(${this.barWidth / -10}, 0)`)
     .on('mouseover', tip.show )
     .on('mouseleave', tip.hide)
     .attr("fill", "#1D2640").style('stroke-width', (d) => {
@@ -206,15 +217,9 @@ yScale: any;
       return;
     }
 
-   /*  d3.selectAll('.d3-tip').remove(); */
-
     this.svg.selectAll('g').remove();
 
     this.svg.selectAll('rect').remove();
-
-/*     this.svg.selectAll('line').remove();
-
-    this.svg.selectAll('text').remove(); */
 
     this.createSvg();
     this.drawBars(this.data);

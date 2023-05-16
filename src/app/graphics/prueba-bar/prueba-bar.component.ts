@@ -15,7 +15,7 @@ export class PruebaBarComponent implements OnInit {
     range: any;
   @Input() set data(val: Array<any>) {
     this._data = val
-    //this.update();
+    this.update();
   }
   
   get data() {
@@ -63,6 +63,7 @@ export class PruebaBarComponent implements OnInit {
      createSvg(): void {
       this.svg = d3.select("#barchar")
       .append("svg")
+      .attr('class', 'barGastos')
       .attr('width', this.width + this.margin.left + this.margin.right)
       .attr('height', this.height + this.margin.top + this.margin.bottom)
       .append("g")
@@ -105,8 +106,8 @@ export class PruebaBarComponent implements OnInit {
         .axisBottom(this.xScale)
         .tickSize(0)
         .tickFormat((d) => {
-          const valor = this.Y[(+d)-1];
-          if(valor == 0){
+          const valor = this.Y[this.X.indexOf(+d)];
+          if(valor == null){
             return '';
           }else{
             return + d;
@@ -205,15 +206,18 @@ export class PruebaBarComponent implements OnInit {
     }
   
     private update() {
+
+      
       if (!this.isInitiated) {
         return;
       }
+      d3.selectAll('.barGastos').remove();
   
      /*  d3.selectAll('.d3-tip').remove(); */
   
-      this.svg.selectAll('g').remove();
+      /* this.svg.selectAll('g').remove();
   
-      this.svg.selectAll('rect').remove();
+      this.svg.selectAll('rect').remove(); */
   
   /*     this.svg.selectAll('line').remove();
   

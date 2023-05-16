@@ -16,7 +16,7 @@ _data: Array<DateValue> = [];
   range: any;
 @Input() set data(val: Array<any>) {
   this._data = val
-  //this.update();
+  this.update();
 }
 
 get data() {
@@ -64,6 +64,7 @@ yScale: any;
    createSvg(): void {
     this.svg = d3.select("#barcharIngresos")
     .append("svg")
+    .attr('class', 'barIngresos')
     .attr('width', this.width + this.margin.left + this.margin.right)
     .attr('height', this.height + this.margin.top + this.margin.bottom)
     .append("g")
@@ -74,8 +75,7 @@ yScale: any;
 
     this.X = d3.map(this.data, (d: any) => d.id);
     this.Y = d3.map(this.data, (d: any) => d.total);
-    this.I = d3.range(this.X.length);
-    
+    this.I = d3.range(this.X.length);    
 
     const xDomain = d3.extent(this.X);
 
@@ -109,11 +109,11 @@ yScale: any;
       .axisBottom(this.xScale)
       .tickSize(0)
       .tickFormat((d) => {
-        const valor = this.Y[(+d)-1];
+        const valor = this.Y[this.X.indexOf(+d)];
         if(valor == 0){
           return '';
         }else{
-          return + d;
+          return +d;
         }
        
       })
@@ -217,12 +217,15 @@ yScale: any;
       return;
     }
 
-    this.svg.selectAll('g').remove();
+    d3.selectAll('.barIngresos').remove();
 
-    this.svg.selectAll('rect').remove();
+    /* this.svg.selectAll('g').remove();
+
+    this.svg.selectAll('rect').remove(); */
 
     this.createSvg();
     this.drawBars(this.data);
+    
   }
 }
 

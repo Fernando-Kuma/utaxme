@@ -15,80 +15,19 @@ import { AlertService } from 'src/app/shared/utils/alertas';
   styleUrls: ['./cuadrante-gastos.component.css']
 })
 export class CuadranteGastosComponent implements OnInit {
-
-  @Input() isFull: boolean = false;
   
-  dateValue = [
-    {
-        "id": 1,
-        "total": 30
-    },
-    {
-        "id": 2,
-        "total": 30
-    },
-    {
-        "id": 3,
-        "total": 30
-    },
-    {
-        "id": 4,
-        "total": 80
-    },
-    {
-        "id": 5,
-        "total": 30
-    },
-    {
-        "id": 6,
-        "total": 90
-    },
-    {
-        "id": 7,
-        "total": 30
-    },
-    {
-        "id": 8,
-        "total": 30
-    },
-    {
-        "id": 9,
-        "total": 20
-    },
-    {
-        "id": 10,
-        "total": 30
-    },
-    {
-        "id": 11,
-        "total": 50
-    },
-    {
-        "id": 12,
-        "total": 10
-    },
-    {
-        "id": 13,
-        "total": 30
-    },
-    {
-        "id": 14,
-        "total": 80
-    },
-    {
-        "id": 15,
-        "total": 30
-    }
-];
+  @Input() isFull: boolean = false;
+  size: number = 15;
+  gastosPeriodo: ComprobantePeriodo = new ComprobantePeriodo;
+  dateValue: Array<DateValue> = []
 
-  dateValueFull: any[]
   public pager: any;
   _consultaRequest: any;
+  
   @Input() set consultaRequest(val: any) {
     this._consultaRequest = val;
   }
   
-  gastosPeriodo: ComprobantePeriodo = new ComprobantePeriodo;
   @Input() set data(val: any) {
     this.gastosPeriodo = val;
     this.obtenerData()
@@ -123,15 +62,12 @@ export class CuadranteGastosComponent implements OnInit {
     left: 80,
   };
   
-  scale: 'week' | 'day'  = 'week' ;
-
   constructor(
     public router: Router,
     private dashboardService: DashboardService,
     private alertService: AlertService) { }
 
   ngOnInit(): void {
-    
   }
 
   obtenerDato(){
@@ -179,90 +115,35 @@ export class CuadranteGastosComponent implements OnInit {
   }
 
   obtenerData(){
+
+    this.dateValue = []
+    if(this.isFull){
+      this.size = 30 * (Math.ceil(this.gastosPeriodo.facturas / 30))
+    }
     if(this.gastosPeriodo.facturas > 0){
-      this.gastosPeriodo.detalles.forEach((element,index) => {
-        this.dateValue[index].total = element.total;
-      });
+        for (var i = 0; i < this.size; i++) {
+            this.dateValue.push({id:i+1, total: this.gastosPeriodo.detalles[i] ? this.gastosPeriodo.detalles[i].total : 0});
+        }
     }else{
       this.dateValue = [{id: 0, total: 0}]
     }
 
-    this.dateValue = [
-      {
-          "id": 1,
-          "total": 30
-      },
-      {
-          "id": 2,
-          "total": 30
-      },
-      {
-          "id": 3,
-          "total": 30
-      },
-      {
-          "id": 4,
-          "total": 80
-      },
-      {
-          "id": 5,
-          "total": 30
-      },
-      {
-          "id": 6,
-          "total": 90
-      },
-      {
-          "id": 7,
-          "total": 30
-      },
-      {
-          "id": 8,
-          "total": 30
-      },
-      {
-          "id": 9,
-          "total": 20
-      },
-      {
-          "id": 10,
-          "total": 30
-      },
-      {
-          "id": 11,
-          "total": 50
-      },
-      {
-          "id": 12,
-          "total": 10
-      },
-      {
-          "id": 13,
-          "total": 30
-      },
-      {
-          "id": 14,
-          "total": 80
-      },
-      {
-          "id": 15,
-          "total": 30
-      }
-  ];
     this.paginador(this.dateValue)
+    console.log("Object Gastos:",this.dateValue);
   }
 
   onPaged(page) {
-    this.dateValueFull = this.pager.page(page);
-    console.log(this.dateValueFull)
+    this.dateValue = this.pager.page(page);
   }
 
   paginador(value: any) {
-    this.pager = new Paginator(value, 5, 1);
+    this.isFull ? 
+    this.pager = new Paginator(value, 30, 1) : 
+    this.pager = new Paginator(value, 15, 1)
     if (value.length > 0) {
-      this.dateValueFull = this.pager.page(1);
+      this.dateValue = this.pager.page(1);
     } else {
-      this.dateValueFull = [];
+      this.dateValue = [];
     }
   }
 

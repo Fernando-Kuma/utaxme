@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { Paginator } from 'array-paginator';
 
 import * as moment from 'moment';
 import { NAV } from 'src/app/shared/configuration/navegacion';
@@ -31,6 +32,8 @@ export class CuadranteIngresosComponent implements OnInit {
 
   dateValue: Array<DateValue> = []
 
+  public pager: any;
+
   spinnerLoading: boolean = true;
 
   dateValueWeek: Array<DateValue> = [
@@ -58,13 +61,6 @@ export class CuadranteIngresosComponent implements OnInit {
     private alertService: AlertService) { }
 
   ngOnInit(): void {
-    if(this.isFull){
-      this.size = 30;
-      this.consultaRequest = JSON.parse(localStorage.getItem('consulta-dashboard'))
-      this.obtenerDato()
-    }else{
-      this.size = 15;
-    }
   }
 
   obtenerDato(){
@@ -87,6 +83,10 @@ export class CuadranteIngresosComponent implements OnInit {
   }
 
   obtenerData(){
+    this.dateValue = []
+    if(this.isFull){
+      this.size = 30 * (Math.ceil(this.ingresosPeriodo.facturas / 30))
+    }
     if(this.ingresosPeriodo.facturas > 0){
         for (var i = 0; i < this.size; i++) {
             this.dateValue.push({id:i+1, total: this.ingresosPeriodo.detalles[i] ? this.ingresosPeriodo.detalles[i].total : 0});
@@ -94,8 +94,25 @@ export class CuadranteIngresosComponent implements OnInit {
     }else{
       this.dateValue = [{id: 0, total: 0}]
     }
-    console.log("Object:",this.dateValue);
+    this.paginador(this.dateValue)
+    console.log("Object Ingresos:",this.dateValue);
   }
+
+  onPaged(page) {
+    this.dateValue = this.pager.page(page);
+  }
+
+  paginador(value: any) {
+    this.isFull ? 
+    this.pager = new Paginator(value, 30, 1) : 
+    this.pager = new Paginator(value, 15, 1)
+    if (value.length > 0) {
+      this.dateValue = this.pager.page(1);
+    } else {
+      this.dateValue = [];
+    }
+  }
+
 
   public get width() {
     return window.innerWidth;

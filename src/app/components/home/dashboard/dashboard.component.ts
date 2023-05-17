@@ -80,7 +80,6 @@ export class DashboardComponent implements OnInit {
     let consultaFull = JSON.parse(localStorage.getItem('consulta-dashboard')) 
     if(consultaFull != null){
       this.date.setValue(moment(new Date(consultaFull.anio + '/' +consultaFull.mes)).locale('es'))
-      localStorage.removeItem('consulta-dashboard')
     }
     this.maxDate = new Date(moment().set({'hours': 0,'minute': 0, 'second': 0, 'millisecond': 0}).format());
     this.ultimaActualizacion = moment().format('D MMM hh:mm a')
@@ -124,6 +123,7 @@ export class DashboardComponent implements OnInit {
       mes: moment(this.date.value).format("M"),
       anio: moment(this.date.value).format("YYYY")
     }
+    localStorage.setItem('consulta-dashboard', JSON.stringify(this.requestDashboard));
 
     this.obtenerIngresosEngresos()
     this.obtenerCumplimientoFiscal()

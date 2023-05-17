@@ -154,8 +154,6 @@ export class CuadranteGastosComponent implements OnInit {
     localStorage.setItem('dashboard','CUADRANTE-GASTOS');
     localStorage.setItem('titulo-dashboard','Factura recibidas');
     localStorage.setItem('texto-dashboard',String(this.gastosPeriodo.facturas));
-
-    localStorage.setItem('consulta-dashboard', JSON.stringify(this._consultaRequest));
     this.router.navigateByUrl(NAV.fullSize);
   }
 

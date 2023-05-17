@@ -53,7 +53,7 @@
               Datos del cfdi 4.0
             </div>
 
-            <form [formGroup]="form" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+            <form [formGroup]="form">
               <div class="row">
                 <div class="col-12">
                   <mat-accordion multi>
@@ -97,8 +97,8 @@
                             <div class="col-6 card-titulo espacio-card">
                                 Datos del CFDI
                             </div>
-                            <div class="col-6 not-mobile texto-hipervinculo" style="text-align: end;" (click)="configuracionAvanzada()">
-                                Configuración avanzada
+                            <div class="col-6 not-mobile" style="text-align: end;">
+                                <span class="texto-hipervinculo" (click)="configuracionAvanzada()">Configuración avanzada</span> 
                             </div>
                           </div>
   
@@ -507,7 +507,7 @@
 
               <div class="row">
                 <div class="col-12 d-flex justify-content-end">
-                  <button mat-button class="btn-utaxme-secondary" style="max-width: 120px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;" (click)="cancelarCFDI()">
+                  <button mat-button type="button" class="btn-utaxme-secondary" style="max-width: 120px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;" (click)="cancelarCFDI()">
                     Cancelar
                   </button>
                   <button mat-button class="btn-utaxme" style="max-width: 160px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;" (click)="confirmarGenerarCFDI()">

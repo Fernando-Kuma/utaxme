@@ -49,6 +49,12 @@ yScale: any;
    @Input() barWidth = 40;
    @Input() border = true;
    @Input() tickEjeX = 15;
+   @Input() unit = '$';
+   @Input() textX= '';
+   @Input() textY= '';
+   @Input() sizeLabel= "12px";
+   
+   
   constructor() { }
 
   ngOnInit(): void {
@@ -120,24 +126,24 @@ yScale: any;
       })
       .tickSizeInner(this.margin.top + this.margin.bottom - this.height)
       .tickSizeOuter(0)
-      .tickPadding(5);
+      .tickPadding(0);
 
       this.xAxis.tickValues(
         this.xScale.ticks(this.tickEjeX)  
-      ).tickPadding(5);
+      ).tickPadding(2);
 
     this.yAxis = d3
       .axisLeft(this.yScale)
       .tickSize(0)
       .tickFormat((d) => {
-        return d;
+        return this.unit + d;
       })
       .tickSizeInner(this.margin.right + this.margin.left - this.width - 20)
       .tickSizeOuter(0)
-      .tickPadding(5);
+      .tickPadding(0);
 
       let r = this.range[1] - this.range[0];
-      let d = 8;
+      let d = 4;
       let array: number[] = [];
       let contador = 1;
       let rangoY;
@@ -149,7 +155,7 @@ yScale: any;
       array.push(this.range[0] + (rangoY * contador));
       this.yAxis.tickValues(
         this.yScale.ticks(0).concat(array)
-      ).tickPadding(5);
+      ).tickPadding(1);
   
     // Draw the X-axis on the DOM
     this.svg.append("g")
@@ -161,16 +167,31 @@ yScale: any;
     .attr('class', 'ejeXBarra')
     .call((g: any) => g.selectAll('.tick line').remove())
     .selectAll("text")
+    .style('color','#6B778C')
     .attr(
     'transform',`translate(0,0)`);
+    this.svg.append("text")
+      .attr("transform", "translate(" + (this.width/2) + " ," + (this.height+15) + ")")
+      .style("text-anchor", "middle")
+      .style("font-size", this.sizeLabel)
+      .text(this.textX);
   
     // Draw the Y-axis on the DOM
     this.svg.append("g")
     .attr("transform", "translate(0,0)")
     .call(this.yAxis)
     .attr('class', 'ejeYBarra')
+    .style('color','#6B778C')
     .call((g: any) => g.selectAll('.tick line').remove())
     ;
+
+    this.svg.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("x", -(this.height/2))
+      .attr("y", -40)
+      .style("text-anchor", "middle")
+      .style("font-size", this.sizeLabel)
+      .text(this.textY);
 
     let tip = d3Tip()
     .offset([-10, 6])
@@ -195,21 +216,7 @@ yScale: any;
     .attr('rx', 2).attr(
       'transform',`translate(${this.barWidth / -10}, 0)`)
     .on('mouseover', tip.show )
-    .on('mouseleave', tip.hide)
-    .attr("fill", "#1D2640").style('stroke-width', (d) => {
-      if (this.border) {
-        return '1';
-      } else {
-        return 'none';
-      }
-    })
-    .style('stroke', (d) => {
-      if (this.border) {
-        return '#285CED';
-      } else {
-        return 'none';
-      }
-    });
+    .on('mouseleave', tip.hide);
     this.isInitiated = true;
   }
 

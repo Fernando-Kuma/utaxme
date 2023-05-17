@@ -76,7 +76,7 @@
         [showYLabels]="true" [border]="true" [margin]="marginBarChart" [general]="true" 
         [isDynamicRange]="false" unit="$"></app-barras-emitidas> -->
         <app-prueba-bar  [sizex]="width > 1440 ? 750 : width > 450 ?  550 : 300" 
-            [sizey]="width > 450 ? 220 : 130" [data]="dateValue" [barWidth]="width > 1440 ? 30 : width > 450 ?  15 : 5" unit="$" [tickEjeX]="15"></app-prueba-bar>
+            [sizey]="width > 450 ? 220 : 130" [data]="dateValue" [barWidth]="width > 1440 ? 30 : width > 450 ?  15 : 5" unit="$" [tickEjeX]="15" textX="Facturas del periodo" textY="Gastos del periodo" [sizeLabel]="width > 1440 ? '15px' : width > 450 ?  '12px' : '10px'"></app-prueba-bar>
       </div>
     </div>
   </div>
@@ -86,7 +86,7 @@
       <app-prueba-bar  
         [sizex]="width > 1440 ? 1780 : width > 450 ?  1300 : 330" 
         [sizey]="width > 1440 ? 700 : width > 450 ?  450 : 350" 
-        [data]="dateValue" [barWidth]="width > 1440 ? 30 : width > 450 ?  15 : 5" unit="$" [tickEjeX]="30"></app-prueba-bar>
+        [data]="dateValue" [barWidth]="width > 1440 ? 30 : width > 450 ?  15 : 5" unit="$" [tickEjeX]="30" textX="Facturas del periodo" textY="Gastos del periodo" [sizeLabel]="width > 1440 ? '15px' : width > 450 ?  '12px' : '10px'"></app-prueba-bar>
     </div>
     <div class="row">
       <div class="col-6 textoM"

@@ -83,16 +83,16 @@ export class GenerarCfdiComponent implements OnInit {
 
   crearForm(){
     this.form = this.formBuilder.group({      
-      numeroOrden: [null, [Validators.required, Validators.minLength(3)]],
-      regimenFiscal: [null, [Validators.required]],
-      usoCFDI: [null, [Validators.required]],
-      formaPago: [null, [Validators.required]],
+      numeroOrden: ['', [Validators.required, Validators.minLength(3)]],
+      regimenFiscal: ['', [Validators.required]],
+      usoCFDI: ['', [Validators.required]],
+      formaPago: ['', [Validators.required]],
       
-      rfc: [null, [Validators.required, Validators.minLength(12), Validators.maxLength(13), Validators.pattern("^[A-Za-z0-9]+$")]],
-      razonSocial: [null, [Validators.required, Validators.minLength(3)]],
-      regimenFiscalCliente: [null, [Validators.required]],
-      codigoPostal: [null, [Validators.required, Validators.minLength(5)]],
-      correo: [null, [Validators.required, Validators.pattern(".+@.+\..+")]],
+      rfc: ['', [Validators.required, Validators.minLength(12), Validators.maxLength(13), Validators.pattern("^[A-Za-z0-9]+$")]],
+      razonSocial: ['', [Validators.required, Validators.minLength(3)]],
+      regimenFiscalCliente: ['', [Validators.required]],
+      codigoPostal: ['', [Validators.required, Validators.minLength(5)]],
+      correo: ['', [Validators.required, Validators.pattern(".+@.+\..+")]],
       ///^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
     });
@@ -117,11 +117,9 @@ export class GenerarCfdiComponent implements OnInit {
   }
 
   cancelarCFDI(){
-    this.formularioAvanzado.configuracionGeneral = false
-    this.form.reset()
     Object.keys(this.form.controls).forEach(key => {
       this.form.get(key).enable();
-      this.form.get(key).setValue(null);
+      this.form.get(key).setValue('');
     });
     this.tablaListaConceptos = []
   }

@@ -48,6 +48,10 @@ export class PruebaBarComponent implements OnInit {
      @Input() barWidth = 40;
      @Input() border = true;
      @Input() tickEjeX = 15;
+     @Input() unit = '$';
+     @Input() textX= '';
+     @Input() textY= '';
+     @Input() sizeLabel= "12px";
     constructor() { }
   
     ngOnInit(): void {
@@ -111,7 +115,7 @@ export class PruebaBarComponent implements OnInit {
           if(valor == 0){
             return '';
           }else{
-            return + d;
+            return +d;
           }
          
         })
@@ -121,20 +125,20 @@ export class PruebaBarComponent implements OnInit {
 
         this.xAxis.tickValues(
           this.xScale.ticks(this.tickEjeX)
-        ).tickPadding(5);
+        ).tickPadding(2);
   
       this.yAxis = d3
         .axisLeft(this.yScale)
         .tickSize(0)
         .tickFormat((d) => {
-          return d;
+          return this.unit + d;
         })
-        .tickSizeInner(this.margin.right + this.margin.left - this.width - 20)
+        .tickSizeInner(this.margin.right + this.margin.left - this.width)
         .tickSizeOuter(0)
-        .tickPadding(5);
+        .tickPadding(0);
   
         let r = this.range[1] - this.range[0];
-        let d = 8;
+        let d = 4;
         let array: number[] = [];
         let contador = 1;
         let rangoY;
@@ -146,7 +150,7 @@ export class PruebaBarComponent implements OnInit {
         array.push(this.range[0] + (rangoY * contador));
         this.yAxis.tickValues(
           this.yScale.ticks(0).concat(array)
-        ).tickPadding(5);
+        ).tickPadding(1);
     
       // Draw the X-axis on the DOM
       this.svg.append("g")
@@ -158,16 +162,30 @@ export class PruebaBarComponent implements OnInit {
       .attr('class', 'ejeXBarra')
       .call((g: any) => g.selectAll('.tick line').remove())
       .selectAll("text")
+      .style('color','#6B778C')
       .attr(
       'transform',`translate(0,0)`);
+
+      this.svg.append("text")
+      .attr("transform", "translate(" + (this.width/2) + " ," + (this.height+15) + ")")
+      .style("text-anchor", "middle")
+      .style("font-size", this.sizeLabel)
+      .text(this.textX);
     
       // Draw the Y-axis on the DOM
       this.svg.append("g")
       .attr("transform", "translate(0,0)")
       .call(this.yAxis)
       .attr('class', 'ejeYBarra')
-      .call((g: any) => g.selectAll('.tick line').remove())
-      ;
+      .style('color','#6B778C')
+      .call((g: any) => g.selectAll('.tick line').remove());
+      this.svg.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("x", -(this.height/2))
+      .attr("y", -40)
+      .style("text-anchor", "middle")
+      .style("font-size", this.sizeLabel)
+      .text(this.textY);
   
       let tip = d3Tip()
       .offset([-10, 6])
@@ -193,20 +211,6 @@ export class PruebaBarComponent implements OnInit {
       .attr("transform", "translate(-1,0)")
       .on('mouseover', tip.show )
       .on('mouseleave', tip.hide)
-      .attr("fill", "#1D2640").style('stroke-width', (d) => {
-        if (this.border) {
-          return '1';
-        } else {
-          return 'none';
-        }
-      })
-      .style('stroke', (d) => {
-        if (this.border) {
-          return '#285CED';
-        } else {
-          return 'none';
-        }
-      });
       this.isInitiated = true;
     }
   

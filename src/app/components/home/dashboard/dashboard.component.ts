@@ -88,10 +88,10 @@ export class DashboardComponent implements OnInit {
       localStorage.removeItem('consulta-dashboard')
     }
     this.maxDate = new Date(moment().set({'hours': 0,'minute': 0, 'second': 0, 'millisecond': 0}).format());
+    this.ultimaActualizacion = moment().format('D MMM hh:mm a')
     this.cambiarRequest()
     this.validarPantalla()
     
-    this.ultimaActualizacion = moment().format('D MMM hh:mm a')
   }
 
 

@@ -12,6 +12,8 @@ import { DashboardService } from 'src/app/shared/service/dashboard.service';
 export class CuadranteFiscalesComponent implements OnInit {
 
   _consultaRequest: any;
+  positionText: number[];
+  ringWidth: number;
   @Input() set consultaRequest(val: any) {
     this._consultaRequest = val;
     this.fechaActual =  moment(new Date(val.anio + '/' +val.mes)).locale('es')
@@ -46,6 +48,10 @@ export class CuadranteFiscalesComponent implements OnInit {
   
   fechaActual: any;
 
+  sizeX: any
+  sizeY: any
+  size: any
+
   constructor(
     private dashboardService: DashboardService,
     private auth: AuthService,
@@ -55,6 +61,30 @@ export class CuadranteFiscalesComponent implements OnInit {
   ngOnInit(): void {
     this.selectedValue =  'Enero a ' + String(this.fechaActual)
     this.obtenerDatosFiscales()
+
+    this.calcularPantalla()
+  }
+
+  calcularPantalla(){
+    let pantallaAncho = (window.innerWidth * .25)
+    if(window.innerWidth > 450){
+      this.sizeX = (pantallaAncho) - (pantallaAncho * .13 ) 
+      this.sizeY = (pantallaAncho / 2) - (window.innerWidth > 1600 ? 5 : 0) + (window.innerWidth < 1300 ? 0 : + 3)
+      this.size = this.sizeX - 16
+      this.positionText = [
+        (window.innerWidth / 40),
+        (window.innerWidth / 9),
+        (window.innerWidth / 6),
+        (window.innerWidth / 9),
+      ]
+      this.ringWidth = (window.innerWidth / 36)
+    }else{
+      this.sizeX = 280
+      this.sizeY = 159
+      this.size = 278
+      this.positionText = [30, 140, 220, 140]
+      this.ringWidth = 30
+    }
   }
 
   obtenerDatosFiscales(): void {

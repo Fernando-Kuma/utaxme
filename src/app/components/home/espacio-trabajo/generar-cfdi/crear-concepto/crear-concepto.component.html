@@ -53,9 +53,9 @@
             <div class="col-12 dialog-texto-titulo">
               Detalles del concepto
             </div>
-            <div class="col-6 head-mb textoM" style="margin-top: 3%;">
+            <div class="col-6 head-mb" style="margin-top: 3%;">
               <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
-                <mat-label>nombre producto/servicio*</mat-label>
+                <mat-label class="textoM">nombre producto/servicio*</mat-label>
                 <input matInput formControlName="nombreProducto" id="nombreProducto" name="nombreProducto"/>
                 <mat-error *ngIf="formulario.nombreProducto.invalid && formulario.nombreProducto.touched && formulario.nombreProducto.errors">
                   <ng-container *ngIf="formulario.nombreProducto.errors.required">
@@ -64,9 +64,9 @@
                 </mat-error>
               </mat-form-field>
             </div>
-            <div class="col-6 head-mb textoM" style="margin-top: 3%;">
+            <div class="col-6 head-mb" style="margin-top: 3%;">
               <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
-                <mat-label>clave producto/servicio*</mat-label>
+                <mat-label class="textoM">clave producto/servicio*</mat-label>
                 <input matInput formControlName="clavaProducto" id="clavaProducto" name="clavaProducto"/>
                 <mat-error *ngIf="formulario.clavaProducto.invalid && formulario.clavaProducto.touched && formulario.clavaProducto.errors">
                   <ng-container *ngIf="formulario.clavaProducto.errors.required">
@@ -75,11 +75,11 @@
                 </mat-error>
               </mat-form-field>
             </div>
-            <div class="col-6 head-mb textoM m0p0">
+            <div class="col-6 head-mb m0p0">
               <div class="row w100m0p0">
                 <div class="col-12" style="margin-top: 3%;">
                   <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
-                    <mat-label>unidad*</mat-label>
+                    <mat-label class="textoM">unidad*</mat-label>
                     <input matInput formControlName="unidad" id="unidad" name="unidad" />
                     <mat-error *ngIf="formulario.unidad.invalid && formulario.unidad.touched && formulario.unidad.errors">
                       <ng-container *ngIf="formulario.unidad.errors.required">
@@ -90,7 +90,7 @@
                 </div>
                 <div class="col-12 head-mb" style="margin-top: 3%;">
                   <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
-                    <mat-label>clave unidad*</mat-label>
+                    <mat-label class="textoM">clave unidad*</mat-label>
                     <input matInput formControlName="clavaUnidad" id="clavaUnidad" name="clavaUnidad" />
                     <mat-error *ngIf="formulario.unidad.invalid && formulario.unidad.touched && formulario.unidad.errors">
                       <ng-container *ngIf="formulario.unidad.errors.required">
@@ -101,7 +101,7 @@
                 </div>
                 <div class="col-12 head-mb" style="margin-top: 3%;">
                   <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
-                    <mat-label>valor unitario*</mat-label>
+                    <mat-label class="textoM">valor unitario*</mat-label>
                     <input matInput formControlName="valorUnitario" id="valorUnitario" name="valorUnitario"/>
                     <span matPrefix style="display: table-caption; height: 22px;">$&nbsp;</span>
                     <mat-error *ngIf="formulario.valorUnitario.invalid && formulario.valorUnitario.touched && formulario.valorUnitario.errors">
@@ -113,11 +113,11 @@
                 </div>
               </div>
             </div>
-            <div class="col-6 head-mb textoM m0p0">
+            <div class="col-6 head-mb m0p0">
               <div class="row w100m0p0">
                 <div class="col-12 " style="margin-top: 5%;">
                   <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
-                    <mat-label>descripción*</mat-label>
+                    <mat-label class="textoM">descripción*</mat-label>
                     <textarea  matInput formControlName="descripcion" id="descripcion" name="descripcion" rows="11"></textarea>
                     <mat-error *ngIf="formulario.descripcion.invalid && formulario.descripcion.touched && formulario.descripcion.errors">
                       <ng-container *ngIf="formulario.descripcion.errors.required">
@@ -141,9 +141,9 @@
                   <mat-checkbox class="example-margin" formControlName="impuestoT">Impuesto trasladado</mat-checkbox>
                 </div>
                 <ng-container *ngIf="form.controls['impuestoT'].value">
-                  <div class="col-6 head-mb textoM" style="margin-top: 3%;">
+                  <div class="col-6 head-mb" style="margin-top: 3%;">
                     <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
-                      <mat-label>IVA</mat-label>
+                      <mat-label class="textoM">IVA</mat-label>
                       <input matInput formControlName="iva" id="iva" name="iva" 
                       (keyup)="validarCaracteres($event, 'iva')" (keypress)="onlyNumbers($event);"/>
                       <span matSuffix style="display: table-caption; height: 22px;">%</span>
@@ -160,9 +160,9 @@
                       </ng-container>
                     </mat-error>
                   </div>
-                  <div class="col-6 textoM" style="margin-top: 3%;">
+                  <div class="col-6" style="margin-top: 3%;">
                       <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
-                        <mat-label>IEPS</mat-label>
+                        <mat-label class="textoM">IEPS</mat-label>
                         <input matInput formControlName="ieps" id="ieps" name="ieps"
                         (keyup)="validarCaracteres($event, 'ieps')" (keypress)="onlyNumbers($event);"/>
                         <span matSuffix style="display: table-caption; height: 22px;">%</span>
@@ -183,9 +183,9 @@
                   <mat-checkbox class="example-margin" formControlName="impuestoR">Impuesto retenido</mat-checkbox>
                 </div>
                 <ng-container *ngIf="form.controls['impuestoR'].value">
-                  <div class="col-6 head-mb textoM" style="margin-top: 3%;">
+                  <div class="col-6 head-mb" style="margin-top: 3%;">
                     <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
-                      <mat-label>isr</mat-label>
+                      <mat-label class="textoM">isr</mat-label>
                       <input matInput formControlName="isr" id="isr" name="isr"
                       (keyup)="validarCaracteres($event, 'isr')" (keypress)="onlyNumbers($event);"/>
                       <span matSuffix style="display: table-caption; height: 22px;">%</span>
@@ -197,9 +197,9 @@
                     </mat-error>
 
                   </div>
-                  <div class="col-6 head-mb textoM" style="margin-top: 3%;">
+                  <div class="col-6 head-mb" style="margin-top: 3%;">
                     <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
-                      <mat-label>iva</mat-label>
+                      <mat-label class="textoM">iva</mat-label>
                       <input matInput formControlName="ivaR" id="ivaR" name="ivaR"
                       (keyup)="validarCaracteres($event, 'ivaR')" (keypress)="onlyNumbers($event);"/>
                       <span matSuffix style="display: table-caption; height: 22px;">%</span>
@@ -223,9 +223,9 @@
                   <mat-checkbox class="example-margin" formControlName="impuestoL">Impuesto local</mat-checkbox>
                 </div>
                 <ng-container *ngIf="form.controls['impuestoL'].value">
-                  <div class="col-6 head-mb textoM" style="margin-top: 3%;">
+                  <div class="col-6 head-mb" style="margin-top: 3%;">
                     <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
-                      <mat-label>impuesto local</mat-label>
+                      <mat-label class="textoM">impuesto local</mat-label>
                       <mat-select formControlName="impuestoLocal" id="impuestoLocal" name="impuestoLocal">
                         <mat-option *ngFor="let item of catalogoImpuestos" [value]="item.clave">
                           {{item.descripcion}}
@@ -233,9 +233,9 @@
                       </mat-select>
                     </mat-form-field>
                   </div>
-                  <div class="col-6 head-mb textoM" style="margin-top: 3%;">
+                  <div class="col-6 head-mb" style="margin-top: 3%;">
                     <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
-                      <mat-label>tasa trasladado</mat-label>
+                      <mat-label class="textoM">tasa trasladado</mat-label>
                       <input matInput formControlName="tasaLocal" id="tasaLocal" name="tasaLocal"
                       (keyup)="validarCaracteres($event, 'tasaLocal')" (keypress)="onlyNumbers($event);"/>
                       <span matSuffix style="display: table-caption; height: 22px;">%</span>

@@ -191,6 +191,11 @@
   display: revert;
 }
 
+::ng-deep .periodo-calendario .mat-form-field-outline {
+  background: white;
+  border-radius: 8px;
+}
+
 @media(max-width: 425px) {
   .content-home {
     background: #FFFFFF;

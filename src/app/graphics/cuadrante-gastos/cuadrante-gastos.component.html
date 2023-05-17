@@ -10,7 +10,7 @@
 
         <div class="row m0p0" >
           <div class="col-7 inicio-texto">
-            <div class="texto-cuadrante" style="margin-top: 45px;">Subtotal de ingresos</div>
+            <div class="texto-cuadrante" style="margin-top: 45px;">Subtotal de gastos</div>
             <div class="texto-cuadrante" style="margin-top: 29px;">IVA</div>
           </div>
           <div class="col-5 final-texto m0p0">
@@ -64,7 +64,7 @@
         </div>
         <div class="col-12 d-flex justify-content-between" style="margin-top: 29px;">
           <div class="texto-factura"><span class="titulo-cuadrante">{{ gastosPeriodo?.facturas }}</span> facturas</div>
-          <div class="texto-hipertexto" (click)="fullSize()">Ver más</div>
+          <div class="texto-hipertexto" *ngIf="mostrarVerMas" (click)="fullSize()">Ver más</div>
         </div>
       </div>
       <div class="row">
@@ -89,7 +89,7 @@
         [data]="dateValue" [barWidth]="width > 1440 ? 30 : width > 450 ?  15 : 5" unit="$" [tickEjeX]="30"></app-prueba-bar>
     </div>
     <div class="row">
-      <div class="col-6"
+      <div class="col-6 textoM"
         style="margin: 0; padding: 0; font-weight: 600; font-size: 10px; letter-spacing: 3px; color: #7B8AA0; padding-top: 7px;">
         Mostrando pág {{ this.pager?.current }} de {{ this.pager?.total }} de
         {{ this.pager?.data.length }} resultados

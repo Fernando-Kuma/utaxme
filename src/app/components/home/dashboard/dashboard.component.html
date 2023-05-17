@@ -16,8 +16,7 @@
               <div class="col-11 m0p0">
                 <span style="font-weight: 400; font-size: 18px; color: #0B112A;">| CONTABILIDAD</span> 
                 <br>
-<!--                 <span style="font-weight: 600; font-size: 11px; color: #838383; margin-left: 10px;">Última actualización: 27 feb 05:49 pm</span>
- -->              
+                <span style="font-weight: 600; font-size: 11px; color: #838383; margin-left: 10px;">Última actualización: {{this.ultimaActualizacion}}</span>           
               </div>
             </div>
           </div>
@@ -59,8 +58,8 @@
 
                 <div class="col-4 calendario-dashboard ">
 
-                  <mat-form-field appearance="outline"  class="input-mobile">
-                    <mat-label>Periodo fiscal</mat-label>
+                  <mat-form-field appearance="outline"  class="periodo-calendario input-mobile" style="width: 180px;">
+                    <mat-label class="textoM">periodo fiscal</mat-label>
                     <input matInput readonly [matDatepicker]="dp" [formControl]="date" [max]="maxDate" class="font-blue">
                     <mat-datepicker-toggle matPrefix [for]="dp"></mat-datepicker-toggle>
                     <mat-datepicker #dp

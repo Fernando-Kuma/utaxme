@@ -548,7 +548,7 @@ body {
 /* Dashboard */
 
 .titulo-cuadrante{
-  font-weight: 700;
+  font-weight: 800;
   font-size: 18px;
   color: #0B112A;
 }
@@ -594,6 +594,10 @@ body {
     background: #ccc !important;
     border-radius: 4px !important;
     border: none !important;
+}
+
+.textoM{
+  text-transform: uppercase;
 }
 
 /* SCROLL FIGMA */

@@ -62,6 +62,8 @@ export class CuadranteGastosComponent implements OnInit {
     left: 80,
   };
   
+  mostrarVerMas: boolean = false
+  
   constructor(
     public router: Router,
     private dashboardService: DashboardService,
@@ -121,6 +123,7 @@ export class CuadranteGastosComponent implements OnInit {
       this.size = 30 * (Math.ceil(this.gastosPeriodo.facturas / 30))
     }
     if(this.gastosPeriodo.facturas > 0){
+      this.mostrarVerMas = this.gastosPeriodo.facturas > this.size
         for (var i = 0; i < this.size; i++) {
             this.dateValue.push({id:i+1, total: this.gastosPeriodo.detalles[i] ? this.gastosPeriodo.detalles[i].total : 0});
         }

@@ -1,8 +1,8 @@
 .titulo-gatos{
   text-align: center;
-  margin-top: 45px;
-  font-weight: 400;
-  font-size: 18px;
+  margin-top: 35px;
+  font-weight: 600;
+  font-size: 16px;
   color: #0B112A;
 }
 
@@ -58,6 +58,13 @@
 .content-wrapper {
   overflow: scroll;
 }
+
+
+::ng-deep .periodo-fiscal .mat-select-arrow {
+  border: 0;
+}
+
+
 @media(max-width: 1920px){
   .cuadro-informacion{
     font-size: 9px; 

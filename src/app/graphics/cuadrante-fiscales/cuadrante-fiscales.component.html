@@ -38,8 +38,9 @@
     Salud Fiscal
   </div>
   <div class="col-xl-6 col-sm-12 fecha-mobile" style="margin-top: 30px;">
-    <mat-form-field appearance="outline" style="width: 100%; font-size: 14px; height: 70px;">
+    <mat-form-field appearance="outline" class="periodo-fiscal" style="width: 100%; font-size: 14px; height: 70px;">
       <mat-label>Periodo fiscal</mat-label>
+      <mat-icon class="img-calendar" matPrefix style="margin-bottom: -5px;"></mat-icon> 
       <mat-select  id="diasCredito" name="diasCredito" [(ngModel)]="selectedValue">
         <mat-option disabled>
           Selecciona una escala 

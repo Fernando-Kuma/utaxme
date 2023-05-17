@@ -25,15 +25,15 @@
             <div class="col-4"></div>
           </div>
           <div class=" w100m0p0" style="margin-top: 1%;">
-            <div class="col-12 textoM" style="margin-top: 3%;">
+            <div class="col-12" style="margin-top: 3%;">
               <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;" >
-                <mat-label>número de orden</mat-label>
+                <mat-label class="textoM">número de orden</mat-label>
                 <input matInput formControlName="nOrden" id="nOrden" name="nOrden">
               </mat-form-field>
             </div>
-            <div class="col-12 textoM" style="margin-top: 3%;">
+            <div class="col-12" style="margin-top: 3%;">
               <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
-                <mat-label>Selecciona motivo de cancelación</mat-label>
+                <mat-label class="textoM">Selecciona motivo de cancelación</mat-label>
                 <mat-select formControlName="motivoCancelacion" id="motivoCancelacion" name="motivoCancelacion"
                 [(ngModel)]="selectedMotivo" (ngModelChange)="actionMostrarSelect()">
                   <mat-option *ngFor="let item of catalogo" [value]="item.descripcion">
@@ -47,9 +47,9 @@
                 </mat-error> -->
               </mat-form-field>
             </div>
-            <div class="col-12 textoM" style="margin-top: 3%;" *ngIf="mostrarListCfdi">
+            <div class="col-12" style="margin-top: 3%;" *ngIf="mostrarListCfdi">
               <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;" >
-                <mat-label>Selecciona número de orden nuevo</mat-label>
+                <mat-label class="textoM">Selecciona número de orden nuevo</mat-label>
                 <mat-select formControlName="nOrdenNuevo" id="nOrdenNuevo" name="nOrdenNuevo"
                 [(ngModel)]="selectedNewOrder" (ngModelChange)="actionNuevaOrden()" (click)="mostrarInfoB()">
                   <mat-option *ngFor="let item of tablaListaCfdiFecha" [value]="item.referencia" >

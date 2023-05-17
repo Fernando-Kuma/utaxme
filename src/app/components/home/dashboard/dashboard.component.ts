@@ -63,6 +63,8 @@ export class DashboardComponent implements OnInit {
 
   spinnerLoadingIngresos: boolean = false;
   spinnerLoadingCumplimiento: boolean = false;
+
+  ultimaActualizacion: any;
   
   
   constructor(
@@ -74,6 +76,7 @@ export class DashboardComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
+    moment.locale('es')
     localStorage.removeItem('back-return');
     this.usuario = this.auth.usuario 
     if(this.usuario == null){
@@ -87,8 +90,8 @@ export class DashboardComponent implements OnInit {
     this.maxDate = new Date(moment().set({'hours': 0,'minute': 0, 'second': 0, 'millisecond': 0}).format());
     this.cambiarRequest()
     this.validarPantalla()
-
-
+    
+    this.ultimaActualizacion = moment().format('D MMM hh:mm a')
   }
 
 

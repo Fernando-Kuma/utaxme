@@ -54,6 +54,8 @@ export class CuadranteIngresosComponent implements OnInit {
     bottom: 50,
     left: 80,
   };
+
+  mostrarVerMas: boolean = false
   
   constructor(
     public router: Router, 
@@ -88,6 +90,7 @@ export class CuadranteIngresosComponent implements OnInit {
       this.size = 30 * (Math.ceil(this.ingresosPeriodo.facturas / 30))
     }
     if(this.ingresosPeriodo.facturas > 0){
+      this.mostrarVerMas = this.ingresosPeriodo.facturas > this.size
         for (var i = 0; i < this.size; i++) {
             this.dateValue.push({id:i+1, total: this.ingresosPeriodo.detalles[i] ? this.ingresosPeriodo.detalles[i].total : 0});
         }

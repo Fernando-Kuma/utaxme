@@ -28,9 +28,9 @@
             </div>
           </div>
           <div class="row w100m0p0 formulario-configuracion">
-            <div class="col-6 textoM" style="margin-top: 3%;">
+            <div class="col-6" style="margin-top: 3%;">
               <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
-                <mat-label>método de pago</mat-label>
+                <mat-label class="textoM">método de pago</mat-label>
                 <mat-select formControlName="metodoPago" id="metodoPago" name="metodoPago">
                   <mat-option *ngFor="let item of catalogoMetodoPago" [value]="item.clave">
                     {{item.descripcion}}
@@ -43,9 +43,9 @@
                 </mat-error>
               </mat-form-field>
             </div>
-            <div class="col-6 textoM" style="margin-top: 3%;">
+            <div class="col-6" style="margin-top: 3%;">
               <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
-                <mat-label>moneda</mat-label>
+                <mat-label class="textoM">moneda</mat-label>
                 <mat-select formControlName="moneda" id="moneda" name="moneda">
                   <mat-option *ngFor="let item of catalogoMoneda" [value]="item.clave">
                     {{item.descripcion}}
@@ -58,9 +58,9 @@
                 </mat-error>
               </mat-form-field>
             </div>
-            <div class="col-6 textoM" style="margin-top: 3%;">
+            <div class="col-6" style="margin-top: 3%;">
               <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
-                <mat-label>condiciones de pago</mat-label>
+                <mat-label class="textoM">condiciones de pago</mat-label>
                 <input matInput formControlName="condicionesPago" id="condicionesPago" name="condicionesPago">
                 <mat-error *ngIf="formulario.condicionesPago.invalid && formulario.condicionesPago.touched && formulario.condicionesPago.errors">
                   <ng-container *ngIf="formulario.condicionesPago.errors.required">
@@ -69,9 +69,9 @@
                 </mat-error>
               </mat-form-field>
             </div>
-            <div class="col-6 textoM" style="margin-top: 3%;">
+            <div class="col-6" style="margin-top: 3%;">
               <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
-                <mat-label>días de crédito</mat-label>
+                <mat-label class="textoM">días de crédito</mat-label>
                 <mat-select formControlName="diasCredito" id="diasCredito" name="diasCredito">
                   <mat-option *ngFor="let item of catalogoDiasCredito" [value]="item.clave" (click)="changeDiasCredito()">
                     {{item.descripcion}}
@@ -86,9 +86,9 @@
             </div>
 
             <ng-container *ngIf="this.data.dataFormulario.configuracionGeneral">
-              <div class="col-6 textoM" style="margin-top: 3%;">
+              <div class="col-6" style="margin-top: 3%;">
                 <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
-                  <mat-label>periocidad</mat-label>
+                  <mat-label class="textoM">periocidad</mat-label>
                   <mat-select formControlName="periodicidad" id="periodicidad" name="periodicidad">
                     <mat-option *ngFor="let item of catalogoPeriocidad" [value]="item.clave">
                       {{item.descripcion}}
@@ -101,9 +101,9 @@
                   </mat-error>
                 </mat-form-field>
               </div>
-              <div class="col-6 textoM" style="margin-top: 3%;">
+              <div class="col-6" style="margin-top: 3%;">
                 <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
-                  <mat-label>meses</mat-label>
+                  <mat-label class="textoM">meses</mat-label>
                   <mat-select formControlName="meses" id="meses" name="meses">
                     <mat-option *ngFor="let item of catalogoMeses" [value]="item.clave">
                       {{item.descripcion}}
@@ -116,9 +116,9 @@
                   </mat-error>
                 </mat-form-field>
               </div>
-              <div class="col-6 textoM" style="margin-top: 3%;">
+              <div class="col-6" style="margin-top: 3%;">
                 <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
-                  <mat-label>año</mat-label>
+                  <mat-label class="textoM">año</mat-label>
                   <input matInput formControlName="anio" id="anio" name="anio">
                   <mat-error *ngIf="formulario.anio.invalid && formulario.anio.touched && formulario.anio.errors">
                     <ng-container *ngIf="formulario.anio.errors.required">

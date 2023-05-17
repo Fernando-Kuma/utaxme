@@ -24,9 +24,9 @@
       <div class="container ">
         <div class=" cnt-mb" >  
           <div class="row w100m0p0 formulario-configuracion">
-            <div class="col-6 textoM" style="margin-top: 2%;">
+            <div class="col-6" style="margin-top: 2%;">
               <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
-                <mat-label>Escribe el RFC Receptor</mat-label>
+                <mat-label class="textoM">Escribe el RFC Receptor</mat-label>
                 <input matInput formControlName="rfc" id="rfc" name="rfc" minlength="12"  maxlength="13" (keypress)="caracteresValidosRFC($event)" (keyup)="setMayusculas($event, 'rfc')"/>
                 <mat-error *ngIf="formulario.rfc.invalid && formulario.rfc.touched && formulario.rfc.errors">
                   <ng-container *ngIf="formulario.rfc.errors.required">
@@ -38,9 +38,9 @@
                 </mat-error>
               </mat-form-field>
             </div>
-            <div class="col-6 textoM" style="margin-top: 2%;">
+            <div class="col-6" style="margin-top: 2%;">
               <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
-                <mat-label>Escribe la Razón Social Receptor (Sin espacios)</mat-label>
+                <mat-label class="textoM">Escribe la Razón Social Receptor (Sin espacios)</mat-label>
                 <input matInput formControlName="razonSocial" id="razonSocial" name="razonSocial" minlength="3" (keypress)="caracteresValidosRS($event)" (keyup)="setMayusculas($event, 'razonSocial')" />
                 <mat-error *ngIf="formulario.razonSocial.invalid && formulario.razonSocial.touched && formulario.razonSocial.errors">
                   <ng-container *ngIf="formulario.razonSocial.errors.required">
@@ -52,9 +52,9 @@
                 </mat-error>
               </mat-form-field>
             </div>
-            <div class="col-6 textoM" style="margin-top: 2%;">
+            <div class="col-6" style="margin-top: 2%;">
               <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
-                <mat-label>régimen fiscal receptor</mat-label>
+                <mat-label class="textoM">régimen fiscal receptor</mat-label>
                 <mat-select formControlName="regimenFiscal" id="regimenFiscal" name="regimenFiscal">
                   <mat-option *ngFor="let item of catalogos?.catalogoSatRegimenFiscales" [value]="item.clave">
                     {{item.descripcion}}
@@ -67,9 +67,9 @@
                 </mat-error>
               </mat-form-field>
             </div>
-            <div class="col-6 textoM" style="margin-top: 2%;">
+            <div class="col-6" style="margin-top: 2%;">
               <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
-                <mat-label>código postal</mat-label>
+                <mat-label class="textoM">código postal</mat-label>
                 <input matInput formControlName="codigoPostal" id="codigoPostal" name="codigoPostal" minlength="5"  maxlength="5" (keypress)="onlyNumbers($event);"/>
                 <mat-error *ngIf="formulario.codigoPostal.invalid && formulario.codigoPostal.touched && formulario.codigoPostal.errors">
                   <ng-container *ngIf="formulario.codigoPostal.errors.required">
@@ -81,9 +81,9 @@
                 </mat-error>
               </mat-form-field>
             </div>
-            <div class="col-6 textoM" style="margin-top: 2%;">
+            <div class="col-6" style="margin-top: 2%;">
               <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
-                <mat-label>correo electrónico</mat-label>
+                <mat-label class="textoM">correo electrónico</mat-label>
                 <input matInput formControlName="correo" id="correo" name="correo" minlength="3"/>
                 <mat-error *ngIf="formulario.correo.invalid && formulario.correo.touched && formulario.correo.errors">
                   <ng-container *ngIf="formulario.correo.errors.required">

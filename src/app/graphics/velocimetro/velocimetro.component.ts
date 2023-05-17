@@ -265,20 +265,20 @@ export class VelocimetroComponent implements AfterViewInit, OnInit {
             .attr("x", (this.positionText[0]))				
             .attr("y", (this.positionText[1]))
             .style("font-size", this.fontSize) 
-            .style("font-weight", "600") 
-            .style("font-family","sans-serif")
+            .style("font-weight", "500") 
+            .style("font-family","Montserrat")
             .style("fill", this.colorLabel)
-            .text((100 - (this._value * 10)).toFixed(2) + '%');
+            .text((100 - (this._value * 10)).toFixed(0) + '%');
 
           
           this.svg.append("text")
             .attr("x", (this.positionText[2]))				
             .attr("y", (this.positionText[3]))
             .style("font-size", this.fontSize) 
-            .style("font-weight", "600") 
-            .style("font-family","sans-serif")
+            .style("font-weight", "500") 
+            .style("font-family","Montserrat")
             .style("fill", this.colorLabel)
-            .text((this._value * 10).toFixed(2) + '%');
+            .text((this._value * 10).toFixed(0) + '%');
 
         pointer = pg.append('path')
           .attr('d', pointerLine)

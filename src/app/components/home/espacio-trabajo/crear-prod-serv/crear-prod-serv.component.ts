@@ -95,7 +95,7 @@ export class CrearProdServComponent implements OnInit {
   onKeyDownEvent(event: any){
     let filtro = event.target.value;
     let busquedaTabla = this.tablaListaConceptos.filter( item =>
-      item?.productoServicio?.toLowerCase().includes(filtro.toLowerCase())
+      item?.productoServicio?.toLowerCase().includes(filtro.toLowerCase()) || item?.descripcion?.toLowerCase().includes(filtro.toLowerCase())
     );
     this.paginador(busquedaTabla);
 

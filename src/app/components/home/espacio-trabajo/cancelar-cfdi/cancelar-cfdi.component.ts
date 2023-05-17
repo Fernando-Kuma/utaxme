@@ -23,6 +23,7 @@ import { AlertService } from 'src/app/shared/utils/alertas';
   styleUrls: ['./cancelar-cfdi.component.css'],
 })
 export class CancelarCfdiComponent implements OnInit {
+  maxDate: Date;
   @Input() set consultaRequest(val: any) {
     this._consultaRequest = val;
   }
@@ -54,6 +55,7 @@ export class CancelarCfdiComponent implements OnInit {
 
   ngOnInit(): void {
     this.nombreCliente = this.auth.usuario.nombre;
+    this.maxDate = new Date(moment().format());
     this.crearForm();
   }
 
@@ -147,6 +149,16 @@ export class CancelarCfdiComponent implements OnInit {
     if(moment(this.form.get('final').value).diff(moment(this.form.get('inicial').value), 'days') < 0){
       this.alertService.error("<b>La fecha fin no debe ser menor a la fecha inicio</b>")
       return ;
+    }
+    if(this.form.get('inicial').value == ''){
+      this.form.get('final').setErrors({ diff: true });
+      this.alertService.error("<b>Ingresa una fecha inicio y una fecha fin </b>")
+      return
+    }
+    if(this.form.get('final').value == ''){
+      this.form.get('final').setErrors({ diff: true });
+      this.alertService.error("<b>Ingresa una fecha inicio y una fecha fin</b>")
+      return
     }
     let req = {
       rfc: this.auth.usuario.cliente.rfc,

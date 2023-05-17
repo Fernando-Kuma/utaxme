@@ -32,17 +32,6 @@ export class ConfirmarCancelarDialogComponent implements OnInit {
     this.dialogRef.close(close);
   }
 
-  regresar(cfdi: any) {
-    const dialogRef = this.dialog.open(
-      CancelarDialogComponent, 
-      this.dialogService.cancelarCfdi(cfdi)
-    );
-    dialogRef.afterClosed().subscribe(
-      data => {
-      }
-    );
-  }
-
   cancelar(){
     this.dialogRef3.close(true);
     /* this.closeDialog(true); */

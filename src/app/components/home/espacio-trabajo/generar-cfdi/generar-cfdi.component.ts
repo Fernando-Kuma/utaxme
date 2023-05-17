@@ -117,7 +117,12 @@ export class GenerarCfdiComponent implements OnInit {
   }
 
   cancelarCFDI(){
+    this.formularioAvanzado.configuracionGeneral = false
     this.form.reset()
+    Object.keys(this.form.controls).forEach(key => {
+      this.form.get(key).enable();
+      this.form.get(key).setValue(null);
+    });
     this.tablaListaConceptos = []
   }
 
@@ -266,8 +271,8 @@ export class GenerarCfdiComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       data => {
         if(data){
-          const dialogRefConfirm = this.dialog.open( ConfirmDialogComponent, this.confirmDialogService.nuevoCliente() );
-          dialogRefConfirm.afterClosed().subscribe( data => { this.listaClientes() });
+          this.dialog.open( ConfirmDialogComponent, this.confirmDialogService.nuevoCliente() );
+          this.obtenerListaClientesFrecuentes();
         }
       }
     );
@@ -515,8 +520,6 @@ export class GenerarCfdiComponent implements OnInit {
   }
 
 
-  clienteFrecuente(){
-  }
   
   public onlyNumbers(event) {
     let k;
@@ -551,7 +554,7 @@ export class GenerarCfdiComponent implements OnInit {
 
   public caracteresValidosRS(event) {
     let k = event.key;
-    let reg = /^[ñÑA-Za-z0-9-. ]+$/g;
+    let reg = /^[ñÑA-Za-z0-9-.]+$/g;
     if(!reg.test(k)){
       return false
     }

@@ -135,7 +135,7 @@ export class NuevoClienteComponent {
   }
   public caracteresValidosRS(event) {
     let k = event.key;
-    let reg = /^[ñÑA-Za-z0-9-. ]+$/g;
+    let reg = /^[ñÑA-Za-z0-9-.]+$/g;
     if(!reg.test(k)){
       return false
     }

@@ -26,7 +26,7 @@
           <div class="row w100m0p0 formulario-configuracion">
             <div class="col-6" style="margin-top: 2%;">
               <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
-                <mat-label class="textoM">Escribe el RFC Receptor</mat-label>
+                <mat-label class="textoM">RFC Receptor</mat-label>
                 <input matInput formControlName="rfc" id="rfc" name="rfc" minlength="12"  maxlength="13" (keypress)="caracteresValidosRFC($event)" (keyup)="setMayusculas($event, 'rfc')"/>
                 <mat-error *ngIf="formulario.rfc.invalid && formulario.rfc.touched && formulario.rfc.errors">
                   <ng-container *ngIf="formulario.rfc.errors.required">
@@ -40,7 +40,7 @@
             </div>
             <div class="col-6" style="margin-top: 2%;">
               <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
-                <mat-label class="textoM">Escribe la Razón Social Receptor (Sin espacios)</mat-label>
+                <mat-label class="textoM">Razón Social Receptor (Sin espacios)</mat-label>
                 <input matInput formControlName="razonSocial" id="razonSocial" name="razonSocial" minlength="3" (keypress)="caracteresValidosRS($event)" (keyup)="setMayusculas($event, 'razonSocial')" />
                 <mat-error *ngIf="formulario.razonSocial.invalid && formulario.razonSocial.touched && formulario.razonSocial.errors">
                   <ng-container *ngIf="formulario.razonSocial.errors.required">

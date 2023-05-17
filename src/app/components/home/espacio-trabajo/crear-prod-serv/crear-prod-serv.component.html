@@ -87,19 +87,14 @@
 
                     <thead style="margin-bottom: 10px;">
                       <tr class="textoM">
-                        <th class="punta-tittle tab-colum txt-tab">
+                        <th class="punta-tittle tab-colum txt-tab" style="width: 35vw;">
                           <span style="cursor:default!important;">
-                            clave
+                            descripción
                           </span>
                         </th>
                         <th class="punta-tittle txt-tab">
                           <span style="cursor:default!important;">
                             nombre
-                          </span>
-                        </th>
-                        <th class="punta-tittle tab-colum txt-tab" style="width: 300px;">
-                          <span style="cursor:default!important;">
-                            descripción
                           </span>
                         </th>
                         <th class="punta-tittle tab-colum txt-tab">
@@ -126,13 +121,10 @@
                     <tbody class="table-scroll" style="border: solid 1px #ffffff; ">
                       <tr *ngFor="let item of tablaLista">
                         <td class="tab-colum txt-tab">
-                          {{item.idConceptoCliente}}
+                          {{item.descripcion}}
                         </td>
                         <td class="txt-tab" >
                           {{item.productoServicio}}
-                        </td>
-                        <td class="tab-colum txt-tab">
-                          {{item.descripcion}}
                         </td>
                         <td class="tab-colum txt-tab">
                           {{item.unidad}}

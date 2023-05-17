@@ -70,9 +70,6 @@
                         <mat-label>Buscar por número de orden</mat-label>
                         <input matInput formControlName="numeroOrden" id="inputOrden" name="tituloPaquete"
                           (keyup)="actionDisabledFecha()" />
-                        <!-- <mat-error *ngIf="!form.controls['tituloPaquete'].valid && form.controls['tituloPaquete'].touched">
-                      {{ getError() }}
-                    </mat-error> -->
                       </mat-form-field>
                     </div>
 
@@ -88,7 +85,7 @@
                         (click)="picker.open()">
                         <mat-label>Fecha de inicio</mat-label>
                         <input readonly formControlName="inicial" id='inputInicial' matInput [matDatepicker]="picker"
-                          (dateChange)="actionDisabledOrden()">
+                          (dateChange)="actionDisabledOrden()" [max]="maxDate">
                         <mat-hint>DD/MM/AAAA</mat-hint>
                         <mat-datepicker-toggle matSuffix [for]="picker">
                           <mat-icon matDatepickerToggleIcon class="image-calendar-date-picker"></mat-icon>
@@ -101,7 +98,7 @@
                         (click)="picker2.open()">
                         <mat-label>Fecha final</mat-label>
                         <input readonly formControlName="final" id='inputFinal' matInput [matDatepicker]="picker2"
-                          (dateChange)="actionDisabledOrden()">
+                          (dateChange)="actionDisabledOrden()" [max]="maxDate">
                         <mat-hint>DD/MM/AAAA</mat-hint>
                         <mat-datepicker-toggle matSuffix [for]="picker2">
                           <mat-icon matDatepickerToggleIcon class="image-calendar-date-picker"></mat-icon>
@@ -118,9 +115,6 @@
                         <mat-label>Buscar por número de orden</mat-label>
                         <input matInput formControlName="numeroOrden" id="inputOrden" name="tituloPaquete"
                           (keyup)="actionDisabledFecha()" />
-                        <!-- <mat-error *ngIf="!form.controls['tituloPaquete'].valid && form.controls['tituloPaquete'].touched">
-                      {{ getError() }}
-                    </mat-error> -->
                       </mat-form-field>
                     </div>
                   </div>
@@ -132,7 +126,6 @@
                         Regresar
                       </button>
                       <button mat-button class="btn-utaxme btn-busq-cfdi"
-                        style=""
                         (click)="listaCfdi()">
                         Buscar facturas
                       </button>

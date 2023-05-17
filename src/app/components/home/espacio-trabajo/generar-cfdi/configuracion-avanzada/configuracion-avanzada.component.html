@@ -96,7 +96,7 @@
                   </mat-select>
                   <mat-error *ngIf="formulario.periodicidad.invalid && formulario.periodicidad.touched && formulario.periodicidad.errors">
                     <ng-container *ngIf="formulario.periodicidad.errors.required">
-                      Seleccione los días de crédito
+                      Seleccione la periocidad
                     </ng-container>
                   </mat-error>
                 </mat-form-field>
@@ -111,7 +111,7 @@
                   </mat-select>
                   <mat-error *ngIf="formulario.meses.invalid && formulario.meses.touched && formulario.meses.errors">
                     <ng-container *ngIf="formulario.meses.errors.required">
-                      Seleccione los días de crédito
+                      Seleccione los meses
                     </ng-container>
                   </mat-error>
                 </mat-form-field>
@@ -119,10 +119,13 @@
               <div class="col-6" style="margin-top: 3%;">
                 <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                   <mat-label class="textoM">año</mat-label>
-                  <input matInput formControlName="anio" id="anio" name="anio">
+                  <input matInput formControlName="anio" id="anio" name="anio" minlength="4"  maxlength="4" (keypress)="onlyNumbers($event);">
                   <mat-error *ngIf="formulario.anio.invalid && formulario.anio.touched && formulario.anio.errors">
                     <ng-container *ngIf="formulario.anio.errors.required">
-                      Seleccione los días de crédito
+                      Ingrese el año
+                    </ng-container>
+                    <ng-container *ngIf="formulario.anio.errors.minlength">
+                      Ingresa el año completo
                     </ng-container>
                   </mat-error>
                 </mat-form-field>

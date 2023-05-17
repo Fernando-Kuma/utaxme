@@ -58,16 +58,26 @@ export class ConfiguracionAvanzadaComponent{
   }
 
   crearForm(){
+
     this.form = this.formBuilder.group({      
       metodoPago: [null, [Validators.required]],
       moneda: [null, [Validators.required]],
       condicionesPago: [null, [Validators.required]],
       diasCredito: [null, [Validators.required]],
       
-      periodicidad: [null, [Validators.required]],
-      meses: [null, [Validators.required]],
-      anio: [null, [Validators.required]],
+      periodicidad: [null],
+      meses: [null],
+      anio: [null],
     });
+
+    if(this.data.dataFormulario.configuracionGeneral){
+      this.form.controls['periodicidad'].setValidators([Validators.required])
+      this.form.controls['meses'].setValidators([Validators.required])
+      this.form.controls['anio'].setValidators([Validators.required, Validators.minLength(4)])
+
+    }
+
+
   }
 
   changeDiasCredito() {
@@ -126,6 +136,17 @@ export class ConfiguracionAvanzadaComponent{
   }
 
   guardarForm(){
+    if(this.form.invalid){
+      Object.keys(this.form.controls).forEach((field) => {
+        console.log(field)
+        const control = this.form.get(field);
+        if (!control.valid) {
+            control.markAsTouched({ onlySelf: true });
+        }
+      });
+      return
+    }
+
     this.formularioAvanzado.metodoPago = this.form.value.metodoPago;
     this.formularioAvanzado.moneda = this.form.value.moneda;
     this.formularioAvanzado.condiciones = this.form.value.condicionesPago;
@@ -139,6 +160,12 @@ export class ConfiguracionAvanzadaComponent{
     this.closeDialog()
   }
 
+  public onlyNumbers(event) {
+    let k;
+    k = event.charCode;
+    return (!(k > 31 && (k < 48 || k > 57)));
+  }
+  
   get formulario() {
     return this.form.controls;
   }

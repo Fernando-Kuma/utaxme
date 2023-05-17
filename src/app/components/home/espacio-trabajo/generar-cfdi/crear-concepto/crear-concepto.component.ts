@@ -136,6 +136,15 @@ export class CrearConceptoComponent {
   }
 
   guardarConcepto(){
+    if(this.form.invalid){
+      Object.keys(this.form.controls).forEach((field) => {
+          const control = this.form.get(field);
+          if (!control.valid) {
+              control.markAsTouched({ onlySelf: true });
+          }
+      });
+      return;
+    }
 
     if(this.form.controls['ivaR'].value > 0 && this.form.controls['iva'].value <= 0 ){
       this.form.get('iva')?.setErrors({ impuesto: true });

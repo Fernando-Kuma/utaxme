@@ -124,7 +124,7 @@ export class DashboardComponent implements OnInit {
       anio: moment(this.date.value).format("YYYY")
     }
     localStorage.setItem('consulta-dashboard', JSON.stringify(this.requestDashboard));
-
+ 
     this.obtenerIngresosEngresos()
     this.obtenerCumplimientoFiscal()
   }

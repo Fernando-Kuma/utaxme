@@ -46,11 +46,6 @@ export const MY_FORMATS = {
 })
 export class DashboardComponent implements OnInit {
 
-  _consultaRequest: any;
-  @Input() set consultaRequest(val: any) {
-    this._consultaRequest = val;
-  }
-
   cumplimientoFiscal: CumplimientoFiscal
   gastosPeriodo: ComprobantePeriodo = new ComprobantePeriodo;
   ingresosPeriodo: ComprobantePeriodo = new ComprobantePeriodo;
@@ -236,13 +231,14 @@ export class DashboardComponent implements OnInit {
     if(this.gastosPeriodo.total == 0){
       this.alertService.warn('<b>No hay ingresos ni egresos en este periodo.</b>');
     }else{
+      console.log('descarga excel')
       this.descargarExcelPeticion()
     }
     
   }
 
   descargarExcelPeticion(){
-    this.dashboardService.obtenerReporte(this._consultaRequest).subscribe({
+    this.dashboardService.obtenerReporte(this.requestDashboard).subscribe({
       next: (response) => {
         if(response != null){
           const linkDescarga = document.createElement('a');
@@ -250,7 +246,7 @@ export class DashboardComponent implements OnInit {
           document.body.appendChild(linkDescarga);
           linkDescarga.setAttribute('style', 'display: none');
           linkDescarga.href = url;
-          linkDescarga.download = 'Reporte_Contable_'+this._consultaRequest.rfc+"_"+ this._consultaRequest.mes+"_"+this._consultaRequest.anio+".xls";
+          linkDescarga.download = 'Reporte_Contable_'+this.requestDashboard.rfc+"_"+ this.requestDashboard.mes+"_"+this.requestDashboard.anio+".xls";
           linkDescarga.click();
           window.URL.revokeObjectURL(url);
           linkDescarga.remove();

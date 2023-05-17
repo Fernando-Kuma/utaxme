@@ -6,7 +6,7 @@
   display: block;
 }
 
-@media(max-width: 425px) {
+@media(max-width: 450px) {
 
   .vista-mobile {
     flex-direction: column-reverse;

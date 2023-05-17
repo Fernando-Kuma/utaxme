@@ -12,7 +12,7 @@
   background-repeat: no-repeat;
 }
 
-@media(max-width: 425px){
+@media(max-width: 450px){
 .page-background {
   background: #FFFFFF;
 }

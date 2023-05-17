@@ -9,7 +9,7 @@ mat-toolbar{
     align-items: center;
 }
 
-@media(max-width: 425px){
+@media(max-width: 450px){
 
   mat-toolbar{
     display: none;

@@ -196,7 +196,7 @@
   border-radius: 8px;
 }
 
-@media(max-width: 425px) {
+@media(max-width: 450px) {
   .content-home {
     background: #FFFFFF;
   }

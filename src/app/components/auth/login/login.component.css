@@ -131,7 +131,7 @@ mat-card {
   }
 }
 
-@media(max-width: 425px){
+@media(max-width: 450px){
   .content{
     background: #FFFFFF;
   }

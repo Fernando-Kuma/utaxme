@@ -177,7 +177,7 @@ color: #0B112A;
   background-repeat: no-repeat;
 }
 
-@media(max-width: 425px){
+@media(max-width: 450px){
  .graficos-content{
   display: none;
  }

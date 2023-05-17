@@ -9,7 +9,7 @@
   display: block;
 }
 
-@media(max-width: 425px){
+@media(max-width: 450px){
 .view-mobile{
   display: none;
 }

@@ -183,7 +183,7 @@ body {
 
 .btn-utaxme-secondary {
   background-color: #ffffff;
-  border: 2px solid #285ced;
+  border: 2px solid #285ced !important;
   border-radius: 2px !important;
   font-size: 1rem;
   color: #285ced;

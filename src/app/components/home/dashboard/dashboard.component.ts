@@ -81,7 +81,7 @@ export class DashboardComponent implements OnInit {
     if(consultaFull != null){
       this.date.setValue(moment(new Date(consultaFull.anio + '/' +consultaFull.mes)).locale('es'))
     }
-    this.maxDate = new Date(moment().set({'hours': 0,'minute': 0, 'second': 0, 'millisecond': 0}).format());
+    this.maxDate = new Date();
     this.ultimaActualizacion = moment().format('D MMM hh:mm a')
     this.cambiarRequest()
     this.validarPantalla()

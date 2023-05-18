@@ -160,11 +160,6 @@ export class DashboardComponent implements OnInit {
   obtenerCumplimientoFiscal(): void {
     this.spinnerLoadingCumplimiento = true;
     this.dashboardService.obtenerCumplimientoFiscal(this.requestDashboard).subscribe((resp : CumplimientoFiscal) => {
-      /* console.log("Respuesta cumplimiento:",resp);
-      //let mes = moment(resp.mes).format("MM")
-      let mes = moment(resp.anio +"-"+resp.mes+"-01").locale("es").format("MMMM")
-      console.log("Respuesta Mes:",mes);
-      resp.mesTexto = moment(resp.anio +"-"+resp.mes+"-01").locale("es").format('MMMM YYYY'); */
       resp.estatus = resp.estatus.toLowerCase()
       this.cumplimientoFiscal = resp;
       this.cumplimientoFiscal.listDocumentos.forEach(element => {
@@ -244,7 +239,7 @@ export class DashboardComponent implements OnInit {
   }
 
   descargarExcelPeticion(){
-    this.dashboardService.obtenerReporte(this._consultaRequest).subscribe({
+    this.dashboardService.obtenerReporte(this.requestDashboard).subscribe({
       next: (response) => {
         if(response != null){
           const linkDescarga = document.createElement('a');
@@ -252,7 +247,7 @@ export class DashboardComponent implements OnInit {
           document.body.appendChild(linkDescarga);
           linkDescarga.setAttribute('style', 'display: none');
           linkDescarga.href = url;
-          linkDescarga.download = 'Reporte_Contable_'+this._consultaRequest.rfc+"_"+ this._consultaRequest.mes+"_"+this._consultaRequest.anio+".xls";
+          linkDescarga.download = 'Reporte_Contable_'+this.requestDashboard.rfc+"_"+ this.requestDashboard.mes+"_"+this.requestDashboard.anio+".xls";
           linkDescarga.click();
           window.URL.revokeObjectURL(url);
           linkDescarga.remove();

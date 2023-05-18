@@ -13,6 +13,7 @@ import { DashboardService } from 'src/app/shared/service/dashboard.service';
 export class CuadranteCumplimientoComponent implements OnInit {
 
   response: CumplimientoFiscal;
+  mes: string;
   @Input() set data(val: any) {
     this.response = val;
   }
@@ -24,7 +25,7 @@ export class CuadranteCumplimientoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    
+    this.mes = new Intl.DateTimeFormat('es-ES', { month: 'long'}).format(new Date(this.response.anio,(Number(this.response.mes) -1), 1));
   }
 
 

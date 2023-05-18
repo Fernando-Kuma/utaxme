@@ -196,6 +196,10 @@
   border-radius: 8px;
 }
 
+::ng-deep .periodo-calendario .mat-calendar-period-button{
+  pointer-events: none;
+}
+
 @media(max-width: 450px) {
   .content-home {
     background: #FFFFFF;

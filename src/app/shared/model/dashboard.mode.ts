@@ -6,6 +6,7 @@ export class CumplimientoFiscal {
   saldoFavor?: number;
   flagSaldoFavorUtilizado?: boolean;
   estatus?: string;
+  mesTexto?: string;
   listDocumentos?: ListaDocumentos[];
 }
 

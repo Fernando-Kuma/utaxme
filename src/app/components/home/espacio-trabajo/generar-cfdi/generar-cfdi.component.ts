@@ -117,6 +117,7 @@ export class GenerarCfdiComponent implements OnInit {
   }
 
   cancelarCFDI(){
+    this.form.reset();
     Object.keys(this.form.controls).forEach(key => {
       this.form.get(key).enable();
       this.form.get(key).setValue('');

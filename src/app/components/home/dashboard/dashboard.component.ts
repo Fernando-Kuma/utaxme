@@ -46,13 +46,18 @@ export const MY_FORMATS = {
 })
 export class DashboardComponent implements OnInit {
 
+  _consultaRequest: any;
+  @Input() set consultaRequest(val: any) {
+    this._consultaRequest = val;
+  }
+
   cumplimientoFiscal: CumplimientoFiscal
   gastosPeriodo: ComprobantePeriodo = new ComprobantePeriodo;
   ingresosPeriodo: ComprobantePeriodo = new ComprobantePeriodo;
 
   usuario: Usuario;
   datosCliente: Cliente;
-  date = new FormControl(moment());
+  date = new FormControl(new Date());
   maxDate: Date;
   requestDashboard: any;
 
@@ -71,7 +76,6 @@ export class DashboardComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-    moment.locale('es')
     localStorage.removeItem('back-return');
     this.usuario = this.auth.usuario 
     if(this.usuario == null){
@@ -79,13 +83,14 @@ export class DashboardComponent implements OnInit {
     }
     let consultaFull = JSON.parse(localStorage.getItem('consulta-dashboard')) 
     if(consultaFull != null){
-      this.date.setValue(moment(new Date(consultaFull.anio + '/' +consultaFull.mes)).locale('es'))
+      console.log("Fecha completa:",consultaFull.anio +"-"+consultaFull.mes+"-01")
+      this.date.setValue(moment(consultaFull.anio +"-"+consultaFull.mes+"-01"));
     }
     this.maxDate = new Date(moment().set({'hours': 0,'minute': 0, 'second': 0, 'millisecond': 0}).format());
-    this.ultimaActualizacion = moment().format('D MMM hh:mm a')
     this.cambiarRequest()
     this.validarPantalla()
     
+    this.ultimaActualizacion = moment().format('D MMM hh:mm a')
   }
 
 
@@ -120,17 +125,18 @@ export class DashboardComponent implements OnInit {
   cambiarRequest(){
     this.requestDashboard = {
       rfc: this.auth.usuario.cliente.rfc,
-      mes: moment(this.date.value).format("M"),
+      mes: moment(this.date.value).format("MM"),
       anio: moment(this.date.value).format("YYYY")
     }
-    localStorage.setItem('consulta-dashboard', JSON.stringify(this.requestDashboard));
  
+    console.log('requestDashboard:' ,this.requestDashboard);
     this.obtenerIngresosEngresos()
     this.obtenerCumplimientoFiscal()
   }
 
   obtenerIngresosEngresos(): void {
     this.spinnerLoadingIngresos = true;
+    localStorage.setItem('consulta-dashboard', JSON.stringify(this.requestDashboard));
     this.dashboardService.obtenerIngresosGastos(this.requestDashboard).subscribe(
       (response) => {
         this.ingresosPeriodo = new ComprobantePeriodo
@@ -153,11 +159,12 @@ export class DashboardComponent implements OnInit {
 
   obtenerCumplimientoFiscal(): void {
     this.spinnerLoadingCumplimiento = true;
-    this.dashboardService.obtenerCumplimientoFiscal(this.requestDashboard).subscribe((resp) => {
-      let mes = moment(resp.anio + '-' + resp.mes)
-      mes.locale('es')
-      let mesString = mes.format('MMMM');
-      resp.mes = mesString
+    this.dashboardService.obtenerCumplimientoFiscal(this.requestDashboard).subscribe((resp : CumplimientoFiscal) => {
+      /* console.log("Respuesta cumplimiento:",resp);
+      //let mes = moment(resp.mes).format("MM")
+      let mes = moment(resp.anio +"-"+resp.mes+"-01").locale("es").format("MMMM")
+      console.log("Respuesta Mes:",mes);
+      resp.mesTexto = moment(resp.anio +"-"+resp.mes+"-01").locale("es").format('MMMM YYYY'); */
       resp.estatus = resp.estatus.toLowerCase()
       this.cumplimientoFiscal = resp;
       this.cumplimientoFiscal.listDocumentos.forEach(element => {
@@ -231,14 +238,13 @@ export class DashboardComponent implements OnInit {
     if(this.gastosPeriodo.total == 0){
       this.alertService.warn('<b>No hay ingresos ni egresos en este periodo.</b>');
     }else{
-      console.log('descarga excel')
       this.descargarExcelPeticion()
     }
     
   }
 
   descargarExcelPeticion(){
-    this.dashboardService.obtenerReporte(this.requestDashboard).subscribe({
+    this.dashboardService.obtenerReporte(this._consultaRequest).subscribe({
       next: (response) => {
         if(response != null){
           const linkDescarga = document.createElement('a');
@@ -246,7 +252,7 @@ export class DashboardComponent implements OnInit {
           document.body.appendChild(linkDescarga);
           linkDescarga.setAttribute('style', 'display: none');
           linkDescarga.href = url;
-          linkDescarga.download = 'Reporte_Contable_'+this.requestDashboard.rfc+"_"+ this.requestDashboard.mes+"_"+this.requestDashboard.anio+".xls";
+          linkDescarga.download = 'Reporte_Contable_'+this._consultaRequest.rfc+"_"+ this._consultaRequest.mes+"_"+this._consultaRequest.anio+".xls";
           linkDescarga.click();
           window.URL.revokeObjectURL(url);
           linkDescarga.remove();

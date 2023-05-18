@@ -16,8 +16,7 @@ export class CuadranteFiscalesComponent implements OnInit {
   ringWidth: number;
   @Input() set consultaRequest(val: any) {
     this._consultaRequest = val;
-    this.fechaActual =  moment(new Date(val.anio + '/' +val.mes)).locale('es')
-    this.fechaActual = this.fechaActual.format('MMMM YYYY')
+    this.fechaActual =  moment(val.anio + '-' +val.mes + '-01').locale('es').format('MMMM YYYY')
     
     console.log(this.fechaActual)
     this.obtenerSaludFiscal()

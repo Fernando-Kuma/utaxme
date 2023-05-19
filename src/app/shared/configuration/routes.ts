@@ -1,21 +1,21 @@
 import { Routes } from '@angular/router';
 import { NAV } from './navegacion';
-import { DashboardComponent } from 'src/app/components/home/dashboard/dashboard.component';
-import { LoginComponent } from 'src/app/components/auth/login/login.component';
-import { NuevaContrasenaComponent } from 'src/app/components/auth/recuperacion/nueva-contrasena/nueva-contrasena.component';
-import { RecuperacionContrasenaComponent } from 'src/app/components/auth/recuperacion/recuperacion-contrasena/recuperacion-contrasena.component';
-import { CodigoRecuperacionComponent } from 'src/app/components/auth/recuperacion/codigo-recuperacion/codigo-recuperacion.component';
-import { CancelarCfdiComponent } from 'src/app/components/home/espacio-trabajo/cancelar-cfdi/cancelar-cfdi.component';
-import { GenerarCfdiComponent } from 'src/app/components/home/espacio-trabajo/generar-cfdi/generar-cfdi.component';
-import { ClientesFrecuentesComponent } from 'src/app/components/home/espacio-trabajo/clientes-frecuentes/clientes-frecuentes.component';
-import { CrearProdServComponent } from 'src/app/components/home/espacio-trabajo/crear-prod-serv/crear-prod-serv.component';
-import { EspacioTrabajoComponent } from 'src/app/components/home/espacio-trabajo/espacio-trabajo.component';
+import { DashboardComponent } from 'src/app/components/client/home/dashboard/dashboard.component';
+import { LoginComponent } from 'src/app/components/client/auth/login/login.component';
+import { NuevaContrasenaComponent } from 'src/app/components/client/auth/recuperacion/nueva-contrasena/nueva-contrasena.component';
+import { RecuperacionContrasenaComponent } from 'src/app/components/client/auth/recuperacion/recuperacion-contrasena/recuperacion-contrasena.component';
+import { CodigoRecuperacionComponent } from 'src/app/components/client/auth/recuperacion/codigo-recuperacion/codigo-recuperacion.component';
+import { CancelarCfdiComponent } from 'src/app/components/client/home/espacio-trabajo/cancelar-cfdi/cancelar-cfdi.component';
+import { GenerarCfdiComponent } from 'src/app/components/client/home/espacio-trabajo/generar-cfdi/generar-cfdi.component';
+import { ClientesFrecuentesComponent } from 'src/app/components/client/home/espacio-trabajo/clientes-frecuentes/clientes-frecuentes.component';
+import { CrearProdServComponent } from 'src/app/components/client/home/espacio-trabajo/crear-prod-serv/crear-prod-serv.component';
+import { EspacioTrabajoComponent } from 'src/app/components/client/home/espacio-trabajo/espacio-trabajo.component';
 import { FullSizeComponent } from 'src/app/graphics/full-size/full-size.component';
 import { AuthGuardHelper } from '../helper/authGuard.helper';
-import { PerfilComponent } from 'src/app/components/home/home-mobile/perfil/perfil.component';
-import { SaludFiscalComponent } from 'src/app/components/home/home-mobile/salud-fiscal/salud-fiscal.component';
-import { BandejaEntradaComponent } from 'src/app/components/home/bandeja-entrada/bandeja-entrada.component';
-import { DatosFiscalesComponent } from 'src/app/components/home/home-mobile/datos-fiscales/datos-fiscales.component';
+import { PerfilComponent } from 'src/app/components/client/home/home-mobile/perfil/perfil.component';
+import { SaludFiscalComponent } from 'src/app/components/client/home/home-mobile/salud-fiscal/salud-fiscal.component';
+import { BandejaEntradaComponent } from 'src/app/components/client/home/bandeja-entrada/bandeja-entrada.component';
+import { DatosFiscalesComponent } from 'src/app/components/client/home/home-mobile/datos-fiscales/datos-fiscales.component';
 
 
 export const appRoutes: Routes = [

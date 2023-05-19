@@ -6,10 +6,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { HomeModule } from './components/home/home.module';
-import { AuthModule } from './components/auth/auth.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { HomeModule } from './components/client/home/home.module';
+import { AuthModule } from './components/client/auth/auth.module';
+import { AdminModule } from './components/admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     BrowserAnimationsModule,
     HomeModule,
     AuthModule,
+    AdminModule,
     NgxSpinnerModule,
     HttpClientModule,
     SharedModule,

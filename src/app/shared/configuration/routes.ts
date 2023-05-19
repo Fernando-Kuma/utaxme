@@ -20,6 +20,8 @@ import { DatosFiscalesComponent } from 'src/app/components/client/home/home-mobi
 
 import { LoginComponentAdmin } from 'src/app/components/admin/auth/login/login.component';
 import { AccesosDirectosComponent } from 'src/app/components/admin/home/accesos-directos/accesos-directos.component';
+import { HomeComponent } from 'src/app/components/admin/home/home.component';
+import { EspacioTrabajoAdminComponent } from 'src/app/components/admin/home/espacio-trabajo/espacio-trabajo.component';
 
 
 
@@ -118,11 +120,17 @@ export const appRoutes: Routes = [
   {
     path: NAV.homeAdmin,
     pathMatch: 'prefix',
-    component: AccesosDirectosComponent,
+    component: HomeComponent,
     children: [
       {
         path: '',
         component: AccesosDirectosComponent,
+        outlet: 'admin',
+      },
+      {
+        path: 'espacio-trabajo',
+        component: EspacioTrabajoAdminComponent,
+        outlet: 'admin',
       }
     ],
   },

@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './espacio-trabajo.component.html',
   styleUrls: ['./espacio-trabajo.component.css']
 })
-export class EspacioTrabajoComponent implements OnInit {
+export class EspacioTrabajoAdminComponent implements OnInit {
 
   constructor() { }
 

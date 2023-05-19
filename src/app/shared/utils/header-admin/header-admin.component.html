@@ -1,0 +1,105 @@
+<mat-toolbar [ngStyle]="{'background-color': color}">
+  <div class="row width-completo">
+    <div class="m0p0 col-2">
+      <div [ngClass]="logo"></div>
+    </div>
+    <div class="col-5 d-flex align-items-end justify-content-evenly">
+      
+      <div class="home-menu" [ngClass]="this.router.url === '/home' ? 'menu-active':''" (click)="cambiarMenu(1)">
+        <div class="menu-ico" [ngStyle]="{'background-color': this.router.url === '/home' ? '#7B8AA0':'#122d4f'}">
+          <mat-icon [ngClass]="this.router.url === '/home' ? 'image-home-black image-invert-color' : 'image-home'" class="image-size-20"></mat-icon>
+        </div>
+        <div [ngClass]="this.router.url === '/home' ? 'menu-title-active':'menu-title'">
+          Inicio
+        </div>
+      </div>
+      
+      <div class="home-menu" [ngClass]="this.router.url != '/home' ? 'menu-active':''" (click)="cambiarMenu(2)">
+          <div class="menu-ico" [ngStyle]="{'background-color': this.router.url != '/home' ? '#7B8AA0':'#122d4f'}">
+            <mat-icon [ngClass]="this.router.url != '/home' ? 'img-header-work-active':'img-header-work'" class="image-size-20"></mat-icon>
+          </div>
+          <div [ngClass]="this.router.url != '/home' ? 'menu-title-active':'menu-title'">
+              Espacio de trabajo
+          </div>
+      </div>
+     
+      
+    </div>
+    <div class="col-3 m0p0  d-flex align-items-center justify-content-end">
+      <div class="menu-user" [matMenuTriggerFor]="userMenu">
+        <div class="row">
+          <div class="col-3">
+            <div class="home-header-user">
+              <mat-icon class="image-home-user image-size-22"></mat-icon>
+            </div>
+          </div>
+          <div class="col-9">
+            <div class="menu-user-container">
+                <div class="row">
+                    <div class="col home-user-name">
+                      {{ (user.name.length > 15) ? (user.name | slice:0:15 ) + '...' : user.name | titlecase }}
+                    </div>
+                    <div class="col image-home-down image-size-14"></div>
+                </div>
+                <div class="row home-user-rol">
+                  {{ user.rol }}
+                </div>
+            </div>
+          </div>
+        </div>
+        <mat-menu class="header-menu" #userMenu="matMenu" xPosition="before">
+            <button mat-menu-item style="font-size: 14px; font-weight: 400;" (click)="salir()">
+                <mat-icon class="image-home-logout image-size-20"></mat-icon>
+                <span>CERRAR SESIÓN</span>
+            </button>
+            <button mat-menu-item style="font-size: 14px; font-weight: 400; text-align: left;" disabled>
+                <mat-icon class="image-home-version image-size-20"></mat-icon>
+                <span>VERSIÓN 2.0.0.1</span>
+            </button>
+        </mat-menu>
+      </div>
+    </div>
+    <div class="col-2 display-align-center justify-content-evenly">
+      <div class="home-header-icon">
+        <mat-icon class="image-home-notificacion image-size-20"></mat-icon>
+      </div>
+      <!-- <div class="home-header-icon" #menuTriggerNotification="matMenuTrigger" [matMenuTriggerFor]="notificacion">
+        <mat-icon class="image-home-notificacion image-size-20"></mat-icon>
+      </div>
+      <mat-menu class="notification-menu" #notificacion="matMenu" xPosition="before">
+          <div class="notificacion-menu-contenido" style="margin: 0!important; padding: 0!important; font-size: 14px; font-weight: 600; min-width: 400px; min-height: 400px;" (click) = "$event.stopPropagation()">
+              <div class="row" style="width:100%; margin:0; padding: 20px; text-transform: uppercase; line-height: 18px; font-size: 18px;">
+                  <div class="col-6" style="padding-top: 0px;">
+                      NOTIFICACIONES
+                  </div>
+                  <div class="col-6">
+                      <button mat-flat-button style="float: right; position: relative; top: -10px; right: -12px; width: 10px!important;  min-width: unset!important;" (click)="menuTriggerNotification.closeMenu()">
+                          <mat-icon style="margin-left: -12px!important; margin-top: 0px;">
+                              close
+                          </mat-icon>
+                      </button>
+                  </div>
+              </div>
+              <div class="row" style="width:100%; margin:0; padding: 20px; padding-top: 10px; margin-top: -15px;">
+                  <mat-tab-group [disableRipple]="true" [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)" dynamicHeight>
+                      <mat-tab label="No leídas">
+                          <ng-template matTabContent>
+                              <app-notifications [leidas]="true" (close)="menuTriggerNotification.closeMenu();"></app-notifications>
+                          </ng-template>
+                      </mat-tab>
+                      <mat-tab label="Leídas">
+                          <ng-template matTabContent >
+                              <app-notifications [leidas]="false" (close)="menuTriggerNotification.closeMenu();"></app-notifications>
+                          </ng-template>
+                      </mat-tab>
+                  </mat-tab-group>
+              </div>
+          </div>
+      </mat-menu> -->
+
+      <!-- <div class="home-header-icon" (click)="abrirModuloAyuda()">
+        <mat-icon class="image-home-ayuda image-size-20"></mat-icon>
+      </div> -->
+    </div>
+  </div>
+</mat-toolbar>

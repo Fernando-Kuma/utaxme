@@ -14,12 +14,21 @@ import { ContactoComponent } from './utils/contacto/contacto.component';
 import { ContactoModule } from './utils/contacto';
 import { ServiceErrorDialogComponent } from './utils/service-error-dialog/service-error-dialog.component';
 import { ServiceErrorDialogModule } from './utils/service-error-dialog/service-error-dialog.module';
+import { HeaderAdminComponent } from './utils/header-admin/header-admin.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTabsModule } from '@angular/material/tabs';
+import { RouterModule } from '@angular/router';
+import { NotificationsModule } from './utils/notifications';
 
 
 
 @NgModule({
   declarations: [
     MaskPipe,
+    HeaderAdminComponent,
   ],
   imports: [
     CommonModule,
@@ -29,7 +38,14 @@ import { ServiceErrorDialogModule } from './utils/service-error-dialog/service-e
     ConfirmDialogModule,
     DetalleDeducPersonalModule,
     ContactoModule,
-    ServiceErrorDialogModule
+    ServiceErrorDialogModule,
+    MatToolbarModule, 
+    MatMenuModule, 
+    MatIconModule, 
+    MatButtonModule,
+    MatTabsModule,
+    RouterModule,
+    NotificationsModule
   ],
   exports: [
     MaskPipe,
@@ -38,7 +54,8 @@ import { ServiceErrorDialogModule } from './utils/service-error-dialog/service-e
     ConfirmDialogComponent,
     DetalleDeducPersonalComponent,
     ContactoComponent,
-    ServiceErrorDialogComponent
+    ServiceErrorDialogComponent,
+    HeaderAdminComponent
   ],
 })
 export class SharedModule { }

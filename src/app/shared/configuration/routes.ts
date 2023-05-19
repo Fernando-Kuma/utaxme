@@ -18,6 +18,11 @@ import { BandejaEntradaComponent } from 'src/app/components/client/home/bandeja-
 import { DatosFiscalesComponent } from 'src/app/components/client/home/home-mobile/datos-fiscales/datos-fiscales.component';
 
 
+import { LoginComponentAdmin } from 'src/app/components/admin/auth/login/login.component';
+import { AccesosDirectosComponent } from 'src/app/components/admin/home/accesos-directos/accesos-directos.component';
+
+
+
 export const appRoutes: Routes = [
   {
     path: '',
@@ -104,4 +109,22 @@ export const appRoutes: Routes = [
     component: DatosFiscalesComponent,
     canActivate: [AuthGuardHelper],
   },
+
+  {
+    path: NAV.loginAdmin,
+    pathMatch: 'prefix',
+    component: LoginComponentAdmin,
+  },
+  {
+    path: NAV.homeAdmin,
+    pathMatch: 'prefix',
+    component: AccesosDirectosComponent,
+    children: [
+      {
+        path: '',
+        component: AccesosDirectosComponent,
+      }
+    ],
+  },
+
 ];

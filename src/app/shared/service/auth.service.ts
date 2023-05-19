@@ -15,6 +15,8 @@ export class AuthService {
 
   private _user: Usuario;
 
+  private _admin: any;
+
   constructor(private http: HttpClient, private router: Router) { }
 
   login(request: any): Observable<any> {
@@ -50,6 +52,12 @@ export class AuthService {
     localStorage.clear();
     sessionStorage.clear();
     this.router.navigateByUrl(NAV.login);
+  }
+
+  logoutAdmin(){
+    localStorage.clear();
+    sessionStorage.clear();
+    this.router.navigateByUrl(NAV.loginAdmin);
   }
 
   public get usuario(): Usuario {
@@ -92,5 +100,17 @@ export class AuthService {
       );
   }
   
+
+
+
+  public get administrador(): any {
+    if (this._admin != null) {
+      return this._admin;
+    } else if ( this._admin == null && sessionStorage.getItem('root-user') != null) {
+      this._admin = JSON.parse(sessionStorage.getItem('root-user')) as any;
+      return this._admin;
+    }
+    return null;
+  }
 
 }

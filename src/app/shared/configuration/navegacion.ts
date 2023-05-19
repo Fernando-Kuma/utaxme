@@ -18,5 +18,11 @@ export const NAV = {
   perfil: 'perfil',
   saludFiscal: 'salud-fiscal',
   bandejaEntrada: 'bandeja-entrada',
-  datosFiscales: 'datos-fiscales'
+  datosFiscales: 'datos-fiscales',
+
+
+
+  loginAdmin: 'login-admin',
+  homeAdmin: 'home',
+  espacioTrabajoAdmin: 'espacio-trabajo-admin',
 };

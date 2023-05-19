@@ -6,20 +6,26 @@ import { EspacioTrabajoComponent } from './espacio-trabajo/espacio-trabajo.compo
 import { SharedModule } from "../../../shared/shared.module";
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { ClientesComponent } from './espacio-trabajo/clientes/clientes.component';
+import { NuevoClienteComponent } from './espacio-trabajo/clientes/nuevo-cliente/nuevo-cliente.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 
 @NgModule({
-    declarations: [
-        BandejaEntradaComponent,
-        AccesosDirectosComponent,
-        EspacioTrabajoComponent
-    ],
-    imports: [
-        CommonModule,
-        SharedModule,
-        MatIconModule,
-        MatButtonModule
-    ]
+  declarations: [
+    BandejaEntradaComponent,
+    AccesosDirectosComponent,
+    EspacioTrabajoComponent,
+    ClientesComponent,
+    NuevoClienteComponent
+  ],
+  imports: [
+    CommonModule,
+    SharedModule,
+    MatIconModule,
+    MatButtonModule,
+    MatFormFieldModule
+  ]
 })
 export class HomeModule { }

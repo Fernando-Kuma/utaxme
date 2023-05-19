@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="row">
+        Nuevo cliente
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
+              <mat-label>RAZON SOCIAL DEL CLIENTE*</mat-label>
+              <input matInput formControlName="razonSocial" id="razonSocial" name="razonSocial"/>
+              <mat-error *ngIf="formulario.razonSocial.invalid && formulario.razonSocial.touched && formulario.razonSocial.errors">
+                <ng-container *ngIf="formulario.razonSocial.errors.required">
+                  {{ getErrorRequerido() }}
+                </ng-container>
+              </mat-error>
+            </mat-form-field>
+          </div>
+    </div>
+
+</div>

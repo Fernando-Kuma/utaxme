@@ -132,7 +132,7 @@ export const appRoutes: Routes = [
         component: EspacioTrabajoAdminComponent,
         outlet: 'admin',
       }
-    ],
+    ], 
   },
 
 ];

@@ -139,7 +139,7 @@ export const appRoutes: Routes = [
         component: ClientesComponent,
         outlet: 'admin',
       }
-    ],
+    ], 
   },
 
 ];

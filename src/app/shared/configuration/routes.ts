@@ -22,6 +22,8 @@ import { LoginComponentAdmin } from 'src/app/components/admin/auth/login/login.c
 import { AccesosDirectosComponent } from 'src/app/components/admin/home/accesos-directos/accesos-directos.component';
 import { HomeComponent } from 'src/app/components/admin/home/home.component';
 import { EspacioTrabajoAdminComponent } from 'src/app/components/admin/home/espacio-trabajo/espacio-trabajo.component';
+import { NuevoClienteComponent } from 'src/app/components/admin/home/espacio-trabajo/clientes/nuevo-cliente/nuevo-cliente.component';
+import { ClientesComponent } from 'src/app/components/admin/home/espacio-trabajo/clientes/clientes.component';
 
 
 
@@ -130,6 +132,11 @@ export const appRoutes: Routes = [
       {
         path: 'espacio-trabajo',
         component: EspacioTrabajoAdminComponent,
+        outlet: 'admin',
+      },
+      {
+        path: NAV.clientes,
+        component: ClientesComponent,
         outlet: 'admin',
       }
     ],

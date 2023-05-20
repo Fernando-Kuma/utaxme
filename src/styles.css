@@ -626,4 +626,11 @@ body {
   }
 }
 
+.image-perfil {
+  background-image: url("src\assets\img\icon\perfil.svg");
+  background-size: 50px 50px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
  

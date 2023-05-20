@@ -5,6 +5,7 @@ import { Usuario } from 'src/app/shared/model/usuario.model';
 import { AuthService } from 'src/app/shared/service/auth.service';
 import { AlertService } from 'src/app/shared/utils/alertas';
 import { ServiceErrorDialogComponent } from 'src/app/shared/utils/service-error-dialog/service-error-dialog.component';
+import { NuevoClienteComponent } from '../espacio-trabajo/clientes/nuevo-cliente/nuevo-cliente.component';
 
 @Component({
   selector: 'app-accesos-directos',

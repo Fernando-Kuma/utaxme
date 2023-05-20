@@ -11,6 +11,8 @@ import { NuevoClienteComponent } from './espacio-trabajo/clientes/nuevo-cliente/
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { HomeComponent } from './home.component';
 import { RouterModule } from '@angular/router';
+import { MatInputModule } from '@angular/material/input';
+import { MatTabsModule } from '@angular/material/tabs';
 
 
 
@@ -29,7 +31,9 @@ import { RouterModule } from '@angular/router';
     MatIconModule,
     MatButtonModule,
     MatFormFieldModule,
-    RouterModule
+    RouterModule,
+    MatInputModule,
+    MatTabsModule
   ]
 })
 export class HomeModule { }

@@ -1,19 +1,35 @@
-<div class="row">
-    <div class="row">
-        Nuevo cliente
-    </div>
-    <div class="row">
-        <div class="col-6">
-            <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
-              <mat-label>RAZON SOCIAL DEL CLIENTE*</mat-label>
-              <input matInput formControlName="razonSocial" id="razonSocial" name="razonSocial"/>
-              <mat-error *ngIf="formulario.razonSocial.invalid && formulario.razonSocial.touched && formulario.razonSocial.errors">
-                <ng-container *ngIf="formulario.razonSocial.errors.required">
-                  {{ getErrorRequerido() }}
-                </ng-container>
-              </mat-error>
-            </mat-form-field>
-          </div>
+<div class="home-container-cliente">
+    <div class="row w100m0p0">
+        <div class="row">
+            <div class="row text">
+                Nuevo cliente
+            </div>
+            <div class="row">
+                <mat-icon  class="image-perfil" style="height: 50px;width: 50px;margin: 5px;margin-left: 20px;"></mat-icon>
+                <div class="col-4">
+                    <mat-form-field appearance="outline" style="width: 100%; font-size: 16px;">
+                      <mat-label>RAZON SOCIAL DEL CLIENTE*</mat-label>
+                      <input matInput formControlName="razonSocial" id="razonSocial" name="razonSocial"/>
+                      <mat-error *ngIf="formulario.razonSocial.invalid && formulario.razonSocial.touched && formulario.razonSocial.errors">
+                        <ng-container *ngIf="formulario.razonSocial.errors.required">
+                          {{ getErrorRequerido() }}
+                        </ng-container>
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+            </div>
+        </div>
     </div>
 
+    <div class="row w100m0p0">
+        <div class="col-12">
+            <mat-tab-group>
+                <mat-tab label="Generales"> Content 1 </mat-tab>
+                <mat-tab label="Domicilio"> Content 2 </mat-tab>
+                <mat-tab label="Membresia"> Content 3 </mat-tab>
+                <mat-tab label="Certificados"> Content 1 </mat-tab>
+                <mat-tab label="Contador asignado"> Content 2 </mat-tab>
+              </mat-tab-group>
+        </div>
+    </div>
 </div>

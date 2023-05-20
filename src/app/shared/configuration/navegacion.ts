@@ -25,4 +25,5 @@ export const NAV = {
   loginAdmin: 'login-admin',
   homeAdmin: 'home',
   espacioTrabajoAdmin: 'espacio-trabajo-admin',
+  clientes: 'clientes'
 };

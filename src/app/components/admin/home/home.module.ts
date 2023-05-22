@@ -13,6 +13,10 @@ import { HomeComponent } from './home.component';
 import { RouterModule } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
+import { GeneralesComponent } from './espacio-trabajo/clientes/nuevo-cliente/generales/generales.component';
+import { DomicilioComponent } from './espacio-trabajo/clientes/nuevo-cliente/domicilio/domicilio.component';
+import { MembresiaComponent } from './espacio-trabajo/clientes/nuevo-cliente/membresia/membresia.component';
+import { CertificadosComponent } from './espacio-trabajo/clientes/nuevo-cliente/certificados/certificados.component';
 
 
 
@@ -23,7 +27,11 @@ import { MatTabsModule } from '@angular/material/tabs';
     EspacioTrabajoAdminComponent,
     ClientesComponent,
     NuevoClienteComponent,
-    HomeComponent
+    HomeComponent,
+    GeneralesComponent,
+    DomicilioComponent,
+    MembresiaComponent,
+    CertificadosComponent
   ],
   imports: [
     CommonModule,

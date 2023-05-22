@@ -139,7 +139,12 @@ export class VelocimetroComponent implements AfterViewInit, OnInit {
         
         ticks = scale.ticks(config.majorTicks);
         tickData = d3.range(1).map(i => {
-            return this._value / 10;
+            let valor = this._value / 10;
+            if(valor > 1){
+              return 1;
+            }else{
+              return valor;
+            }
         });
         
 
@@ -268,7 +273,19 @@ export class VelocimetroComponent implements AfterViewInit, OnInit {
             .style("font-weight", "500") 
             .style("font-family","Montserrat")
             .style("fill", this.colorLabel)
-            .text((100 - (this._value * 10)).toFixed(0) + '%');
+            .text((d)=> {
+              let valor = (this._value * 10);
+            
+              if(valor > 100){
+                return '0%';
+              }else if(valor == 0){
+                return '0%';
+              }else{
+                let valor2 = (this._value * 10);
+                let texto = (100 - valor2).toFixed(0) + '%';
+                return texto;
+              }
+            })
 
           
           this.svg.append("text")

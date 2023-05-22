@@ -16,7 +16,10 @@ export class ClientesComponent implements OnInit {
 
   openDetalleDialog() {
     this.dialog.open(
-      NuevoClienteComponent
+      NuevoClienteComponent,{
+        height: '760px ',
+        disableClose: true
+      }
     );
   }
 

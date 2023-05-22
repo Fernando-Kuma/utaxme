@@ -11,6 +11,12 @@ import { NuevoClienteComponent } from './espacio-trabajo/clientes/nuevo-cliente/
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { HomeComponent } from './home.component';
 import { RouterModule } from '@angular/router';
+import { MatInputModule } from '@angular/material/input';
+import { MatTabsModule } from '@angular/material/tabs';
+import { GeneralesComponent } from './espacio-trabajo/clientes/nuevo-cliente/generales/generales.component';
+import { DomicilioComponent } from './espacio-trabajo/clientes/nuevo-cliente/domicilio/domicilio.component';
+import { MembresiaComponent } from './espacio-trabajo/clientes/nuevo-cliente/membresia/membresia.component';
+import { CertificadosComponent } from './espacio-trabajo/clientes/nuevo-cliente/certificados/certificados.component';
 
 
 
@@ -21,7 +27,11 @@ import { RouterModule } from '@angular/router';
     EspacioTrabajoAdminComponent,
     ClientesComponent,
     NuevoClienteComponent,
-    HomeComponent
+    HomeComponent,
+    GeneralesComponent,
+    DomicilioComponent,
+    MembresiaComponent,
+    CertificadosComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +39,9 @@ import { RouterModule } from '@angular/router';
     MatIconModule,
     MatButtonModule,
     MatFormFieldModule,
-    RouterModule
+    RouterModule,
+    MatInputModule,
+    MatTabsModule
   ]
 })
 export class HomeModule { }

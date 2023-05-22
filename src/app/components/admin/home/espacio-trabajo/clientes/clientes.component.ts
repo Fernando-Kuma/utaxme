@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { NuevoClienteComponent } from './nuevo-cliente/nuevo-cliente.component';
 
 @Component({
   selector: 'app-clientes',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClientesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit(): void {
+  }
+
+  openDetalleDialog() {
+    this.dialog.open(
+      NuevoClienteComponent,{
+        height: '760px ',
+        disableClose: true
+      }
+    );
   }
 
 }

@@ -40,7 +40,7 @@ export class HeaderAdminComponent implements OnInit {
         break;
       case 2:
           localStorage.setItem('menu', '2');
-          this.router.navigateByUrl(NAV.espacioTrabajoAdmin);
+          this.router.navigateByUrl(NAV.homeAdmin +'/'+ NAV.espacioTrabajo);
         break;
       default:
         break;

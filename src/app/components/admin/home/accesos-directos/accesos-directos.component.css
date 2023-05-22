@@ -103,3 +103,17 @@
 .modal.show-modal {
   background: rgba(11, 17, 42, 0.6);
 }
+
+.image-acceso-option-plus {
+  background-image: url("src\assets\img\icon\accesos-plus.svg");
+  background-size: 25px 25px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.image-acceso-option-check {
+  background-image: url("src\assets\img\icon\accesos-check.svg");
+  background-size: 20px 20px;
+  background-position: center;
+  background-repeat: no-repeat;
+}

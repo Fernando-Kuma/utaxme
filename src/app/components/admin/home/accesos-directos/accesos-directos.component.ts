@@ -83,6 +83,7 @@ export class AccesosDirectosComponent implements OnInit {
 
   public actualizarAccesos(){
     console.log('actualizar')
+    this.cerrarAccesosModal()
   }
 
 

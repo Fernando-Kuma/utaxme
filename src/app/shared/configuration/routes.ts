@@ -125,12 +125,10 @@ export const appRoutes: Routes = [
       {
         path: '',
         component: AccesosDirectosComponent,
-        outlet: 'admin',
       },
       {
-        path: 'espacio-trabajo',
+        path: NAV.espacioTrabajo,
         component: EspacioTrabajoAdminComponent,
-        outlet: 'admin',
       }
     ], 
   },

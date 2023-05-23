@@ -3,6 +3,7 @@ export const environment = {
   api: '/',
   apiDashboard: '/billerTicket-mobile/',
   apiAuth: '/utaxon/',
+  apicatalogos: '/msutaxme-admin/catalogs/',
   smcAppUser: 'app-web',
   smcAppPass: 'password123',
 };

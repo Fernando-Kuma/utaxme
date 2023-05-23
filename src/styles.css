@@ -633,4 +633,11 @@ body {
   background-position: center;
 }
 
+.delete-chip {
+  background-image: url("src\assets\img\icon\delete-chip.svg");
+  background-size: 18px 18px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
  

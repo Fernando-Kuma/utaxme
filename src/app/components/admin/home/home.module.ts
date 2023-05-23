@@ -17,6 +17,9 @@ import { GeneralesComponent } from './espacio-trabajo/clientes/nuevo-cliente/gen
 import { DomicilioComponent } from './espacio-trabajo/clientes/nuevo-cliente/domicilio/domicilio.component';
 import { MembresiaComponent } from './espacio-trabajo/clientes/nuevo-cliente/membresia/membresia.component';
 import { CertificadosComponent } from './espacio-trabajo/clientes/nuevo-cliente/certificados/certificados.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatChipsModule } from '@angular/material/chips';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -41,7 +44,10 @@ import { CertificadosComponent } from './espacio-trabajo/clientes/nuevo-cliente/
     MatFormFieldModule,
     RouterModule,
     MatInputModule,
-    MatTabsModule
+    MatTabsModule,
+    MatSelectModule,
+    MatChipsModule,
+    ReactiveFormsModule,
   ]
 })
 export class HomeModule { }

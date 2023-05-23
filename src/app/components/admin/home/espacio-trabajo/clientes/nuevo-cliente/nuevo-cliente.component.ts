@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class NuevoClienteComponent implements OnInit {
 
-  public form: FormGroup;
+  public formCliente: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {
     this.crearForm();
@@ -18,7 +18,7 @@ export class NuevoClienteComponent implements OnInit {
   }
 
   crearForm(){
-    this.form = this.formBuilder.group({
+    this.formCliente = this.formBuilder.group({
       razonSocial: [null, [Validators.required]]
     });
   }
@@ -28,7 +28,7 @@ export class NuevoClienteComponent implements OnInit {
   }
 
   get formulario() {
-    return this.form.controls;
+    return this.formCliente.controls;
   }
 
 }

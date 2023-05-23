@@ -1,5 +1,6 @@
 <div class="home-container-cliente">
     <div class="row w100m0p0">
+      <form [formGroup]="formCliente">
         <div class="row">
             <div class="row text">
                 Nuevo cliente
@@ -19,15 +20,16 @@
                   </div>
             </div>
         </div>
+      </form>
     </div>
 
     <div class="row w100m0p0">
         <div class="col-12">
             <mat-tab-group>
-                <mat-tab label="Generales"> Content 1 </mat-tab>
-                <mat-tab label="Domicilio"> Content 2 </mat-tab>
-                <mat-tab label="Membresia"> Content 3 </mat-tab>
-                <mat-tab label="Certificados"> Content 1 </mat-tab>
+                <mat-tab label="Generales"> <app-generales></app-generales> </mat-tab>
+                <mat-tab label="Domicilio"> <app-domicilio></app-domicilio> </mat-tab>
+                <mat-tab label="Membresia"> <app-membresia></app-membresia> </mat-tab>
+                <mat-tab label="Certificados"> <app-certificados></app-certificados> </mat-tab>
                 <mat-tab label="Contador asignado"> Content 2 </mat-tab>
               </mat-tab-group>
         </div>

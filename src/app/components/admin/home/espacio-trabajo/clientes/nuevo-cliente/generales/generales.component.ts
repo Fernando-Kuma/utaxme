@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatOption } from '@angular/material/core/option';
 import { MatSelect } from '@angular/material/select/select';
+import { CatalogosService } from 'src/app/shared/service/catalogos.service';
 
 @Component({
   selector: 'app-generales',
@@ -36,11 +37,13 @@ export class GeneralesComponent implements OnInit {
   selectable = true;
   removable = true;
   public formGenerales: FormGroup;
-  constructor(private formBuilder: FormBuilder) { 
+  constructor(private formBuilder: FormBuilder,
+    private catalogoService: CatalogosService) { 
   }
 
   ngOnInit(): void {
     this.crearForm();
+    this.obtenerRegimen();
   }
 
   crearForm(){
@@ -88,5 +91,14 @@ export class GeneralesComponent implements OnInit {
     }else{
       console.log("Formulario no lleno")
     }
+  }
+
+  obtenerRegimen(){
+    this.catalogoService.obtenerRegimenFiscales()
+      .subscribe((response) => {
+        console.log("Regimens:",response);
+      },(_error) => {
+        console.log("Error en obtener regimen: ", _error);
+      });
   }
 }

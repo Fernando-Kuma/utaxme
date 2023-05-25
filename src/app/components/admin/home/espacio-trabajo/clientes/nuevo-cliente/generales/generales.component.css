@@ -1,0 +1,35 @@
+.home-container-generales{
+    width: 100%!important;
+    margin-top: 31px;
+    padding: 0;
+  }
+
+  .example-full-width {
+    width: 100%;
+  }
+
+  ::ng-deep .mat-select-panel:has(.filtroTipoDispositivos){
+    margin-top: 35px !important;
+    width: 225px !important;
+    min-width: 0px !important;
+    margin-left: 209px;
+  }
+
+.mat-standard-chip {
+    border-radius: 4px !important;
+    min-height: 28px !important;
+    background-color: #E6EDF6 !important;
+}
+
+.option-selected-chip{
+    margin: 5px;
+    background-color: #E1E1E1!important;
+}
+
+.option-not-selected-chip{
+    background-color: white!important;
+}
+
+::ng-deep .checknone .mat-pseudo-checkbox{ 
+  display: none!important; 
+}

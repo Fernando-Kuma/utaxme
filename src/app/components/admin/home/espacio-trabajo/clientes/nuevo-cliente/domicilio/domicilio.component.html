@@ -1,1 +1,123 @@
-<p>domicilio works!</p>
+<div class="home-container-domicilio">
+    <div class="row w100m0p0">
+        <form [formGroup]="formDomicilio">
+            <div class="row">
+                <div class="col-12">
+                    <mat-form-field appearance="outline" style="width: 100%; font-size: 16px;">
+                        <mat-label>DOMICILIO*</mat-label>
+                        <input matInput formControlName="domicilio" id="domicilio" name="domicilio" maxlength="200"/>
+                        <mat-error *ngIf="formulario.domicilio.invalid && formulario.domicilio.touched && formulario.domicilio.errors">
+                        <ng-container *ngIf="formulario.domicilio.errors.required">
+                            {{ getErrorRequerido() }}
+                        </ng-container>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="col-12">
+                        <mat-form-field appearance="outline" style="width: 100%; font-size: 16px;">
+                            <mat-label>NÚMERO INTERIOR</mat-label>
+                            <input matInput formControlName="numeroint" id="numeroint" name="numeroint" maxlength="200" (keypress)="onlyNumbers($event);" (keyup)="keyShowAutocomplete($event)"/>
+                            <mat-error *ngIf="formulario.numeroint.invalid && formulario.numeroint.touched && formulario.numeroint.errors">
+                            <ng-container *ngIf="formulario.numeroint.errors.required">
+                                {{ getErrorRequerido() }}
+                            </ng-container>
+                            <ng-container *ngIf="formulario.numeroint.errors.incorrectText">
+                                Este campo solo es llenado con números
+                              </ng-container>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-12">
+                        <mat-form-field appearance="outline" class="example-full-width" style="width: 100%;font-size: 16px;">
+                            <mat-label>CODIGO POSTAL*</mat-label>
+                            <input matInput formControlName="cp" id="cp" name="cp" (keyup)="buscarCP()" maxlength="5" minlength="5" (keypress)="onlyNumbers($event);" (keyup)="keyShowAutocomplete($event)"/>
+                            <mat-error *ngIf="formulario.cp.invalid && formulario.cp.touched && formulario.cp.errors">
+                            <ng-container *ngIf="formulario.cp.errors.required">
+                                {{ getErrorRequerido() }}
+                            </ng-container>
+                            <ng-container *ngIf="formulario.cp.errors.incorrectText">
+                                Este campo solo es llenado con números
+                              </ng-container>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>                    
+                    <div class="col-12">
+                        <!-- <mat-form-field appearance="outline" class="example-full-width" style="width: 100%;font-size: 16px;">
+                            <mat-label>ESTADO*</mat-label>
+                            <input matInput formControlName="estado" id="estado" name="estado"/>
+                            <mat-error *ngIf="formulario.estado.invalid && formulario.estado.touched && formulario.estado.errors">
+                            <ng-container *ngIf="formulario.estado.errors.required">
+                                {{ getErrorRequerido() }}
+                            </ng-container>
+                            </mat-error>
+                        </mat-form-field> -->
+                        <mat-form-field appearance="outline" class="example-full-width" style="width: 100%;font-size: 16px;">
+                            <mat-label>ESTADO*</mat-label>
+                            <mat-select formControlName="estado" id="estado" name="estado">
+                              <mat-option *ngFor="let item of Estados" [value]="item.id">
+                                {{item.descripcion}}
+                              </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="formulario.estado.invalid && formulario.estado.touched && formulario.estado.errors">
+                                <ng-container *ngIf="formulario.estado.errors.required">
+                                    {{ getErrorRequerido() }}
+                                </ng-container>
+                            </mat-error>
+                          </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="col-12">
+                        <mat-form-field appearance="outline" style="width: 100%; font-size: 16px;">
+                            <mat-label>NÚMERO EXTERIOR*</mat-label>
+                            <input matInput formControlName="numeroext" id="numeroext" name="numeroext" maxlength="200" (keypress)="onlyNumbers($event);" (keyup)="keyShowAutocomplete($event)"/>
+                            <mat-error *ngIf="formulario.numeroext.invalid && formulario.numeroext.touched && formulario.numeroext.errors">
+                            <ng-container *ngIf="formulario.numeroext.errors.required">
+                                {{ getErrorRequerido() }}
+                            </ng-container>
+                            <ng-container *ngIf="formulario.numeroext.errors.incorrectText">
+                                Este campo solo es llenado con números
+                              </ng-container>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-12">
+                        <mat-form-field appearance="outline" class="example-full-width" style="width: 100%;font-size: 16px;">
+                            <mat-label>COLONIA*</mat-label>
+                            <input matInput formControlName="colonia" id="colonia" name="colonia" maxlength="200"/>
+                            <mat-error *ngIf="formulario.colonia.invalid && formulario.colonia.touched && formulario.colonia.errors">
+                            <ng-container *ngIf="formulario.colonia.errors.required">
+                                {{ getErrorRequerido() }}
+                            </ng-container>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-12">
+                        <mat-form-field appearance="outline" class="example-full-width" style="width: 100%;font-size: 16px;">
+                            <mat-label>CIUDAD/MUNICIPIO*</mat-label>
+                            <input matInput formControlName="ciudad" id="ciudad" name="ciudad" maxlength="200"/>
+                            <mat-error *ngIf="formulario.ciudad.invalid && formulario.ciudad.touched && formulario.ciudad.errors">
+                            <ng-container *ngIf="formulario.ciudad.errors.required">
+                                {{ getErrorRequerido() }}
+                            </ng-container>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>            
+            </div>
+        </form>
+        <div class="row">
+            <div class="col-12 d-flex justify-content-end">
+              <button mat-button type="button" class="btn-utaxme-secondary" style="max-width: 120px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;" (click)="validarGenerales()">
+                Cancelar
+              </button>
+              <button mat-button class="btn-utaxme" style="max-width: 160px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;" (click)="validarGenerales()">
+                Crear nuevo cliente
+              </button>
+            </div>
+          </div>
+    </div>
+</div>

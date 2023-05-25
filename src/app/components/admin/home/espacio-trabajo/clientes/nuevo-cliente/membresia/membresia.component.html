@@ -1,1 +1,98 @@
-<p>membresia works!</p>
+<div class="home-container-membresia">
+    <div class="row w100m0p0">
+        <form [formGroup]="formMembresia">
+            <div class="row">
+                <div class="col-6">
+                    <div class="col-12">
+                        <mat-form-field appearance="outline" style="width: 100%; font-size: 16px;">
+                            <mat-label class="textoM">Paquete Contratado</mat-label>
+                            <mat-select formControlName="paquete" id="paquete" name="paquete">
+                              <mat-option *ngFor="let item of Paquetes" [value]="item.id">
+                                {{item.descripcion}}
+                              </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="formulario.paquete.invalid && 
+                            formulario.paquete.touched && formulario.paquete.errors">
+                              <ng-container *ngIf="formulario.paquete.errors.required">
+                                {{ getErrorRequerido() }}
+                              </ng-container>
+                            </mat-error>
+                          </mat-form-field>
+                    </div>
+                    <div class="col-12">
+                        <mat-form-field appearance="outline" style="width: 100%; font-size: 16px;">
+                            <mat-label>DÍA DE PAGO</mat-label>
+                            <mat-select formControlName="dia" id="dia" name="dia">
+                              <mat-option *ngFor="let i of dias" [value]="i">
+                                {{i}}
+                              </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="formulario.dia.invalid && 
+                            formulario.dia.touched && formulario.dia.errors">
+                              <ng-container *ngIf="formulario.dia.errors.required">
+                                {{ getErrorRequerido() }}
+                              </ng-container>
+                            </mat-error>
+                          </mat-form-field>
+                    </div>
+                    <div class="col-12">
+                        <mat-form-field appearance="outline" style="width: 100%; font-size: 16px;">
+                            <mat-label>MONTO MENSUAL (MXN)</mat-label>
+                            <input matInput formControlName="monto" id="monto" name="monto" (keypress)="onlyNumbers($event);" (keyup)="keyShowAutocomplete($event)"/>
+                            <mat-error *ngIf="formulario.monto.invalid && formulario.monto.touched && formulario.monto.errors">
+                            <ng-container *ngIf="formulario.monto.errors.required">
+                                {{ getErrorRequerido() }}
+                            </ng-container>
+                            <ng-container *ngIf="formulario.monto.errors.incorrectText">
+                              Este campo solo es llenado con números
+                            </ng-container>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="col-12">
+                        <mat-form-field appearance="outline" style="width: 100%; font-size: 16px;">
+                          <mat-label>FORMA DE PAGO*</mat-label>
+                          <mat-select formControlName="pago" id="pago" name="pago">
+                            <mat-option *ngFor="let item of formasPago" [value]="item.id">
+                              {{item.descripcion}}
+                            </mat-option>
+                          </mat-select>
+                          <mat-error *ngIf="formulario.pago.invalid && 
+                          formulario.pago.touched && formulario.pago.errors">
+                            <ng-container *ngIf="formulario.pago.errors.required">
+                              {{ getErrorRequerido() }}
+                            </ng-container>
+                          </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-12">
+                        <mat-form-field appearance="outline" style="width: 100%; font-size: 16px;">
+                            <mat-label>DESCUENTO*</mat-label>
+                            <input matInput formControlName="descuento" id="descuento" name="descuento" (keypress)="onlyNumbers($event);" (keyup)="keyShowAutocomplete($event)"/>
+                            <mat-error *ngIf="formulario.descuento.invalid && formulario.descuento.touched && formulario.descuento.errors">
+                            <ng-container *ngIf="formulario.descuento.errors.required">
+                                {{ getErrorRequerido() }}
+                            </ng-container>
+                            <ng-container *ngIf="formulario.descuento.errors.incorrectText">
+                              Este campo solo es llenado con números
+                            </ng-container>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>            
+            </div>
+        </form>
+        <div class="row">
+            <div class="col-12 d-flex justify-content-end">
+              <button mat-button type="button" class="btn-utaxme-secondary" style="max-width: 120px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;" (click)="validarGenerales()">
+                Cancelar
+              </button>
+              <button mat-button class="btn-utaxme" style="max-width: 160px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;" (click)="validarGenerales()">
+                Crear nuevo cliente
+              </button>
+            </div>
+          </div>
+    </div>
+</div>

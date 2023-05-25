@@ -81,6 +81,22 @@ export const API = {
   saveClientes: environment.apiCfdiRest + 'clientes/frecuentes/save',
   deleteClientes: environment.apiCfdiRest + 'clientes/frecuentes/delete',
   downloadReporteValidacionFacturasForm: environment.apiCfdiRest + 'DownloadReporteValidacionFacturasForm.htm', */
+
+  admin: {
+    catalogos: {
+      regimenFiscal:  environment.apicatalogos + 'regimenFiscal',
+      paquetes:  environment.apicatalogos + 'paquetes',
+      paquetesDespacho:  environment.apicatalogos + 'paquetesDespacho',
+      contadores:  environment.apicatalogos + 'contadores',
+      entidades:  environment.apicatalogos + 'entidades',
+      estados:  environment.apicatalogos + 'estados',
+      formaPago:  environment.apicatalogos + 'formaPago',
+    },
+    cliente: {
+      nuevoCliente:  environment.apiCliente + 'nuevo',
+      
+    }
+  }
   
 
 }

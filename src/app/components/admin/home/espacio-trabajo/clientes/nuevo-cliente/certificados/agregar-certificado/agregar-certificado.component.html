@@ -1,0 +1,79 @@
+<div class="d-flex justify-content-end">
+    <button style="border: none;background: white;" (click)="close()">
+      <h1 style="color: #3B4559;"><b>x</b></h1>
+    </button>
+  </div>
+<div class="home-container-nuevo-certificados">
+    <div class="row w100m0p0">
+        <div class="row">
+            <div class="container" appDnd (fileDropped)="onFileDropped($event)">
+                <input type="file" #fileDropRef id="fileDropRef" multiple (change)="fileBrowseHandler($event.target)" />
+                <div class="image-upload-file-desc" style="height: 100px;"></div>
+                <p class="texto2">Arrastra el Certificado para Facturación aquí</p>
+                <p style="color: #838383;">Los archivos deben subir con los siguientes prefijos: CSD_RFC, KEY_RFC seguido del RFC.</p>
+                <label for="fileDropRef">Selecciona un archivo</label>
+            </div>
+        </div>
+        <div class="row">
+            <div style="width: 625px;margin: 20px auto;color: #1D2640;font-size: 16px;line-height: 24px;font-family: 'Montserrat';font-style: normal;font-weight: 500;">
+                <span style="margin-left: -10px;"> Archivos cargados</span>
+            </div>
+        </div>
+        <div class="row">
+            <div style="border: 1px solid #7B8AA0;width: 625px;margin: 0px auto 10px;padding-right: 0 !important;padding-left: 0 !important;color: #1D2640;font-size: 14px;line-height: 24px;font-family: 'Montserrat';font-style: normal;font-weight: 500;" *ngFor="let file of files; let i = index">
+                    <div class="row">
+                        <div class="col-10">
+                            <span style="margin-left: 20px;">{{ file?.name }}</span>
+                        </div>
+                        <div class="col-2">
+                            <div class="delete" (click)="deleteFile(i)">
+                                <mat-icon class="delete-chip-black"></mat-icon>
+                            </div>
+                        </div>
+                    </div> 
+                <mat-progress-bar color="primary" mode="determinate" [value]="file?.progress" (animationEnd)="validarTermino(i+1)"></mat-progress-bar>
+            </div>
+        </div>
+        <div class="row">
+            <div style="width: 625px;margin: 20px auto;color: #1D2640;font-size: 16px;line-height: 24px;font-family: 'Montserrat';font-style: normal;font-weight: 500;" *ngIf="showForm">
+                <span style="margin-left: -10px;"> Detalles del Certificado</span>
+                <form [formGroup]="formCertificado">
+                    <div class="row">
+                        <div class="col-6" style="margin-left: -10px;margin-top: 20px;" >
+                            <mat-form-field appearance="outline" style="font-size: 13px; height: 80px; width: 270px;" (click)="picker.open()" (click)="requiredTrue()">
+                                <mat-label>Fecha de inicio del certificado</mat-label>
+                                <input readonly formControlName="inicial" matInput [matDatepicker]="picker" [max]="fechaActual" (dateChange)="validDate()">
+                                <mat-hint>DD/MM/AAAA</mat-hint>
+                                <mat-datepicker-toggle matSuffix [for]="picker" (click)="requiredTrue()">
+                                    <mat-icon matDatepickerToggleIcon class="image-calendar-date-picker" (click)="requiredTrue()"></mat-icon>
+                                </mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-6" style="margin-top: 20px;" >
+                            <mat-form-field appearance="outline" style="font-size: 13px; margin-left: 40px;width: 270px;" (click)="picker2.open()" (click)="requiredTrue()">
+                                <mat-label>Fecha de final del certificado</mat-label>
+                                <input readonly formControlName="final" matInput [matDatepicker]="picker2" [min]="fecInicio" [max]="fechaActual" (dateChange)="validDate()">
+                                <mat-hint>DD/MM/AAAA</mat-hint>
+                                <mat-datepicker-toggle matSuffix [for]="picker2" (click)="requiredTrue()">
+                                    <mat-icon matDatepickerToggleIcon class="image-calendar-date-picker" (click)="requiredTrue()"></mat-icon>
+                                </mat-datepicker-toggle>
+                                <mat-datepicker #picker2></mat-datepicker>
+                            </mat-form-field>
+                            <mat-error style="margin-top: -5px;font-size: 10px !important;" *ngIf="validDateError">
+                                La fecha final no puede ser menor a la fecha inicial
+                            </mat-error>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center">
+              <button mat-button class="btn-utaxme" style="max-width: 460px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;" *ngIf="showForm">
+                Subir Certificados
+              </button>
+            </div>
+          </div>
+    </div>
+</div>

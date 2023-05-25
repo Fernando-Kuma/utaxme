@@ -26,8 +26,12 @@ import { ConfirmDialogModule } from 'src/app/shared/utils/confirm-dialog/confirm
 import { PagerModule } from 'src/app/shared/utils/pager';
 import { FilterErrorModule } from 'src/app/shared/utils/filter-error';
 import { MatDividerModule } from '@angular/material/divider';
-
-
+import { MatSelectModule } from '@angular/material/select';
+import { MatChipsModule } from '@angular/material/chips';
+import { DndDirective } from './espacio-trabajo/clientes/nuevo-cliente/certificados/file-drag-n-drop.directive';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { AgregarCertificadoComponent } from './espacio-trabajo/clientes/nuevo-cliente/certificados/agregar-certificado/agregar-certificado.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
@@ -41,6 +45,8 @@ import { MatDividerModule } from '@angular/material/divider';
     DomicilioComponent,
     MembresiaComponent,
     CertificadosComponent,
+    DndDirective,
+    AgregarCertificadoComponent,
     EquiposComponent,
     AdministracionComponent,
     PagosComponent
@@ -54,6 +60,11 @@ import { MatDividerModule } from '@angular/material/divider';
     RouterModule,
     MatInputModule,
     MatTabsModule,
+    MatSelectModule,
+    MatChipsModule,
+    ReactiveFormsModule,
+    MatProgressBarModule,
+    MatDatepickerModule,
     MatProgressSpinnerModule,
     FormsModule,
     ReactiveFormsModule,

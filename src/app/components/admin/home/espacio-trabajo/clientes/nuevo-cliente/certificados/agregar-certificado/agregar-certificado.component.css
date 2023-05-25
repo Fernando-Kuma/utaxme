@@ -1,4 +1,4 @@
-.home-container-certificados{
+.home-container-nuevo-certificados{
     width: 100%!important;
     margin-top: 41px;
     padding: 0;
@@ -129,7 +129,29 @@
 
 .container-progress {
     width: 625px;
+    height: 48px;
     border: solid 1px #7B8AA0;
     position: relative;
     margin: 0 auto;
   }
+
+  ::ng-deep .periodo-calendario .mat-form-field-outline {
+    background: white;
+    border-radius: 8px;
+  }
+  
+  ::ng-deep .periodo-calendario .mat-calendar-period-button{
+    pointer-events: none;
+  }
+
+  .font-blue {
+    color: #285CED;
+  }
+
+  ::ng-deep .mat-progress-bar-fill::after {
+    background-color: #285CED;
+}
+
+::ng-deep .mat-progress-bar-buffer {
+    background: #E4E8EB;
+}

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CatalogosService } from 'src/app/shared/service/catalogos.service';
 
 @Component({
   selector: 'app-membresia',
@@ -8,23 +9,17 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class MembresiaComponent implements OnInit {
 
-  Paquetes = [{
-    nombre: "Paquete Avanzado",
-    id: 1
-  },{
-    nombre: "Paquete Medio",
-    id: 2
-  },{
-    nombre: "Paquete Basico",
-    id: 3
-  }];
+  Paquetes = [];
 
   public formMembresia: FormGroup;
-  constructor(private formBuilder: FormBuilder) { 
+  dias: number[] = Array.from({length:31},(v,k)=>k+1);;
+  constructor(private formBuilder: FormBuilder,
+    private catalogoService: CatalogosService) { 
   }
 
   ngOnInit(): void {
     this.crearForm();
+    this.obtenerPaquetes();
   }
 
   crearForm(){
@@ -65,4 +60,13 @@ export class MembresiaComponent implements OnInit {
     }
   }
 
+  obtenerPaquetes(){
+    this.catalogoService.obtenerRegimenFiscales()
+      .subscribe((response) => {
+        console.log("Regimens:",response);
+        this.Paquetes = response;
+      },(_error) => {
+        console.log("Error en obtener regimen: ", _error);
+      });
+  }
 }

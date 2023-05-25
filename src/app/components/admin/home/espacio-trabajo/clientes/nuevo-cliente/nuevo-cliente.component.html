@@ -2,6 +2,11 @@
     <div class="row w100m0p0">
       <form [formGroup]="formCliente">
         <div class="row">
+          <div class="d-flex justify-content-end">
+            <button style="border: none;background: white;" (click)="close()">
+              <h1 style="color: #3B4559;"><b>x</b></h1>
+            </button>
+          </div>
             <div class="row text">
                 Nuevo cliente
             </div>
@@ -25,12 +30,47 @@
 
     <div class="row w100m0p0">
         <div class="col-12">
-            <mat-tab-group>
-                <mat-tab label="Generales"> <app-generales></app-generales> </mat-tab>
-                <mat-tab label="Domicilio"> <app-domicilio></app-domicilio> </mat-tab>
+            <mat-tab-group [selectedIndex]="indexTab" (selectedIndexChange)="onTabChanged($event)">
+                <mat-tab label="Generales*"> <app-generales (selectTab)="obtenerValor($event)"></app-generales> </mat-tab>
+                <mat-tab label="Domicilio*"> <app-domicilio (validForm)="guardarFormulario()"></app-domicilio> </mat-tab>
                 <mat-tab label="Membresia"> <app-membresia></app-membresia> </mat-tab>
                 <mat-tab label="Certificados"> <app-certificados></app-certificados> </mat-tab>
-                <mat-tab label="Contador asignado"> Content 2 </mat-tab>
+                <mat-tab label="Contador asignado">
+                  <form [formGroup]="formContadores" style="margin-top: 41px;">
+                    <mat-form-field appearance="outline" style="width: 100%; font-size: 16px;" (click)="$event.stopPropagation();">
+                      <mat-label>EQUIPO/CONTADOR ASIGNADO*</mat-label>
+                      <mat-select formControlName="contadores"  multiple #selectDispositivo style="height: 200px;">
+                        <mat-select-trigger>
+                          <mat-chip-list #chipList> 
+                            <mat-chip *ngFor="let item of formularioContadores.contadores.value; let i = index;" [selectable]="selectable" 
+                            [removable]="removable" (removed)="removeService(i, item)" style="background-color: #285CED !important;color: #FFFFFF;">
+                              {{ item }} 
+                              <button matChipRemove *ngIf="removable" style="color: #FFFFFF;">
+                                <mat-icon class="delete-chip"></mat-icon>
+                              </button>
+                            </mat-chip>
+                          </mat-chip-list>
+                        </mat-select-trigger>
+                        <mat-option class="checknone" style="font-size: 16px;" *ngFor="let item of Options; let i = index" [value]="item.descripcion" (click)="selectDispositivo.close();">
+                            <mat-icon class="filtroTipoDispositivos"></mat-icon>{{item.descripcion}}
+                        </mat-option>
+                      </mat-select>
+                      <mat-error *ngIf="formularioContadores.contadores.invalid && formularioContadores.contadores.touched && formularioContadores.contadores.errors">
+                          <ng-container *ngIf="formularioContadores.contadores.errors.required">
+                              {{ getErrorRequerido() }}
+                          </ng-container>
+                          </mat-error>
+                    </mat-form-field>
+                  </form>
+                    <div class="col-12 d-flex justify-content-end">
+                      <button mat-button type="button" class="btn-utaxme-secondary" style="max-width: 120px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;">
+                        Cancelar
+                      </button>
+                      <button mat-button class="btn-utaxme" style="max-width: 160px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;">
+                        Generar CFDI
+                      </button>
+                    </div>
+                </mat-tab>
               </mat-tab-group>
         </div>
     </div>

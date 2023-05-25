@@ -21,4 +21,34 @@ export class CatalogosService {
         })
       );
   }
+
+  obtenerPaquetes(): Observable<any> {
+    return this.http
+      .get<any>(`${API.admin.catalogos.paquetes}`)
+      .pipe(
+        catchError((e) => {
+          return throwError(e);
+        })
+      );
+  }
+
+  obtenerContadores(): Observable<any> {
+    return this.http
+      .get<any>(`${API.admin.catalogos.contadores}`)
+      .pipe(
+        catchError((e) => {
+          return throwError(e);
+        })
+      );
+  }
+
+  obtenerCP(cp): Observable<any> {
+    return this.http
+      .get<any>(`${API.admin.catalogos.entidades}?cp=${cp}`)
+      .pipe(
+        catchError((e) => {
+          return throwError(e);
+        })
+      );
+  }
 }

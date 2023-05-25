@@ -20,8 +20,10 @@ import { CertificadosComponent } from './espacio-trabajo/clientes/nuevo-cliente/
 import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
 import { ReactiveFormsModule } from '@angular/forms';
-
-
+import { DndDirective } from './espacio-trabajo/clientes/nuevo-cliente/certificados/file-drag-n-drop.directive';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { AgregarCertificadoComponent } from './espacio-trabajo/clientes/nuevo-cliente/certificados/agregar-certificado/agregar-certificado.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     GeneralesComponent,
     DomicilioComponent,
     MembresiaComponent,
-    CertificadosComponent
+    CertificadosComponent,
+    DndDirective,
+    AgregarCertificadoComponent
   ],
   imports: [
     CommonModule,
@@ -48,6 +52,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatSelectModule,
     MatChipsModule,
     ReactiveFormsModule,
+    MatProgressBarModule,
+    MatDatepickerModule
   ]
 })
 export class HomeModule { }

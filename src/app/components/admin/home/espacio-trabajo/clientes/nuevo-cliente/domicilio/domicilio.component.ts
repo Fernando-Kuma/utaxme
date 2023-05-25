@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CatalogosService } from 'src/app/shared/service/catalogos.service';
 
 @Component({
   selector: 'app-domicilio',
@@ -9,7 +10,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class DomicilioComponent implements OnInit {
 
   public formDomicilio: FormGroup;
-  constructor(private formBuilder: FormBuilder) { 
+  @Output()
+  validForm : EventEmitter<boolean> = new EventEmitter<boolean>();
+  constructor(private formBuilder: FormBuilder,
+    private catalogoService: CatalogosService) { 
   }
 
   ngOnInit(): void {
@@ -51,9 +55,33 @@ export class DomicilioComponent implements OnInit {
 
     if(validacion){
       console.log("Formulario lleno")
+      localStorage.setItem('domicilio','1');
+      this.cambiarTab();
     }else{
       console.log("Formulario no lleno")
+      localStorage.setItem('domicilio','1');
     }
   }
 
+  buscarCP(){
+    let cp = this.formDomicilio.get('cp').value;
+    console.log("CP:",cp);
+    if(cp.length == 5){
+      this.catalogoService.obtenerCP(cp)
+      .subscribe((response) => {
+        console.log("CP:",response[0]);
+        this.formDomicilio.get('colonia').setValue(response[0].colonia);
+        this.formDomicilio.get('estado').setValue(response[0].tbCatEstado.descripcion);
+        this.formDomicilio.get('ciudad').setValue(response[0].municipio);
+      },(_error) => {
+        console.log("Error en obtener contadores: ", _error);
+      });
+    }else{
+      return;
+    }
+  }
+
+  cambiarTab(){
+    this.validForm.emit(true);
+  }
 }

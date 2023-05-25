@@ -635,9 +635,29 @@ body {
 
 .delete-chip {
   background-image: url("src\assets\img\icon\delete-chip.svg");
+  color: white;
   background-size: 18px 18px;
   background-repeat: no-repeat;
   background-position: center;
 }
 
+.image-upload-file {
+  background-image: url("src\assets\img\uploadFile.png");
+  background-repeat: no-repeat;
+  background-position: center;
+}
  
+.image-upload-file-desc {
+  background-image: url("src\assets\img\uploadFile.png");
+  background-size: 100px 100px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.delete-chip-black {
+  background-image: url("src\assets\img\icon\delete-chip-black.svg");
+  color: #6B778C;
+  background-size: 18px 18px;
+  background-repeat: no-repeat;
+  background-position: center;
+}

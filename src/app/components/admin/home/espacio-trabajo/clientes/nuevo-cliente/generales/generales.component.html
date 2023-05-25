@@ -29,7 +29,8 @@
                 <div class="col-6">
                     <mat-form-field appearance="outline" style="width: 100%; font-size: 16px;" (click)="$event.stopPropagation();">
                         <mat-label>REGIMEN FISCAL*</mat-label>
-                        <mat-select formControlName="dispositivos"  multiple #selectDispositivo style="height: 100px">
+                        <mat-select formControlName="dispositivos"  multiple #selectDispositivo style="height: 100px;overflow-y:scroll;
+                        overflow-x:hidden;">
                           <mat-select-trigger>
                             <mat-chip-list #chipList> 
                               <mat-chip *ngFor="let item of formulario.dispositivos.value; let i = index;" [selectable]="selectable" 
@@ -41,8 +42,8 @@
                               </mat-chip>
                             </mat-chip-list>
                           </mat-select-trigger>
-                          <mat-option class="checknone" style="font-size: 16px;" *ngFor="let item of Options; let i = index" [value]="item.nombre" (click)="selectDispositivo.close();">
-                              <mat-icon class="filtroTipoDispositivos"></mat-icon>{{item.nombre}}
+                          <mat-option class="checknone" style="font-size: 16px;" *ngFor="let item of Options; let i = index" [value]="item.descripcion" (click)="selectDispositivo.close();">
+                              <mat-icon class="filtroTipoDispositivos"></mat-icon>{{item.descripcion}}
                           </mat-option>
                         </mat-select>
                         <mat-error *ngIf="formulario.dispositivos.invalid && formulario.dispositivos.touched && formulario.dispositivos.errors">
@@ -84,7 +85,7 @@
                 Cancelar
               </button>
               <button mat-button class="btn-utaxme" style="max-width: 160px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;" (click)="validarGenerales()">
-                Generar CFDI
+                Siguiente
               </button>
             </div>
           </div>

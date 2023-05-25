@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AgregarCertificadoComponent } from './agregar-certificado/agregar-certificado.component';
 
@@ -8,6 +8,9 @@ import { AgregarCertificadoComponent } from './agregar-certificado/agregar-certi
   styleUrls: ['./certificados.component.css']
 })
 export class CertificadosComponent implements OnInit {
+
+  @Output()
+  validForm : EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(private dialog: MatDialog) { }
 
@@ -22,5 +25,9 @@ export class CertificadosComponent implements OnInit {
         disableClose: true
       }
     );
+  }
+
+  validarForm(){
+    this.validForm.emit(true);
   }
 }

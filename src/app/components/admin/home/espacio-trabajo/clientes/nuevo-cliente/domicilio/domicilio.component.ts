@@ -63,6 +63,7 @@ export class DomicilioComponent implements OnInit {
     if(validacion){
       console.log("Formulario lleno")
       localStorage.setItem('domicilio','1');
+      this.guardarDomicilio();
       this.cambiarTab();
     }else{
       console.log("Formulario no lleno")
@@ -116,14 +117,23 @@ export class DomicilioComponent implements OnInit {
     body.domicilio.numeroInt = this.formDomicilio.get('numeroint').value;
     console.log("Body:",body);
     localStorage.setItem('bodyCliente', JSON.stringify(body));
+  }
 
+  public onlyNumbers(event) {
+    let k;
+    k = event.charCode;
+    return (!(k > 31 && (k < 48 || k > 57)));
+  }
 
+  public keyShowAutocomplete(event: any) {
+    if(event.target.value > 0 || event.target.value == ''){
     
-
-
-
-
-
-
+    }else{
+      if(Number(event.target.value) != 0){
+        this.formDomicilio.get('cp')?.setErrors({ incorrectText: true });
+        this.formDomicilio.get('numeroint')?.setErrors({ incorrectText: true });
+        this.formDomicilio.get('numeroext')?.setErrors({ incorrectText: true });
+      }
+    }
   }
 }

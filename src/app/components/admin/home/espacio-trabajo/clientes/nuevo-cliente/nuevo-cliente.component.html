@@ -33,8 +33,8 @@
             <mat-tab-group [selectedIndex]="indexTab" (selectedIndexChange)="onTabChanged($event)">
                 <mat-tab label="Generales*"> <app-generales (selectTab)="obtenerValor($event)"></app-generales> </mat-tab>
                 <mat-tab label="Domicilio*"> <app-domicilio (validForm)="validarFormulario()"></app-domicilio> </mat-tab>
-                <mat-tab label="Membresia"> <app-membresia></app-membresia> </mat-tab>
-                <mat-tab label="Certificados"> <app-certificados></app-certificados> </mat-tab>
+                <mat-tab label="Membresia"> <app-membresia (validForm)="validarFormulario()"></app-membresia> </mat-tab>
+                <mat-tab label="Certificados"> <app-certificados (validForm)="validarFormulario()"></app-certificados> </mat-tab>
                 <mat-tab label="Contador asignado">
                   <form [formGroup]="formContadores" style="margin-top: 41px;">
                     <mat-form-field appearance="outline" style="width: 100%; font-size: 16px;" (click)="$event.stopPropagation();">
@@ -66,8 +66,8 @@
                       <button mat-button type="button" class="btn-utaxme-secondary" style="max-width: 120px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;">
                         Cancelar
                       </button>
-                      <button mat-button class="btn-utaxme" style="max-width: 160px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;">
-                        Generar CFDI
+                      <button mat-button class="btn-utaxme" style="max-width: 160px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;" (click)="validarFormularioCertificado()" >
+                        Crear nuevo cliente
                       </button>
                     </div>
                 </mat-tab>

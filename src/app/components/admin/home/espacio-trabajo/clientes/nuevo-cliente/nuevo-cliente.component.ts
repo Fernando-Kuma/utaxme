@@ -130,7 +130,7 @@ export class NuevoClienteComponent implements OnInit {
       let generales = localStorage.getItem('generales');
       let domicilio = localStorage.getItem('domicilio');
       if(generales == '1' && domicilio == '1'){
-        console.log('Se puede guardar el formulario')
+        console.log('Se puede guardar el formulario final')
         this.guardarCliente();
       }else{
         console.log('No se puede guardar el formulario')
@@ -145,6 +145,8 @@ export class NuevoClienteComponent implements OnInit {
 
     let body = JSON.parse(localStorage.getItem('bodyCliente'));
     body.nombre = this.formCliente.get('razonSocial').value;
+    body.idDespacho = "0";
+    body.idPaqueteContratado = "0";
     this.clienteService.guardarCliente(body)
       .subscribe((response) => {
         console.log("Response:",response);
@@ -152,6 +154,29 @@ export class NuevoClienteComponent implements OnInit {
       },(_error) => {
         console.log("Error al guardar cliente: ", _error);
       });
+  }
+
+
+  validarFormularioCertificado(){
+    let validacion = true;
+    if(this.formContadores.touched){
+      if(this.formContadores.invalid){
+        Object.keys(this.formContadores.controls).forEach((field) => {
+            const control = this.formContadores.get(field);
+            if (!control.valid) {
+                control.markAsTouched({ onlySelf: true });
+            }
+        });
+        validacion = false
+      }
+    }
+
+    if(validacion){
+        console.log('Se puede guardar el formulario')
+        this.validarFormulario();
+    }else{
+      console.log('No se puede guardar el formulario completo')
+    }
   }
 
 }

@@ -84,6 +84,7 @@ export const API = {
       contadores:  environment.apicatalogos + 'contadores',
       entidades:  environment.apicatalogos + 'entidades',
       estados:  environment.apicatalogos + 'estados',
+      formaPago:  environment.apicatalogos + 'formaPago',
     },
     cliente: {
       nuevoCliente:  environment.apiCliente + 'nuevo',

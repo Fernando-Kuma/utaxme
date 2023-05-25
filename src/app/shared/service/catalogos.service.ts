@@ -61,4 +61,14 @@ export class CatalogosService {
         })
       );
   }
+
+  obtenerFormasPago(): Observable<any> {
+    return this.http
+      .get<any>(`${API.admin.catalogos.formaPago}`)
+      .pipe(
+        catchError((e) => {
+          return throwError(e);
+        })
+      );
+  }
 }

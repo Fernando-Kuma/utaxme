@@ -6,10 +6,10 @@
                     <div class="col-12">
                         <mat-form-field appearance="outline" style="width: 100%; font-size: 16px;">
                             <mat-label>RFC DEL CLIENTE*</mat-label>
-                            <input matInput (blur)="validarForm()" formControlName="rfc" id="rfc" name="rfc"/>
+                            <input matInput (blur)="validarForm()" formControlName="rfc" id="rfc" name="rfc" maxlength="20"/>
                             <mat-error *ngIf="formulario.rfc.invalid && formulario.rfc.touched && formulario.rfc.errors">
-                            <ng-container *ngIf="formulario.rfc.errors.required">
-                                {{ getErrorRequerido() }}
+                            <ng-container>
+                                {{ getErrorRequerido('rfc') }}
                             </ng-container>
                             </mat-error>
                         </mat-form-field>
@@ -19,8 +19,8 @@
                             <mat-label>CORREO ELECTRÓNICO*</mat-label>
                             <input matInput (blur)="validarForm()" formControlName="correo" id="correo" name="correo"/>
                             <mat-error *ngIf="formulario.correo.invalid && formulario.correo.touched && formulario.correo.errors">
-                            <ng-container *ngIf="formulario.correo.errors.required">
-                                {{ getErrorRequerido() }}
+                            <ng-container>
+                                {{ getErrorRequerido('correo') }}
                             </ng-container>
                             </mat-error>
                         </mat-form-field>
@@ -47,8 +47,8 @@
                           </mat-option>
                         </mat-select>
                         <mat-error *ngIf="formulario.dispositivos.invalid && formulario.dispositivos.touched && formulario.dispositivos.errors">
-                            <ng-container *ngIf="formulario.dispositivos.errors.required">
-                                {{ getErrorRequerido() }}
+                            <ng-container>
+                                {{ getErrorRequerido('dispositivos') }}
                             </ng-container>
                             </mat-error>
                       </mat-form-field>
@@ -58,21 +58,27 @@
                 <div class="col-6">
                     <mat-form-field appearance="outline" style="width: 100%; font-size: 16px;">
                         <mat-label>NÚMERO CELULAR*</mat-label>
-                        <input matInput (blur)="validarForm()" formControlName="celular" id="celular" name="celular"/>
+                        <input matInput (blur)="validarForm()" formControlName="celular" id="celular" name="celular" maxlength="10" minlength="10" (keypress)="onlyNumbers($event);" (keyup)="keyShowAutocomplete($event)"/>
                         <mat-error *ngIf="formulario.celular.invalid && formulario.celular.touched && formulario.celular.errors">
-                        <ng-container *ngIf="formulario.celular.errors.required">
-                            {{ getErrorRequerido() }}
+                        <ng-container>
+                            {{ getErrorRequerido('celular') }}
                         </ng-container>
+                        <ng-container *ngIf="formulario.celular.errors.minlength">
+                            El número debe ser minimo de 10 digitos
+                          </ng-container>
+                          <ng-container *ngIf="formulario.celular.errors.incorrectText">
+                            Este campo solo es llenado con números
+                          </ng-container>
                         </mat-error>
                     </mat-form-field>
                 </div>
                 <div class="col-6">
                     <mat-form-field appearance="outline" class="example-full-width" style="width: 100%;font-size: 16px;">
                         <mat-label>OBSERVACIONES</mat-label>
-                        <textarea matInput formControlName="observaciones" id="observaciones" name="observaciones" placeholder="Ex. It makes me feel..." style="height: 100px"></textarea>
+                        <textarea matInput formControlName="observaciones" id="observaciones" name="observaciones" maxlength="200" placeholder="Ex. It makes me feel..." style="height: 100px"></textarea>
                         <mat-error *ngIf="formulario.observaciones.invalid && formulario.observaciones.touched && formulario.observaciones.errors">
-                        <ng-container *ngIf="formulario.observaciones.errors.required">
-                            {{ getErrorRequerido() }}
+                        <ng-container>
+                            {{ getErrorRequerido('observaciones') }}
                         </ng-container>
                         </mat-error>
                     </mat-form-field>

@@ -1,6 +1,6 @@
 <div class="home-container-certificados">
     <div class="row w100m0p0">
-        <ng-container>
+        <ng-container *ngIf="mostrar == 1">
             <div class="row" style="margin-top: 38px;">
                 <div class="col-12">
                     <div class="image-upload-file" style="height: 120px;"></div>
@@ -19,8 +19,8 @@
                 </div>
               </div>
         </ng-container>
-        <ng-container>
-            
+        <ng-container *ngIf="mostrar == 2">
+            Hola
         </ng-container>
         <div class="row">
             <div class="col-12 d-flex justify-content-end">

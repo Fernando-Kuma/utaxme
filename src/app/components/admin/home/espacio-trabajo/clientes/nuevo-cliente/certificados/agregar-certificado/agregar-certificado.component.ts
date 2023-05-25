@@ -25,9 +25,14 @@ export class AgregarCertificadoComponent implements OnInit {
     public dialogRef: MatDialogRef<AgregarCertificadoComponent>) { }
 
   ngOnInit(): void {
+    this.crearForm();
+  }
+
+  crearForm(){
     this.formCertificado = this.formBuilder.group({
-      inicial: ['', [Validators.required]],
-      final: ['', [Validators.required]],
+      inicial: [null, [Validators.required]],
+      final: [null, [Validators.required]],
+      password: [null, [Validators.required]],
     });
   }
 
@@ -40,6 +45,7 @@ export class AgregarCertificadoComponent implements OnInit {
   }
 
   prepareFilesList(files: Array<any>) {
+    console.log("Archivos:",files);
     for (const item of files) {
       item.progress = 0;
       this.files.push(item);
@@ -113,6 +119,14 @@ export class AgregarCertificadoComponent implements OnInit {
   }
 
   close(){
-    this.dialogRef.close();
+    this.dialogRef.close(1);
+  }
+
+  subirArchivos(){
+    this.dialogRef.close(2);
+  }
+
+  get formulario() {
+    return this.formCertificado.controls;
   }
 }

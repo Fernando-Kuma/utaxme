@@ -147,10 +147,12 @@ export class NuevoClienteComponent implements OnInit {
     body.nombre = this.formCliente.get('razonSocial').value;
     body.idDespacho = "0";
     body.idPaqueteContratado = "0";
+    console.log("BodyFinal:",body);
     this.clienteService.guardarCliente(body)
       .subscribe((response) => {
         console.log("Response:",response);
         this.alertService.success('<b>Se guardo correctamente el cliente.</b>');
+        this.close();
       },(_error) => {
         console.log("Error al guardar cliente: ", _error);
       });

@@ -4,6 +4,8 @@ import { MatOption } from '@angular/material/core/option';
 import { MatSelect } from '@angular/material/select/select';
 import { Cliente } from 'src/app/shared/model/cliente-model';
 import { CatalogosService } from 'src/app/shared/service/catalogos.service';
+import { NuevoClienteComponent } from '../nuevo-cliente.component';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-generales',
@@ -25,7 +27,8 @@ export class GeneralesComponent implements OnInit {
   public formGenerales: FormGroup;
   body : any;
   constructor(private formBuilder: FormBuilder,
-    private catalogoService: CatalogosService) { 
+    private catalogoService: CatalogosService,
+    public dialogRef: MatDialogRef<NuevoClienteComponent>) { 
   }
 
   ngOnInit(): void {
@@ -151,5 +154,9 @@ export class GeneralesComponent implements OnInit {
         this.formGenerales.get('celular')?.setErrors({ incorrectText: true });
       }
     }
+  }
+
+  close(){
+    this.dialogRef.close();
   }
 }

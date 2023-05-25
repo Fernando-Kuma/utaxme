@@ -7,7 +7,7 @@
     <div class="row w100m0p0">
         <div class="row">
             <div class="container" appDnd (fileDropped)="onFileDropped($event)">
-                <input type="file" #fileDropRef id="fileDropRef" multiple (change)="fileBrowseHandler($event.target)" />
+                <input class="inputFiles" type="file" #fileDropRef id="fileDropRef" multiple (change)="fileBrowseHandler($event.target)" />
                 <div class="image-upload-file-desc" style="height: 100px;"></div>
                 <p class="texto2">Arrastra el Certificado para Facturación aquí</p>
                 <p style="color: #838383;">Los archivos deben subir con los siguientes prefijos: CSD_RFC, KEY_RFC seguido del RFC.</p>
@@ -65,12 +65,25 @@
                             </mat-error>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <mat-form-field appearance="outline" style="width: 100%; font-size: 13px;margin-top: 20px;">
+                                <mat-label>PASSWORD*</mat-label>
+                                <input matInput formControlName="password" id="password" name="password" maxlength="200"/>
+                                <mat-error *ngIf="formulario.password.invalid && formulario.password.touched && formulario.password.errors">
+                                <ng-container *ngIf="formulario.password.errors.required">
+                                    Este campo es requerido
+                                </ng-container>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
         <div class="row">
             <div class="col-12 d-flex justify-content-center">
-              <button mat-button class="btn-utaxme" style="max-width: 460px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;" *ngIf="showForm">
+              <button mat-button class="btn-utaxme" style="max-width: 460px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;" *ngIf="showForm" (click)="subirArchivos()">
                 Subir Certificados
               </button>
             </div>

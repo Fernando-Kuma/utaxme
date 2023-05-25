@@ -12,19 +12,24 @@ export class CertificadosComponent implements OnInit {
   @Output()
   validForm : EventEmitter<boolean> = new EventEmitter<boolean>();
 
+  mostrar:number = 1;
   constructor(private dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
 
   openCertificadoDialog() {
-    this.dialog.open(
+    const dialogRef = this.dialog.open(
       AgregarCertificadoComponent,{
         width: '750px ',
         height: '850px ',
         disableClose: true
       }
     );
+
+    dialogRef.afterClosed().subscribe((_) => {
+      this.mostrar = _;
+    });
   }
 
   validarForm(){

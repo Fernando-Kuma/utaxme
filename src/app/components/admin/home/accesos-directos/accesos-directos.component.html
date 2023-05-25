@@ -17,7 +17,7 @@
 
         <div class="col-4">
           <div class="bienvenida-cliente">
-            ¡Buen día, {{ nombreCliente }}!
+            ¡Buen día, &nbsp;<span style="text-transform: capitalize;">{{ nombreCliente }}</span>!
           </div>
           <div class="d-flex justify-content-end">
             <button type="button" class="btn-utaxme" style="max-width: 210px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: space-evenly;" (click)="abrirAccesosModal()">
@@ -37,7 +37,7 @@
     <div class="col-1"></div>
     <div class="col-10">
       <div class="row gx-3 gy-4">
-        <div class="col-4" *ngFor="let item of listaAccesos" (click)="goToAccesoDirecto(item.path)">
+        <div class="col-4" *ngFor="let item of listaAccesosUsuario" (click)="goToAccesoDirecto(item.path)">
           <div class="p-1 home-acceso-card"> 
               <div class="acceso-ico"
               [ngClass]="item.icono"></div>

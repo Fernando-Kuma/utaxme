@@ -47,6 +47,12 @@ export const API = {
   
 
 
+  adminLogin: environment.adiminApi + 'login',
+  editarAccesos: environment.adiminApi + 'configuraciones/agregarUsuarioAccesoDirecto',
+  obtenerAccesosUsuario: environment.adiminApi + 'configuraciones/recuperarUsuarioAccesoDirecto',
+  obtenerAccesos: environment.adiminApi + 'catalogs/accesoDirecto',
+
+  
   /* getWord: environment.api + 'wordwise/entries?limit=1&headword=',
   login: environment.api + 'utaxon/admin/find',
   dataBank: environment.api + 'utaxon/admin/dataBank',

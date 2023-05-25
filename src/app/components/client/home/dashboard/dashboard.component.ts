@@ -106,7 +106,7 @@ export class DashboardComponent implements OnInit {
       });
   
       dialogRef.afterClosed().subscribe((data) => {
-        if(!data){
+        if(data == false){
           this.auth.logout()
         }
       });

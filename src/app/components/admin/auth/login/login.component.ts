@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatInput } from '@angular/material/input';
 import { Router } from '@angular/router';
 import { NAV } from 'src/app/shared/configuration/navegacion';
-import { User } from 'src/app/shared/model/auth-model';
+import { Admin } from 'src/app/shared/model/auth-model';
 import { AuthService } from 'src/app/shared/service/auth.service';
 import { DashboardService } from 'src/app/shared/service/dashboard.service';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -26,7 +26,7 @@ export class LoginComponentAdmin implements OnInit {
 
   _auth: any;
   _codigo: any;
-  _user: any;
+  _admin: any;
   _reintento: number = 1;
 
   constructor(
@@ -54,13 +54,12 @@ export class LoginComponentAdmin implements OnInit {
 
   createForm() {
     this.form = this.formBuilder.group({
-      email: [null, [Validators.required, Validators.pattern(".+@.+\..+")]],
+      email: [null, [Validators.required]],
       password: [null, [Validators.required]],
     });
   }
 
   login(): void{
-
     if(this.form.invalid){
       Object.keys(this.form.controls).forEach((field) => {
         const control = this.form.get(field);
@@ -70,72 +69,32 @@ export class LoginComponentAdmin implements OnInit {
       });
     }
     if(this.form.valid){
-      this._user = new User();
-      this._user.email = this.form.controls['email'].value;
-      this._user.password = this.form.controls['password'].value;
+      this._admin = new Admin();
+      this._admin.username = this.form.controls['email'].value;
+      this._admin.password = this.form.controls['password'].value;
       this.spinner.show();
-      this.authService.login(this._user).subscribe({
+      this.authService.loginAdmin(this._admin).subscribe({
         next: (response) => {
           this.spinner.hide();
-          if(response != null ){
+          if(response.httpStatus == 200 ){
             this.authService.getIp()
-            response.nombre = response.nombre.toLowerCase()
-            response.apellidos = response.apellidos.toLowerCase()
-            this.validarCliente(response)
+            response.data.nombreCompleto = response.data.nombreCompleto.toLowerCase()
+            sessionStorage.setItem('root-user', JSON.stringify(response.data));
+            this.router.navigateByUrl(NAV.homeAdmin);
           }else{
-            this.selectMessageError("El usuario no se encuentra registrado en el sistema");
+            this.selectMessageError(response.message);
           }
         },
         error: (_) => {
           this.spinner.hide();
-          if(_.error.response === "No coinciden las credenciales"){
-            this.selectMessageError(_.error.response);
-          }else{
             this.openDialog()
             console.log("Error: ", _)
-          }
         }
       });
       
     } 
   }
 
-  validarCliente(usuario: any){
-    let email = {
-      username: this._user.email
-    }
-    this.authService.payment(email).subscribe({
-      next: (resp) => {
-        if (resp.payment) {
-          this.spinner.hide();
-          let request = {
-            folio: usuario.folio
-          }
-          this.dashboardService.validarCliente(request).subscribe({
-            next: (response) => {
-              if(response != null ){
-                if(response.rfc != ""){
-                  usuario.cliente = response
-                  sessionStorage.setItem('admin-user', JSON.stringify(usuario));
-                  this.router.navigateByUrl(NAV.dashboard);
-                }
-              }
-            },
-            error: (_) => {
-              this.openDialog()
-              console.log("Error: ", _)
-            }
-          });
-        }
-      },
-      error: (_) => {
-        this.openDialog()
-          console.log("Error: ", _)
-      }
-    });
-
-    
-  }
 
   enterContrato(){
     this.password.focus();
@@ -146,7 +105,7 @@ export class LoginComponentAdmin implements OnInit {
       return 'Este campo es requerido';
     } else if (value == 'email') {
       return this.form.get('email').hasError('contrato')
-      ? 'Las credenciales ingresadas no existen'
+      ? 'El usuario no se encuentra registrado.' //Las credenciales ingresadas no existen
       : this.form.get('email').hasError('pattern')
       ? 'Correo electrónico inválido'
       : this.form.get('email').hasError('minlength')
@@ -158,7 +117,7 @@ export class LoginComponentAdmin implements OnInit {
       : this.form.get('password').hasError('minlength')
       ? 'La contraseña debe contener al menos 8 caracteres'
       : this.form.get('password').hasError('invalid')
-      ? 'Credenciales inválidas'
+      ? 'La contraseña no coincide.' //Credenciales inválidas
       : '' ;
     }
   }
@@ -168,12 +127,13 @@ export class LoginComponentAdmin implements OnInit {
   }
 
   selectMessageError(message:string) {
-    if(message === 'No coinciden las credenciales'){
+    console.log(message)
+    if(message === 'La contraseña no coincide.'){
       //Credenciales inválidas
       this.form.get('password')?.setErrors({ invalid: true });
       this.getError('password');
     }
-    if(message === 'El usuario no se encuentra registrado en el sistema'){
+    if(message === 'El usuario no se encuentra registrado...'){
       //Las credenciales ingresadas no existen
       this.form.get('email')?.setErrors({ contrato: true });
       this.getError('email');
@@ -184,7 +144,7 @@ export class LoginComponentAdmin implements OnInit {
     const dialogRef = this.dialog.open(ServiceErrorDialogComponent, {
       width: '449px',
       height: '360px ',
-      data:{numero: this._reintento, cerrarSesion: false, tipoError: "servicio"},
+      data:{numero: this._reintento, cerrarSesion: false, tipoError: "login"},
       disableClose: true
     });
 
@@ -215,15 +175,5 @@ export class LoginComponentAdmin implements OnInit {
     
   }
 
-  loginDummy(){
-    let usuario = {
-      nombre: 'José Martínez',
-      rol: 'Super administrador',
-      correo: this.form.controls['email'].value,
-    }
-    sessionStorage.setItem('root-user', JSON.stringify(usuario));
-    this.router.navigateByUrl(NAV.homeAdmin);
-
-  }
 
 }

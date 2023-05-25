@@ -3,6 +3,11 @@ export class User {
   password?: string;
 }
 
+export class Admin {
+  username?: string;
+  password?: string;
+}
+
 export class Auth {
   idInfoTrabajador?: string;
   password?: string;

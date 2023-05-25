@@ -1,4 +1,4 @@
-<ng-container *ngIf="tipoError">
+<ng-container *ngIf="!tipoError">
 
   <mat-dialog-content *ngIf="error">
     <div class="row d-flex">
@@ -20,13 +20,13 @@
       </div>
       <div class="col-12 d-flex justify-content-end">
         <button
-        class="btn-totalplay-secondary"
+        class="btn-utaxme-secondary"
         style="height: 40px; width: auto; margin-right: 15px" (click)="logout()"
         *ngIf="cerrarSesion"
       >
         Cerrar sesion
       </button>
-      <button class="btn-totalplay" style="height: 40px; width: auto" (click)="reintentar()">
+      <button class="btn-utaxme" style="height: 40px; width: auto" (click)="reintentar()">
         Reintentar
       </button>
       </div>
@@ -52,13 +52,13 @@
       </div>
       <div class="col-12 d-flex justify-content-end">
         <button
-        class="btn-totalplay-secondary"
+        class="btn-utaxme-secondary"
         style="height: 40px; width: auto; margin-right: 15px" (click)="logout()"
         *ngIf="cerrarSesion"
       >
         Cerrar sesion
       </button>
-      <button class="btn-totalplay" style="height: 40px; width: auto" (click)="reintentar()">
+      <button class="btn-utaxme" style="height: 40px; width: auto" (click)="reintentar()">
         Reintentar
       </button>
       </div>
@@ -67,7 +67,7 @@
 
 </ng-container>
 
-<ng-container *ngIf="!tipoError">
+<ng-container *ngIf="tipoError">
   <mat-dialog-content >
     <div class="row d-flex">
       <div class="col-12 d-flex justify-content-end">

@@ -17,6 +17,15 @@ import { GeneralesComponent } from './espacio-trabajo/clientes/nuevo-cliente/gen
 import { DomicilioComponent } from './espacio-trabajo/clientes/nuevo-cliente/domicilio/domicilio.component';
 import { MembresiaComponent } from './espacio-trabajo/clientes/nuevo-cliente/membresia/membresia.component';
 import { CertificadosComponent } from './espacio-trabajo/clientes/nuevo-cliente/certificados/certificados.component';
+import { EquiposComponent } from './espacio-trabajo/equipos/equipos.component';
+import { AdministracionComponent } from './espacio-trabajo/administracion/administracion.component';
+import { PagosComponent } from './espacio-trabajo/pagos/pagos.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ConfirmDialogModule } from 'src/app/shared/utils/confirm-dialog/confirm-dialog.module';
+import { PagerModule } from 'src/app/shared/utils/pager';
+import { FilterErrorModule } from 'src/app/shared/utils/filter-error';
+import { MatDividerModule } from '@angular/material/divider';
 
 
 
@@ -31,7 +40,10 @@ import { CertificadosComponent } from './espacio-trabajo/clientes/nuevo-cliente/
     GeneralesComponent,
     DomicilioComponent,
     MembresiaComponent,
-    CertificadosComponent
+    CertificadosComponent,
+    EquiposComponent,
+    AdministracionComponent,
+    PagosComponent
   ],
   imports: [
     CommonModule,
@@ -41,7 +53,15 @@ import { CertificadosComponent } from './espacio-trabajo/clientes/nuevo-cliente/
     MatFormFieldModule,
     RouterModule,
     MatInputModule,
-    MatTabsModule
+    MatTabsModule,
+    MatProgressSpinnerModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ConfirmDialogModule,
+    PagerModule,
+    FilterErrorModule,
+    MatDividerModule
+    
   ]
 })
 export class HomeModule { }

@@ -82,10 +82,10 @@
 
   <div class="col-12 titulo-gatos">
     <ng-container *ngIf="tipoPeriodo">
-      Utilidad del año fiscal: ${{ baseGravable.utilidad | thousandsPipe }}
+      Utilidad fiscal del año: ${{ baseGravable.utilidad | thousandsPipe }}
     </ng-container>
     <ng-container *ngIf="!tipoPeriodo">
-      Utilidad mensual fiscal: ${{ baseGravable.utilidad | thousandsPipe }}
+      Utilidad fiscal mensual: ${{ baseGravable.utilidad | thousandsPipe }}
     </ng-container>
   </div>
 

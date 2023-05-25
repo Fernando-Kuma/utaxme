@@ -92,7 +92,7 @@ export class DashboardService {
 
   obtenerSaludFiscal(request: any): Observable<any> {
     return this.http
-      .post<any>(`${API.saludFiscal}?rfc=${request.rfc}&anio=${request.anio}&mes=${request.mes}`, request)
+      .post<any>(`${API.saludFiscal}?rfc=${request.rfc}&regimen=${request.regimen}&anio=${request.anio}&mes=${request.mes}`, request)
       .pipe(
         catchError((e) => {
           return throwError(e);

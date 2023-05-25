@@ -3,6 +3,7 @@ import * as moment from 'moment';
 import { DatosFiscales } from 'src/app/shared/model/dashboard.mode';
 import { AuthService } from 'src/app/shared/service/auth.service';
 import { DashboardService } from 'src/app/shared/service/dashboard.service';
+import { EspacioTrabajoService } from 'src/app/shared/service/espacio-trabajo.service';
 
 @Component({
   selector: 'app-cuadrante-fiscales',
@@ -14,12 +15,13 @@ export class CuadranteFiscalesComponent implements OnInit {
   _consultaRequest: any;
   positionText: number[];
   ringWidth: number;
+  regimenFiscal: any;
   @Input() set consultaRequest(val: any) {
     this._consultaRequest = val;
     this.fechaActual =  moment(val.anio + '-' +val.mes + '-01').locale('es').format('MMMM YYYY')
     
     console.log(this.fechaActual)
-    this.obtenerSaludFiscal()
+    this.obtenerRegimen()
   }
 
   baseGravable: any = {
@@ -54,6 +56,7 @@ export class CuadranteFiscalesComponent implements OnInit {
   constructor(
     private dashboardService: DashboardService,
     private auth: AuthService,
+    private espacioTrabajoService: EspacioTrabajoService
   ) { 
   }
 
@@ -96,24 +99,17 @@ export class CuadranteFiscalesComponent implements OnInit {
     );
   }
 
-  obtenerIngresosEngresos(): void {
-    this.dashboardService.obtenerIngresosGastos(this._consultaRequest).subscribe(
-      (response) => {
-        this.spinnerLoading = false;
-        this.baseGravable.egresos = 0
-        this.baseGravable.ingresos = 0
-        if(response.listaReporteIngresosEgresosBean.find((element) => element.tipoComprobante === 'GASTOS')){
-          this.baseGravable.egresos = response.listaReporteIngresosEgresosBean.find((element) => element.tipoComprobante === 'GASTOS').total
-        }
-        if(response.listaReporteIngresosEgresosBean.find((element) => element.tipoComprobante === 'INGRESOS')){
-          this.baseGravable.ingresos = response.listaReporteIngresosEgresosBean.find((element) => element.tipoComprobante === 'INGRESOS').total
-        }
-
-        this.calcularSpeed()
-      },(_error) => {
-        console.log("Error: ", _error);
+  obtenerRegimen(){
+    let requestRegimen = {
+      rfc: this._consultaRequest.rfc,
+    }
+    this.espacioTrabajoService.obtenerRegimenFiscal(requestRegimen)
+    .subscribe((response) => {
+      this.regimenFiscal =  response.lista
+      this.obtenerSaludFiscal()
+    },(_error) => {
+      console.log("::Entro al error Datos fiscales: ", _error);
     });
-      
   }
 
   obtenerSaludFiscal(){
@@ -121,16 +117,19 @@ export class CuadranteFiscalesComponent implements OnInit {
     if(this.tipoPeriodo){
       _request = {
         rfc: this._consultaRequest.rfc,
-        mes: null,
+        regimen: this.regimenFiscal[0].idSat,
+        mes: -1,
         anio: this._consultaRequest.anio,
       }
     }else{
       _request = {
         rfc: this._consultaRequest.rfc,
+        regimen: this.regimenFiscal[0].idSat,
         mes: this._consultaRequest.mes,
         anio: this._consultaRequest.anio
       }
     }
+    console.log('Request: ', _request)
     this.dashboardService.obtenerSaludFiscal(_request).subscribe(
       (response) => {
         console.log(response)

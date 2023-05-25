@@ -24,6 +24,7 @@ import { HomeComponent } from 'src/app/components/admin/home/home.component';
 import { EspacioTrabajoAdminComponent } from 'src/app/components/admin/home/espacio-trabajo/espacio-trabajo.component';
 import { NuevoClienteComponent } from 'src/app/components/admin/home/espacio-trabajo/clientes/nuevo-cliente/nuevo-cliente.component';
 import { ClientesComponent } from 'src/app/components/admin/home/espacio-trabajo/clientes/clientes.component';
+import { PagosComponent } from 'src/app/components/admin/home/espacio-trabajo/pagos/pagos.component';
 
 
 
@@ -135,6 +136,10 @@ export const appRoutes: Routes = [
       {
         path: NAV.clientes,
         component: ClientesComponent,
+      },
+      {
+        path: 'admnistracion-pagos',
+        component: PagosComponent,
       }
     ], 
   },

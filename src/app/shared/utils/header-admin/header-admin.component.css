@@ -94,9 +94,8 @@ mat-toolbar{
 }
 
 .menu-user{
-  width: fit-content; 
-  /* background-color: red; */
-  margin-top: -10px; 
+/*   width: fit-content; 
+ */  /* background-color: red; */
   padding: 0;
   cursor: pointer;
 }

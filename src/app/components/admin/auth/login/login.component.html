@@ -30,7 +30,7 @@
                           <div class="col-sm-12" style="margin-top: 10px;">
                             <mat-form-field appearance="outline"  color="primary">
                               <mat-icon matPrefix class="ico-login"></mat-icon>
-                              <mat-label>CORREO ELECTRÓNICO</mat-label>
+                              <mat-label>NOMBRE DE USUARIO</mat-label>
                               <input matInput formControlName="email" #contrato="matInput" maxlength="100" minlength="3"
                               (keydown.enter)="$event.preventDefault()" (keydown.enter)="enterContrato()" (change)="paste($event)" (keypress)="blockSpace($event)" style="font-size: 15px!important;"/>
                               <mat-error
@@ -51,7 +51,7 @@
                               <mat-icon matPrefix class="ico-password"></mat-icon>
                               <mat-label>CONTRASEÑA</mat-label>
                               <input
-                                matInput minlength="8"
+                                matInput minlength="1"
                                 [type]="hide ? 'password' : 'text'" (keydown.enter)="$event.preventDefault()" (keydown.enter)="login()"
                                 formControlName="password" #password="matInput" maxlength="40" style="font-size: 15px!important;"
                               />
@@ -91,7 +91,7 @@
                           <div class="col-md-5 d-flex justify-content-end">
                             <button class="btn-utaxme" 
                               id="btnsend" style="height: 45px; font-size: 14px; line-height: 25px;"
-                              (click)="loginDummy()"
+                              (click)="login()"
                               [disabled]="!form.valid">
                               Ingresar
                             </button>

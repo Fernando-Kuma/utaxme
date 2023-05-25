@@ -185,7 +185,7 @@ export class LoginComponent implements OnInit {
     const dialogRef = this.dialog.open(ServiceErrorDialogComponent, {
       width: '449px',
       height: '360px ',
-      data:{numero: this._reintento, cerrarSesion: false, tipoError: "servicio"},
+      data:{numero: this._reintento, cerrarSesion: false, tipoError: "login"},
       disableClose: true
     });
 

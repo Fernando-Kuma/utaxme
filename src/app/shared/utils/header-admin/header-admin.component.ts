@@ -27,8 +27,8 @@ export class HeaderAdminComponent implements OnInit {
     public matDialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.user.name = this.auth.administrador.nombre
-    this.user.rol = this.auth.administrador.rol
+    this.user.name = this.auth.administrador.nombreCompleto
+    this.user.rol = this.auth.administrador.tbCatPerfile.descripcion.toLowerCase()
   }
 
   cambiarMenu(numeroMenu:number){

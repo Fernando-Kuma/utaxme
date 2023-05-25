@@ -1,1 +1,42 @@
-<p>espacio-trabajo works!</p>
+<div class="home-container" style="margin-top: 30px;">
+  <div class="row w100m0p0">
+      <div class="col-1"></div>
+      <div class="col-5 d-flex align-items-center">
+        <div class="image-administrator-workspace" style="width: 30px">&nbsp;</div>
+        <span style="font-weight: 400; font-size: 24px; color: #0B112A;">ESPACIO DE TRABAJO</span>
+      </div>
+      <div class="col-5" style="text-align: right; font-weight: 600;">
+        <p>¡Buen día, {{ nombreCliente }}!</p>
+      </div>
+      <div class="col-1"></div>
+  </div>
+</div>
+<div class="home-container" style="margin-top: 30px;">
+  <div class="row w100m0p0">
+      <div class="col-1"></div>
+      <div class="col-10 worskpace-tab">
+          <mat-tab-group [disableRipple]="true" [selectedIndex]="selected.value" (selectedIndexChange)="tabChange($event)">
+              <mat-tab>
+                <ng-template mat-tab-label>
+<!--                     <mat-icon class="img-servicio"></mat-icon>
+ -->                    Administración
+                  </ng-template>
+                  <div class="cuadro-contenido">
+                    <app-administracion></app-administracion>
+                  </div>
+              </mat-tab>
+              <mat-tab >
+                <ng-template mat-tab-label>
+<!--                     <mat-icon class="img-equipo"></mat-icon>
+ -->                    Equipos
+                  </ng-template>
+                  <div class="cuadro-contenido">
+                    <app-equipos></app-equipos>
+                  </div>
+              </mat-tab>
+          </mat-tab-group>
+      </div>
+      <div class="col-1">
+      </div>
+  </div>
+</div>

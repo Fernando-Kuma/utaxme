@@ -1,0 +1,57 @@
+.workspace-container{
+  width: 100%!important;
+  margin: 0;
+  padding: 40px;
+}
+
+
+.graficos-content{
+  background: #c4d9ff; 
+  border-radius: 15px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btns-mob{
+  display: flex;
+    justify-content: center;
+    padding: 0px 20px;
+}
+
+.btns-crea-productos{
+  display: flex;
+  justify-content: space-between;
+  height: 160px; 
+  margin-top: 26px;
+}
+
+.btn-accion{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column; 
+  text-align: center; 
+  border: 2px solid #E6EDF6; 
+  box-shadow: 8px 16px 32px #E6EDF6; 
+  border-radius: 4px;
+  transition: 1s;
+  cursor: pointer;
+
+  width: 242px;
+  height: 160px;
+
+  margin-top: 20px;
+}
+
+::ng-deep .btn-accion:hover {
+  background-color: rgb(200, 200, 204);
+}
+
+.background-icon{
+  background: #E6EDF6; 
+  width: 53px; 
+  height: 53px; 
+  border-radius: 8px;
+}

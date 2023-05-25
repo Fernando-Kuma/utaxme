@@ -113,4 +113,14 @@ export class AuthService {
     return null;
   }
 
+  loginAdmin(request: any): Observable<any> {
+    return this.http
+      .post<any>(`${API.adminLogin}`, request)
+      .pipe(
+        catchError((e) => {
+          return throwError(e);
+        })
+      );
+  }
+
 }

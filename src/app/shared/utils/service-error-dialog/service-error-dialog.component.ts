@@ -18,7 +18,7 @@ export class ServiceErrorDialogComponent implements OnInit {
   ngOnInit(): void {
     if(this.data){
       this.cerrarSesion = this.data.cerrarSesion;
-      this.tipoError = this.data.tipoError == "Servicio"
+      this.tipoError = this.data.tipoError === "servicio"
     }
   }
 

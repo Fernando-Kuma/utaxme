@@ -6,6 +6,8 @@ import { AuthService } from 'src/app/shared/service/auth.service';
 import { AlertService } from 'src/app/shared/utils/alertas';
 import { ServiceErrorDialogComponent } from 'src/app/shared/utils/service-error-dialog/service-error-dialog.component';
 import { NuevoClienteComponent } from '../espacio-trabajo/clientes/nuevo-cliente/nuevo-cliente.component';
+import { AccesosDirectosService } from 'src/app/shared/service/accesos-directos.service';
+import { AccesoDirecto } from 'src/app/shared/model/accesos.model';
 
 @Component({
   selector: 'app-accesos-directos',
@@ -15,38 +17,14 @@ import { NuevoClienteComponent } from '../espacio-trabajo/clientes/nuevo-cliente
 export class AccesosDirectosComponent implements OnInit {
 
   @ViewChild('accesosModal') accesosModal : any;
-  usuario: Usuario;
+  
+  
+  usuario: any;
   nombreCliente: string;
-
-  listaAccesos = [
-    {
-        "idCatAccesoDirecto": 1,
-        "descripcion": "Añadir nuevo cliente",
-        "predeterminado": 0,
-        "path": "4",
-        "activoInactivo": "A",
-        "icono": null,
-        "tipoAcceso": "administrador"
-    },
-    {
-        "idCatAccesoDirecto": 2,
-        "descripcion": "Ver paquetes",
-        "predeterminado": 0,
-        "path": "5",
-        "activoInactivo": "A",
-        "icono": null,
-        "tipoAcceso": "administrador"
-    },
-    {
-        "idCatAccesoDirecto": 3,
-        "descripcion": "Añadir nuevo miembro",
-        "predeterminado": 0,
-        "path": "6",
-        "activoInactivo": "A",
-        "icono": null,
-        "tipoAcceso": "administrador"
-    }
-  ]
+  
+  listaAccesosUsuario: any;
+  listaAccesos: any = []
+  accesosUsuarioAux: any[] = [];
 
   _reintento: number = 1;
 
@@ -55,18 +33,59 @@ export class AccesosDirectosComponent implements OnInit {
     private dialog: MatDialog,
     private alertService: AlertService,
     private auth: AuthService, 
+    private accesosDirectosService: AccesosDirectosService, 
     private router: Router,
   ) { }
 
   ngOnInit(): void {
     localStorage.removeItem('back-return');
     this.usuario = this.auth.administrador 
-    this.nombreCliente = this.usuario.nombre;
+    this.nombreCliente = this.usuario.nombreCompleto;
     if(this.usuario == null){
       this.auth.logout()
     }
+    this.obtenerCatalogoAccesos()
   }
 
+
+
+  obtenerCatalogoAccesos(){
+    this.accesosDirectosService.obtenerAccesos().subscribe((response) => {
+      console.log(response)
+      if(response != null){
+        this.listaAccesos = response
+      }
+      this.obtenerAccesosUsuario()
+    },(_error) => {
+      console.log("Error en obtener los catalogos: ", _error);
+    });
+  }
+
+  obtenerAccesosUsuario(){
+    this.listaAccesosUsuario = []
+    let _idUsuario = this.auth.administrador.idUsuario
+    this.accesosDirectosService.obtenerAccesosUsuario(_idUsuario).subscribe((response) => {
+      console.log(response)
+      if(response != null){
+        response.forEach(element => {
+          this.listaAccesosUsuario.push(element.accesoDirecto)
+        });
+      }
+      this.accesosUsuarioAux = this.listaAccesosUsuario;
+      console.log(this.accesosUsuarioAux)
+    },(_error) => {
+      console.log("Error en obtener los accesos del usuario: ", _error);
+    });
+  }
+
+  editarAccesos(){
+    let _request = this.generateJSON()    
+    this.accesosDirectosService.modifcarAccesos(_request).subscribe((response) => {
+      console.log(response)
+    },(_error) => {
+      console.log("Error al modificar los accesos: ", _error);
+    });
+  }
 
 
   public cerrarAccesosModal() {
@@ -89,12 +108,32 @@ export class AccesosDirectosComponent implements OnInit {
 
 
   public modificaAcceso(acceso: any){
-    console.log('modificar')
+    console.log('acceso: ', acceso)
+    const i = this.accesosUsuarioAux.findIndex(e => e.descripcion === acceso.descripcion);
+    if (i > -1) {
+      this.accesosUsuarioAux.splice(i, 1);
+    } else {
+      this.accesosUsuarioAux.push(acceso);
+    }
+    console.log(this.accesosUsuarioAux)
   }
 
   isAccesoActivo(descripcion: string){
-    return false
-    //return this.accesosUsuarioAux?.some(e => e.descripcion === descripcion);
+    return this.accesosUsuarioAux?.some(e => e.descripcion === descripcion);
+  }
+
+  generateJSON() {
+    let _accesosDirectos:any = [];
+    this.accesosUsuarioAux.forEach((accesoUsuario,i) => {
+        _accesosDirectos.push({
+          paraUsuario: {
+            idUsuario: this.auth.administrador.idUsuario
+          },
+          orden: 0,
+          accesoDirecto: accesoUsuario
+        });
+    });
+    return _accesosDirectos;
   }
 
   goToAccesoDirecto(ruta: string){

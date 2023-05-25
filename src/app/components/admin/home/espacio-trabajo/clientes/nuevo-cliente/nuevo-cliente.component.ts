@@ -5,6 +5,8 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { MatSelect } from '@angular/material/select';
 import { MatTabGroup } from '@angular/material/tabs';
 import { CatalogosService } from 'src/app/shared/service/catalogos.service';
+import { ClienteService } from 'src/app/shared/service/cliente.service';
+import { AlertService } from 'src/app/shared/utils/alertas';
 
 @Component({
   selector: 'app-nuevo-cliente',
@@ -27,7 +29,9 @@ export class NuevoClienteComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<NuevoClienteComponent>,
-    private catalogoService: CatalogosService) {
+    private catalogoService: CatalogosService,
+    private clienteService: ClienteService,
+    private alertService: AlertService) {
     this.crearForm();
    }
 
@@ -35,6 +39,29 @@ export class NuevoClienteComponent implements OnInit {
     this.obtenerContadores();
     localStorage.setItem('generales','0');
     localStorage.setItem('domicilio','0');
+    this.seterObjeto();
+  }
+  seterObjeto() {
+    let body = {
+      rfc : '',
+      idRegimenFiscal : '',
+      email : '',
+      celular : '',
+      observaciones : '',
+      nombre: '',
+      idPaqueteContratado: '',
+      domicilio: {
+        calle: '',
+        numeroExt: '',
+        numeroInt: '',
+        colonia: '',
+        estado: '',
+        municipio: '',
+      },
+      idDespacho: '',
+    }
+    console.log("Body:",body);
+    localStorage.setItem('bodyCliente', JSON.stringify(body));
   }
 
   crearForm(){
@@ -88,7 +115,7 @@ export class NuevoClienteComponent implements OnInit {
     this.indexTab = event;
   }
 
-  guardarFormulario(){
+  validarFormulario(){
     let validacion = true;
     if(this.formCliente.invalid){
       Object.keys(this.formCliente.controls).forEach((field) => {
@@ -104,12 +131,27 @@ export class NuevoClienteComponent implements OnInit {
       let domicilio = localStorage.getItem('domicilio');
       if(generales == '1' && domicilio == '1'){
         console.log('Se puede guardar el formulario')
+        this.guardarCliente();
       }else{
         console.log('No se puede guardar el formulario')
+        this.alertService.error('<b>Favor de llenar Generales y Domicilio para guardar.</b>');
       }
     }else{
       console.log('No se puede guardar el formulario completo')
     }
+  }
+
+  guardarCliente(){
+
+    let body = JSON.parse(localStorage.getItem('bodyCliente'));
+    body.nombre = this.formCliente.get('razonSocial').value;
+    this.clienteService.guardarCliente(body)
+      .subscribe((response) => {
+        console.log("Response:",response);
+        this.alertService.success('<b>Se guardo correctamente el cliente.</b>');
+      },(_error) => {
+        console.log("Error al guardar cliente: ", _error);
+      });
   }
 
 }

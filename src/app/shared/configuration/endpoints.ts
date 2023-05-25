@@ -83,6 +83,11 @@ export const API = {
       paquetesDespacho:  environment.apicatalogos + 'paquetesDespacho',
       contadores:  environment.apicatalogos + 'contadores',
       entidades:  environment.apicatalogos + 'entidades',
+      estados:  environment.apicatalogos + 'estados',
+    },
+    cliente: {
+      nuevoCliente:  environment.apiCliente + 'nuevo',
+      
     }
   }
   

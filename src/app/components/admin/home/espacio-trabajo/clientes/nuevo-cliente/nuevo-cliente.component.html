@@ -32,7 +32,7 @@
         <div class="col-12">
             <mat-tab-group [selectedIndex]="indexTab" (selectedIndexChange)="onTabChanged($event)">
                 <mat-tab label="Generales*"> <app-generales (selectTab)="obtenerValor($event)"></app-generales> </mat-tab>
-                <mat-tab label="Domicilio*"> <app-domicilio (validForm)="guardarFormulario()"></app-domicilio> </mat-tab>
+                <mat-tab label="Domicilio*"> <app-domicilio (validForm)="validarFormulario()"></app-domicilio> </mat-tab>
                 <mat-tab label="Membresia"> <app-membresia></app-membresia> </mat-tab>
                 <mat-tab label="Certificados"> <app-certificados></app-certificados> </mat-tab>
                 <mat-tab label="Contador asignado">

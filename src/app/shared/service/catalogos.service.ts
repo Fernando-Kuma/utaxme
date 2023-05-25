@@ -51,4 +51,14 @@ export class CatalogosService {
         })
       );
   }
+
+  obtenerEstados(): Observable<any> {
+    return this.http
+      .get<any>(`${API.admin.catalogos.estados}`)
+      .pipe(
+        catchError((e) => {
+          return throwError(e);
+        })
+      );
+  }
 }

@@ -12,12 +12,15 @@ export class DomicilioComponent implements OnInit {
   public formDomicilio: FormGroup;
   @Output()
   validForm : EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  Estados : [{id:number,descripcion:string}];
   constructor(private formBuilder: FormBuilder,
     private catalogoService: CatalogosService) { 
   }
 
   ngOnInit(): void {
     this.crearForm();
+    this.obtenerEstados();
   }
 
   crearForm(){
@@ -30,6 +33,10 @@ export class DomicilioComponent implements OnInit {
       ciudad: [null, [Validators.required]],
       numeroint: [null],
     });
+
+    this.formDomicilio.controls['estado'].disable();
+    this.formDomicilio.controls['ciudad'].disable();
+    this.formDomicilio.controls['colonia'].disable();
   }
 
   getErrorRequerido(){
@@ -71,10 +78,13 @@ export class DomicilioComponent implements OnInit {
       .subscribe((response) => {
         console.log("CP:",response[0]);
         this.formDomicilio.get('colonia').setValue(response[0].colonia);
-        this.formDomicilio.get('estado').setValue(response[0].tbCatEstado.descripcion);
+        this.formDomicilio.get('estado').setValue(response[0].tbCatEstado.idEstado);
         this.formDomicilio.get('ciudad').setValue(response[0].municipio);
       },(_error) => {
         console.log("Error en obtener contadores: ", _error);
+        this.formDomicilio.controls['estado'].enable();
+        this.formDomicilio.controls['ciudad'].enable();
+        this.formDomicilio.controls['colonia'].enable();
       });
     }else{
       return;
@@ -83,5 +93,37 @@ export class DomicilioComponent implements OnInit {
 
   cambiarTab(){
     this.validForm.emit(true);
+  }
+
+  obtenerEstados(){
+    this.catalogoService.obtenerEstados()
+      .subscribe((response) => {
+        console.log("Estados:",response);
+        this.Estados = response;
+      },(_error) => {
+        console.log("Error en obtener contadores: ", _error);
+      });
+  }
+
+  guardarDomicilio(){
+    let body = JSON.parse(localStorage.getItem('bodyCliente'));
+    body.domicilio.calle = this.formDomicilio.get('domicilio').value;
+    body.domicilio.colonia = this.formDomicilio.get('colonia').value;
+    body.domicilio.numeroExt = this.formDomicilio.get('numeroext').value;
+    /* body.domicilio.cp = this.formDomicilio.get('cp').value; */
+    body.domicilio.estado = this.formDomicilio.get('estado').value;
+    body.domicilio.municipio = this.formDomicilio.get('ciudad').value;
+    body.domicilio.numeroInt = this.formDomicilio.get('numeroint').value;
+    console.log("Body:",body);
+    localStorage.setItem('bodyCliente', JSON.stringify(body));
+
+
+    
+
+
+
+
+
+
   }
 }

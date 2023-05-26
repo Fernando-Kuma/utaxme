@@ -47,10 +47,8 @@ export const API = {
   
 
 
-  adminLogin: environment.adiminApi + 'login',
-  editarAccesos: environment.adiminApi + 'configuraciones/agregarUsuarioAccesoDirecto',
-  obtenerAccesosUsuario: environment.adiminApi + 'configuraciones/recuperarUsuarioAccesoDirecto',
-  obtenerAccesos: environment.adiminApi + 'catalogs/accesoDirecto',
+  
+  
 
   
   /* getWord: environment.api + 'wordwise/entries?limit=1&headword=',
@@ -83,6 +81,7 @@ export const API = {
   downloadReporteValidacionFacturasForm: environment.apiCfdiRest + 'DownloadReporteValidacionFacturasForm.htm', */
 
   admin: {
+    login: environment.apiAdministrador + 'login',
     catalogos: {
       regimenFiscal:  environment.apicatalogos + 'regimenFiscal',
       paquetes:  environment.apicatalogos + 'paquetes',
@@ -91,10 +90,14 @@ export const API = {
       entidades:  environment.apicatalogos + 'entidades',
       estados:  environment.apicatalogos + 'estados',
       formaPago:  environment.apicatalogos + 'formaPago',
+      accesosDirectos: environment.apicatalogos + 'accesoDirecto',
     },
     cliente: {
       nuevoCliente:  environment.apiCliente + 'nuevo',
-      
+    },
+    config: {
+      agregarAccesos: environment.apiConfiguraciones + 'agregarUsuarioAccesoDirecto',
+      recuperarAccesos: environment.apiConfiguraciones + 'recuperarUsuarioAccesoDirecto',
     }
   }
   

@@ -71,17 +71,18 @@ export class AccesosDirectosComponent implements OnInit {
           this.listaAccesosUsuario.push(element.accesoDirecto)
         });
       }
-      this.accesosUsuarioAux = this.listaAccesosUsuario;
+      this.accesosUsuarioAux = [...this.listaAccesosUsuario];
       console.log(this.accesosUsuarioAux)
     },(_error) => {
       console.log("Error en obtener los accesos del usuario: ", _error);
     });
   }
 
-  editarAccesos(){
+  actualizarAccesos(){
     let _request = this.generateJSON()    
     this.accesosDirectosService.modifcarAccesos(_request).subscribe((response) => {
       console.log(response)
+      this.cerrarAccesosModal()
     },(_error) => {
       console.log("Error al modificar los accesos: ", _error);
     });
@@ -98,14 +99,8 @@ export class AccesosDirectosComponent implements OnInit {
 
   public limpiarAccesos(){
     this.cerrarAccesosModal();
-    //this.accesosUsuarioAux = [...this.accesosUsuario];
+    this.accesosUsuarioAux = [...this.listaAccesosUsuario];
   }
-
-  public actualizarAccesos(){
-    console.log('actualizar')
-    this.cerrarAccesosModal()
-  }
-
 
   public modificaAcceso(acceso: any){
     console.log('acceso: ', acceso)

@@ -117,3 +117,17 @@
   background-position: center;
   background-repeat: no-repeat;
 }
+
+.img-acceso-option-file {
+  background-image: url("src\assets\img\icon\acceso-option-file.svg");
+  background-size: 18px 18px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.img-acceso-option-add {
+  background-image: url("src\assets\img\icon\acceso-option-add.svg");
+  background-size: 18px 18px;
+  background-repeat: no-repeat;
+  background-position: center;
+}

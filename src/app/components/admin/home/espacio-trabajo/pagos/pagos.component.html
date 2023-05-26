@@ -33,15 +33,20 @@
         <div class="row" style="margin-top: 4% !important;">
           <form [formGroup]="form" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
             <div class="col-12 d-flex justify-content-end">
-              <mat-form-field appearance="outline">
-                <mat-label>Buscar concepto</mat-label>
+              <mat-form-field appearance="outline" style="min-width: 360px;">
+                <mat-label>Buscar clientes</mat-label>
                 <input matInput formControlName="buscar" id="buscar" name="buscar" (keyup)="onKeyDownEvent($event)"/>
-                <mat-icon class="image-workspace-buscardor" matSuffix></mat-icon>
+                <mat-icon class="image-workspace-buscardor" matPrefix></mat-icon>
+                <mat-icon matSuffix class="optionchecks"></mat-icon>
               </mat-form-field>
 
               <button type="button" class="btn-utaxme" style="max-width: 260px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: space-evenly; margin: 0 20px;" >
                 <mat-icon class="image-workspace-agregar image-invert-color"></mat-icon>
                 Crear nuevo cliente
+              </button>
+
+              <button type="button" class="btn-utaxme-secondary" style="max-width: 50px; max-height: 50px; border-radius: 8px !important;">
+                <mat-icon class="image-agregar-notificacion"></mat-icon>
               </button>
 
             </div>
@@ -53,13 +58,13 @@
         </div>
 
 
-        <div class="row" style="margin-top: 3% !important; min-height: 250px;" *ngIf="tablaLista?.length> 0">
+        <div class="row" style="margin-top: 10px; min-height: 250px;" *ngIf="tablaLista?.length> 0">
           <div class="col-12 tableFixHead disable-scrollbars" style=" overflow-x: auto;">
 
             <table aria-describedby="tabla" class="table table-responsive table-striped">
               <thead style="margin-bottom: 10px;">
                 <tr class="textoM">
-                  <th class="punta-tittle  txt-tab" style="width: 35vw;">
+                  <th class="punta-tittle  txt-tab">
                     <span style="cursor:default!important;">
                       razón social
                     </span>
@@ -99,20 +104,26 @@
               <tbody class="table-scroll" style="border: solid 1px #ffffff; ">
                 <tr *ngFor="let item of tablaLista">
                   <td class=" txt-tab">
-                    {{item.descripcion}}
-                  </td>
-                  <td class="txt-tab" >
-                    {{item.productoServicio}}
+                    {{item.razonSocial}}
                   </td>
                   <td class=" txt-tab">
-                    {{item.unidad}}
+                    {{item.paquete}}
+                  </td>
+                  <td class=" txt-tab">
+                    ${{item.montoPaquete | thousandsPipe}}
+                  </td>
+                  <td class="txt-tab" >
+                    ${{item.montoComplementos | thousandsPipe}}
+                  </td>
+                  <td class=" txt-tab">
+                    ${{item.total | thousandsPipe}}
                   </td>
                   <td class="txt-tab">
-                    ${{item.valorUnitario }}
+                    {{item.estatusMensual }}
                   </td>
                   <td>
                     <div class="d-flex justify-content-center">
-                      <div class="card-accion">
+                      <div class="card-accion" (click)="abrirModal(item)">
                         <mat-icon class="img-accion-editar"></mat-icon>
                       </div>
                     </div>
@@ -121,6 +132,9 @@
               </tbody>
             </table>
           </div>
+        </div>
+        <div class="col-12" style="margin-top: 20px; padding: 0 0px;">
+          <mat-divider></mat-divider>
         </div>
         <div class="row w100m0p0" style="margin-top: 30px!important; min-height: 50px;"
           *ngIf="tablaLista?.length> 0">

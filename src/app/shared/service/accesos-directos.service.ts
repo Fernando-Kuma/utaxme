@@ -14,7 +14,7 @@ export class AccesosDirectosService {
 
   modifcarAccesos(request: any): Observable<any> {
     return this.http
-      .post<any>(`${API.editarAccesos}`, request)
+      .post<any>(`${API.admin.config.agregarAccesos}`, request)
       .pipe(catchError((e) => {
           return throwError(e);
         })
@@ -23,7 +23,7 @@ export class AccesosDirectosService {
 
   obtenerAccesosUsuario(idUsuario: any): Observable<any> {
     return this.http
-      .get<any>(`${API.obtenerAccesosUsuario}/${idUsuario}`)
+      .get<any>(`${API.admin.config.recuperarAccesos}/${idUsuario}`)
       .pipe(catchError((e) => {
           return throwError(e);
         })
@@ -32,7 +32,7 @@ export class AccesosDirectosService {
 
   obtenerAccesos(): Observable<any> {
     return this.http
-      .get<any>(`${API.obtenerAccesos}`)
+      .get<any>(`${API.admin.catalogos.accesosDirectos}`)
       .pipe(catchError((e) => {
           return throwError(e);
         })

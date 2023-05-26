@@ -26,8 +26,47 @@ export class PagosComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    let listaDummy = [
+      {
+        id: 1,
+        razonSocial: 'Paco de Miguel Lozano Real',
+        paquete: 'Básico',
+        montoPaquete: 599,
+        montoComplementos: 322,
+        total: 4441.1,
+        estatusMensual: 'Facturado', 
+      },
+      {
+        id: 2,
+        razonSocial: 'Paco de Miguel Lozano Real',
+        paquete: 'Avanzado',
+        montoPaquete: 599,
+        montoComplementos: 322,
+        total: 2567.1,
+        estatusMensual: 'No emitida', 
+      },
+      {
+        id: 3,
+        razonSocial: 'Paco de Miguel Lozano Real',
+        paquete: 'Premium',
+        montoPaquete: 599,
+        montoComplementos: 322,
+        total: 2567.1,
+        estatusMensual: 'Cancelado', 
+      },
+      {
+        id: 4,
+        razonSocial: 'Paco de Miguel Lozano Real',
+        paquete: 'Avanzado',
+        montoPaquete: 599,
+        montoComplementos: 322,
+        total: 2567.1,
+        estatusMensual: 'Cancelado', 
+      },
+    ]
     this.nombreCliente = this.auth.administrador.nombre;
     this.crearForm()
+    this.paginador(listaDummy)
   }
 
   crearForm(){
@@ -70,6 +109,10 @@ export class PagosComponent implements OnInit {
     }else{
       this.regresar()
     } */
+  }
+
+  abrirModal(item){
+    console.log(item)
   }
 
 }

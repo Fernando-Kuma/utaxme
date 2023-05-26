@@ -32,6 +32,8 @@ import { DndDirective } from './espacio-trabajo/clientes/nuevo-cliente/certifica
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { AgregarCertificadoComponent } from './espacio-trabajo/clientes/nuevo-cliente/certificados/agregar-certificado/agregar-certificado.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { ThousandsPipe } from 'src/app/shared/pipe/thousands.pipe';
+import { GraphicsModule } from 'src/app/graphics/graphics.module';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     AgregarCertificadoComponent,
     EquiposComponent,
     AdministracionComponent,
-    PagosComponent
+    PagosComponent,
   ],
   imports: [
     CommonModule,
@@ -71,8 +73,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     ConfirmDialogModule,
     PagerModule,
     FilterErrorModule,
-    MatDividerModule
-    
+    MatDividerModule,
+    GraphicsModule
   ]
 })
 export class HomeModule { }

@@ -133,3 +133,44 @@
     position: relative;
     margin: 0 auto;
   }
+
+  .card-accion{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* System/Info/10 */
+    Width:40px;
+    Height:40px;
+    background: #D3E3FE;
+    border-radius: 8px;
+    
+    cursor: pointer;
+    margin: 0 10px;
+    }
+
+    .img-accion-borrar {
+      background-image: url("src\assets\img\icon\delete.svg");
+      background-size: 24px 24px;
+      background-repeat: no-repeat;
+      background-position: left;
+      }
+      
+      .img-accion-editar {
+      background-image: url("src\assets\img\icon\edit-concepto.svg");
+      background-size: 22px 22px;
+      background-repeat: no-repeat;
+      background-position: left;
+      }
+
+      .punta-tittle{
+        margin: 0; 
+        font-weight: 600;
+        font-size: 10px;
+        line-height: 16px;
+        letter-spacing: 0.2em;
+        color: #000000;
+        }
+
+        .txt-tab{
+          text-align: center;
+        }

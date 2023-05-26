@@ -43,6 +43,9 @@ export class NuevoClienteComponent implements OnInit {
   }
   seterObjeto() {
     localStorage.removeItem('bodyCliente');
+    localStorage.removeItem('certificado');
+    localStorage.removeItem('domicilio');
+    localStorage.removeItem('generales');
     let body = {
       rfc : '',
       idRegimenFiscal : [],

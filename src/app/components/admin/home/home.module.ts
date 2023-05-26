@@ -35,6 +35,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { ThousandsPipe } from 'src/app/shared/pipe/thousands.pipe';
 import { GraphicsModule } from 'src/app/graphics/graphics.module';
 import { DetallePagoComponent } from './espacio-trabajo/pagos/detalle-pago/detalle-pago.component';
+import { AlertModule } from 'src/app/shared/utils/alertas';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { DetallePagoComponent } from './espacio-trabajo/pagos/detalle-pago/detal
     PagerModule,
     FilterErrorModule,
     MatDividerModule,
-    GraphicsModule
+    GraphicsModule,
+    AlertModule
   ]
 })
 export class HomeModule { }

@@ -13,9 +13,14 @@ export class CertificadosComponent implements OnInit {
   validForm : EventEmitter<boolean> = new EventEmitter<boolean>();
 
   mostrar:number = 1;
+  certificados:any;
   constructor(private dialog: MatDialog) { }
 
   ngOnInit(): void {
+    let valor = localStorage.getItem('certificado');
+    if(valor){
+      this.mostrar = Number(valor);
+    }
   }
 
   openCertificadoDialog() {
@@ -28,7 +33,9 @@ export class CertificadosComponent implements OnInit {
     );
 
     dialogRef.afterClosed().subscribe((_) => {
-      this.mostrar = _;
+      this.mostrar = _.pantalla;
+      this.certificados = _.file;
+      localStorage.setItem('certificado',String(this.mostrar));
     });
   }
 

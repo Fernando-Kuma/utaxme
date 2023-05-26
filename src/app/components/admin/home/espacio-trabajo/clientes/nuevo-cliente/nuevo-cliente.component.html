@@ -52,7 +52,7 @@
                           </mat-chip-list>
                         </mat-select-trigger>
                         <mat-option class="checknone" style="font-size: 16px;" *ngFor="let item of Options; let i = index" [value]="item.descripcion" (click)="selectDispositivo.close();">
-                            <mat-icon class="filtroTipoDispositivos"></mat-icon>{{item.descripcion}}
+                            <mat-icon class="filtroTipoDispositivos2"></mat-icon>{{item.descripcion}}
                         </mat-option>
                       </mat-select>
                       <mat-error *ngIf="formularioContadores.contadores.invalid && formularioContadores.contadores.touched && formularioContadores.contadores.errors">

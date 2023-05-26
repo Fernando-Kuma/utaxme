@@ -82,6 +82,7 @@ export class AccesosDirectosComponent implements OnInit {
     let _request = this.generateJSON()    
     this.accesosDirectosService.modifcarAccesos(_request).subscribe((response) => {
       console.log(response)
+      this.obtenerAccesosUsuario()
       this.cerrarAccesosModal()
     },(_error) => {
       console.log("Error al modificar los accesos: ", _error);

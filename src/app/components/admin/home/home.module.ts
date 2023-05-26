@@ -34,6 +34,7 @@ import { AgregarCertificadoComponent } from './espacio-trabajo/clientes/nuevo-cl
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { ThousandsPipe } from 'src/app/shared/pipe/thousands.pipe';
 import { GraphicsModule } from 'src/app/graphics/graphics.module';
+import { DetallePagoComponent } from './espacio-trabajo/pagos/detalle-pago/detalle-pago.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { GraphicsModule } from 'src/app/graphics/graphics.module';
     EquiposComponent,
     AdministracionComponent,
     PagosComponent,
+    DetallePagoComponent,
   ],
   imports: [
     CommonModule,

@@ -64,7 +64,7 @@ export class PagosComponent implements OnInit {
         estatusMensual: 'Cancelado', 
       },
     ]
-    this.nombreCliente = this.auth.administrador.nombre;
+    this.nombreCliente = this.auth.administrador.nombreCompleto;
     this.crearForm()
     this.paginador(listaDummy)
   }

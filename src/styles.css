@@ -661,3 +661,25 @@ body {
   background-repeat: no-repeat;
   background-position: center;
 }
+
+.image-send-massive-notification {
+  background-image: url("src\assets\img\icon\send-massive-notification.svg");
+  background-size: 25px 25px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.image-workspace-search {
+  background-image: url("src\assets\img\icon\workspace-search.svg");
+  background-size: 22px 22px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.img-inicio-acceso {
+  background-image: url("src\assets\img\icon\inicio-acceso.svg");
+  margin-top: -1px;
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  background-position: left;
+}

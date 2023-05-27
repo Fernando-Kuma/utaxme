@@ -18,7 +18,7 @@ export class AdministracionComponent implements OnInit {
 
 
   administracionClientes(){
-    console.log('')
+    this.router.navigateByUrl(NAV.homeAdmin +'/clientes');
   }
 
   declaracionesPendientes(){

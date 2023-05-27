@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Observable, ReplaySubject } from 'rxjs';
+import { AlertService } from 'src/app/shared/utils/alertas';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-agregar-certificado',
@@ -21,7 +24,9 @@ export class AgregarCertificadoComponent implements OnInit {
   public formCertificado: FormGroup;
   validDateError: boolean;
   showForm: boolean = false;
+  fileLocalStorage = [];
   constructor(private formBuilder: FormBuilder,
+    private alertService: AlertService,
     public dialogRef: MatDialogRef<AgregarCertificadoComponent>) { }
 
   ngOnInit(): void {
@@ -47,8 +52,15 @@ export class AgregarCertificadoComponent implements OnInit {
   prepareFilesList(files: Array<any>) {
     console.log("Archivos:",files);
     for (const item of files) {
-      item.progress = 0;
-      this.files.push(item);
+      let texto = item.name.split('.');
+      console.log("Textos:",texto);
+      if(texto[(texto.length - 1)] == 'cer' || texto[(texto.length - 1)] == 'key'){
+        item.progress = 0;
+        this.files.push(item);
+      }else{
+        console.log("No se puede agregar un archivo diferente a cer o key");
+        this.alertService.warn('<b>Solo puede agregar archivos de tipo (.cer o .key).</b>');
+      }
     }
     this.uploadFilesSimulator(0);
   }
@@ -68,6 +80,7 @@ export class AgregarCertificadoComponent implements OnInit {
         }, 200);
       }
     }, 1000);
+    console.log("Files Cargados:",this.files);
   }
 
   deleteFile(index: number) {
@@ -110,7 +123,6 @@ export class AgregarCertificadoComponent implements OnInit {
   }
 
   validarTermino(numero){
-    console.log("Numero:",numero);
     if(numero == this.files.length){
       this.showForm = true;
     }else{
@@ -119,14 +131,33 @@ export class AgregarCertificadoComponent implements OnInit {
   }
 
   close(){
-    this.dialogRef.close(1);
+    this.dialogRef.close({pantalla:1,file:[]});
   }
 
   subirArchivos(){
-    this.dialogRef.close(2);
+    this.onFileSelected();
+    this.dialogRef.close({pantalla:2,file:this.fileLocalStorage});
   }
 
   get formulario() {
     return this.formCertificado.controls;
+  }
+
+
+  onFileSelected() {
+    this.files.forEach(element => {
+      this.convertFile(element).subscribe(base64 => {
+        this.fileLocalStorage.push({name:element.name,fileBase64: base64,fechaInicio: moment(this.formCertificado.get('inicial').value).format('DD/MM/YYYY'),fechaFin: moment(this.formCertificado.get('final').value).format('DD/MM/YYYY'),password:this.formCertificado.get('password').value});
+      });
+    });
+    console.log('FilesBase64:',this.fileLocalStorage);
+  }
+
+  convertFile(file : File) : Observable<string> {
+    const result = new ReplaySubject<string>(1);
+    const reader = new FileReader();
+    reader.readAsBinaryString(file);
+    reader.onload = (event) => result.next(btoa(event.target.result.toString()));
+    return result;
   }
 }

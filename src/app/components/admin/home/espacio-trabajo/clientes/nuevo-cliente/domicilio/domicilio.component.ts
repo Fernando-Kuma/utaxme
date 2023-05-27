@@ -12,6 +12,7 @@ export class DomicilioComponent implements OnInit {
   public formDomicilio: FormGroup;
   @Output()
   validForm : EventEmitter<boolean> = new EventEmitter<boolean>();
+  colonias = [];
 
   Estados : [{id:number,descripcion:string}];
   constructor(private formBuilder: FormBuilder,
@@ -33,10 +34,9 @@ export class DomicilioComponent implements OnInit {
       ciudad: [null, [Validators.required]],
       numeroint: [null],
     });
-
+    this.formDomicilio.controls['colonia'].disable();
     this.formDomicilio.controls['estado'].disable();
     this.formDomicilio.controls['ciudad'].disable();
-    this.formDomicilio.controls['colonia'].disable();
   }
 
   getErrorRequerido(){
@@ -72,12 +72,17 @@ export class DomicilioComponent implements OnInit {
   }
 
   buscarCP(){
+    this.colonias = [];
     let cp = this.formDomicilio.get('cp').value;
     console.log("CP:",cp);
     if(cp.length == 5){
       this.catalogoService.obtenerCP(cp)
       .subscribe((response) => {
         console.log("CP:",response[0]);
+        response.forEach(element => {
+          this.colonias.push({id: element.idEntidadFed, colonia: element.colonia});
+        });
+        this.formDomicilio.controls['colonia'].enable();
         this.formDomicilio.get('colonia').setValue(response[0].colonia);
         this.formDomicilio.get('estado').setValue(response[0].tbCatEstado.idEstado);
         this.formDomicilio.get('ciudad').setValue(response[0].municipio);
@@ -85,7 +90,6 @@ export class DomicilioComponent implements OnInit {
         console.log("Error en obtener contadores: ", _error);
         this.formDomicilio.controls['estado'].enable();
         this.formDomicilio.controls['ciudad'].enable();
-        this.formDomicilio.controls['colonia'].enable();
       });
     }else{
       return;
@@ -109,11 +113,8 @@ export class DomicilioComponent implements OnInit {
   guardarDomicilio(){
     let body = JSON.parse(localStorage.getItem('bodyCliente'));
     body.domicilio.calle = this.formDomicilio.get('domicilio').value;
-    body.domicilio.colonia = this.formDomicilio.get('colonia').value;
+    body.domicilio.idEntidadFederativa = this.formDomicilio.get('colonia').value;
     body.domicilio.numeroExt = this.formDomicilio.get('numeroext').value;
-    /* body.domicilio.cp = this.formDomicilio.get('cp').value; */
-    body.domicilio.estado = this.formDomicilio.get('estado').value;
-    body.domicilio.municipio = this.formDomicilio.get('ciudad').value;
     body.domicilio.numeroInt = this.formDomicilio.get('numeroint').value;
     console.log("Body:",body);
     localStorage.setItem('bodyCliente', JSON.stringify(body));

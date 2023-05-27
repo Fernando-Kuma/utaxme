@@ -1,0 +1,30 @@
+.home-container{
+    width: 100%!important;
+    margin: 0;
+    padding: 0;
+  }
+
+  .home-container-cliente{
+    width: 100%!important;
+    margin: 0;
+    padding: 0;
+  }
+
+  .cuadro-contenido{
+    width: 100%; 
+    background-color: #FFFFFF; 
+    /*min-height: 200px;*/
+    min-height: 400px; 
+    border-radius: 10px; 
+    border-width: 0px 2px 2px 2px;
+    border-style: solid;
+    border-color: #E6EDF6;
+  }
+
+  .enviar-notificacion{
+    border: 2px solid #285CED !important;
+    font-size: 1rem !important;
+    color: #285CED !important;
+    border-radius: 8px!important;
+}
+  

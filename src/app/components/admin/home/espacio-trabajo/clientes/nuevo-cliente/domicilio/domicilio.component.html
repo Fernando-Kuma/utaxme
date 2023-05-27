@@ -45,15 +45,6 @@
                         </mat-form-field>
                     </div>                    
                     <div class="col-12">
-                        <!-- <mat-form-field appearance="outline" class="example-full-width" style="width: 100%;font-size: 16px;">
-                            <mat-label>ESTADO*</mat-label>
-                            <input matInput formControlName="estado" id="estado" name="estado"/>
-                            <mat-error *ngIf="formulario.estado.invalid && formulario.estado.touched && formulario.estado.errors">
-                            <ng-container *ngIf="formulario.estado.errors.required">
-                                {{ getErrorRequerido() }}
-                            </ng-container>
-                            </mat-error>
-                        </mat-form-field> -->
                         <mat-form-field appearance="outline" class="example-full-width" style="width: 100%;font-size: 16px;">
                             <mat-label>ESTADO*</mat-label>
                             <mat-select formControlName="estado" id="estado" name="estado">
@@ -87,11 +78,15 @@
                     <div class="col-12">
                         <mat-form-field appearance="outline" class="example-full-width" style="width: 100%;font-size: 16px;">
                             <mat-label>COLONIA*</mat-label>
-                            <input matInput formControlName="colonia" id="colonia" name="colonia" maxlength="200"/>
+                            <mat-select formControlName="colonia" id="colonia" name="colonia">
+                                <mat-option *ngFor="let item of colonias" [value]="item.id">
+                                {{item.colonia}}
+                                </mat-option>
+                            </mat-select>
                             <mat-error *ngIf="formulario.colonia.invalid && formulario.colonia.touched && formulario.colonia.errors">
-                            <ng-container *ngIf="formulario.colonia.errors.required">
-                                {{ getErrorRequerido() }}
-                            </ng-container>
+                                <ng-container *ngIf="formulario.colonia.errors.required">
+                                    {{ getErrorRequerido() }}
+                                </ng-container>
                             </mat-error>
                         </mat-form-field>
                     </div>

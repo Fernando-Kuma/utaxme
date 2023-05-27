@@ -18,3 +18,10 @@
     margin-bottom: 30px;
     margin-left: 10px;
 }
+
+::ng-deep .mat-select-panel:has(.filtroTipoDispositivos2){
+  margin-top: 28px !important;
+  width: 300px !important;
+  min-width: 0px !important;
+  margin-left: 605px;
+}

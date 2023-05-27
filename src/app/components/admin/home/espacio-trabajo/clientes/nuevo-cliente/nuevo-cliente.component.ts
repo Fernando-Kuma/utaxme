@@ -42,23 +42,31 @@ export class NuevoClienteComponent implements OnInit {
     this.seterObjeto();
   }
   seterObjeto() {
+    localStorage.removeItem('bodyCliente');
+    localStorage.removeItem('certificado');
+    localStorage.removeItem('domicilio');
+    localStorage.removeItem('generales');
     let body = {
       rfc : '',
-      idRegimenFiscal : '',
+      idRegimenFiscal : [],
       email : '',
       celular : '',
       observaciones : '',
       nombre: '',
-      idPaqueteContratado: '',
       domicilio: {
         calle: '',
         numeroExt: '',
         numeroInt: '',
-        colonia: '',
-        estado: '',
-        municipio: '',
+        idEntidadFederativa: '',
       },
-      idDespacho: '',
+      membresia: {
+        idPaquete: 0,
+        claveFormaPago: '',
+        diaPago: 0,
+        descuento: 0,
+        montoMensual: 0
+      },
+      idContadores: []
     }
     console.log("Body:",body);
     localStorage.setItem('bodyCliente', JSON.stringify(body));
@@ -145,8 +153,6 @@ export class NuevoClienteComponent implements OnInit {
 
     let body = JSON.parse(localStorage.getItem('bodyCliente'));
     body.nombre = this.formCliente.get('razonSocial').value;
-    body.idDespacho = "0";
-    body.idPaqueteContratado = "0";
     console.log("BodyFinal:",body);
     this.clienteService.guardarCliente(body)
       .subscribe((response) => {

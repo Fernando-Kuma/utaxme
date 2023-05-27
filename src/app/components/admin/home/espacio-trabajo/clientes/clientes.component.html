@@ -1,3 +1,134 @@
-<p>clientes works!</p>
+<div class="home-container" style="margin-top: 30px;">
+    <div class="row w100m0p0">
+        <div class="col-1"></div>
+        <div class="col-5 d-flex align-items-center">
+            <div class="image-administrator-workspace" style="width: 30px">&nbsp;</div>
+            <span style="font-weight: 400; font-size: 24px; color: #0B112A;">ADMINISTRTACIÓN DE CLIENTES</span>
+        </div>
+        <div class="col-5" style="text-align: right; font-weight: 600;">
+            <p>¡Buen día, !</p>
+        </div>
+        <div class="col-1"></div>
+    </div>
+    <div class="row w100m0p0">
+        <div class="col-1"></div>
+        <div class="col-3 d-flex align-items-center">
+            <span style="font-weight: 400; font-size: 16px; color: #7B8AA0;">Crea nuevos clientes, configura su información y revisa el estatus global del Despacho</span>
+        </div>
+        <div class="col-5">
+        </div>
+    </div>
+</div>
 
-<button mat-icon-button (click)="openDetalleDialog()">Boton</button> 
+<div class="home-container-cliente" style="margin-top: 30px;">
+    <div class="row w100m0p0">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <div class="cuadro-contenido">
+                <div class="row" style="margin: 10px;">
+                    <div class="row">
+                        <div class="col-4" style="margin-top: 32px;">
+                            <span style="font-weight: 400; font-size: 24px; color: #0B112A;">LISTA DE CLIENTES Y ACTIVIDADES PENDIENTES</span>
+                        </div>
+                    </div>
+                    <div class="row" style="display: flex;justify-content: end;margin-bottom: -40px;">
+                        <div class="col-5"></div>
+                        <div class="col-3 clientes-table">
+                            <form [formGroup]="formBuscador" style="margin: 0;" autocomplete="off" autocorrect="off" autocapitalize="off"
+                              spellcheck="false">
+                              <mat-form-field class="tamano-option" appearance="outline" style="width: 100%; font-size: 16px;">
+                                <mat-label>Buscar clientes</mat-label>
+                                <input matInput formControlName="busqueda"/>
+                                <mat-icon class="image-workspace-search" matPrefix style="margin-top: 8px!important;margin-left: -5px!important;"></mat-icon>
+                              </mat-form-field>
+                            </form>
+                          </div>
+                          <div class="col-2" style="margin: 0 10px; padding: 0;">
+                            <button mat-button class="btn-utaxme" style="height: 45px; font-size: 14px; line-height: 40px;margin-top: 10px;" (click)="openDetalleDialog()">
+                              <mat-icon class="img-inicio-acceso"></mat-icon>
+                              Nuevo cliente
+                            </button>
+                          </div>
+                          <div class="col-1" style="display: flex;">
+                            <button mat-button class="btn-utaxme-secondary enviar-notificacion"
+                              style="max-width: 30px; height:45px; font-size: 14px; line-height: 40px;float: right; margin-top: 10px;">
+                              <mat-icon class="image-send-massive-notification"></mat-icon>
+                            </button>
+                          </div>
+                    </div>
+                    <div class="row">
+                        <div class="row" style="margin-top: 3% !important; min-height: 250px;">
+                            <div class="col-12 tableFixHead disable-scrollbars" style=" overflow-x: auto;">
+                            <mat-divider></mat-divider>
+                            <table aria-describedby="tabla" class="table table-responsive table-striped">
+                                <thead style="margin-bottom: 10px;">
+                                <tr class="textoM">
+                                    <th class="punta-tittle  txt-tab">
+                                    <span style="cursor:default!important;">
+                                        nombre certificado
+                                    </span>
+                                    </th>
+                                    <th class="punta-tittle txt-tab">
+                                    <span style="cursor:default!important;">
+                                        fecha inicio
+                                    </span>
+                                    </th>
+                                    <th class="punta-tittle  txt-tab">
+                                    <span style="cursor:default!important;">
+                                        fecha fin
+                                    </span>
+                                    </th>
+                                    <th class="punta-tittle txt-tab">
+                                    <span style="cursor:default!important;">
+                                        password
+                                    </span>
+                                    </th>
+                                    <th class="punta-tittle txt-tab">
+                                    <span style="cursor:default!important;">
+                                        estatus
+                                    </span>
+                                    </th>
+                                    <th class="punta-tittle txt-tab">
+                                    <span style="cursor:default!important;">
+                                        acciones
+                                    </span>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody class="table-scroll" style="border: solid 1px #ffffff; ">
+                                <!-- <tr *ngFor="let item of tablaLista">
+                                    <td class=" txt-tab">
+                                    {{item.nombre}}
+                                    </td>
+                                    <td class="txt-tab" >
+                                    {{item.productoServicio}}
+                                    </td>
+                                    <td class="txt-tab">
+                                    ${{item.valorUnitario }}
+                                    </td>
+                                    <td class="txt-tab" >
+                                    {{item.productoServicio}}
+                                    </td>
+                                    <td class="txt-tab">
+                                    ${{item.valorUnitario }}
+                                    </td>
+                                    <td>
+                                    <div class="d-flex justify-content-center">
+                                        <div class="card-accion">
+                                        <mat-icon class="img-accion-editar"></mat-icon>
+                                        </div>
+                                    </div>
+                                    </td>
+                                </tr> -->
+                                </tbody>
+                            </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="col-1"></div>
+</div>
+

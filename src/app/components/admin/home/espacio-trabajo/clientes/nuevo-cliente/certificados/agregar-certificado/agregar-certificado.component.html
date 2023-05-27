@@ -1,3 +1,4 @@
+<alert></alert>
 <div class="d-flex justify-content-end">
     <button style="border: none;background: white;" (click)="close()">
       <h1 style="color: #3B4559;"><b>x</b></h1>
@@ -7,7 +8,7 @@
     <div class="row w100m0p0">
         <div class="row">
             <div class="container" appDnd (fileDropped)="onFileDropped($event)">
-                <input class="inputFiles" type="file" #fileDropRef id="fileDropRef" multiple (change)="fileBrowseHandler($event.target)" />
+                <input class="inputFiles" type="file" #fileDropRef id="fileDropRef" accept=".cer, .key" multiple (change)="fileBrowseHandler($event.target)" />
                 <div class="image-upload-file-desc" style="height: 100px;"></div>
                 <p class="texto2">Arrastra el Certificado para Facturación aquí</p>
                 <p style="color: #838383;">Los archivos deben subir con los siguientes prefijos: CSD_RFC, KEY_RFC seguido del RFC.</p>

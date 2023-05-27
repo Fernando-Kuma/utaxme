@@ -67,7 +67,7 @@ export class AccesosDirectosComponent implements OnInit {
     this.accesosDirectosService.obtenerAccesosUsuario(_idUsuario).subscribe((response) => {
       console.log(response)
       if(response != null){
-        response.forEach(element => {
+        response.data.forEach(element => {
           this.listaAccesosUsuario.push(element.accesoDirecto)
         });
       }

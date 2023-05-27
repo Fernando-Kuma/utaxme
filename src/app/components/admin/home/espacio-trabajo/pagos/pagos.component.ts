@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { Paginator } from 'array-paginator';
 import { NAV } from 'src/app/shared/configuration/navegacion';
 import { AuthService } from 'src/app/shared/service/auth.service';
+import { DetallePagoComponent } from './detalle-pago/detalle-pago.component';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogService } from 'src/app/shared/service/dialog.service';
 
 @Component({
   selector: 'app-pagos',
@@ -20,6 +23,8 @@ export class PagosComponent implements OnInit {
   tablaLista: any;
 
   constructor(
+    public dialog: MatDialog,  
+    private dialogService: DialogService,
     public router: Router,
     private auth: AuthService,
     private formBuilder: FormBuilder
@@ -99,6 +104,18 @@ export class PagosComponent implements OnInit {
       item?.productoServicio?.toLowerCase().includes(filtro.toLowerCase()) || item?.descripcion?.toLowerCase().includes(filtro.toLowerCase())
     );
     this.paginador(busquedaTabla);
+  }
+
+  detallePagoCliente(item){
+    const dialogRef = this.dialog.open(
+      DetallePagoComponent, 
+      this.dialogService.editarPagoCliente(item.id)
+    );
+    dialogRef.afterClosed().subscribe(
+      data => {
+        console.log(data)
+      }
+    );
   }
 
 

@@ -1,1 +1,167 @@
-<p>detalle-pago works!</p>
+<div class="modal-detalle-pago">
+  <mat-dialog-content>
+      <div class="container" style="width: 100%; margin: 0; padding: 0; overflow: hidden;">
+          <div class="row" style="width: 100%; margin: 0; padding: 0;">
+            <div class="col-10"  style="padding: 0; display: flex; align-items: center;">
+              <span class="dialog-titulo">Detalle de pagos</span> 
+            </div>
+            <div class="col-2">
+              <button mat-icon-button style="float: right; position: relative;" (click)="closeDialog()">
+                  <mat-icon class="img-close image-invert-color"></mat-icon>
+              </button>
+            </div>
+          </div>
+      </div>
+  </mat-dialog-content>
+  
+  <mat-dialog-actions>
+      <div class="container" style="margin: 0; padding: 10px 30px;">  
+        <div class="row" style="margin-top: 15px">
+          <div class="col-12">
+            <div class="row">
+              <div class="col-5 d-flex">
+                <div class="usuario-icono">
+                  <mat-icon class="img-usuario image-invert-color"></mat-icon>
+                </div>
+                <div class="usuario-titulo">
+                  <span class="titulo">Paco de Miguel Lozano Real</span><br>
+                  <span class="subtitulo">RFC: JUL1232432AS</span>
+                </div>
+              </div>
+              <div class="col-1 d-flex">
+                <mat-divider [vertical]="true"></mat-divider>
+              </div>
+              <div class="col-6 d-flex justify-content-end">
+                <button type="button" class="btn-utaxme" style="max-width: 260px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: space-evenly; margin: 0 20px;" >
+                  <mat-icon class="img-generar image-invert-color"></mat-icon>
+                  Generar CFDI del mes
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 titulo-fecha" style="margin: 20px 0 10px">
+            <span>Conceptos del mes - Mayo 2023</span>
+          </div>
+          <mat-divider></mat-divider>
+          <div class="col-12 d-flex justify-content-between" style="margin: 20px 0 15px">
+            <div class="titulo-concepto">
+              Haz clic en ¨Agregar concepto¨ para ingresar servicios y <br>  montos a tu factura
+            </div>
+
+            <button type="button" class="btn-utaxme-secondary" style="max-width: 230px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: space-evenly; margin: 0 20px;" >
+              <mat-icon class="img-concepto"></mat-icon>
+              Agregar concepto
+            </button>
+
+          </div>
+          <mat-divider></mat-divider>
+          <div class="col-12" style="margin-top: 10px;">
+            <div class="row tableFixHead disable-scrollbars" style="max-height: 190px; overflow-x: auto; width: 100%; margin: 0; padding: 0;">
+              <table aria-describedby="tabla" class="table table-responsive table-striped ">
+                  <thead style="margin-bottom: 10px;">
+                      <tr class="textoM">
+                          <th class="tabla-encabezado">
+                                descripción
+                          </th>
+                          <th class="tabla-encabezado">
+                                cantidad
+                          </th>
+                          <th class="tabla-encabezado">
+                              <span style="cursor:default!important;">
+                                descuento
+                              </span>
+                          </th>
+                          <th class="tabla-encabezado">
+                              <span style="cursor:default!important;">
+                                unitario
+                              </span>
+                          </th>
+                          <th class="tabla-encabezado" >
+                              <span style="cursor:default!important;">
+                                importe
+                              </span>
+                          </th>
+                          <th class="tabla-encabezado" >
+                              <span style="width: 70px; cursor:default!important;">
+                                acciones
+                              </span>
+                          </th>
+                      </tr>
+                  </thead>
+                  <tbody class="table-scroll" style="border: solid 1px #ffffff; ">
+                    <tr *ngFor="let item of tablaListaConceptos">
+                      <td class="tabla-cuerpo">
+                        {{item.descripcion}} 
+                      </td>
+                      <td class="tabla-cuerpo">
+                        <div class="card-accion-cantidad" (click)="actualizarValor('cantidad', item)">
+                          {{item.cantidad}} 
+                        </div>
+                      </td>
+                      <td class="tabla-cuerpo">
+                        <div class="card-accion-cantidad" (click)="actualizarValor('descuento', item)">
+                          {{item.descuento}}  
+                        </div>
+                      </td>
+                      <td class="tabla-cuerpo">
+                        ${{item.valorUnitario | thousandsPipe}}
+                      </td>
+                      <td class="tabla-cuerpo">
+                        ${{item.importe}}
+                      </td>
+                      <td class="tabla-cuerpo d-flex justify-content-center">
+                        <div class="card-accion" (click)="eliminarConcepto(item.idConceptoCliente)">
+                          <mat-icon class="img-accion-borrar"></mat-icon>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+              </table>
+            </div>
+          </div>
+          <mat-divider></mat-divider>
+          <div class="col-12" style="margin-top: 20px">
+            <div class="row total-conceptos">
+              <div class="col-7"></div>
+              <div class="col-2">
+                <span *ngIf="costoFactura.subtotalSinDescuento > 0">Sub sin Desc:</span>
+                <span *ngIf="costoFactura.descuento"><br>Descuento:</span>
+                <span><br>Subtotal:</span>
+                <span *ngIf="costoFactura.ivaT"><br>IVA Tras.:</span>
+                <span *ngIf="costoFactura.ieps"><br>IEPS:</span>
+                <span *ngIf="costoFactura.isrR"><br>ISR Ret.:</span>
+                <span *ngIf="costoFactura.ivaR"><br>IVA Ret.:</span>
+                <span *ngIf="costoFactura.localTraslado"><br>Local.:</span>
+                <span style="font-weight: 600;"><br>Total:</span>
+                
+              </div>
+              <div class="col-3" style="text-align: end;">
+                <span *ngIf="costoFactura.subtotalSinDescuento">${{costoFactura.subtotalSinDescuento | thousandsPipe}}</span>
+                <span *ngIf="costoFactura.descuento"><br>${{costoFactura.descuento | thousandsPipe}}</span>
+                <span><br>${{costoFactura.subtotal | thousandsPipe}}</span>
+                <span *ngIf="costoFactura.ivaT"><br>${{costoFactura.ivaT | thousandsPipe}}</span>
+                <span *ngIf="costoFactura.ieps"><br>${{costoFactura.ieps | thousandsPipe}}</span>
+                <span *ngIf="costoFactura.isrR"><br>${{costoFactura.isrR | thousandsPipe}}</span>
+                <span *ngIf="costoFactura.ivaR"><br>${{costoFactura.ivaR | thousandsPipe}}</span>
+                <span *ngIf="costoFactura.localTraslado"><br>${{costoFactura.localTraslado | thousandsPipe}}</span>
+                <span style="font-weight: 600;"><br>${{costoFactura.total | thousandsPipe}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row" style="margin: 20px 0px 0px !important; width: 100%; padding: 0;">
+          <div class="col-12 d-flex justify-content-end">
+            <button type="button" class="btn-utaxme-secondary" (click)="closeDialog()" style="max-width: 120px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;">
+              Cancelar
+            </button>
+            <button type="button" class="btn-utaxme" (click)="confirmDialog()" style="max-width: 225px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;">
+              Agregar conceptos
+            </button>
+          </div>
+        </div>
+
+      </div>
+  </mat-dialog-actions>
+</div>

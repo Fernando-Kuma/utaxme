@@ -1,0 +1,178 @@
+
+::ng-deep  .mat-dialog-container:has(.modal-detalle-pago) {
+  border-radius: 4px;
+  padding: 0px;
+  max-width: 1010px !important;
+  max-height: 700px !important;
+}
+
+
+.mat-dialog-actions {
+  display: contents !important;
+}
+
+.mat-dialog-content {
+  margin: 0 !important;
+  padding: 10px 30px;
+}
+
+
+/*
+.modal-detalle-pago{
+  border: 1px solid #27509B;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+}
+*/
+
+::ng-deep .modal-detalle-pago .mat-tab-label {
+  padding: 0px 25px 0px 10px;
+  min-width: 110px;
+}
+
+::ng-deep .modal-detalle-pago .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+  width: 110px !important;
+}
+
+.dialog-titulo{
+  font-weight: 700;
+  font-size: 20px;
+  color: #1D2640;
+}
+
+.usuario-icono{
+  min-width: 55px;
+  min-height: 55px;
+  background: #E6EDF6;
+  border-radius: 40px;
+  margin: 0 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.usuario-titulo .titulo{
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: #0B112A;
+}
+
+.usuario-titulo .subtitulo{
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 24px;
+  color: #6B778C;
+}
+
+.titulo-concepto{
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #7B8AA0;
+}
+
+.titulo-fecha{
+  font-weight: 600;
+  font-size: 20px;
+  color: #1D2640;
+}
+
+.total-conceptos{
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #0B112A;
+}
+
+.tabla-encabezado{
+  margin: 0; 
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 16px;
+  letter-spacing: 0.2em;
+  color: #000000;
+  text-align: center;
+
+  cursor:default!important;
+}
+
+.tabla-cuerpo{
+  text-align: center;
+  font-weight: 400;
+  font-size: 14px;
+  color: #0B112A;
+}
+
+.card-accion-cantidad{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  Width:100%;
+  Height:40px;
+  background: #D3E3FE;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.img-usuario{
+  background-image: url("src\assets\img\icon\home-user-black.svg");
+  background-size: 24px 24px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.img-generar{
+  background-image: url("src\assets\img\icon\nuevaFactura-black.svg");
+  background-size: 24px 24px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.img-concepto{
+  background-image: url("src\assets\img\icon\crear.svg");
+  background-size: 24px 24px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.img-close {
+  background-image: url("src\assets\img\icon\close.svg");
+  background-size: 24px 24px;
+  background-repeat: no-repeat;
+  background-position: left;
+}
+
+.img-accion-borrar {
+  background-image: url("src\assets\img\icon\delete.svg");
+  background-size: 24px 24px;
+  background-repeat: no-repeat;
+  background-position: left;
+}
+
+.card-accion{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* System/Info/10 */
+  Width:40px;
+  Height:40px;
+  background: #D3E3FE;
+  border-radius: 8px;
+
+  cursor: pointer;
+}
+/* .tableFixHead::-webkit-scrollbar {
+  width: 8px;             
+}
+
+.tableFixHead::-webkit-scrollbar-thumb {
+  background: #D9D9D9;
+  border-radius: 10px;
+}
+
+.tableFixHead { 
+overflow: auto; 
+  min-height: 90px;
+} */

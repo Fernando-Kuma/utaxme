@@ -15,7 +15,7 @@ import { DialogService } from 'src/app/shared/service/dialog.service';
 })
 export class PagosComponent implements OnInit {
 
-  tituloProceso: string = 'ADMINISTRA PRODUCTOS/SERVICIOS'
+  tituloProceso: string = 'ADMINISTRACIÓN DE PAGOS'
   nombreCliente: string;
   public form: FormGroup;
 

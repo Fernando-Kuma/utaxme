@@ -59,7 +59,7 @@
                   </tr>
                 </thead>
                 <tbody class="table-scroll" style="border: solid 1px #ffffff; ">
-                  <tr *ngFor="let item of certificados">
+                  <tr *ngFor="let item of certificados; let i = index">
                     <td class=" txt-tab">
                       {{item.name}}
                     </td>
@@ -73,14 +73,14 @@
                       {{item.password}}
                     </td>
                     <td class="txt-tab">
-                      Activo
+                      <span style="background: #F0FDCF;padding: 5px 10px 5px 10px;border-radius: 2px;">{{ validDate(item.fechaFin)}}</span> 
                     </td>
                     <td>
                       <div class="d-flex justify-content-center">
-                        <div class="card-accion">
+                        <div class="card-accion" (click)="editarCertificado(i)">
                           <mat-icon class="img-accion-editar"></mat-icon>
                         </div>
-                        <div class="card-accion">
+                        <div class="card-accion" (click)="borrarCertificado(i)">
                           <mat-icon class="img-accion-borrar"></mat-icon>
                         </div>
                       </div>
@@ -93,7 +93,7 @@
         </ng-container>
         <div class="row">
             <div class="col-12 d-flex justify-content-end">
-              <button mat-button class="btn-utaxme" style="max-width: 160px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;" (click)="validarForm()">
+              <button mat-button class="btn-utaxme" style="max-width: 160px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;" (click)="agregarCertificados()">
                 Crear nuevo cliente
               </button>
             </div>

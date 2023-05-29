@@ -8,7 +8,7 @@
     <div class="row w100m0p0">
         <div class="row">
             <div class="container" appDnd (fileDropped)="onFileDropped($event)">
-                <input class="inputFiles" type="file" #fileDropRef id="fileDropRef" accept=".cer, .key" multiple (change)="fileBrowseHandler($event.target)" />
+                <input class="inputFiles" type="file" #fileDropRef id="fileDropRef" accept=".cer, .key" multiple (change)="fileBrowseHandler($event.target)" #inputFile />
                 <div class="image-upload-file-desc" style="height: 100px;"></div>
                 <p class="texto2">Arrastra el Certificado para Facturación aquí</p>
                 <p style="color: #838383;">Los archivos deben subir con los siguientes prefijos: CSD_RFC, KEY_RFC seguido del RFC.</p>
@@ -84,7 +84,7 @@
         </div>
         <div class="row">
             <div class="col-12 d-flex justify-content-center">
-              <button mat-button class="btn-utaxme" style="max-width: 460px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;" *ngIf="showForm" (click)="subirArchivos()">
+              <button mat-button class="btn-utaxme" style="max-width: 460px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;" *ngIf="showForm" (click)="validarForm()">
                 Subir Certificados
               </button>
             </div>

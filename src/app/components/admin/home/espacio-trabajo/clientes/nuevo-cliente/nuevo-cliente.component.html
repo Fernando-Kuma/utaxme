@@ -44,14 +44,14 @@
                           <mat-chip-list #chipList> 
                             <mat-chip *ngFor="let item of formularioContadores.contadores.value; let i = index;" [selectable]="selectable" 
                             [removable]="removable" (removed)="removeService(i, item)" style="background-color: #285CED !important;color: #FFFFFF;">
-                              {{ item }} 
+                              {{ item.descripcion }} 
                               <button matChipRemove *ngIf="removable" style="color: #FFFFFF;">
                                 <mat-icon class="delete-chip"></mat-icon>
                               </button>
                             </mat-chip>
                           </mat-chip-list>
                         </mat-select-trigger>
-                        <mat-option class="checknone" style="font-size: 16px;" *ngFor="let item of Options; let i = index" [value]="item.descripcion" (click)="selectDispositivo.close();">
+                        <mat-option class="checknone" style="font-size: 16px;" *ngFor="let item of Options; let i = index" [value]="item" (click)="selectDispositivo.close();">
                             <mat-icon class="filtroTipoDispositivos2"></mat-icon>{{item.descripcion}}
                         </mat-option>
                       </mat-select>

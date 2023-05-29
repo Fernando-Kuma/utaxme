@@ -66,7 +66,14 @@ export class NuevoClienteComponent implements OnInit {
         descuento: 0,
         montoMensual: 0
       },
-      idContadores: []
+      idContadores: [],
+      attach: {
+        clavePrivadaB64:"",
+        certificadoB64:"",
+        password:"",
+        validoDesde:"",
+        validoHasta:""
+      }
     }
     console.log("Body:",body);
     localStorage.setItem('bodyCliente', JSON.stringify(body));
@@ -181,10 +188,27 @@ export class NuevoClienteComponent implements OnInit {
 
     if(validacion){
         console.log('Se puede guardar el formulario')
-        this.validarFormulario();
+        this.guardarContadores();
     }else{
       console.log('No se puede guardar el formulario completo')
     }
+  }
+
+  guardarContadores(){
+    let body = JSON.parse(localStorage.getItem('bodyCliente'));
+    body.idContadores = this.obtenerListaContadores();
+    console.log("Body:",body);
+    localStorage.setItem('bodyCliente', JSON.stringify(body));
+    this.validarFormulario();
+  }
+
+  obtenerListaContadores(){
+    console.log(this.formContadores.get('contadores').value);
+    let contadores = [];
+    this.formContadores.get('contadores').value.forEach( element => {
+      contadores.push(element.id)
+    })
+    return contadores;
   }
 
 }

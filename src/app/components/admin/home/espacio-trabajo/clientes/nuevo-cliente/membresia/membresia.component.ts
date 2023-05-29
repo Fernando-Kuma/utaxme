@@ -62,7 +62,7 @@ export class MembresiaComponent implements OnInit {
 
     if(validacion){
       console.log("Formulario lleno")
-      this.validarForm();
+      this.guardarGenerales();
     }else{
       console.log("Formulario no lleno")
     }
@@ -107,5 +107,17 @@ export class MembresiaComponent implements OnInit {
 
   validarForm(){
     this.validForm.emit(true);
+  }
+
+  guardarGenerales(){
+    let body = JSON.parse(localStorage.getItem('bodyCliente'));
+    body.membresia.idPaquete = this.formMembresia.get('paquete').value;
+    body.membresia.claveFormaPago = this.formMembresia.get('pago').value;
+    body.membresia.diaPago = this.formMembresia.get('dia').value;
+    body.membresia.descuento = this.formMembresia.get('descuento').value;
+    body.membresia.montoMensual = this.formMembresia.get('monto').value;
+    console.log("Body:",body);
+    localStorage.setItem('bodyCliente', JSON.stringify(body));
+    this.validarForm();
   }
 }

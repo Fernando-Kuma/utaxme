@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Observable, ReplaySubject } from 'rxjs';
 import { AlertService } from 'src/app/shared/utils/alertas';
 import * as moment from 'moment';
+import { CertificadosComponent } from '../certificados.component';
 
 @Component({
   selector: 'app-agregar-certificado',
@@ -12,6 +13,8 @@ import * as moment from 'moment';
 })
 export class AgregarCertificadoComponent implements OnInit {
 
+  @ViewChild('inputFile') myInputVariable: ElementRef;
+  
   files: any[] = [];
   fecha = new Date();
   fechaActual = new Date(
@@ -25,12 +28,19 @@ export class AgregarCertificadoComponent implements OnInit {
   validDateError: boolean;
   showForm: boolean = false;
   fileLocalStorage = [];
+  listCer = 0;
+  listKey = 0;
   constructor(private formBuilder: FormBuilder,
     private alertService: AlertService,
-    public dialogRef: MatDialogRef<AgregarCertificadoComponent>) { }
+    public dialogRef: MatDialogRef<AgregarCertificadoComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit(): void {
     this.crearForm();
+    console.log(this.data);
+    if(this.data){
+      this.cargarArchivosEditar(this.data);
+    }
   }
 
   crearForm(){
@@ -50,18 +60,29 @@ export class AgregarCertificadoComponent implements OnInit {
   }
 
   prepareFilesList(files: Array<any>) {
-    console.log("Archivos:",files);
     for (const item of files) {
       let texto = item.name.split('.');
       console.log("Textos:",texto);
       if(texto[(texto.length - 1)] == 'cer' || texto[(texto.length - 1)] == 'key'){
-        item.progress = 0;
-        this.files.push(item);
+        if(texto[(texto.length - 1)] == 'cer'){
+          this.listCer=this.listCer+1;
+        }else{
+          this.listKey=this.listKey+1;
+        }
+
+        if(this.listCer > 1 && this.listCer > 1){
+          this.alertService.warn('<b>Solo puede agregar 1 archivo de cada tipo (.cer o .key).</b>');
+        }else{
+          item.progress = 0;
+          this.files.push(item);
+        }
+        
       }else{
         console.log("No se puede agregar un archivo diferente a cer o key");
         this.alertService.warn('<b>Solo puede agregar archivos de tipo (.cer o .key).</b>');
       }
     }
+    /* this.reset(); */
     this.uploadFilesSimulator(0);
   }
 
@@ -146,8 +167,10 @@ export class AgregarCertificadoComponent implements OnInit {
 
   onFileSelected() {
     this.files.forEach(element => {
+      let texto = element.name.split('.');
+      console.log("Textos:",texto);
       this.convertFile(element).subscribe(base64 => {
-        this.fileLocalStorage.push({name:element.name,fileBase64: base64,fechaInicio: moment(this.formCertificado.get('inicial').value).format('DD/MM/YYYY'),fechaFin: moment(this.formCertificado.get('final').value).format('DD/MM/YYYY'),password:this.formCertificado.get('password').value});
+        this.fileLocalStorage.push({name:element.name,fileBase64: base64,fechaInicio: moment(this.formCertificado.get('inicial').value).format('DD/MM/YYYY'),fechaFin: moment(this.formCertificado.get('final').value).format('DD/MM/YYYY'),password:this.formCertificado.get('password').value,tipe:texto[texto.length-1]});
       });
     });
     console.log('FilesBase64:',this.fileLocalStorage);
@@ -159,5 +182,47 @@ export class AgregarCertificadoComponent implements OnInit {
     reader.readAsBinaryString(file);
     reader.onload = (event) => result.next(btoa(event.target.result.toString()));
     return result;
+  }
+
+  reset() {
+    this.myInputVariable.nativeElement.value = '';
+  }
+
+  validarForm(){
+    let validacion = true;
+    if(this.formCertificado.invalid){
+      Object.keys(this.formCertificado.controls).forEach((field) => {
+          const control = this.formCertificado.get(field);
+          if (!control.valid) {
+              control.markAsTouched({ onlySelf: true });
+          }
+      });
+      validacion = false
+    }
+
+    if(validacion){
+      console.log("Formulario lleno")
+      this.subirArchivos();
+    }else{
+      console.log("Formulario no lleno")
+    }
+  }
+
+  cargarArchivosEditar(data){
+    for (const item of data) {
+          item.progress = 0;
+          this.files.push(item);
+    }
+
+    let fechaI = data[0].fechaInicio.split('/');
+    let fecini = new Date((fechaI[1]+'/'+fechaI[0]+'/'+fechaI[2]));
+    let fechaF = data[0].fechaFin.split('/');
+    let fecFin = new Date((fechaF[1]+'/'+fechaF[0]+'/'+fechaF[2]));
+    this.formCertificado.controls['inicial'].setValue(fecini);
+    this.formCertificado.controls['final'].setValue(fecFin);
+    this.formCertificado.get('password').setValue(data[0].password);
+    this.listCer=1;
+    this.listKey=1;
+    this.uploadFilesSimulator(0);
   }
 }

@@ -38,7 +38,7 @@
                               spellcheck="false">
                               <mat-form-field class="tamano-option" appearance="outline" style="width: 100%; font-size: 16px;">
                                 <mat-label>Buscar clientes</mat-label>
-                                <input matInput formControlName="busqueda"/>
+                                <input matInput formControlName="busqueda" (keyup)="onKeyDownEvent($event)"/>
                                 <mat-icon class="image-workspace-search" matPrefix style="margin-top: 8px!important;margin-left: -5px!important;"></mat-icon>
                               </mat-form-field>
                             </form>
@@ -57,30 +57,35 @@
                           </div>
                     </div>
                     <div class="row">
-                        <div class="row" style="margin-top: 3% !important; min-height: 250px;">
+                        <div class="row" style="margin-top: 3% !important; min-height: 250px;" *ngIf="tablaLista?.length> 0">
                             <div class="col-12 tableFixHead disable-scrollbars" style=" overflow-x: auto;">
                             <mat-divider></mat-divider>
                             <table aria-describedby="tabla" class="table table-responsive table-striped">
                                 <thead style="margin-bottom: 10px;">
                                 <tr class="textoM">
-                                    <th class="punta-tittle  txt-tab">
+                                    <th class="punta-tittle">
                                     <span style="cursor:default!important;">
-                                        nombre certificado
+                                        razón social
                                     </span>
                                     </th>
                                     <th class="punta-tittle txt-tab">
                                     <span style="cursor:default!important;">
-                                        fecha inicio
+                                        rfc
                                     </span>
                                     </th>
                                     <th class="punta-tittle  txt-tab">
                                     <span style="cursor:default!important;">
-                                        fecha fin
+                                        contador asignado
                                     </span>
                                     </th>
                                     <th class="punta-tittle txt-tab">
                                     <span style="cursor:default!important;">
-                                        password
+                                        actividades pendientes
+                                    </span>
+                                    </th>
+                                    <th class="punta-tittle txt-tab">
+                                    <span style="cursor:default!important;">
+                                        Progreso mensual
                                     </span>
                                     </th>
                                     <th class="punta-tittle txt-tab">
@@ -96,34 +101,48 @@
                                 </tr>
                                 </thead>
                                 <tbody class="table-scroll" style="border: solid 1px #ffffff; ">
-                                <!-- <tr *ngFor="let item of tablaLista">
-                                    <td class=" txt-tab">
-                                    {{item.nombre}}
+                                <tr *ngFor="let item of tablaLista">
+                                    <td>
+                                    {{item.razonSocial}}
                                     </td>
                                     <td class="txt-tab" >
-                                    {{item.productoServicio}}
+                                    {{item.rfc}}
                                     </td>
                                     <td class="txt-tab">
-                                    ${{item.valorUnitario }}
+                                    {{item.contadores }}
                                     </td>
                                     <td class="txt-tab" >
-                                    {{item.productoServicio}}
+                                    Pendiente
                                     </td>
                                     <td class="txt-tab">
-                                    ${{item.valorUnitario }}
+                                    Pendiente
+                                    </td>
+                                    <td class="txt-tab">
+                                    {{item.estatus }}
                                     </td>
                                     <td>
-                                    <div class="d-flex justify-content-center">
-                                        <div class="card-accion">
-                                        <mat-icon class="img-accion-editar"></mat-icon>
+                                        <div class="d-flex justify-content-center">
+                                          <div class="card-accion">
+                                            <mat-icon class="img-accion-editar"></mat-icon>
+                                          </div>
                                         </div>
-                                    </div>
-                                    </td>
-                                </tr> -->
+                                      </td>
+                                </tr>
                                 </tbody>
                             </table>
                             </div>
                         </div>
+                        <div class="row w100m0p0" style="margin-top: 30px!important; min-height: 50px;" *ngIf="tablaLista?.length> 0">
+                            <div class="col-6 textoM"
+                              style="margin: 0; padding: 0; font-weight: 600; font-size: 10px; letter-spacing: 3px; color: #7B8AA0; padding-top: 7px;">
+                              Mostrando pág {{ this.pager?.current }} de {{ this.pager?.total }} de
+                              {{ this.pager?.data.length }} resultados
+                            </div>
+                  
+                            <div class="col-6" style="margin: 0; padding: 0;" >
+                              <app-pager [pageModel]="pager" (paged)="onPaged($event)" style="float: right;"></app-pager>
+                            </div>
+                          </div>
                     </div>
                 </div>
             </div>

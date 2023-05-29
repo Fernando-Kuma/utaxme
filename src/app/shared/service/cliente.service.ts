@@ -21,4 +21,14 @@ export class ClienteService {
         })
       );
   }
+
+  obtenerClientes(): Observable<any> {
+    return this.http
+      .get<any>(`${API.admin.cliente.obtenerClientes}`)
+      .pipe(
+        catchError((e) => {
+          return throwError(e);
+        })
+      );
+  }
 }

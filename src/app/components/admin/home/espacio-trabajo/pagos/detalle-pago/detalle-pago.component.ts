@@ -5,6 +5,7 @@ import { ModificarValorComponent } from 'src/app/components/client/home/espacio-
 import { Conceptos, TotalFactura } from 'src/app/shared/model/espacio-trabajo.model';
 import { AuthService } from 'src/app/shared/service/auth.service';
 import { DialogService } from 'src/app/shared/service/dialog.service';
+import { ConceptosComponent } from '../conceptos/conceptos.component';
 
 @Component({
   selector: 'app-detalle-pago',
@@ -142,6 +143,19 @@ export class DetallePagoComponent implements OnInit {
 
   }
 
+  listaConcepto(){
+    const dialogRef = this.dialog.open(
+      ConceptosComponent, 
+      this.dialogService.tablaConceptos(this.tablaListaConceptos)
+    );
+    dialogRef.afterClosed().subscribe(
+      data => {
+        if(data){
+          this.tablaListaConceptos = data;
+        }
+      }
+    );
+  }
 
   actualizarValor(columna: string, item: Conceptos){
     let titulo 

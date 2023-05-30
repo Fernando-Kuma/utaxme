@@ -37,6 +37,9 @@ import { GraphicsModule } from 'src/app/graphics/graphics.module';
 import { DetallePagoComponent } from './espacio-trabajo/pagos/detalle-pago/detalle-pago.component';
 import { AlertModule } from 'src/app/shared/utils/alertas';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ConceptosComponent } from './espacio-trabajo/pagos/conceptos/conceptos.component';
+import { GenerarFacturaComponent } from './espacio-trabajo/pagos/generar-factura/generar-factura.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -56,6 +59,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     AdministracionComponent,
     PagosComponent,
     DetallePagoComponent,
+    ConceptosComponent,
+    GenerarFacturaComponent,
   ],
   imports: [
     CommonModule,
@@ -80,7 +85,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatDividerModule,
     GraphicsModule,
     AlertModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCheckboxModule
   ]
 })
 export class HomeModule { }

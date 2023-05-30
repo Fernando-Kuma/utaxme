@@ -119,6 +119,7 @@ export class PagosComponent implements OnInit {
   }
 
 
+  
   returnFilter(){
     /* if(this.tablaListaConceptos?.length > 0){
       this.form.reset();

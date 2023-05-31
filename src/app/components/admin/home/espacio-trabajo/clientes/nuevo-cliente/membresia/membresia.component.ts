@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CatalogosService } from 'src/app/shared/service/catalogos.service';
 
@@ -9,6 +9,15 @@ import { CatalogosService } from 'src/app/shared/service/catalogos.service';
 })
 export class MembresiaComponent implements OnInit {
 
+
+  _tabs: number = -1;
+  @Input() set tabs(val: number) {
+    if(val >= 0){
+      console.log("Cambiaste de TabMembresia")
+      this.guardarGenerales();
+    }
+  }
+  
   Paquetes : any= [];
 
   public formMembresia: FormGroup;
@@ -30,7 +39,7 @@ export class MembresiaComponent implements OnInit {
     this.formMembresia = this.formBuilder.group({
       paquete: [null, [Validators.required]],
       dia: [null],
-      pago: [null, [Validators.required]],
+      pago: ['', [Validators.required]],
       monto: [null],
       descuento: [null],
     });
@@ -63,13 +72,14 @@ export class MembresiaComponent implements OnInit {
     if(validacion){
       console.log("Formulario lleno")
       this.guardarGenerales();
+      this.validarForm();
     }else{
       console.log("Formulario no lleno")
     }
   }
 
   obtenerPaquetes(){
-    this.catalogoService.obtenerRegimenFiscales()
+    this.catalogoService.obtenerPaquetes()
       .subscribe((response) => {
         console.log("Regimens:",response);
         this.Paquetes = response;
@@ -111,13 +121,12 @@ export class MembresiaComponent implements OnInit {
 
   guardarGenerales(){
     let body = JSON.parse(localStorage.getItem('bodyCliente'));
-    body.membresia.idPaquete = this.formMembresia.get('paquete').value;
+    body.membresia.idPaquete = this.formMembresia.get('paquete').value ? this.formMembresia.get('paquete').value : 0;
     body.membresia.claveFormaPago = this.formMembresia.get('pago').value;
-    body.membresia.diaPago = this.formMembresia.get('dia').value;
-    body.membresia.descuento = this.formMembresia.get('descuento').value;
-    body.membresia.montoMensual = this.formMembresia.get('monto').value;
+    body.membresia.diaPago = this.formMembresia.get('dia').value ? this.formMembresia.get('dia').value : 0;
+    body.membresia.descuento = this.formMembresia.get('descuento').value ? this.formMembresia.get('descuento').value : 0;
+    body.membresia.montoMensual = this.formMembresia.get('monto').value ? this.formMembresia.get('monto').value : 0;
     console.log("Body:",body);
     localStorage.setItem('bodyCliente', JSON.stringify(body));
-    this.validarForm();
   }
 }

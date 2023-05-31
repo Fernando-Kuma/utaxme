@@ -66,20 +66,41 @@ export class AgregarCertificadoComponent implements OnInit {
       if(texto[(texto.length - 1)] == 'cer' || texto[(texto.length - 1)] == 'key'){
         if(texto[(texto.length - 1)] == 'cer'){
           this.listCer=this.listCer+1;
+          if(this.listCer > 1){
+            this.alertService.warn('<b>Solo puede agregar 1 archivo de cada tipo (.cer o .key).</b>');
+          }else{
+            item.progress = 0;
+            this.files.push(item);
+          }
         }else{
           this.listKey=this.listKey+1;
-        }
-
-        if(this.listCer > 1 && this.listCer > 1){
-          this.alertService.warn('<b>Solo puede agregar 1 archivo de cada tipo (.cer o .key).</b>');
-        }else{
-          item.progress = 0;
-          this.files.push(item);
-        }
-        
+          if(this.listKey > 1){
+            this.alertService.warn('<b>Solo puede agregar 1 archivo de cada tipo (.cer o .key).</b>');
+          }else{
+            item.progress = 0;
+            this.files.push(item);
+          }
+        }        
       }else{
         console.log("No se puede agregar un archivo diferente a cer o key");
         this.alertService.warn('<b>Solo puede agregar archivos de tipo (.cer o .key).</b>');
+      }
+    }
+    if(this.files.length == 0){
+      this.listCer = 0;
+      this.listKey = 0;
+    }else{
+      if(this.files.length == 2){
+        this.listCer = 1;
+        this.listKey = 1;
+      }else{
+        let texto = this.files[0].name.split('.');
+      console.log("Textos:",texto);
+      if(texto[(texto.length - 1)] == 'cer'){
+        this.listKey=0;
+      }else if(texto[(texto.length - 1)] == 'key'){
+        this.listCer=0;
+      }
       }
     }
     /* this.reset(); */
@@ -106,6 +127,18 @@ export class AgregarCertificadoComponent implements OnInit {
 
   deleteFile(index: number) {
     this.files.splice(index, 1);
+    if(this.files.length == 0){
+      this.listCer=0;
+      this.listKey=0;
+    }else{
+      let texto = this.files[0].name.split('.');
+      console.log("Textos:",texto);
+      if(texto[(texto.length - 1)] == 'cer'){
+        this.listKey=0;
+      }else if(texto[(texto.length - 1)] == 'key'){
+        this.listCer=0;
+      }
+    }
   }
 
   requiredTrue() {
@@ -166,6 +199,7 @@ export class AgregarCertificadoComponent implements OnInit {
 
 
   onFileSelected() {
+    console.log('Files:',this.files);
     this.files.forEach(element => {
       let texto = element.name.split('.');
       console.log("Textos:",texto);
@@ -176,12 +210,18 @@ export class AgregarCertificadoComponent implements OnInit {
     console.log('FilesBase64:',this.fileLocalStorage);
   }
 
-  convertFile(file : File) : Observable<string> {
-    const result = new ReplaySubject<string>(1);
-    const reader = new FileReader();
-    reader.readAsBinaryString(file);
-    reader.onload = (event) => result.next(btoa(event.target.result.toString()));
-    return result;
+  convertFile(file : any) : Observable<string> {
+    if(file?.fileBase64){
+      const result = new ReplaySubject<string>(1);
+      result.next(file.fileBase64)
+      return result;
+    }else{
+      const result = new ReplaySubject<string>(1);
+      const reader = new FileReader();
+      reader.readAsBinaryString(file);
+      reader.onload = (event) => result.next(btoa(event.target.result.toString()));
+      return result;
+    }
   }
 
   reset() {
@@ -221,8 +261,18 @@ export class AgregarCertificadoComponent implements OnInit {
     this.formCertificado.controls['inicial'].setValue(fecini);
     this.formCertificado.controls['final'].setValue(fecFin);
     this.formCertificado.get('password').setValue(data[0].password);
-    this.listCer=1;
-    this.listKey=1;
+    if(this.files.length == 2){
+      this.listCer=1;
+      this.listKey=1;
+    }else{
+      let texto = this.files[0].name.split('.');
+      console.log("Textos:",texto);
+      if(texto[(texto.length - 1)] == 'cer'){
+        this.listCer=1;
+      }else if(texto[(texto.length - 1)] == 'key'){
+        this.listKey=1;
+      }
+    }
     this.uploadFilesSimulator(0);
   }
 }

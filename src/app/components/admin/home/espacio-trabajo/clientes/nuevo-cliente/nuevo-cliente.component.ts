@@ -1,12 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatOption } from '@angular/material/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSelect } from '@angular/material/select';
 import { MatTabGroup } from '@angular/material/tabs';
 import { CatalogosService } from 'src/app/shared/service/catalogos.service';
 import { ClienteService } from 'src/app/shared/service/cliente.service';
 import { AlertService } from 'src/app/shared/utils/alertas';
+import { ConfirmDialogComponent } from 'src/app/shared/utils/confirm-dialog/confirm-dialog.component';
+import { ConfirmDialogService } from 'src/app/shared/utils/confirm-dialog/confirm-dialog.service';
 
 @Component({
   selector: 'app-nuevo-cliente',
@@ -26,12 +28,15 @@ export class NuevoClienteComponent implements OnInit {
   indexTab: number = 0;
 
   formValidados = [];
+  changeTab: number = -1;
 
   constructor(private formBuilder: FormBuilder,
+    private dialog: MatDialog,
     public dialogRef: MatDialogRef<NuevoClienteComponent>,
     private catalogoService: CatalogosService,
     private clienteService: ClienteService,
-    private alertService: AlertService) {
+    private alertService: AlertService,
+    private dialogService: ConfirmDialogService) {
     this.crearForm();
    }
 
@@ -68,6 +73,7 @@ export class NuevoClienteComponent implements OnInit {
       },
       idContadores: [],
       attach: {
+        rfc: "CACX7605101P8",
         clavePrivadaB64:"",
         certificadoB64:"",
         password:"",
@@ -128,6 +134,8 @@ export class NuevoClienteComponent implements OnInit {
 
   onTabChanged(event){
     this.indexTab = event;
+    this.changeTab = this.indexTab;
+    this.guardarContadores();
   }
 
   validarFormulario(){
@@ -164,8 +172,22 @@ export class NuevoClienteComponent implements OnInit {
     this.clienteService.guardarCliente(body)
       .subscribe((response) => {
         console.log("Response:",response);
-        this.alertService.success('<b>Se guardo correctamente el cliente.</b>');
-        this.close();
+        if(response.httpStatus == 200){
+
+          const dialogRef = this.dialog.open(
+            ConfirmDialogComponent, 
+            this.dialogService.nuevoCliente()
+          );
+          dialogRef.afterClosed().subscribe(
+            _data => {
+              this.close();
+            }
+          );
+          this.alertService.success('<b>Se guardo correctamente el cliente.</b>');
+          this.close();
+        }else if(response.httpStatus == 201){
+          this.alertService.error('<b>'+response.message+'.</b>');
+        }
       },(_error) => {
         console.log("Error al guardar cliente: ", _error);
       });
@@ -189,6 +211,7 @@ export class NuevoClienteComponent implements OnInit {
     if(validacion){
         console.log('Se puede guardar el formulario')
         this.guardarContadores();
+        this.validarFormulario();
     }else{
       console.log('No se puede guardar el formulario completo')
     }
@@ -199,15 +222,16 @@ export class NuevoClienteComponent implements OnInit {
     body.idContadores = this.obtenerListaContadores();
     console.log("Body:",body);
     localStorage.setItem('bodyCliente', JSON.stringify(body));
-    this.validarFormulario();
   }
 
   obtenerListaContadores(){
     console.log(this.formContadores.get('contadores').value);
     let contadores = [];
-    this.formContadores.get('contadores').value.forEach( element => {
-      contadores.push(element.id)
-    })
+    if(this.formContadores.get('contadores').value){
+      this.formContadores.get('contadores').value.forEach( element => {
+        contadores.push(element.id)
+      })
+    }
     return contadores;
   }
 

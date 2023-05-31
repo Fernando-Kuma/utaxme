@@ -24,7 +24,7 @@ export class CatalogosService {
 
   obtenerPaquetes(): Observable<any> {
     return this.http
-      .get<any>(`${API.admin.catalogos.paquetes}`)
+      .get<any>(`${API.admin.catalogos.paquetesCliente}`)
       .pipe(
         catchError((e) => {
           return throwError(e);

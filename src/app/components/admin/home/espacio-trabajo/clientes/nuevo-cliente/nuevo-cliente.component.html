@@ -1,3 +1,4 @@
+<alert></alert>
 <div class="home-container-cliente">
     <div class="row w100m0p0">
       <form [formGroup]="formCliente">
@@ -31,10 +32,10 @@
     <div class="row w100m0p0">
         <div class="col-12">
             <mat-tab-group [selectedIndex]="indexTab" (selectedIndexChange)="onTabChanged($event)">
-                <mat-tab label="Generales*"> <app-generales (selectTab)="obtenerValor($event)"></app-generales> </mat-tab>
-                <mat-tab label="Domicilio*"> <app-domicilio (validForm)="validarFormulario()"></app-domicilio> </mat-tab>
-                <mat-tab label="Membresia"> <app-membresia (validForm)="validarFormulario()"></app-membresia> </mat-tab>
-                <mat-tab label="Certificados"> <app-certificados (validForm)="validarFormulario()"></app-certificados> </mat-tab>
+                <mat-tab label="Generales*"> <app-generales (selectTab)="obtenerValor($event)" [tabs]="changeTab"></app-generales> </mat-tab>
+                <mat-tab label="Domicilio*"> <app-domicilio (validForm)="validarFormulario()" [tabs]="changeTab"></app-domicilio> </mat-tab>
+                <mat-tab label="Membresia"> <app-membresia (validForm)="validarFormulario()" [tabs]="changeTab"></app-membresia> </mat-tab>
+                <mat-tab label="Certificados"> <app-certificados (validForm)="validarFormulario()" [tabs]="changeTab"></app-certificados> </mat-tab>
                 <mat-tab label="Contador asignado">
                   <form [formGroup]="formContadores" style="margin-top: 41px;">
                     <mat-form-field appearance="outline" style="width: 100%; font-size: 16px;" (click)="$event.stopPropagation();">

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AgregarCertificadoComponent } from './agregar-certificado/agregar-certificado.component';
 import * as moment from 'moment';
@@ -10,11 +10,19 @@ import * as moment from 'moment';
 })
 export class CertificadosComponent implements OnInit {
 
+  _tabs: number = -1;
+  @Input() set tabs(val: number) {
+    if(val >= 0){
+      console.log("Cambiaste de TabCertificados")
+      this.agregarCertificados();
+    }
+  }
+
   @Output()
   validForm : EventEmitter<boolean> = new EventEmitter<boolean>();
 
   mostrar:number = 1;
-  certificados:any;
+  certificados:any = [];
   fecFin: Date;
   fecActual: Date;
   mensaje: string;
@@ -81,9 +89,37 @@ export class CertificadosComponent implements OnInit {
 
   borrarCertificado(posicion){
     this.certificados.splice(posicion,1);
+    let body = JSON.parse(localStorage.getItem('bodyCliente'));
     if(this.certificados.length == 0){
       this.mostrar = 1;
       localStorage.setItem('certificado',String(this.mostrar));
+      body.attach.clavePrivadaB64 = '';
+      body.attach.certificadoB64 = '';
+      body.attach.password = '';
+      body.attach.validoDesde = '';
+      body.attach.validoHasta = '';
+      body.attach.rfc='';
+    }else{
+      body.attach.clavePrivadaB64 = '';
+      body.attach.certificadoB64 = '';
+      body.attach.password = '';
+      body.attach.validoDesde = '';
+      body.attach.validoHasta = '';
+      body.attach.rfc='';
+      this.certificados?.forEach(element => {
+        if(element.tipe == 'cer'){
+          body.attach.certificadoB64 = element.fileBase64;
+        }else{
+          body.attach.clavePrivadaB64 = element.fileBase64;
+        }
+      });
+      body.attach.password = this.certificados[0]?.password;
+      let fechafin = this.certificados[0]?.fechaInicio.split('/');
+      let fecFin = new Date((fechafin[1]+'/'+fechafin[0]+'/'+fechafin[2]));
+      body.attach.validoDesde = moment(fecFin).format().substring(0,19);
+      let fechaini = this.certificados[0]?.fechaFin.split('/');
+      let fechainicio = new Date((fechaini[1]+'/'+fechaini[0]+'/'+fechaini[2]));
+      body.attach.validoHasta = moment(fechainicio).format().substring(0,19);
     }
   }
 
@@ -93,18 +129,36 @@ export class CertificadosComponent implements OnInit {
 
   agregarCertificados(){
     let body = JSON.parse(localStorage.getItem('bodyCliente'));
-    this.certificados.forEach(element => {
-      if(element.tipe == 'cer'){
-        body.attach.certificadoB64 = element.fileBase64;
-      }else{
-        body.attach.clavePrivadaB64 = element.fileBase64;
-      }
-    });
-    body.attach.password = this.certificados[0].password;
-    body.attach.validoDesde = this.certificados[0].fechaInicio;
-    body.attach.validoHasta = this.certificados[0].fechaFin;
+    body.attach.rfc = body.rfc;
+    if(this.certificados.length > 0){
+      this.certificados?.forEach(element => {
+        if(element.tipe == 'cer'){
+          body.attach.certificadoB64 = element.fileBase64;
+        }else{
+          body.attach.clavePrivadaB64 = element.fileBase64;
+        }
+      });
+      body.attach.password = this.certificados[0]?.password;
+      let fechafin = this.certificados[0]?.fechaInicio.split('/');
+      let fecFin = new Date((fechafin[1]+'/'+fechafin[0]+'/'+fechafin[2]));
+      body.attach.validoDesde = moment(fecFin).format().substring(0,19);
+      let fechaini = this.certificados[0]?.fechaFin.split('/');
+      let fechainicio = new Date((fechaini[1]+'/'+fechaini[0]+'/'+fechaini[2]));
+      body.attach.validoHasta = moment(fechainicio).format().substring(0,19);
+    }else{
+      body.attach.clavePrivadaB64 = '';
+      body.attach.certificadoB64 = '';
+      body.attach.password = '';
+      body.attach.validoDesde = '';
+      body.attach.validoHasta = '';
+      body.attach.rfc='';
+    }
     console.log("Body:",body);
     localStorage.setItem('bodyCliente', JSON.stringify(body));
+  }
+
+  guardarCertificados(){
+    this.agregarCertificados();
     this.validarForm();
   }
 }

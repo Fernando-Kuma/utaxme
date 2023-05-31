@@ -84,7 +84,7 @@ export const API = {
     login: environment.apiAdministrador + 'login',
     catalogos: {
       regimenFiscal:  environment.apicatalogos + 'regimenFiscal',
-      paquetes:  environment.apicatalogos + 'paquetes',
+      paquetesCliente:  environment.apicatalogos + 'paquetesCliente',
       paquetesDespacho:  environment.apicatalogos + 'paquetesDespacho',
       contadores:  environment.apicatalogos + 'contadores',
       entidades:  environment.apicatalogos + 'entidades',
@@ -94,7 +94,7 @@ export const API = {
     },
     cliente: {
       nuevoCliente:  environment.apiCliente + 'nuevo',
-      obtenerClientes:  environment.apiCliente + 'recuperarTodos',
+      obtenerClientes:  environment.apiCliente + 'listadoClientesActividadesPendientes',
     },
     config: {
       agregarAccesos: environment.apiConfiguraciones + 'agregarUsuarioAccesoDirecto',

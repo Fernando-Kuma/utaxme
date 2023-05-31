@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CatalogosService } from 'src/app/shared/service/catalogos.service';
 
@@ -15,6 +15,14 @@ export class DomicilioComponent implements OnInit {
   colonias = [];
 
   Estados : [{id:number,descripcion:string}];
+
+  _tabs: number = -1;
+  @Input() set tabs(val: number) {
+    if(val >= 0){
+      console.log("Cambiaste de Tabdomicilio")
+      this.guardarDomicilio();
+    }
+  }
   constructor(private formBuilder: FormBuilder,
     private catalogoService: CatalogosService) { 
   }
@@ -26,13 +34,13 @@ export class DomicilioComponent implements OnInit {
 
   crearForm(){
     this.formDomicilio = this.formBuilder.group({
-      domicilio: [null, [Validators.required]],
+      domicilio: ['', [Validators.required]],
       colonia: [null, [Validators.required]],
-      numeroext: [null, [Validators.required]],
-      cp: [null, [Validators.required]],
-      estado: [null, [Validators.required]],
-      ciudad: [null, [Validators.required]],
-      numeroint: [null],
+      numeroext: ['', [Validators.required]],
+      cp: ['', [Validators.required]],
+      estado: ['', [Validators.required]],
+      ciudad: ['', [Validators.required]],
+      numeroint: [''],
     });
     this.formDomicilio.controls['colonia'].disable();
     this.formDomicilio.controls['estado'].disable();
@@ -62,12 +70,11 @@ export class DomicilioComponent implements OnInit {
 
     if(validacion){
       console.log("Formulario lleno")
-      localStorage.setItem('domicilio','1');
       this.guardarDomicilio();
       this.cambiarTab();
     }else{
       console.log("Formulario no lleno")
-      localStorage.setItem('domicilio','1');
+      localStorage.setItem('domicilio','0');
     }
   }
 
@@ -83,7 +90,6 @@ export class DomicilioComponent implements OnInit {
           this.colonias.push({id: element.idEntidadFed, colonia: element.colonia});
         });
         this.formDomicilio.controls['colonia'].enable();
-        this.formDomicilio.get('colonia').setValue(response[0].colonia);
         this.formDomicilio.get('estado').setValue(response[0].tbCatEstado.idEstado);
         this.formDomicilio.get('ciudad').setValue(response[0].municipio);
       },(_error) => {
@@ -118,6 +124,7 @@ export class DomicilioComponent implements OnInit {
     body.domicilio.numeroInt = this.formDomicilio.get('numeroint').value;
     console.log("Body:",body);
     localStorage.setItem('bodyCliente', JSON.stringify(body));
+    localStorage.setItem('domicilio','1');
   }
 
   public onlyNumbers(event) {

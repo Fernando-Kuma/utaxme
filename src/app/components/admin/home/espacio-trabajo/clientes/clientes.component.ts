@@ -27,16 +27,23 @@ export class ClientesComponent implements OnInit {
   }
 
   openDetalleDialog() {
-    this.dialog.open(
+    const dialogRef = this.dialog.open(
       NuevoClienteComponent,{
         height: '760px ',
         disableClose: true
       }
     );
+
+    dialogRef.afterClosed().subscribe((_) => {
+      this.obtenerClientes();
+    });
   }
 
   obtenerClientes(){
-    this.clienteService.obtenerClientes()
+    let fecha = new Date();
+    let anio = fecha.getFullYear();
+    let mes = (fecha.getMonth() + 1);
+    this.clienteService.obtenerClientes(anio,mes)
       .subscribe((response) => {
         console.log("Clientes:",response);
         this.tablaListaCliente = response.data;

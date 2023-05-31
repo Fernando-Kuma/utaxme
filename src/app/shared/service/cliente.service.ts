@@ -22,9 +22,9 @@ export class ClienteService {
       );
   }
 
-  obtenerClientes(): Observable<any> {
+  obtenerClientes(anio,mes): Observable<any> {
     return this.http
-      .get<any>(`${API.admin.cliente.obtenerClientes}`)
+      .get<any>(`${API.admin.cliente.obtenerClientes}?anio=${anio}&mes=${mes}`)
       .pipe(
         catchError((e) => {
           return throwError(e);

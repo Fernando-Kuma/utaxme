@@ -1,1 +1,461 @@
-<p>generar-factura works!</p>
+<div class="home-container" style="margin-top: 30px;">
+  <div class="row w100m0p0">
+    <div class="col-1" style="margin: 0; padding: 0;">
+      <div class="image-workspace-back" style="width: 30px; height: 20px; float: right; cursor: pointer;" (click)="regresar()"></div>
+    </div> 
+    <div class="col-11">
+      <div class="row w100m0p0">
+        <div class="col-8">
+          <div class="titulo-proceso">
+            {{ tituloProceso }}
+          </div>
+          <div class="subtitulo-proceso">
+            Selecciona las características de la factura
+          </div>
+        </div>
+
+        <div class="col-4 bienvenida-cliente">
+          ¡Buen día, {{ nombreCliente }}!
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="home-container" style="margin-top: 30px;">
+    <div class="row w100m0p0">
+      <div class="col-1"></div>
+      <div class="col-10 px-4 p-4" style="background-color: #FFFFFF; min-height: 350px;">
+        <div class="titulo-formulario">
+          Datos del cfdi 4.0
+        </div>
+        <form [formGroup]="form">
+          <div class="row">
+            <div class="col-12">
+              <mat-accordion multi>
+                <mat-expansion-panel class="border-panel-expansion expansion-panel-secondary" [expanded]="true">
+                  <mat-expansion-panel-header class="expansion-panel-header-title-secondary">
+                    <mat-panel-title class="titulo-panel-expansion">
+                      Datos del Emisor
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <div class="row" style="margin-top: 3%;">
+                    <div class="col-6">
+                      <div class="card-datos">
+                        <div class="card-titulo">
+                          Datos Fiscales
+                        </div>
+                        <div class="card-texto">
+                          {{ datosFiscales?.razonSocial }}
+                          <br>
+                          {{ datosFiscales?.rfc }}
+                        </div>
+                      </div>  
+                    </div>
+                    <div class="col-6 espacio-card">
+                      <div class="card-datos">
+                        <div class="card-titulo">
+                          Dirección Fiscal
+                        </div>
+                        <div class="card-texto">
+                          {{ datosFiscales?.calle}} {{datosFiscales?.numeroExterior}}, {{datosFiscales?.colonia}} C.P. {{datosFiscales?.cp}}, {{datosFiscales?.municipio}}, {{datosFiscales?.ciudad}}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row" style="margin: 2% 0 1%;">
+                    <div class="col-6 card-titulo espacio-card">
+                        Datos del CFDI
+                    </div>
+                    <div class="col-6 " style="text-align: end;">
+                        <span class="texto-hipervinculo" (click)="configuracionAvanzada()">Configuración avanzada</span> 
+                    </div>
+                  </div>
+                  <div class="row" style="margin-top: 2%;">
+                    <div class="col-6">
+                      <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
+                        <mat-label class="textoM">Número de orden (Mínimo 3 caracteres)</mat-label>
+                        <input matInput formControlName="numeroOrden" id="numeroOrden" name="numeroOrden" minlength="3" (keypress)="caracteresValidos($event)" />
+                        <mat-error *ngIf="formulario.numeroOrden.invalid && formulario.numeroOrden.touched && formulario.numeroOrden.errors">
+                          <ng-container *ngIf="formulario.numeroOrden.errors.required">
+                            El número de orden es requerido
+                          </ng-container>
+                          <ng-container *ngIf="formulario.numeroOrden.errors.minlength">
+                            Ingrese al menos 3 caracteres
+                          </ng-container>
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-6">
+                      <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
+                        <mat-label class="textoM">Régimen Fiscal</mat-label>
+                        <mat-select formControlName="regimenFiscal" id="regimenFiscal" name="regimenFiscal">
+                          <mat-option *ngFor="let item of regimenFiscal" [value]="item.idSat">
+                            {{item.descripcionRegimen}}
+                          </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="formulario.regimenFiscal.invalid && 
+                        formulario.regimenFiscal.touched && formulario.regimenFiscal.errors">
+                          <ng-container *ngIf="formulario.regimenFiscal.errors.required">
+                            Seleccione un régimen fiscal emisor
+                          </ng-container>
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="row" style="margin-top: 2%;">
+                    <div class="col-6">
+                      <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
+                        <mat-label class="textoM">Uso de CFDI</mat-label>
+                        <mat-select formControlName="usoCFDI" id="usoCFDI" name="usoCFDI">
+                          <mat-option *ngFor="let item of catalogos?.catalogoUsoCfdi" [value]="item.clave">
+                            {{item.descripcion}}
+                          </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="formulario.usoCFDI.invalid && 
+                        formulario.usoCFDI.touched && formulario.usoCFDI.errors">
+                          <ng-container *ngIf="formulario.usoCFDI.errors.required">
+                            Seleccione el uso de CFDI
+                          </ng-container>
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-6">
+                      <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
+                        <mat-label class="textoM">Forma de Pago</mat-label>
+                        <mat-select formControlName="formaPago" id="formaPago" name="formaPago">
+                          <mat-option *ngFor="let item of catalogos?.catalogoFormaPago" [value]="item.clave">
+                            {{item.descripcion}}
+                          </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="formulario.formaPago.invalid && 
+                        formulario.formaPago.touched && formulario.formaPago.errors">
+                          <ng-container *ngIf="formulario.formaPago.errors.required">
+                            Seleccione una forma de pago
+                          </ng-container>
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </mat-expansion-panel>
+  
+                <mat-expansion-panel class="border-panel-expansion expansion-panel-secondary" [expanded]="true">
+                  <mat-expansion-panel-header class="expansion-panel-header-title-secondary">
+                    <mat-panel-title class="titulo-panel-expansion">
+                      Datos del Cliente
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <div class="row " style="margin-top: 3%;">
+                    <div class="col-6">
+                      <mat-form-field class="espacio-card" appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
+                        <mat-label class="textoM">RFC Receptor</mat-label>
+                        <input matInput formControlName="rfc" [matAutocomplete]="auto" id="rfc" name="rfc" minlength="12"  maxlength="13" (keypress)="caracteresValidosRFC($event)" (keyup)="setMayusculas($event, 'rfc')">
+                        <mat-icon class="image-workspace-buscardor" matPrefix></mat-icon>
+                        <mat-icon class="image-workspace-select" matSuffix></mat-icon>
+                        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                          <mat-option *ngFor="let item of filteredOptions | async" [value]="item.rfcReceptor" (click)="selecionarCliente(item)">
+                            {{item.rfcReceptor}}
+                          </mat-option>
+                        </mat-autocomplete>
+                        <mat-error *ngIf="formulario.rfc.invalid && formulario.rfc.touched && formulario.rfc.errors">
+                          <ng-container *ngIf="formulario.rfc.errors.required">
+                            El RFC es requerido
+                          </ng-container>
+                          <ng-container *ngIf="formulario.rfc.errors.minlength">
+                            El RFC debe tener 12 o 13 caracteres
+                          </ng-container>
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-6">
+                      <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
+                        <mat-label class="textoM">Razón Social Receptor (Sin espacios)</mat-label>
+                        <input matInput formControlName="razonSocial" id="razonSocial" name="razonSocial" minlength="3" (keypress)="caracteresValidosRS($event)" (keyup)="setMayusculas($event, 'razonSocial')" />
+                        <mat-error *ngIf="formulario.razonSocial.invalid && formulario.razonSocial.touched && formulario.razonSocial.errors">
+                          <ng-container *ngIf="formulario.razonSocial.errors.required">
+                            La razón social es requerida
+                          </ng-container>
+                          <ng-container *ngIf="formulario.razonSocial.errors.minlength">
+                            Ingrese al menos 3 caracteres
+                          </ng-container>
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+  
+                  <div class="row" style="margin-top: 2%;">
+                    <div class="col-6">
+                      <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
+                        <mat-label class="textoM">régimen fiscal receptor</mat-label>
+                        <mat-select formControlName="regimenFiscalCliente" id="regimenFiscalCliente" name="regimenFiscalCliente">
+                          <mat-option *ngFor="let item of catalogos?.catalogoSatRegimenFiscales" [value]="item.clave">
+                            {{item.descripcion}}
+                          </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="formulario.regimenFiscalCliente.invalid && formulario.regimenFiscalCliente.touched && formulario.regimenFiscalCliente.errors">
+                          <ng-container *ngIf="formulario.regimenFiscalCliente.errors.required">
+                            Seleccione un régimen fiscal receptor
+                          </ng-container>
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-6">
+                      <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
+                        <mat-label class="textoM">código postal</mat-label>
+                        <input matInput formControlName="codigoPostal" id="codigoPostal" name="codigoPostal" minlength="5"  maxlength="5" (keypress)="onlyNumbers($event);"/>
+                        <mat-error *ngIf="formulario.codigoPostal.invalid && formulario.codigoPostal.touched && formulario.codigoPostal.errors">
+                          <ng-container *ngIf="formulario.codigoPostal.errors.required">
+                            El campo es requerido
+                          </ng-container>
+                          <ng-container *ngIf="formulario.codigoPostal.errors.minlength">
+                            El código postal debe tener 5 caracteres
+                          </ng-container>
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+  
+                  <div class="row" style="margin-top: 2%;">
+                    <div class="col-6">
+                      <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
+                        <mat-label class="textoM">correo electrónico</mat-label>
+                        <input matInput formControlName="correo" id="correo" name="correo" minlength="3"/>
+                        <mat-error *ngIf="formulario.correo.invalid && formulario.correo.touched && formulario.correo.errors">
+                          <ng-container *ngIf="formulario.correo.errors.required">
+                            El E-mail es requerido
+                          </ng-container>
+                          <ng-container *ngIf="formulario.correo.errors.email || formulario.correo.errors.pattern">
+                            Correo electrónico inválido
+                          </ng-container>
+                        </mat-error>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </mat-expansion-panel>
+  
+                <mat-expansion-panel class="border-panel-expansion expansion-panel-secondary" [expanded]="true">
+                  <mat-expansion-panel-header class="expansion-panel-header-title-secondary">
+                    <mat-panel-title class="titulo-panel-expansion">
+                      Conceptos del CFDI
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                    <div class="row espacio-card" style="margin-top: 3%;">
+                      <div class="col-12 espacio-card">
+                        <div class="row d-flex align-items-center">
+                          <div class="col-8 texto-agregar ">
+                            Haz clic en ¨Agregar concepto¨ para ingresar servicios y montos a tu factura
+                          </div>
+                          <div class="col-4 pos-mas">
+                            <button mat-button class="btn-utaxme btn-concepto" 
+                            (click)="listaConcepto()">
+                              <mat-icon class="img-inicio-acceso"></mat-icon>
+                              Agregar concepto
+                            </button>
+  
+  
+                            <button mat-button class="btn-utaxme btn-concepto-mb" (click)="listaConcepto()">
+                              <mat-icon class="img-inicio-mas"></mat-icon>
+                            </button>
+  
+                          </div>
+                        </div>
+                      </div>
+  
+                      <div class="col-12" style="margin-top: 3%;" *ngIf="width > 450">
+                        <div class="row tableFixHead disable-scrollbars" style="max-height: 250px; overflow-x: auto; width: 100%; margin: 0; padding: 0;">
+                          <table aria-describedby="tabla" class="table table-responsive table-striped ">
+                              <thead style="margin-bottom: 10px;">
+                                  <tr class="textoM">
+                                      <th class="punta-tittle" style="text-align: center;">
+                                          <span style="cursor:default!important;">
+                                            descripción
+                                          </span>
+                                      </th>
+                                      <th class="punta-tittle tab-colum" style="text-align: center;">
+                                          <span style="cursor:default!important;">
+                                            cantidad
+                                          </span>
+                                      </th>
+                                      <th class="punta-tittle tab-colum" style="text-align: center;">
+                                          <span style="cursor:default!important;">
+                                            descuento
+                                          </span>
+                                      </th>
+                                      <th class="punta-tittle tab-colum" style="text-align: center;">
+                                          <span style="cursor:default!important;">
+                                            unitario
+                                          </span>
+                                      </th>
+                                      <th class="punta-tittle" style="text-align: center;">
+                                          <span style="cursor:default!important;">
+                                            importe
+                                          </span>
+                                      </th>
+                                      <th class="punta-tittle" style="text-align: center;">
+                                          <span style="width: 70px; cursor:default!important;">
+                                            acciones
+                                          </span>
+                                      </th>
+                                  </tr>
+                              </thead>
+                              <tbody class="table-scroll" style="border: solid 1px #ffffff; ">
+                                <tr *ngFor="let item of tablaListaConceptos">
+                                  <td style="text-align: center;">
+                                    {{item.descripcion}} 
+                                  </td>
+                                  <td style="text-align: center;" class="tab-colum">
+                                    <div class="card-accion-cantidad" (click)="actualizarValor('cantidad', item)">
+                                      {{item.cantidad}} 
+                                    </div>
+                                  </td>
+                                  <td style="text-align: center;" class="tab-colum">
+                                    <div class="card-accion-cantidad" (click)="actualizarValor('descuento', item)">
+                                      {{item.descuento}}  
+                                    </div>
+                                  </td>
+                                  <td style="text-align: center;" class="tab-colum">
+                                    ${{item.valorUnitario | thousandsPipe}}
+                                  </td>
+                                  <td style="text-align: center;">
+                                    ${{item.importe}}
+                                  </td>
+                                  <td class="d-flex justify-content-center ">
+                                    <div class="card-accion" (click)="eliminarConcepto(item.idConceptoCliente)">
+                                      <mat-icon class="img-accion-borrar"></mat-icon>
+                                    </div>
+                                  </td>
+                                </tr>
+                              </tbody>
+                          </table>
+                        </div>
+                      </div>
+  
+                      <div class="col-12" style="margin-top: 3%; padding: 0;" *ngIf="width <= 450">
+                        <div class="row tableFixHead disable-scrollbars" style="max-height: 250px; overflow-x: auto; width: 100%; margin: 0; padding: 0;">
+                          <table aria-describedby="tabla" class="table table-responsive table-striped ">
+                              <thead style="margin-bottom: 10px;">
+                                  <tr class="textoM">
+                                      <th class="punta-tittle" style="text-align: center;">
+                                          <span style="cursor:default!important;">
+                                            descripción
+                                          </span>
+                                      </th>
+                                      <th class="punta-tittle" style="text-align: center;">
+                                        <span style="cursor:default!important;">
+                                          cantidad
+                                        </span>
+                                      </th>
+                                      <th class="punta-tittle" style="text-align: center;">
+                                          <span style="cursor:default!important;">
+                                            importe
+                                          </span>
+                                      </th>
+                                      <th class="punta-tittle" style="text-align: center;">
+                                          <span style="width: 70px; cursor:default!important;">
+                                            acciones
+                                          </span>
+                                      </th>
+                                  </tr>
+                              </thead>
+                              <tbody class="table-scroll" style="border: solid 1px #ffffff; ">
+                                <tr *ngFor="let item of tablaListaConceptos">
+                                  <td class="tabla-descripcion">
+                                    {{item.descripcion | slice:0:30}} 
+                                  </td>
+                                  <td style="text-align: center;">
+                                    <div class="card-accion-cantidad" (click)="actualizarValor('cantidad', item)">
+                                      {{item.cantidad}} 
+                                    </div>
+                                  </td>
+                                  <td class="tabla-importe">
+                                    ${{item.valorUnitario | thousandsPipe}}
+                                  </td>
+                                  <td class="d-flex justify-content-center ">
+                                    <div class="card-accion" (click)="eliminarConcepto(item.idConceptoCliente)">
+                                      <mat-icon class="img-accion-borrar"></mat-icon>
+                                    </div>
+                                  </td>
+                                </tr>
+                              </tbody>
+                          </table>
+                        </div>
+                      </div>
+  
+  
+                      <div class="col-12" style="margin-top: 2%;" *ngIf="width > 450">
+                        <div class="row total-conceptos">
+                          <div class="col-7"></div>
+                          <div class="col-2">
+                            <span *ngIf="costoFactura.subtotalSinDescuento > 0">Sub sin Desc:</span>
+                            <span *ngIf="costoFactura.descuento"><br>Descuento:</span>
+                            <span><br>Subtotal:</span>
+                            <span *ngIf="costoFactura.ivaT"><br>IVA Tras.:</span>
+                            <span *ngIf="costoFactura.ieps"><br>IEPS:</span>
+                            <span *ngIf="costoFactura.isrR"><br>ISR Ret.:</span>
+                            <span *ngIf="costoFactura.ivaR"><br>IVA Ret.:</span>
+                            <span *ngIf="costoFactura.localTraslado"><br>Local.:</span>
+                            <span style="font-weight: 600;"><br>Total:</span>
+                            
+                          </div>
+                          <div class="col-3" style="text-align: end;">
+                            <span *ngIf="costoFactura.subtotalSinDescuento">${{costoFactura.subtotalSinDescuento | thousandsPipe}}</span>
+                            <span *ngIf="costoFactura.descuento"><br>${{costoFactura.descuento | thousandsPipe}}</span>
+                            <span><br>${{costoFactura.subtotal | thousandsPipe}}</span>
+                            <span *ngIf="costoFactura.ivaT"><br>${{costoFactura.ivaT | thousandsPipe}}</span>
+                            <span *ngIf="costoFactura.ieps"><br>${{costoFactura.ieps | thousandsPipe}}</span>
+                            <span *ngIf="costoFactura.isrR"><br>${{costoFactura.isrR | thousandsPipe}}</span>
+                            <span *ngIf="costoFactura.ivaR"><br>${{costoFactura.ivaR | thousandsPipe}}</span>
+                            <span *ngIf="costoFactura.localTraslado"><br>${{costoFactura.localTraslado | thousandsPipe}}</span>
+                            <span style="font-weight: 600;"><br>${{costoFactura.total | thousandsPipe}}</span>
+                          </div>
+                        </div>
+                      </div>
+  
+                      <div class="col-12" style="margin-top: 2%;" *ngIf="width <= 450">
+                        <div class="row total-conceptos">
+                          <div class="col-6" style="text-align: end;">
+                            <span *ngIf="costoFactura.subtotalSinDescuento > 0">Sub sin Desc:</span>
+                            <span *ngIf="costoFactura.descuento"><br>Descuento:</span>
+                            <span><br>Subtotal:</span>
+                            <span *ngIf="costoFactura.ivaT"><br>IVA Tras.:</span>
+                            <span *ngIf="costoFactura.ieps"><br>IEPS:</span>
+                            <span *ngIf="costoFactura.isrR"><br>ISR Ret.:</span>
+                            <span *ngIf="costoFactura.ivaR"><br>IVA Ret.:</span>
+                            <span *ngIf="costoFactura.localTraslado"><br>Local.:</span>
+                            <span style="font-weight: 600;"><br>Total:</span>
+                            
+                          </div>
+                          <div class="col-6" style="text-align: end;">
+                            <span *ngIf="costoFactura.subtotalSinDescuento">${{costoFactura.subtotalSinDescuento | thousandsPipe}}</span>
+                            <span *ngIf="costoFactura.descuento"><br>${{costoFactura.descuento | thousandsPipe}}</span>
+                            <span><br>${{costoFactura.subtotal | thousandsPipe}}</span>
+                            <span *ngIf="costoFactura.ivaT"><br>${{costoFactura.ivaT | thousandsPipe}}</span>
+                            <span *ngIf="costoFactura.ieps"><br>${{costoFactura.ieps | thousandsPipe}}</span>
+                            <span *ngIf="costoFactura.isrR"><br>${{costoFactura.isrR | thousandsPipe}}</span>
+                            <span *ngIf="costoFactura.ivaR"><br>${{costoFactura.ivaR | thousandsPipe}}</span>
+                            <span *ngIf="costoFactura.localTraslado"><br>${{costoFactura.localTraslado | thousandsPipe}}</span>
+                            <span style="font-weight: 600;"><br>${{costoFactura.total | thousandsPipe}}</span>
+                          </div>
+                        </div>
+                      </div>
+  
+                    </div>
+                </mat-expansion-panel>
+              </mat-accordion>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 d-flex justify-content-end">
+              <button mat-button type="button" class="btn-utaxme-secondary" style="max-width: 120px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;" (click)="cancelarCFDI()">
+                Cancelar
+              </button>
+              <button mat-button class="btn-utaxme" style="max-width: 160px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;" (click)="confirmarGenerarCFDI()">
+                Generar CFDI
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-1 "></div>
+    </div>
+  </div>
+</div>

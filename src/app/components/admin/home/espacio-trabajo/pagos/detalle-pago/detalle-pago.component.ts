@@ -6,6 +6,8 @@ import { Conceptos, TotalFactura } from 'src/app/shared/model/espacio-trabajo.mo
 import { AuthService } from 'src/app/shared/service/auth.service';
 import { DialogService } from 'src/app/shared/service/dialog.service';
 import { ConceptosComponent } from '../conceptos/conceptos.component';
+import { Router } from '@angular/router';
+import { NAV } from 'src/app/shared/configuration/navegacion';
 
 @Component({
   selector: 'app-detalle-pago',
@@ -120,7 +122,7 @@ export class DetallePagoComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private formBuilder: FormBuilder,
     private auth: AuthService,
-
+    public router: Router,
     private dialogService: DialogService,
     public dialog: MatDialog,
   ) { }
@@ -140,7 +142,11 @@ export class DetallePagoComponent implements OnInit {
 
   confirmDialog() {
     this.dialogRef.close(true);
+  }
 
+  generarCFDI(){
+    this.dialogRef.close(false);
+    this.router.navigateByUrl(NAV.homeAdmin +'/'+ NAV.generarCfdi)
   }
 
   listaConcepto(){

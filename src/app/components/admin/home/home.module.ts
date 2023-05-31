@@ -40,6 +40,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ConceptosComponent } from './espacio-trabajo/pagos/conceptos/conceptos.component';
 import { GenerarFacturaComponent } from './espacio-trabajo/pagos/generar-factura/generar-factura.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatMenuModule} from '@angular/material/menu';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatExpansionModule } from '@angular/material/expansion';
+
 
 @NgModule({
   declarations: [
@@ -86,7 +90,10 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     GraphicsModule,
     AlertModule,
     MatDialogModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatMenuModule,
+    MatAutocompleteModule,
+    MatExpansionModule
   ]
 })
 export class HomeModule { }

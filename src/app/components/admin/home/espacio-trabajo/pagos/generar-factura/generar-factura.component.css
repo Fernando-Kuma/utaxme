@@ -1,0 +1,267 @@
+.home-container{
+  width: 100%!important;
+  margin: 0;
+  padding: 0;
+}
+
+.image-workspace-back {
+  background-image: url("src\assets\img\icon\workspace-back.svg");
+  background-size: 20px 20px;
+  background-position: right;
+  background-repeat: no-repeat;
+}
+
+.image-workspace-buscardor {
+  background-image: url("src\assets\img\icon\buscar.svg");
+  background-size: 24px 24px;
+  background-position: right;
+  background-repeat: no-repeat;
+}
+
+.image-workspace-select {
+  background-image: url("src\assets\img\icon\home-down.svg");
+  background-size: 14px 14px;
+  background-position: right;
+  background-repeat: no-repeat;
+}
+
+.titulo-proceso{
+  font-weight: 400;
+  font-size: 24px;
+  text-transform: uppercase;
+  color: #0B112A;
+}
+
+.subtitulo-proceso{
+  font-weight: 400;
+  font-size: 16px;
+  color: #7B8AA0;
+  margin-top: 5px;
+}
+
+.bienvenida-cliente{
+  font-weight: 600;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  text-align: right;
+  color: #3B4559;
+}
+
+.titulo-formulario{
+  font-weight: 400;
+  font-size: 24px;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+}
+
+.border-panel-expansion{
+  border-radius: 10px; 
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  margin: 10px 0;
+}
+
+.titulo-panel-expansion{
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;  
+  color: #FFFFFF;
+}
+
+.card-datos{
+  min-height: 142px;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+
+  border-bottom: 8px solid #1D2640;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  padding: 15px;
+}
+
+
+
+.card-titulo{
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 35px;
+  color: #000000;
+}
+
+.card-texto{
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 25px;
+  color: #727272;
+}
+
+.texto-hipervinculo{
+  font-weight: 600;
+  font-size: 16px;
+  text-decoration-line: underline;
+  color: #285CED;
+
+  cursor: pointer;
+}
+
+.texto-card{
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #727272;
+}
+
+.texto-agregar{
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #7B8AA0;
+}
+
+.punta-tittle{
+  margin: 0; 
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 16px;
+  letter-spacing: 0.2em;
+  color: #000000;
+}
+
+.img-inicio-mas {
+  background-image: url("src\assets\img\icon\mas.svg");
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  background-position: left;
+}
+
+.img-inicio-acceso {
+  background-image: url("src\assets\img\icon\inicio-acceso.svg");
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  background-position: left;
+}
+
+.img-accion-borrar {
+  background-image: url("src\assets\img\icon\delete.svg");
+  background-size: 24px 24px;
+  background-repeat: no-repeat;
+  background-position: left;
+}
+
+.card-accion{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* System/Info/10 */
+  Width:40px;
+  Height:40px;
+  background: #D3E3FE;
+  border-radius: 8px;
+
+  cursor: pointer;
+}
+
+.card-accion-cantidad{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  Width:100%;
+  Height:40px;
+  background: #D3E3FE;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+
+
+
+::ng-deep .expansion-panel-header-title-secondary .mat-expansion-indicator{
+  width: 14px; 
+  height: 14px; 
+  position: relative;
+  background-image: url("src\assets\img\icon\vector-double.svg");
+  background-size: 14px 14px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+::ng-deep .expansion-panel-header-title-secondary .mat-expansion-indicator::after{
+  visibility: hidden;
+}
+
+.expansion-panel-secondary .mat-expansion-panel-header {
+  min-height: 70px;
+  background: #1D2640;
+}
+
+.expansion-panel-secondary .mat-expansion-panel-header:hover {
+  background: #1D2640 !important;
+}
+
+
+.tableFixHead::-webkit-scrollbar {
+  width: 8px;               /* width of the entire scrollbar */
+}
+
+.tableFixHead::-webkit-scrollbar-thumb {
+  background: #D9D9D9;
+  border-radius: 10px;
+}
+
+.tableFixHead { 
+overflow: auto; 
+  min-height: 90px;
+}
+
+.total-conceptos{
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #0B112A;
+}
+
+.textoM{
+  text-transform: uppercase;
+}
+
+.isDisabled{
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+
+
+::ng-deep .mat-checkbox-checked
+  .mat-checkbox-layout
+  .mat-checkbox-inner-container
+  .mat-checkbox-background {
+  background-color: #285ced !important;
+}
+
+.btn-concepto{
+  min-width: 229px; 
+  font-size: 16px; 
+  font-weight: 600; 
+  height: 48px;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+}
+
+.btn-concepto-mb{
+  display: none;
+}
+
+.tab-colum{
+  display: revert;
+}
+
+.aviso{
+  width: 100%;
+  text-align: center;
+}

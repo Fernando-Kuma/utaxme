@@ -22,7 +22,7 @@
     </div>
   </div>
 
-  <div class="home-container-accesos" style="margin-top: 30px;">
+  <div class="home-container" style="margin-top: 30px;">
     <div class="row w100m0p0">
       <div class="col-1"></div>
       <div class="col-10 px-4 p-4" style="background-color: #FFFFFF; min-height: 350px;">
@@ -35,10 +35,25 @@
             <div class="col-12 d-flex justify-content-end">
               <mat-form-field appearance="outline" style="min-width: 360px;">
                 <mat-label>Buscar clientes</mat-label>
-                <input matInput formControlName="buscar" id="buscar" name="buscar" (keyup)="onKeyDownEvent($event)"/>
+                <input matInput formControlName="buscar" id="buscar" name="buscar" (keyup)="onKeyDownEvent($event)" [matAutocomplete]="auto"/>
                 <mat-icon class="image-workspace-buscardor" matPrefix></mat-icon>
-                <mat-icon matSuffix class="optionchecks"></mat-icon>
+                <mat-icon matSuffix class="optionchecks"
+                matTooltip="Mostrar opciones de búsqueda" ></mat-icon>
               </mat-form-field>
+
+              <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" class="ejemplo">
+                <ng-container *ngIf="showAutocomplete">
+                  <mat-option value="Mes facturado" (click)="opcionFiltro('Facturado')">
+                    <mat-icon class="buscar-factura" ></mat-icon>
+                    Mes facturado
+                  </mat-option>
+                  <mat-option value="Mes no facturado" (click)="opcionFiltro('No emitida')">
+                    <mat-icon class="buscar-no-factura"></mat-icon>
+                    Mes no facturado
+                  </mat-option>
+                </ng-container>
+              </mat-autocomplete>
+
 
               <button type="button" class="btn-utaxme" style="max-width: 260px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: space-evenly; margin: 0 20px;" >
                 <mat-icon class="image-workspace-agregar image-invert-color"></mat-icon>

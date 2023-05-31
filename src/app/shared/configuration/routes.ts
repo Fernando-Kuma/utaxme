@@ -25,6 +25,7 @@ import { EspacioTrabajoAdminComponent } from 'src/app/components/admin/home/espa
 import { NuevoClienteComponent } from 'src/app/components/admin/home/espacio-trabajo/clientes/nuevo-cliente/nuevo-cliente.component';
 import { ClientesComponent } from 'src/app/components/admin/home/espacio-trabajo/clientes/clientes.component';
 import { PagosComponent } from 'src/app/components/admin/home/espacio-trabajo/pagos/pagos.component';
+import { GenerarFacturaComponent } from 'src/app/components/admin/home/espacio-trabajo/pagos/generar-factura/generar-factura.component';
 
 
 
@@ -138,8 +139,12 @@ export const appRoutes: Routes = [
         component: ClientesComponent,
       },
       {
-        path: 'admnistracion-pagos',
+        path: NAV.admnistracionPagos,
         component: PagosComponent,
+      },
+      {
+        path: NAV.generarCfdi,
+        component: GenerarFacturaComponent,
       }
     ], 
   },

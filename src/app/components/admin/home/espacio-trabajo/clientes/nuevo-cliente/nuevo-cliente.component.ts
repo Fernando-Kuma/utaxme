@@ -173,7 +173,6 @@ export class NuevoClienteComponent implements OnInit {
       .subscribe((response) => {
         console.log("Response:",response);
         if(response.httpStatus == 200){
-
           const dialogRef = this.dialog.open(
             ConfirmDialogComponent, 
             this.dialogService.nuevoCliente()
@@ -183,8 +182,8 @@ export class NuevoClienteComponent implements OnInit {
               this.close();
             }
           );
-          this.alertService.success('<b>Se guardo correctamente el cliente.</b>');
-          this.close();
+          /* this.alertService.success('<b>Se guardo correctamente el cliente.</b>');
+          this.close(); */
         }else if(response.httpStatus == 201){
           this.alertService.error('<b>'+response.message+'.</b>');
         }

@@ -20,7 +20,7 @@ export class DomicilioComponent implements OnInit {
   @Input() set tabs(val: number) {
     if(val >= 0){
       console.log("Cambiaste de Tabdomicilio")
-      this.guardarDomicilio();
+      this.validarGenerales();
     }
   }
   constructor(private formBuilder: FormBuilder,
@@ -70,8 +70,9 @@ export class DomicilioComponent implements OnInit {
 
     if(validacion){
       console.log("Formulario lleno")
+      localStorage.setItem('domicilio','1');
       this.guardarDomicilio();
-      this.cambiarTab();
+      this.cambiarTab();      
     }else{
       console.log("Formulario no lleno")
       localStorage.setItem('domicilio','0');
@@ -124,7 +125,6 @@ export class DomicilioComponent implements OnInit {
     body.domicilio.numeroInt = this.formDomicilio.get('numeroint').value;
     console.log("Body:",body);
     localStorage.setItem('bodyCliente', JSON.stringify(body));
-    localStorage.setItem('domicilio','1');
   }
 
   public onlyNumbers(event) {

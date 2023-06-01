@@ -22,7 +22,7 @@ export class CertificadosComponent implements OnInit {
   validForm : EventEmitter<boolean> = new EventEmitter<boolean>();
 
   mostrar:number = 1;
-  certificados:any = [];
+  certificados:any = null;
   fecFin: Date;
   fecActual: Date;
   mensaje: string;

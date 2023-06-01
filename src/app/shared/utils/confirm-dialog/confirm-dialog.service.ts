@@ -154,5 +154,19 @@ export class ConfirmDialogService {
     return this.dialogConfig;
   }
 
+  guardadoIncompleto(): MatDialogConfig {
+    this.dialogConfig.restoreFocus = false;
+    this.dialogConfig.autoFocus = false;
+    this.dialogConfig.data = {
+        title: "No fue posible guardar los certificados ",
+        subtitle: "¡Inténtalo más tarde! Recuerda que podrás cargar más tarde los certificados.",
+        cancelMessage: "No, volver",
+        confirmMessage: "Entendido",
+        type: "warn",
+        showCancelMessage: false
+    }
+    return this.dialogConfig;
+  }
+
   constructor() { }
 }

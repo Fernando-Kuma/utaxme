@@ -189,6 +189,15 @@ export class NuevoClienteComponent implements OnInit {
         }
       },(_error) => {
         console.log("Error al guardar cliente: ", _error);
+        const dialogRef = this.dialog.open(
+          ConfirmDialogComponent, 
+          this.dialogService.guardadoIncompleto()
+        );
+        dialogRef.afterClosed().subscribe(
+          _data => {
+            this.close();
+          }
+        );
       });
   }
 

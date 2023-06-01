@@ -4,6 +4,7 @@ import { NuevoClienteComponent } from './nuevo-cliente/nuevo-cliente.component';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ClienteService } from 'src/app/shared/service/cliente.service';
 import { Paginator } from 'array-paginator';
+import { AuthService } from 'src/app/shared/service/auth.service';
 
 @Component({
   selector: 'app-clientes',
@@ -15,11 +16,14 @@ export class ClientesComponent implements OnInit {
   tablaLista: any[]; 
   public formBuscador: FormGroup;
   public pager:any;
+  nombreCliente: string;
   constructor(private dialog: MatDialog,
+    private auth: AuthService,
     private formBuilder: FormBuilder,
     private clienteService: ClienteService) { }
 
   ngOnInit(): void {
+    this.nombreCliente = this.auth.administrador.nombreCompleto;
     this.formBuscador = this.formBuilder.group({      
       busqueda: ['']
     });
@@ -76,7 +80,7 @@ export class ClientesComponent implements OnInit {
   onKeyDownEvent(event: any){
     let filtro = event.target.value;
     let busquedaTabla = this.tablaListaCliente.filter( item =>
-      item?.nombre?.toLowerCase().includes(filtro.toLowerCase())
+      item?.razonSocial?.toLowerCase().includes(filtro.toLowerCase())
     );
     this.paginador(busquedaTabla);
 

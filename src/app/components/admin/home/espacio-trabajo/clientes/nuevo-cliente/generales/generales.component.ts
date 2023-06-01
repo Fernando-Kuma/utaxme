@@ -14,10 +14,11 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class GeneralesComponent implements OnInit {
   _tabs: number = -1;
+  tipoPersona: number = 0;
   @Input() set tabs(val: number) {
     if(val >= 0){
       console.log("Cambiaste de TabGenerales")
-      this.guardarGenerales();
+      this.validarForm();
     }
   }
   
@@ -40,7 +41,6 @@ export class GeneralesComponent implements OnInit {
 
   ngOnInit(): void {
     this.crearForm();
-    this.obtenerRegimen();
   }
 
   crearForm(){
@@ -101,7 +101,7 @@ export class GeneralesComponent implements OnInit {
   }
 
   obtenerRegimen(){
-    this.catalogoService.obtenerRegimenFiscales()
+    this.catalogoService.obtenerRegimenFiscales(this.tipoPersona)
       .subscribe((response) => {
         console.log("Regimens:",response);
         this.Options = response;
@@ -129,6 +129,7 @@ export class GeneralesComponent implements OnInit {
     if(validacion){
       console.log("Formulario lleno")
       this.guardarGenerales();
+      localStorage.setItem('generales','1');
     }else{
       console.log("Formulario no lleno")
       localStorage.setItem('generales','0');
@@ -148,7 +149,6 @@ export class GeneralesComponent implements OnInit {
     body.observaciones = this.formGenerales.get('observaciones').value;
     console.log("Body:",body);
     localStorage.setItem('bodyCliente', JSON.stringify(body));
-    localStorage.setItem('generales','1');
   }
 
   public onlyNumbers(event) {
@@ -169,5 +169,16 @@ export class GeneralesComponent implements OnInit {
 
   close(){
     this.dialogRef.close();
+  }
+
+  validarRFC(){
+    let rfc = this.formGenerales.get('rfc').value;
+    if(rfc.length == 12){
+      this.tipoPersona = 2
+    }else{
+      this.tipoPersona = 1
+    }
+    console.log("tipoPersona;",this.tipoPersona);
+    this.obtenerRegimen();
   }
 }

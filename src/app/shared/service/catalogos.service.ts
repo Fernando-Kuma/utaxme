@@ -12,9 +12,9 @@ export class CatalogosService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  obtenerRegimenFiscales(): Observable<any> {
+  obtenerRegimenFiscales(tipoPersona): Observable<any> {
     return this.http
-      .get<any>(`${API.admin.catalogos.regimenFiscal}`)
+      .get<any>(`${API.admin.catalogos.regimenFiscal}?tipoPersona=${tipoPersona}`)
       .pipe(
         catchError((e) => {
           return throwError(e);

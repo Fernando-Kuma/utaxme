@@ -7,7 +7,7 @@
             <span style="font-weight: 400; font-size: 24px; color: #0B112A;">ADMINISTRTACIÓN DE CLIENTES</span>
         </div>
         <div class="col-5" style="text-align: right; font-weight: 600;">
-            <p>¡Buen día, !</p>
+            <p>¡Buen día, {{ nombreCliente }}!</p>
         </div>
         <div class="col-1"></div>
     </div>
@@ -58,43 +58,43 @@
                           </div>
                     </div>
                     <div class="row">
-                        <div class="row" style="margin-top: 3% !important; min-height: 250px;" *ngIf="tablaLista?.length> 0">
-                            <div class="col-12 tableFixHead disable-scrollbars" style=" overflow-x: auto;">
+                        <div class="row" style="margin-top: 3% !important; min-height: 250px;">
+                            <div class="col-12 tableFixHead disable-scrollbars" style=" overflow-x: auto;" *ngIf="tablaLista?.length> 0">
                             <mat-divider></mat-divider>
                             <table aria-describedby="tabla" class="table table-responsive table-striped">
                                 <thead style="margin-bottom: 10px;">
                                 <tr class="textoM">
-                                    <th class="punta-tittle">
+                                    <th class="punta-tittle" style="width: 300px;">
                                     <span style="cursor:default!important;">
                                         razón social
                                     </span>
                                     </th>
-                                    <th class="punta-tittle txt-tab">
+                                    <th class="punta-tittle txt-tab" style="width: 100px;">
                                     <span style="cursor:default!important;">
                                         rfc
                                     </span>
                                     </th>
-                                    <th class="punta-tittle  txt-tab">
+                                    <th class="punta-tittle  txt-tab" style="width: 100px;">
                                     <span style="cursor:default!important;">
                                         contador asignado
                                     </span>
                                     </th>
-                                    <th class="punta-tittle txt-tab">
+                                    <th class="punta-tittle txt-tab" style="width: 100px;">
                                     <span style="cursor:default!important;">
                                         actividades pendientes
                                     </span>
                                     </th>
-                                    <th class="punta-tittle txt-tab">
+                                    <th class="punta-tittle txt-tab" style="width: 100px;">
                                     <span style="cursor:default!important;">
                                         Progreso mensual
                                     </span>
                                     </th>
-                                    <th class="punta-tittle txt-tab">
+                                    <th class="punta-tittle txt-tab" style="width: 100px;">
                                     <span style="cursor:default!important;">
                                         estatus
                                     </span>
                                     </th>
-                                    <th class="punta-tittle txt-tab">
+                                    <th class="punta-tittle txt-tab" style="width: 100px;">
                                     <span style="cursor:default!important;">
                                         acciones
                                     </span>
@@ -131,6 +131,9 @@
                                 </tr>
                                 </tbody>
                             </table>
+                            </div>
+                            <div class="col-12" style="margin-top: 20px;display: flex;justify-content: center;" *ngIf="!tablaLista">
+                                <mat-spinner></mat-spinner>
                             </div>
                         </div>
                         <div class="row w100m0p0" style="margin-top: 30px!important; min-height: 50px;" *ngIf="tablaLista?.length> 0">

@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/shared/service/auth.service';
 import { DetallePagoComponent } from './detalle-pago/detalle-pago.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogService } from 'src/app/shared/service/dialog.service';
+import { AdministrarPagosService } from 'src/app/shared/service/administrar-pagos.service';
 
 @Component({
   selector: 'app-pagos',
@@ -60,20 +61,23 @@ export class PagosComponent implements OnInit {
     },
   ]
   showAutocomplete: boolean = true;
+  listadoPagos: any[] = [];
 
   constructor(
     public dialog: MatDialog,  
     private dialogService: DialogService,
     public router: Router,
     private auth: AuthService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private administrarPagosService: AdministrarPagosService
   ) { }
 
   ngOnInit(): void {
     
     this.nombreCliente = this.auth.administrador.nombreCompleto;
     this.crearForm()
-    this.paginador(this.listaDummy)
+    
+    this.obtenerClientesPago()
   }
 
   crearForm(){
@@ -100,9 +104,37 @@ export class PagosComponent implements OnInit {
     }
   }
 
+  obtenerClientesPago(){
+    let fecha = new Date();
+    let anio = fecha.getFullYear();
+    let mes = (fecha.getMonth() + 1);
+    this.administrarPagosService.obtenerClientesPago(anio,mes)
+      .subscribe((response) => {
+        if(response.httpStatus == 200){
+          response.data.forEach(ele => {
+            ele.montoComplementos = Number(ele.montoComplementos)
+            ele.total = Number(ele.total)
+            ele.montoPaquete = Number(ele.montoPaquete)
+            if(ele.estatusMensual == 1){
+              ele.descripcionEstatus = 'Cancelado'
+            }else if(ele.estatusMensual == 0){
+              ele.descripcionEstatus = 'Facturado'
+            }else{
+              ele.descripcionEstatus = 'No Emitido'
+            }
+          });
+          this.listadoPagos = response.data
+          console.log("Clientes: ",this.listadoPagos);
+          this.paginador(this.listadoPagos)
+        }
+      },(_error) => {
+        console.log("Error en obtener clientes: ", _error);
+      });
+  }
+
   onKeyDownEvent(event: any){
     let filtro = event.target.value;
-    let busquedaTabla = this.listaDummy.filter( item =>
+    let busquedaTabla = this.listadoPagos.filter( item =>
       item?.razonSocial?.toLowerCase().includes(filtro.toLowerCase())
       );
       console.log(busquedaTabla)
@@ -114,9 +146,10 @@ export class PagosComponent implements OnInit {
     }
   }
 
-  opcionFiltro(texto: any){
-    let busquedaTabla = this.listaDummy.filter( item =>
-      item?.estatusMensual?.toLowerCase().includes(texto.toLowerCase())
+  opcionFiltro(condicion: any){
+    console.log(condicion)
+    let busquedaTabla = this.listadoPagos.filter( item =>
+      item.estatusMensual == condicion
     );
     this.paginador(busquedaTabla);
   }
@@ -137,7 +170,7 @@ export class PagosComponent implements OnInit {
   
   returnFilter(){
     this.form.reset();
-    this.paginador(this.listaDummy);
+    this.paginador(this.listadoPagos);
   }
 
   abrirModal(item){

@@ -160,23 +160,25 @@ export class DashboardComponent implements OnInit {
   obtenerCumplimientoFiscal(): void {
     this.spinnerLoadingCumplimiento = true;
     this.dashboardService.obtenerCumplimientoFiscal(this.requestDashboard).subscribe((resp : CumplimientoFiscal) => {
+      this.spinnerLoadingCumplimiento = false;
       resp.estatus = resp.estatus.toLowerCase()
       this.cumplimientoFiscal = resp;
-      this.cumplimientoFiscal.listDocumentos.forEach(element => {
-        if(element.tipo === 'OPINION'){ 
-          localStorage.Opinion = element.url;
-        }
-        if(element.tipo === 'CONSTANCIA'){ 
-          localStorage.Constancia = element.url;
-        }
-        if(element.tipo === 'ACUSE'){ 
-          localStorage.Acuse = element.url;
-        }
-      });
+      if(this.cumplimientoFiscal.listDocumentos != null){
+        this.cumplimientoFiscal.listDocumentos.forEach(element => {
+          if(element.tipo === 'OPINION'){ 
+            localStorage.Opinion = element.url;
+          }
+          if(element.tipo === 'CONSTANCIA'){ 
+            localStorage.Constancia = element.url;
+          }
+          if(element.tipo === 'ACUSE'){ 
+            localStorage.Acuse = element.url;
+          }
+        });
+      }
       if(this.auth.usuario.cliente.rfc === 'OATP9611061C4'){
         localStorage.Acuse = "https://www.billerticket.com/store/OATP9611061C4/ACUSE_RECIBO_OATP9611061C4_ENE_FEB_2023_IVA.pdf";
       }
-      this.spinnerLoadingCumplimiento = false;
     },
         (_error) => {
           this.spinnerLoadingCumplimiento = false;

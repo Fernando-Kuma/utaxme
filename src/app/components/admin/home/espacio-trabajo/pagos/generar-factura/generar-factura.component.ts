@@ -325,7 +325,7 @@ export class GenerarFacturaComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       data => {
         if(data){
-          this.generarServicioCFDI()
+          /* this.generarServicioCFDI() */
         }
       }
     );

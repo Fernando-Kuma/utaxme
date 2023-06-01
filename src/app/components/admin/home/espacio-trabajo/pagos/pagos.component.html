@@ -43,11 +43,11 @@
 
               <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" class="ejemplo">
                 <ng-container *ngIf="showAutocomplete">
-                  <mat-option value="Mes facturado" (click)="opcionFiltro('Facturado')">
+                  <mat-option value="Mes facturado" (click)="opcionFiltro(0)">
                     <mat-icon class="buscar-factura" ></mat-icon>
                     Mes facturado
                   </mat-option>
-                  <mat-option value="Mes no facturado" (click)="opcionFiltro('No emitida')">
+                  <mat-option value="Mes no facturado" (click)="opcionFiltro(null)">
                     <mat-icon class="buscar-no-factura"></mat-icon>
                     Mes no facturado
                   </mat-option>
@@ -122,7 +122,7 @@
                     {{item.razonSocial}}
                   </td>
                   <td class=" txt-tab">
-                    {{item.paquete}}
+                    {{item.paqueteContratado}}
                   </td>
                   <td class=" txt-tab">
                     ${{item.montoPaquete | thousandsPipe}}
@@ -134,7 +134,7 @@
                     ${{item.total | thousandsPipe}}
                   </td>
                   <td class="txt-tab">
-                    {{item.estatusMensual }}
+                    {{item.descripcionEstatus }}
                   </td>
                   <td>
                     <div class="d-flex justify-content-center">

@@ -60,7 +60,7 @@ export class ConceptosComponent implements OnInit {
   crearConcepto(){
     const dialogRef = this.dialog.open(
       CrearConceptoComponent, 
-      this.dialogService.crearConceto()
+      this.dialogService.crearConcetoAdmin()
     );
     dialogRef.afterClosed().subscribe(
       data => {
@@ -75,7 +75,7 @@ export class ConceptosComponent implements OnInit {
   editarConcepto(concepto: any){
     const dialogRef = this.dialog.open(
       CrearConceptoComponent, 
-      this.dialogService.editarConcepto(concepto)
+      this.dialogService.editarConceptoAdmin(concepto)
     );
     dialogRef.afterClosed().subscribe(
       data => {

@@ -50,6 +50,28 @@ export class DialogService {
     return this.dialogConfig;
   }
 
+  crearConcetoAdmin(): MatDialogConfig {
+    this.dialogConfig.restoreFocus = false;
+    this.dialogConfig.autoFocus = false;
+    this.dialogConfig.data = {
+      concepto: '',
+      metodo: 'crear',
+      usuario: 'administrador'
+    }
+    return this.dialogConfig;
+  }
+
+  editarConceptoAdmin(item): MatDialogConfig {
+    this.dialogConfig.restoreFocus = false;
+    this.dialogConfig.autoFocus = false;
+    this.dialogConfig.data = {
+        concepto: item,
+        metodo: 'editar',
+        usuario: 'administrador'
+    }
+    return this.dialogConfig;
+  }
+
   crearCliente(): MatDialogConfig {
     this.dialogConfig.restoreFocus = false;
     this.dialogConfig.autoFocus = false;

@@ -13,6 +13,9 @@ import { EspacioTrabajoService } from 'src/app/shared/service/espacio-trabajo.se
   styleUrls: ['./crear-concepto.component.css']
 })
 export class CrearConceptoComponent {
+
+
+  usuarioAdmin: boolean = false;
   public form: FormGroup;
   opcionCrear: boolean = true;
   filteredOptions: Observable<any[]>;
@@ -30,12 +33,21 @@ export class CrearConceptoComponent {
   ) { }
 
   ngOnInit(): void {
+    this.usuarioAdmin = this.data.usuario == 'administrador'
     this.crearForm();
     this.obtenerCatalogos();
-    if(this.data.metodo === 'editar'){
-      this.titulo = 'Editar concepto'
-      this.opcionCrear = false
-      this.modificarForm()
+    if(this.usuarioAdmin){
+      if(this.data.metodo === 'editar'){
+        this.titulo = 'Editar concepto'
+        this.opcionCrear = false
+        this.modificarForm()
+      }
+    }else{
+      if(this.data.metodo === 'editar'){
+        this.titulo = 'Editar concepto'
+        this.opcionCrear = false
+        this.modificarForm()
+      }
     }
   }
 
@@ -111,6 +123,8 @@ export class CrearConceptoComponent {
   } */
 
   catalogoProductos(event: any){
+    event.preventDefault()
+    console.log(this.form.controls['buscar'].value)
     if(this.form.controls['buscar'].value != null ){
       this.espacioTrabajoService.obtenerCatalogoProductos(this.form.controls['buscar'].value)
         .subscribe((resp) => {
@@ -157,7 +171,30 @@ export class CrearConceptoComponent {
       return
     }
     
-    let request = {
+    
+
+    if(this.usuarioAdmin){
+      this.dialogRef.close(true);
+      let request = {
+        productoServicio: this.form.controls['nombreProducto'].value.toUpperCase(),
+        identificadorSat: this.form.controls['clavaProducto'].value,
+        descripcion: this.form.controls['descripcion'].value.trim().toUpperCase(),
+        claveUnidad: this.form.controls['clavaUnidad'].value.trim().toUpperCase(),
+        unidad: this.form.controls['unidad'].value,
+        valorUnitario: this.form.controls['valorUnitario'].value,
+        claveImpuestoSat: "002", //ok  fijo
+        tasa: this.form.controls['impuestoT'].value ? this.form.controls['iva'].value : null,
+        ieps: this.form.controls['impuestoT'].value ? this.form.controls['ieps'].value : null,
+
+        isrRet: this.form.controls['impuestoR'].value ? this.form.controls['isr'].value : null,
+        ivaRet: this.form.controls['impuestoR'].value ? this.form.controls['ivaR'].value : null,
+
+        claveImpuestoLocal: this.form.controls['impuestoL'].value ? this.form.controls['impuestoLocal'].value : null,
+        tasaLocal: this.form.controls['impuestoL'].value ? this.form.controls['tasaLocal'].value : null,
+        idConceptoCliente: 0
+      }
+    }else{
+      let request = {
         productoServicio: this.form.controls['nombreProducto'].value.toUpperCase(),
         identificadorSat: this.form.controls['clavaProducto'].value,
         descripcion: this.form.controls['descripcion'].value.trim().toUpperCase(),
@@ -175,26 +212,26 @@ export class CrearConceptoComponent {
         claveImpuestoLocal: this.form.controls['impuestoL'].value ? this.form.controls['impuestoLocal'].value : null,
         tasaLocal: this.form.controls['impuestoL'].value ? this.form.controls['tasaLocal'].value : null,
         idConceptoCliente: 0
-    }
+      }
 
-
-    if(this.opcionCrear){
-      this.espacioTrabajoService.crearNuevoConcepto(request)
-      .subscribe((resp) => {
-        //agregar alerta de listo
-        this.dialogRef.close(true);
-      },(_error) => {
-        console.log("::Entro al error Datos fiscales: ", _error);
-      });
-    }else{
-      request.idConceptoCliente = this.data.concepto.idConceptoCliente
-      this.espacioTrabajoService.actualizarConcepto(request)
-      .subscribe((resp) => {
-        //agregar alerta de listo
-        this.dialogRef.close(true);
-      },(_error) => {
-        console.log("::Entro al error Datos fiscales: ", _error);
-      });
+      if(this.opcionCrear){
+        this.espacioTrabajoService.crearNuevoConcepto(request)
+        .subscribe((resp) => {
+          //agregar alerta de listo
+          this.dialogRef.close(true);
+        },(_error) => {
+          console.log("::Entro al error Datos fiscales: ", _error);
+        });
+      }else{
+        request.idConceptoCliente = this.data.concepto.idConceptoCliente
+        this.espacioTrabajoService.actualizarConcepto(request)
+        .subscribe((resp) => {
+          //agregar alerta de listo
+          this.dialogRef.close(true);
+        },(_error) => {
+          console.log("::Entro al error Datos fiscales: ", _error);
+        });
+      }
     }
   }
 
@@ -244,4 +281,7 @@ export class CrearConceptoComponent {
     return window.innerWidth;
   }
   
+  public onKey(event) {
+    event.preventDefault()
+  }
 }

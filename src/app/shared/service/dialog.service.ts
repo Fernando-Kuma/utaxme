@@ -141,4 +141,11 @@ export class DialogService {
     }
     return this.dialogConfig;
   }
+
+  sendMassiveNotification(): MatDialogConfig {
+    this.dialogConfig.restoreFocus = false;
+    this.dialogConfig.autoFocus = false;        
+    return this.dialogConfig;
+}
+
 }

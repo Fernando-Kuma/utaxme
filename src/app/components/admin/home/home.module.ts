@@ -43,6 +43,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatMenuModule} from '@angular/material/menu';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { ListaConceptosComponent } from './espacio-trabajo/pagos/lista-conceptos/lista-conceptos.component';
 
 
 @NgModule({
@@ -65,6 +66,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     DetallePagoComponent,
     ConceptosComponent,
     GenerarFacturaComponent,
+    ListaConceptosComponent,
   ],
   imports: [
     CommonModule,

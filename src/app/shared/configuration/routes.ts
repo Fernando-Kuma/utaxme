@@ -26,6 +26,7 @@ import { NuevoClienteComponent } from 'src/app/components/admin/home/espacio-tra
 import { ClientesComponent } from 'src/app/components/admin/home/espacio-trabajo/clientes/clientes.component';
 import { PagosComponent } from 'src/app/components/admin/home/espacio-trabajo/pagos/pagos.component';
 import { GenerarFacturaComponent } from 'src/app/components/admin/home/espacio-trabajo/pagos/generar-factura/generar-factura.component';
+import { ListaConceptosComponent } from 'src/app/components/admin/home/espacio-trabajo/pagos/lista-conceptos/lista-conceptos.component';
 
 
 
@@ -145,6 +146,10 @@ export const appRoutes: Routes = [
       {
         path: NAV.generarCfdi,
         component: GenerarFacturaComponent,
+      },
+      {
+        path: NAV.administraConceptos,
+        component: ListaConceptosComponent,
       }
     ], 
   },

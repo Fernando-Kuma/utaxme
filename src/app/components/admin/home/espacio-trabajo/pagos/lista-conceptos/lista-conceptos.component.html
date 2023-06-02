@@ -6,15 +6,14 @@
     </div>
     <div class="col-11">
       <div class="row w100m0p0">
-        <div class="col-6">
+        <div class="col-8">
           <div class="titulo-proceso">
             {{ tituloProceso }}
           </div>
           <div class="subtitulo-proceso">
-            Crea y edita tus conceptos para utilizarlos cuando creas facturas para tus clientes. Recuerda que todos los montos son mensuales.
+            Crea y edita tus conceptos para utilizarlos cuando creas facturas <br> para tus clientes
           </div>
         </div>
-        <div class="col-2"></div>
         <div class="col-4 bienvenida-cliente">
           ¡Buen día, {{ nombreCliente }}!
         </div>
@@ -27,45 +26,26 @@
       <div class="col-1"></div>
       <div class="col-10 px-4 p-4" style="background-color: #FFFFFF; min-height: 350px;">
         <div class="titulo-formulario">
-          tus CLIENTES 
+          tus conceptos
         </div>
-
         <div class="row" style="margin-top: 4% !important;">
           <form [formGroup]="form" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
-            <div class="col-12 d-flex justify-content-end">
-              <mat-form-field appearance="outline" style="min-width: 360px;">
-                <mat-label>Buscar clientes</mat-label>
-                <input matInput formControlName="buscar" id="buscar" name="buscar" (keyup)="onKeyDownEvent($event)" [matAutocomplete]="auto"/>
-                <mat-icon class="image-workspace-buscardor" matPrefix></mat-icon>
-                <mat-icon matSuffix class="optionchecks"
-                matTooltip="Mostrar opciones de búsqueda" ></mat-icon>
+            <div class="col-12 busq">
+              <mat-form-field appearance="outline" class="cl-inp" style="">
+                <mat-label>Buscar concepto</mat-label>
+                <input matInput formControlName="buscar" id="buscar" name="buscar"
+                  (keyup)="onKeyDownEvent($event)" />
+                <mat-icon class="image-workspace-buscardor" matSuffix></mat-icon>
               </mat-form-field>
-
-              <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" class="ejemplo">
-                <ng-container *ngIf="showAutocomplete">
-                  <mat-option value="Mes facturado" (click)="opcionFiltro(0)">
-                    <mat-icon class="buscar-factura" ></mat-icon>
-                    Mes facturado
-                  </mat-option>
-                  <mat-option value="Mes no facturado" (click)="opcionFiltro(null)">
-                    <mat-icon class="buscar-no-factura"></mat-icon>
-                    Mes no facturado
-                  </mat-option>
-                </ng-container>
-              </mat-autocomplete>
-
-
-              <button type="button" class="btn-utaxme" style="max-width: 260px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: space-evenly; margin: 0 20px;" (click)="tablaConceptos()">
+              <button type="button" class="btn-utaxme btn-concepto"  (click)="crearConcepto()">
                 <mat-icon class="image-workspace-agregar image-invert-color"></mat-icon>
-                Administrar conceptos
+                Crear nuevo concepto
               </button>
-
-              <button type="button" class="btn-utaxme-secondary" style="max-width: 50px; max-height: 50px; border-radius: 8px !important;" (click)="enviarNotificaciones()">
-                <mat-icon class="image-agregar-notificacion"></mat-icon>
+              <button type="button" class="btn-utaxme btn-concepto-mb"  (click)="crearConcepto()">
+                <mat-icon class="img-inicio-mas "></mat-icon>
               </button>
-
             </div>
-          </form> 
+          </form>
         </div>
 
         <div class="col-12" style="margin-top: 20px; padding: 0 0px;">
@@ -73,73 +53,63 @@
         </div>
 
 
-        <div class="row" style="margin-top: 10px; min-height: 250px;" *ngIf="tablaLista?.length> 0">
+        <div class="row" style="margin-top: 3% !important; min-height: 250px;" *ngIf="tablaLista?.length> 0">
           <div class="col-12 tableFixHead disable-scrollbars" style=" overflow-x: auto;">
-
             <table aria-describedby="tabla" class="table table-responsive table-striped">
               <thead style="margin-bottom: 10px;">
                 <tr class="textoM">
-                  <th class="punta-tittle  txt-tab">
+                  <th class="tabla-encabezado" style="width: 35vw;">
                     <span style="cursor:default!important;">
-                      razón social
+                      descripción
                     </span>
                   </th>
-                  <th class="punta-tittle txt-tab">
+                  <th class="tabla-encabezado">
                     <span style="cursor:default!important;">
-                      paquete contratado
+                      nombre
                     </span>
                   </th>
-                  <th class="punta-tittle  txt-tab">
+                  <th class="tabla-encabezado">
                     <span style="cursor:default!important;">
-                      Monto paquete
+                      unidad
                     </span>
                   </th>
-                  <th class="punta-tittle txt-tab">
+                  <th class="tabla-encabezado">
                     <span style="cursor:default!important;">
-                      Monto complementos
+                      unitario
                     </span>
                   </th>
-                  <th class="punta-tittle txt-tab">
-                    <span style="cursor:default!important;">
-                      total
-                    </span>
-                  </th>
-                  <th class="punta-tittle txt-tab">
-                    <span style="cursor:default!important;">
-                      estaus mensual
-                    </span>
-                  </th>
-                  <th class="punta-tittle txt-tab">
+                  <th class="tabla-encabezado">
                     <span style="width: 70px; cursor:default!important;">
                       acciones
                     </span>
                   </th>
                 </tr>
               </thead>
+
+
+
+
               <tbody class="table-scroll" style="border: solid 1px #ffffff; ">
                 <tr *ngFor="let item of tablaLista">
-                  <td class=" txt-tab">
-                    {{item.razonSocial}}
+                  <td class="tabla-cuerpo">
+                    {{item.descripcion}}
                   </td>
-                  <td class=" txt-tab">
-                    {{item.paqueteContratado}}
+                  <td class="tabla-cuerpo">
+                    {{item.productoServicio}}
                   </td>
-                  <td class=" txt-tab">
-                    ${{item.montoPaquete | thousandsPipe}}
+                  <td class="tabla-cuerpo">
+                    {{item.unidad}}
                   </td>
-                  <td class="txt-tab" >
-                    ${{item.montoComplementos | thousandsPipe}}
-                  </td>
-                  <td class=" txt-tab">
-                    ${{item.total | thousandsPipe}}
-                  </td>
-                  <td class="txt-tab">
-                    {{item.descripcionEstatus }}
+                  <td class="tabla-cuerpo">
+                    ${{item.valorUnitario | thousandsPipe}}
                   </td>
                   <td>
                     <div class="d-flex justify-content-center">
-                      <div class="card-accion" (click)="detallePagoCliente(item)">
+                      <div class="card-accion" (click)="editarConcepto(item)">
                         <mat-icon class="img-accion-editar"></mat-icon>
+                      </div>
+                      <div class="card-accion" (click)="borrarConcepto(item)">
+                        <mat-icon class="img-accion-borrar" ></mat-icon>
                       </div>
                     </div>
                   </td>
@@ -147,9 +117,6 @@
               </tbody>
             </table>
           </div>
-        </div>
-        <div class="col-12" style="margin-top: 20px; padding: 0 0px;">
-          <mat-divider></mat-divider>
         </div>
         <div class="row w100m0p0" style="margin-top: 30px!important; min-height: 50px;"
           *ngIf="tablaLista?.length> 0">
@@ -163,6 +130,7 @@
             <app-pager [pageModel]="pager" (paged)="onPaged($event)" style="float: right;"></app-pager>
           </div>
         </div>
+
         <div class="row"
           style="margin-top: 3% !important; display: flex; padding: 0 40px; min-height: 400px; align-items: center;"
           *ngIf="tablaLista?.length == 0">

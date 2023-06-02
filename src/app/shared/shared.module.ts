@@ -21,7 +21,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
 import { RouterModule } from '@angular/router';
-import { NotificationsModule } from './utils/notifications';
 
 
 
@@ -45,7 +44,6 @@ import { NotificationsModule } from './utils/notifications';
     MatButtonModule,
     MatTabsModule,
     RouterModule,
-    NotificationsModule
   ],
   exports: [
     MaskPipe,

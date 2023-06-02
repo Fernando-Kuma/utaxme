@@ -90,6 +90,9 @@ export class PagosComponent implements OnInit {
     this.router.navigateByUrl(NAV.homeAdmin +'/'+ NAV.espacioTrabajo)
   }
 
+  tablaConceptos(){
+    this.router.navigateByUrl(NAV.homeAdmin +'/'+ NAV.administraConceptos)
+  }
 
   onPaged(page) {
     this.tablaLista = this.pager.page(page);
@@ -174,7 +177,9 @@ export class PagosComponent implements OnInit {
   }
 
   abrirModal(item){
-    console.log(item)
   }
-
+  
+  enviarNotificaciones(){
+    console.log('abrir modal de notificacion')
+  }
 }

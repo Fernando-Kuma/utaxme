@@ -27,7 +27,6 @@ import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [
     MaskPipe,
-    HeaderAdminComponent,
   ],
   imports: [
     CommonModule,
@@ -53,7 +52,6 @@ import { RouterModule } from '@angular/router';
     DetalleDeducPersonalComponent,
     ContactoComponent,
     ServiceErrorDialogComponent,
-    HeaderAdminComponent
   ],
 })
 export class SharedModule { }

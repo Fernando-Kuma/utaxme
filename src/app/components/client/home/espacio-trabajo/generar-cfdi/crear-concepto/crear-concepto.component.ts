@@ -4,6 +4,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 import { Observable } from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { AuthService } from 'src/app/shared/service/auth.service';
+import { ClienteService } from 'src/app/shared/service/cliente.service';
 import { EspacioTrabajoService } from 'src/app/shared/service/espacio-trabajo.service';
 
 
@@ -29,6 +30,7 @@ export class CrearConceptoComponent {
     public dialog: MatDialog,
     private formBuilder: FormBuilder,
     private espacioTrabajoService: EspacioTrabajoService,
+    private clienteService: ClienteService,
     private auth: AuthService,
   ) { }
 
@@ -150,6 +152,7 @@ export class CrearConceptoComponent {
   }
 
   guardarConcepto(){
+    console.log('saludos')
     if(this.form.invalid){
       Object.keys(this.form.controls).forEach((field) => {
           const control = this.form.get(field);
@@ -174,25 +177,40 @@ export class CrearConceptoComponent {
     
 
     if(this.usuarioAdmin){
-      this.dialogRef.close(true);
       let request = {
         productoServicio: this.form.controls['nombreProducto'].value.toUpperCase(),
         identificadorSat: this.form.controls['clavaProducto'].value,
         descripcion: this.form.controls['descripcion'].value.trim().toUpperCase(),
         claveUnidad: this.form.controls['clavaUnidad'].value.trim().toUpperCase(),
-        unidad: this.form.controls['unidad'].value,
-        valorUnitario: this.form.controls['valorUnitario'].value,
         claveImpuestoSat: "002", //ok  fijo
         tasa: this.form.controls['impuestoT'].value ? this.form.controls['iva'].value : null,
-        ieps: this.form.controls['impuestoT'].value ? this.form.controls['ieps'].value : null,
-
-        isrRet: this.form.controls['impuestoR'].value ? this.form.controls['isr'].value : null,
-        ivaRet: this.form.controls['impuestoR'].value ? this.form.controls['ivaR'].value : null,
-
+      
+        unidad: this.form.controls['unidad'].value,
+        valorUnitario: this.form.controls['valorUnitario'].value,
         claveImpuestoLocal: this.form.controls['impuestoL'].value ? this.form.controls['impuestoLocal'].value : null,
         tasaLocal: this.form.controls['impuestoL'].value ? this.form.controls['tasaLocal'].value : null,
+        isrRet: this.form.controls['impuestoR'].value ? this.form.controls['isr'].value : null,
+        ivaRet: this.form.controls['impuestoR'].value ? this.form.controls['ivaR'].value : null,
+        ieps: this.form.controls['impuestoT'].value ? this.form.controls['ieps'].value : null,
+
         idConceptoCliente: 0
       }
+      if(this.opcionCrear){
+        delete request.idConceptoCliente
+      }else{
+        request.idConceptoCliente = this.data.concepto.idConceptoCliente
+      }
+      console.log(request)
+      this.dialogRef.close(true);
+
+      /* this.clienteService.actualizarConcepto(request)
+      .subscribe((resp) => {
+        //agregar alerta de listo
+        this.dialogRef.close(true);
+      },(_error) => {
+        console.log("::Entro al error Datos fiscales: ", _error);
+      }); */
+
     }else{
       let request = {
         productoServicio: this.form.controls['nombreProducto'].value.toUpperCase(),

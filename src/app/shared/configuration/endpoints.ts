@@ -96,10 +96,14 @@ export const API = {
       nuevoCliente:  environment.apiCliente + 'nuevo',
       obtenerClientes:  environment.apiCliente + 'listadoClientesActividadesPendientes',
       obtenerClientesPago: environment.apiCliente + 'listadoClientesPagos',
+      configurarConceptos: environment.apiCliente + 'conceptos',
     },
     config: {
       agregarAccesos: environment.apiConfiguraciones + 'agregarUsuarioAccesoDirecto',
       recuperarAccesos: environment.apiConfiguraciones + 'recuperarUsuarioAccesoDirecto',
+    },
+    conceptos:{
+
     }
   }
   

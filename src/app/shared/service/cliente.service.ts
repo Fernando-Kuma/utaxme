@@ -31,4 +31,25 @@ export class ClienteService {
         })
       );
   }
+
+  obtenerConceptosCliente(request: any): Observable<any> {
+    return request
+  }
+
+  actualizarConcepto(request: any): Observable<any> {
+    return this.http
+    .post<any>(`${API.admin.cliente.configurarConceptos}`, request)
+      .pipe(
+        catchError((e) => {
+          return throwError(e);
+        })
+      );
+  }
+
+  eliminarConcepto(idConcepto: any): Observable<any> {
+    let request = {}
+    return idConcepto
+  }
+
+
 }

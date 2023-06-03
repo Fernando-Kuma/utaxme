@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BandejaEntradaComponent } from './bandeja-entrada/bandeja-entrada.component';
+import { BandejaEntradaAdminComponent } from './bandeja-entrada/bandeja-entrada.component';
 import { AccesosDirectosComponent } from './accesos-directos/accesos-directos.component';
 import { EspacioTrabajoAdminComponent } from './espacio-trabajo/espacio-trabajo.component';
 import { SharedModule } from "../../../shared/shared.module";
@@ -17,7 +17,6 @@ import { GeneralesComponent } from './espacio-trabajo/clientes/nuevo-cliente/gen
 import { DomicilioComponent } from './espacio-trabajo/clientes/nuevo-cliente/domicilio/domicilio.component';
 import { MembresiaComponent } from './espacio-trabajo/clientes/nuevo-cliente/membresia/membresia.component';
 import { CertificadosComponent } from './espacio-trabajo/clientes/nuevo-cliente/certificados/certificados.component';
-import { EquiposComponent } from './espacio-trabajo/equipos/equipos.component';
 import { AdministracionComponent } from './espacio-trabajo/administracion/administracion.component';
 import { PagosComponent } from './espacio-trabajo/pagos/pagos.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -44,11 +43,16 @@ import {MatMenuModule} from '@angular/material/menu';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ListaConceptosComponent } from './espacio-trabajo/pagos/lista-conceptos/lista-conceptos.component';
+import { EquipoComponent } from './espacio-trabajo/equipo/equipo.component';
+import { InvitarComponent } from './espacio-trabajo/equipo/invitar/invitar.component';
+import { HeaderHomeModule } from 'src/app/shared/utils/header-home';
+import { HeaderAdminModule } from 'src/app/shared/utils/header-admin/header-admin.module';
+import { SafePipe } from 'src/app/shared/pipe/safe.pipe';
 
 
 @NgModule({
   declarations: [
-    BandejaEntradaComponent,
+    BandejaEntradaAdminComponent,
     AccesosDirectosComponent,
     EspacioTrabajoAdminComponent,
     ClientesComponent,
@@ -60,17 +64,17 @@ import { ListaConceptosComponent } from './espacio-trabajo/pagos/lista-conceptos
     CertificadosComponent,
     DndDirective,
     AgregarCertificadoComponent,
-    EquiposComponent,
     AdministracionComponent,
     PagosComponent,
     DetallePagoComponent,
     ConceptosComponent,
     GenerarFacturaComponent,
     ListaConceptosComponent,
+    EquipoComponent,
+    InvitarComponent,
   ],
   imports: [
     CommonModule,
-    SharedModule,
     MatIconModule,
     MatButtonModule,
     MatFormFieldModule,
@@ -95,7 +99,8 @@ import { ListaConceptosComponent } from './espacio-trabajo/pagos/lista-conceptos
     MatCheckboxModule,
     MatMenuModule,
     MatAutocompleteModule,
-    MatExpansionModule
+    MatExpansionModule,
+    HeaderAdminModule
   ]
 })
 export class HomeModule { }

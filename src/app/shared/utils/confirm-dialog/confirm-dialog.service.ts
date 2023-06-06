@@ -168,5 +168,54 @@ export class ConfirmDialogService {
     return this.dialogConfig;
   }
 
+  altaMiembro(): MatDialogConfig {
+    this.dialogConfig.restoreFocus = false;
+    this.dialogConfig.autoFocus = false;
+    this.dialogConfig.data = {
+        title: "¡Alta de miembro exitosa!",
+        subtitle: "<b>¡Recuerda!</b>, se envió un correo al nuevo miembro de tu equipo para que inicie su proceso de registro en el SMC.",
+        cancelMessage: "Cancelar",
+        confirmMessage: "Entendido",
+        type: "success",
+        showCancelMessage: false
+    }
+    /* this.dialogConfig.backdropClass = "backdropBackground" */
+    return this.dialogConfig;
+}
+
+eliminarMiembro(): MatDialogConfig {
+    this.dialogConfig.restoreFocus = false;
+    this.dialogConfig.autoFocus = false;
+    this.dialogConfig.width = '100px';
+    this.dialogConfig.height = '250px';
+    this.dialogConfig.data = {
+        title: "¿Seguro que quieres continuar?",
+        subtitle: "Estás apunto de eliminar a un miembro de tu <br>equipo de trabajo.",
+        cancelMessage: "No, cancelar",
+        confirmMessage: "Sí, eliminar",
+        type: "warn",
+        showCancelMessage: true
+    }
+    /* this.dialogConfig.backdropClass = "backdropBackground" */
+    return this.dialogConfig;
+}
+
+reactivarMiembro(): MatDialogConfig {
+  this.dialogConfig.restoreFocus = false;
+  this.dialogConfig.autoFocus = false;
+  this.dialogConfig.width = '100px';
+  this.dialogConfig.height = '250px';
+  this.dialogConfig.data = {
+      title: "¿Seguro que quieres continuar?",
+      subtitle: "Estás apunto de registrar de nuevo a un usuario que ya fue dado de baja del SMC.",
+      cancelMessage: "No, cancelar",
+      confirmMessage: "Sí, registrar",
+      type: "warn",
+      showCancelMessage: true
+  }
+  /* this.dialogConfig.backdropClass = "backdropBackground" */
+  return this.dialogConfig;
+}
+
   constructor() { }
 }

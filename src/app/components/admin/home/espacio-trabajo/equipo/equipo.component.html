@@ -1,1 +1,82 @@
-<p>equipo works!</p>
+<div class="workspace-container">
+  <div class="row w100m0p0">
+    <div class="col-4">
+        <div class="equipo-titulo pe-1">
+            Roles y permisos
+            <p class="equipo-subtitulo">
+                Invita a personas para trabajar, asignarles <br> roles y establece sus permisos.
+            </p>
+        </div>
+    </div>
+    <div class="col-3">
+      <form [formGroup]="form" style="margin: 0;" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+          <mat-form-field appearance="outline" style="width: 100%; font-size: 12px;">
+              <mat-label>Buscar</mat-label>
+              <input matInput formControlName="busqueda" (keyup)="onKeyDownEvent($event)"/>
+              <mat-icon class="image-workspace-buscardor" matSuffix style="margin-top: 10px!important;"></mat-icon>
+          </mat-form-field>
+      </form>
+    </div>
+    <div class="col-5 d-flex justify-content-end">
+        <button mat-button class="btn-utaxme btn-concepto" (click)="invitarPersona()">
+            <mat-icon class="image-workspace-agregar image-invert-color"></mat-icon>
+            Invitar persona
+        </button>
+    </div>
+  </div>
+
+  <div class="row w100m0p0" style="margin: 10px 0px 10px; min-height: 200px; display: flex; align-items: center;" *ngIf="tablaLista?.length == 0">
+    <app-filter-error (clickReturn)="returnFilter()"></app-filter-error>
+  </div>
+
+  <div class="row w100m0p0 pt-3" style="margin-top: 20px!important;" *ngIf="tablaLista?.length > 0">
+    <div class="col-12">
+        <div class="row gx-3 gy-4">
+            <div class="col-4" *ngFor="let user of this.tablaLista">
+                <div class="equipo-card" *ngIf="usuario != user.idUsuario"> 
+                    <div class="equipo-ico img-equipo-option-user"></div>
+                    <div class="equipo-title">
+                        <ng-container *ngIf="user?.tbCatEstatus?.idCatEstatus == 3"> {{ user.nombreCompleto | slice:0:10 }}<span *ngIf="user.nombreCompleto.length > 10">..</span><div class="border-warning badge text-warning warning-text" *ngIf="user?.tbCatEstatus?.idCatEstatus == 3">PENDIENTE</div></ng-container>
+                        <ng-container *ngIf="user?.tbCatEstatus?.idCatEstatus != 3">{{ user.nombreCompleto | slice:0:25 }}<span *ngIf="user.nombreCompleto.length > 25">...</span></ng-container>
+                        <p class="equipo-subtitle">
+                            {{ user.tbCatPerfil.descripcion | slice:0:30 }}
+                        </p>
+                        <a style="color: #285CED; line-height: 20px; text-decoration: underline;">
+                            {{ user.email | slice:0:28 }}<span *ngIf="user.email.length > 25">...</span>
+                        </a>
+                    </div>
+                    <div class="equipo-detail img-equipo-option-document" (click)="cambiarRol(user)" style="cursor: pointer;"></div>
+                </div>
+                <div class="equipo-card2" *ngIf="usuario == user.idUsuario"> 
+                    <div class="equipo-ico img-equipo-option-user"></div>
+                    <div class="equipo-title">
+                        {{ user.nombreCompleto | slice:0:25 }} <span *ngIf="user.nombreCompleto.length > 25">...</span>  <div class="border-warning badge text-warning warning-text" *ngIf="user?.tbCatEstatus?.idCatEstatus == 3">PENDIENTE</div>
+                        <p class="equipo-subtitle">
+                            {{ user.tbCatPerfil.descripcion | slice:0:30 }}
+                        </p>
+                        <a style="color: #285CED; line-height: 20px; text-decoration: underline;">
+                            {{ user.email | slice:0:28 }} <span *ngIf="user.email.length > 25">...</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+
+  <div class="row w100m0p0" style="margin-top: 30px!important; min-height: 50px;" *ngIf="tablaLista?.length> 0">
+    <div class="col-6 textoM"
+      style="margin: 0; padding: 0; font-weight: 600; font-size: 10px; letter-spacing: 3px; color: #7B8AA0; padding-top: 7px;">
+      Mostrando pág {{ this.pager?.current }} de {{ this.pager?.total }} de
+      {{ this.pager?.data.length }} resultados
+    </div>
+
+    <div class="col-6" style="margin: 0; padding: 0;">
+      <app-pager [pageModel]="pager" (paged)="onPaged($event)" style="float: right;"></app-pager>
+    </div>
+  </div>
+
+
+
+</div>

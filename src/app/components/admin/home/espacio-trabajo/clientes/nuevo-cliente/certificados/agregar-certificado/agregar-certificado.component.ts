@@ -30,6 +30,7 @@ export class AgregarCertificadoComponent implements OnInit {
   fileLocalStorage = [];
   listCer = 0;
   listKey = 0;
+  isEdit: boolean = false;
   constructor(private formBuilder: FormBuilder,
     private alertService: AlertService,
     public dialogRef: MatDialogRef<AgregarCertificadoComponent>,
@@ -38,7 +39,8 @@ export class AgregarCertificadoComponent implements OnInit {
   ngOnInit(): void {
     this.crearForm();
     console.log(this.data);
-    if(this.data){
+    if(this.data.length != 0){
+      this.isEdit = true;
       this.cargarArchivosEditar(this.data);
     }
   }
@@ -130,6 +132,8 @@ export class AgregarCertificadoComponent implements OnInit {
     if(this.files.length == 0){
       this.listCer=0;
       this.listKey=0;
+      this.showForm = false;
+      this.formCertificado.reset();
     }else{
       let texto = this.files[0].name.split('.');
       console.log("Textos:",texto);
@@ -185,12 +189,17 @@ export class AgregarCertificadoComponent implements OnInit {
   }
 
   close(){
-    this.dialogRef.close({pantalla:1,file:[]});
+    if(this.isEdit){
+      this.dialogRef.close({pantalla:2,file:[],close:true});
+    }else{
+      this.dialogRef.close({pantalla:1,file:[],close:false});
+    }
+    
   }
 
   subirArchivos(){
     this.onFileSelected();
-    this.dialogRef.close({pantalla:2,file:this.fileLocalStorage});
+    this.dialogRef.close({pantalla:2,file:this.fileLocalStorage,close:false});
   }
 
   get formulario() {

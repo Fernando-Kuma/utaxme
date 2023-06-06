@@ -5,6 +5,9 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ClienteService } from 'src/app/shared/service/cliente.service';
 import { Paginator } from 'array-paginator';
 import { AuthService } from 'src/app/shared/service/auth.service';
+import { MassiveNotificationDialogComponent } from 'src/app/shared/utils/massive-notification-dialog';
+import { MassiveNotificationDialogService } from 'src/app/shared/utils/massive-notification-dialog/massive-notification-dialog.service';
+import { AlertService } from 'src/app/shared/utils/alertas';
 
 @Component({
   selector: 'app-clientes',
@@ -17,7 +20,10 @@ export class ClientesComponent implements OnInit {
   public formBuscador: FormGroup;
   public pager:any;
   nombreCliente: string;
-  constructor(private dialog: MatDialog,
+  constructor(
+    private alertService: AlertService,
+    private dialog: MatDialog,
+    private dialogService: MassiveNotificationDialogService,
     private auth: AuthService,
     private formBuilder: FormBuilder,
     private clienteService: ClienteService) { }
@@ -33,7 +39,7 @@ export class ClientesComponent implements OnInit {
   openDetalleDialog() {
     const dialogRef = this.dialog.open(
       NuevoClienteComponent,{
-        height: '760px ',
+        height: '860px ',
         disableClose: true
       }
     );
@@ -84,5 +90,19 @@ export class ClientesComponent implements OnInit {
     );
     this.paginador(busquedaTabla);
 
+  }
+
+  sendMassiveNotification(){
+    const dialogRef = this.dialog.open(
+      MassiveNotificationDialogComponent, 
+      this.dialogService.sendMassiveNotification()
+    );
+    dialogRef.afterClosed().subscribe(
+      data => {
+        if(data == true){
+          this.alertService.info('<b>¡Se ha enviado la notificación correctamente!</b>');
+        }
+      }
+    );
   }
 }

@@ -26,7 +26,7 @@ import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
-    MaskPipe,
+    MaskPipe
   ],
   imports: [
     CommonModule,

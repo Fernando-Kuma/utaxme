@@ -683,3 +683,10 @@ body {
   background-repeat: no-repeat;
   background-position: left;
 }
+
+.image-service-arrow {
+  background-image: url("src\assets\img\icon\service-arrow.svg");
+  background-size: 10px 10px;
+  background-repeat: no-repeat;
+  background-position: center;
+}

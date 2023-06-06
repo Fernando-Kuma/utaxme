@@ -51,7 +51,7 @@
                             </button>
                           </div>
                           <div class="col-1" style="display: flex;">
-                            <button mat-button class="btn-utaxme-secondary enviar-notificacion"
+                            <button mat-button class="btn-utaxme-secondary enviar-notificacion" (click)="sendMassiveNotification()"
                               style="max-width: 30px; height:45px; font-size: 14px; line-height: 40px;float: right; margin-top: 10px;">
                               <mat-icon class="image-send-massive-notification"></mat-icon>
                             </button>
@@ -103,20 +103,31 @@
                                 </thead>
                                 <tbody class="table-scroll" style="border: solid 1px #ffffff; ">
                                 <tr *ngFor="let item of tablaLista">
-                                    <td>
-                                    {{item.razonSocial}}
+                                    <td style="justify-content: center;">
+                                    <span>{{item.razonSocial}}</span>
                                     </td>
                                     <td class="txt-tab" >
-                                    {{item.rfc}}
+                                    <span>{{item.rfc}}</span>
                                     </td>
                                     <td class="txt-tab">
-                                    {{item.contadores }}
+                                    <span>{{item.contadores }}</span>
                                     </td>
                                     <td class="txt-tab" >
-                                    Pendiente
+                                    <div class="row">
+                                        <div class="col-12" style="display: flex;justify-content: center;">
+                                            <span style="border: 1px solid #0B112A;border-radius: 5px;font-size:9px;padding: 2px;">Declaracion</span> <span style="border: 1px solid #0B112A;border-radius: 5px;font-size:9px;padding: 2px;margin-left: 5px;">Factura</span>
+                                        </div>
+                                        <div class="col-12" style="display: flex;justify-content: center;margin-top: 2px;">
+                                            <span style="border: 1px solid #0B112A;border-radius: 5px;font-size:9px;padding: 2px;">Cumplimiento fiscal</span>
+                                        </div>
+                                    </div>
                                     </td>
                                     <td class="txt-tab">
-                                    Pendiente
+                                        <div class="row">
+                                            <div class="col-12" style="display: flex;justify-content: center;">
+                                                <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+                                            </div>
+                                        </div>
                                     </td>
                                     <td class="txt-tab">
                                     {{item.estatus }}

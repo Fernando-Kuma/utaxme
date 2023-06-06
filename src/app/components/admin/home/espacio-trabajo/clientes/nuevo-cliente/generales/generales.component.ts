@@ -17,8 +17,8 @@ export class GeneralesComponent implements OnInit {
   tipoPersona: number = 0;
   @Input() set tabs(val: number) {
     if(val >= 0){
-      console.log("Cambiaste de TabGenerales")
-      this.validarForm();
+      console.log("Cambiaste de TabGenerales:",val)
+      this.validarGeneralesTab();
     }
   }
   
@@ -53,6 +53,8 @@ export class GeneralesComponent implements OnInit {
       correo: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9._-]+\.[a-z]{2,4}$")]],
       celular: ['', [Validators.required,Validators.minLength(10), Validators.maxLength(10)]],
       observaciones: [''],
+      contrasena: ['', [Validators.required,Validators.pattern("(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[`~!@#$%^&\\\\*\\\\(\\\\)\\\\-_=\\\\+\\\\{\\\\}\\\\[\\\\]|\\\\\\\\:;\\'<>,\\\\.?\\\\/]).{8,}")]],
+      folio: ['', [Validators.required]],
     });
   }
 
@@ -61,7 +63,11 @@ export class GeneralesComponent implements OnInit {
     if (this.formGenerales.get(campo).errors?.required) {
       return 'Este campo es requerido';
     } else if(this.formGenerales.get(campo).errors?.pattern){
-      return 'El formato de '+campo+' no es valido';
+      if(campo == 'contrasena'){
+        return 'El formato de '+campo+' no es valido debe contener (Mayusculas,Minusculas y Numeros)';
+      }else{
+        return 'El formato de '+campo+' no es valido';
+      }
     }
   }
 
@@ -139,6 +145,8 @@ export class GeneralesComponent implements OnInit {
   guardarGenerales(){
     let body = JSON.parse(localStorage.getItem('bodyCliente'));
     body.rfc = this.formGenerales.get('rfc').value;
+    body.password = this.formGenerales.get('contrasena').value;
+    body.folioUtaxme = this.formGenerales.get('folio').value;
     body.idRegimenFiscal = [];
     let regimens = this.formGenerales.get('dispositivos').value;
     regimens.forEach(element => {
@@ -180,5 +188,39 @@ export class GeneralesComponent implements OnInit {
     }
     console.log("tipoPersona;",this.tipoPersona);
     this.obtenerRegimen();
+  }
+
+  validarGeneralesTab(){
+    let validacion = true;
+    if(this.formGenerales.invalid){
+      Object.keys(this.formGenerales.controls).forEach((field) => {
+          const control = this.formGenerales.get(field);
+          if (!control.valid) {
+              control.markAsTouched({ onlySelf: true });
+          }
+      });
+      validacion = false
+    }
+
+    if(validacion){
+      console.log("Formulario lleno")
+      localStorage.setItem('generales','1');
+    }else{
+      console.log("Formulario no lleno")
+      localStorage.setItem('generales','0');
+    }
+  }
+
+  public blockSpace(event) {
+    let k;
+    k = event.charCode;
+    if (k == 32) return false;
+  }
+
+  paste(event){
+    console.log(event.target.value);
+    let texto = event.target.value;
+    console.log(texto.trim());
+    this.formGenerales.get('contrasena').setValue(texto.trim());
   }
 }

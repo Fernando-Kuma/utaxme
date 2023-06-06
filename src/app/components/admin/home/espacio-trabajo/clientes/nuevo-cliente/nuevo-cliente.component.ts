@@ -9,6 +9,7 @@ import { ClienteService } from 'src/app/shared/service/cliente.service';
 import { AlertService } from 'src/app/shared/utils/alertas';
 import { ConfirmDialogComponent } from 'src/app/shared/utils/confirm-dialog/confirm-dialog.component';
 import { ConfirmDialogService } from 'src/app/shared/utils/confirm-dialog/confirm-dialog.service';
+import { ServiceErrorDialogComponent } from 'src/app/shared/utils/service-error-dialog/service-error-dialog.component';
 
 @Component({
   selector: 'app-nuevo-cliente',
@@ -29,6 +30,7 @@ export class NuevoClienteComponent implements OnInit {
 
   formValidados = [];
   changeTab: number = -1;
+  _reintento: number = 1;
 
   constructor(private formBuilder: FormBuilder,
     private dialog: MatDialog,
@@ -53,6 +55,8 @@ export class NuevoClienteComponent implements OnInit {
     localStorage.removeItem('generales');
     let body = {
       rfc : '',
+      folioUtaxme: '',
+      password: '',
       idRegimenFiscal : [],
       email : '',
       celular : '',
@@ -186,9 +190,7 @@ export class NuevoClienteComponent implements OnInit {
           this.close(); */
         }else if(response.httpStatus == 201){
           this.alertService.error('<b>'+response.message+'.</b>');
-        }
-      },(_error) => {
-        console.log("Error al guardar cliente: ", _error);
+        }else if(response.httpStatus == 203){
         const dialogRef = this.dialog.open(
           ConfirmDialogComponent, 
           this.dialogService.guardadoIncompleto()
@@ -198,6 +200,24 @@ export class NuevoClienteComponent implements OnInit {
             this.close();
           }
         );
+        }
+      },(_error) => {
+        console.log("Error al guardar cliente: ", _error);
+        const dialogRef = this.dialog.open(ServiceErrorDialogComponent, {
+          width: '449px',
+          height: '360px ',
+          data:{numero: this._reintento, cerrarSesion: false, tipoError: "login"},
+          disableClose: true
+        });
+    
+        dialogRef.afterClosed().subscribe((data) => {
+          if(data > 0){
+            this._reintento++;
+            this.guardarCliente();
+          }else{
+            this.close();
+          }
+        });
       });
   }
 

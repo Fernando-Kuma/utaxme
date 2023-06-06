@@ -19,8 +19,12 @@ export class DomicilioComponent implements OnInit {
   _tabs: number = -1;
   @Input() set tabs(val: number) {
     if(val >= 0){
-      console.log("Cambiaste de Tabdomicilio")
-      this.validarGenerales();
+      console.log("Cambiaste de Tabdomicilio:",val)
+      if(val == 1){
+        this.validarDomicilioTab();
+      }else{
+        this.validarDomicilioTab();
+      }
     }
   }
   constructor(private formBuilder: FormBuilder,
@@ -142,6 +146,29 @@ export class DomicilioComponent implements OnInit {
         this.formDomicilio.get('numeroint')?.setErrors({ incorrectText: true });
         this.formDomicilio.get('numeroext')?.setErrors({ incorrectText: true });
       }
+    }
+  }
+
+  validarDomicilioTab(){
+    let validacion = true;
+
+    if(this.formDomicilio.invalid){
+      Object.keys(this.formDomicilio.controls).forEach((field) => {
+          const control = this.formDomicilio.get(field);
+          if (!control.valid) {
+              control.markAsTouched({ onlySelf: true });
+          }
+      });
+      validacion = false
+    }
+
+    if(validacion){
+      console.log("Formulario lleno")
+      localStorage.setItem('domicilio','1');   
+      this.guardarDomicilio();  
+    }else{
+      console.log("Formulario no lleno")
+      localStorage.setItem('domicilio','0');
     }
   }
 }

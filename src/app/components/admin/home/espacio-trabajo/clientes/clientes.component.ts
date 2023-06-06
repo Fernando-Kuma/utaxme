@@ -33,7 +33,7 @@ export class ClientesComponent implements OnInit {
   openDetalleDialog() {
     const dialogRef = this.dialog.open(
       NuevoClienteComponent,{
-        height: '760px ',
+        height: '860px ',
         disableClose: true
       }
     );

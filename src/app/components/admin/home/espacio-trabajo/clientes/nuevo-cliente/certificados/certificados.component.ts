@@ -22,7 +22,7 @@ export class CertificadosComponent implements OnInit {
   validForm : EventEmitter<boolean> = new EventEmitter<boolean>();
 
   mostrar:number = 1;
-  certificados:any = null;
+  certificados:any = [];
   fecFin: Date;
   fecActual: Date;
   mensaje: string;
@@ -46,8 +46,12 @@ export class CertificadosComponent implements OnInit {
     );
 
     dialogRef.afterClosed().subscribe((_) => {
-      this.mostrar = _.pantalla;
-      this.certificados = _.file;
+      if(_.close){
+        this.mostrar = _.pantalla;
+      }else{
+        this.mostrar = _.pantalla;
+        this.certificados = _.file;
+      }
       localStorage.setItem('certificado',String(this.mostrar));
     });
   }

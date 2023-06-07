@@ -22,7 +22,7 @@ export class AdministracionComponent implements OnInit {
   }
 
   declaracionesPendientes(){
-    console.log('')
+    this.router.navigateByUrl(NAV.homeAdmin +'/declaraciones');
   }
 
   cumplimientoFiscal(){
@@ -31,7 +31,6 @@ export class AdministracionComponent implements OnInit {
 
   administracionPagos(){
     this.router.navigateByUrl(NAV.homeAdmin +'/admnistracion-pagos');
-    console.log('')
   }
 
 }

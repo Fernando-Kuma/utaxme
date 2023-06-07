@@ -690,3 +690,10 @@ body {
   background-repeat: no-repeat;
   background-position: center;
 }
+
+.image-back {
+  background-image: url("src\assets\img\icon\arrow-back.svg");
+  background-size: 25px 25px;
+  background-position: center;
+  background-repeat: no-repeat;
+}

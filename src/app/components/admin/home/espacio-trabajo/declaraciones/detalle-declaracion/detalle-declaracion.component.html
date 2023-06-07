@@ -1,0 +1,161 @@
+<div class="modal-detalle-pago">
+    <mat-dialog-content>
+        <div class="container" style="width: 100%; margin: 0; padding: 0; overflow: hidden;">
+            <div class="row" style="width: 100%; margin: 0; padding: 0;">
+              <div class="col-10"  style="padding: 0; display: flex; align-items: center;">
+                <span class="dialog-titulo">Detalle de cumplimiento</span> 
+              </div>
+              <div class="col-2">
+                <button mat-icon-button style="float: right; position: relative;" (click)="closeDialog()">
+                    <mat-icon class="img-close image-invert-color"></mat-icon>
+                </button>
+              </div>
+            </div>
+        </div>
+    </mat-dialog-content>
+    
+    <mat-dialog-actions>
+        <div class="container" style="margin: 0; padding: 10px 30px;">  
+          <div class="row" style="margin-top: 15px">
+            <div class="col-12">
+              <div class="row">
+                <div class="col-12 d-flex">
+                  <div class="usuario-icono">
+                    <mat-icon class="img-usuario image-invert-color"></mat-icon>
+                  </div>
+                  <div class="usuario-titulo">
+                    <span class="titulo">Paco de Miguel Lozano Real</span><br>
+                    <span class="subtitulo">RFC: JUL1232432AS</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 titulo-fecha" style="margin: 30px 0 10px">
+              <span>Datos del Cumplimiento Fiscal</span>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="row" style="margin-top: 20px;">
+                <div class="containerInput" appDnd (fileDropped)="onFileDropped($event)">
+                    <input class="inputFiles" type="file" #fileDropRef id="fileDropRef" accept=".pdf" multiple (change)="fileBrowseHandler($event.target)" #inputFile />
+                    <div class="image-upload-file-desc" style="height: 100px;"></div>
+                    <p class="texto2">Arrastra tus archivos aquí</p>
+                    <p style="color: #838383;">Los archivos deben subir con los siguientes prefijos: CONSTANCIA_RFC, OPINION_CUMPLIMIENTO seguido del RFC y Periodo Fiscal.</p>
+                    <label class="labelFile" for="fileDropRef">Selecciona un archivo</label>
+                </div>
+            </div>
+            <div class="row">
+                <div style="width: 800px;margin: 20px auto;color: #1D2640;font-size: 16px;line-height: 24px;font-family: 'Montserrat';font-style: normal;font-weight: 500;">
+                    <span style="margin-left: -10px;"> Archivos cargados</span>
+                </div>
+            </div>
+            <div class="row">
+                <div style="border: 1px solid #7B8AA0;width: 800px;margin: 0px auto 10px;padding-right: 0 !important;padding-left: 0 !important;color: #1D2640;font-size: 14px;line-height: 24px;font-family: 'Montserrat';font-style: normal;font-weight: 500;" *ngFor="let file of files; let i = index">
+                        <div class="row">
+                            <div class="col-10">
+                                <span style="margin-left: 20px;">{{ file?.name }}</span>
+                            </div>
+                            <div class="col-2">
+                                <div class="delete" (click)="deleteFile(i)">
+                                    <mat-icon class="delete-chip-black"></mat-icon>
+                                </div>
+                            </div>
+                        </div> 
+                    <mat-progress-bar color="primary" mode="determinate" [value]="file?.progress" (animationEnd)="validarTermino(i+1)"></mat-progress-bar>
+                </div>
+            </div>
+            <div class="row">
+                <div style="width: 800px;margin: 20px auto;color: #1D2640;font-size: 16px;line-height: 24px;font-family: 'Montserrat';font-style: normal;font-weight: 500;" *ngIf="showForm">
+                    <span style="margin-left: -10px;"> Detalles de cumplimiento</span>
+                </div>
+            </div>
+
+            <div class="row">
+                <form [formGroup]="formDeclaraciones">
+                    <div style="width: 800px;margin: 0 auto;color: #1D2640;font-size: 16px;line-height: 24px;font-family: 'Montserrat';font-style: normal;font-weight: 500;" >
+                        <div class="row">
+                            <div class="col-6">
+                                <mat-form-field appearance="outline" style="width: 100%; font-size: 16px;">
+                                    <mat-label>TIPO DE DECLARACIÓN*</mat-label>
+                                    <mat-select formControlName="declaracion" id="declaracion" name="declaracion">
+                                      <mat-option value="Positiva">
+                                        Positiva
+                                      </mat-option>
+                                      <mat-option value="Negativa">
+                                        Negativa
+                                      </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="formulario.declaracion.invalid && 
+                                    formulario.declaracion.touched && formulario.declaracion.errors">
+                                      <ng-container *ngIf="formulario.declaracion.errors.required">
+                                        {{ getErrorRequerido() }}
+                                      </ng-container>
+                                    </mat-error>
+                                  </mat-form-field>
+                            </div>
+                            <div class="col-6">
+
+                                <mat-form-field appearance="outline"  class="periodo-calendario input-mobile" style="width: 380px;">
+                                  <mat-label class="textoM">periodo fiscal</mat-label>
+                                  <input matInput readonly [matDatepicker]="dp" [formControl]="date" [max]="maxDate" class="font-blue">
+                                  <mat-datepicker-toggle matPrefix [for]="dp"></mat-datepicker-toggle>
+                                  <mat-datepicker #dp
+                                                  startView="year"
+                                                  (monthSelected)="chosenMonthHandler($event, dp)"
+                                                  panelClass="periodo-calendario">
+                                  </mat-datepicker>
+                                </mat-form-field>
+              
+                              </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-6">
+                            <mat-form-field appearance="outline" style="width: 100%; font-size: 16px;">
+                                <mat-label>MONTO A PAGAR*</mat-label>
+                                <input matInput formControlName="monto" id="monto" name="monto" (keypress)="onlyNumbers($event);" (keyup)="keyShowAutocomplete($event)"/>
+                                <mat-error *ngIf="formulario.monto.invalid && formulario.monto.touched && formulario.monto.errors">
+                                <ng-container *ngIf="formulario.monto.errors.required">
+                                    {{ getErrorRequerido() }}
+                                </ng-container>
+                                <ng-container *ngIf="formulario.monto.errors.incorrectText">
+                                  Este campo solo es llenado con números
+                                </ng-container>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-6">
+                          <mat-form-field appearance="outline" class="example-full-width" style="width: 100%;font-size: 16px;">
+                              <mat-label>OBSERVACIONES</mat-label>
+                              <textarea matInput formControlName="observaciones" id="observaciones" name="observaciones" maxlength="200" style="height: 100px"></textarea>
+                              <mat-error *ngIf="formulario.observaciones.invalid && formulario.observaciones.touched && formulario.observaciones.errors">
+                              <ng-container>
+                                  {{ getErrorRequerido() }}
+                              </ng-container>
+                              </mat-error>
+                          </mat-form-field>
+                      </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+  
+          <!-- <div class="row" style="margin: 20px 0px 0px !important; width: 100%; padding: 0;">
+            <div class="col-12 d-flex justify-content-end">
+              <button type="button" class="btn-utaxme-secondary" (click)="closeDialog()" style="max-width: 120px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;">
+                Cancelar
+              </button>
+              <button type="button" class="btn-utaxme" (click)="confirmDialog()" style="max-width: 225px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;">
+                Guardar cambios
+              </button>
+            </div>
+          </div> -->
+          <div class="row">
+            <div class="col-12 d-flex justify-content-center">
+              <button mat-button class="btn-utaxme" style="max-width: 460px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;" *ngIf="showForm">
+                Subir Certificados
+              </button>
+            </div>
+          </div>
+          </div>
+        </div>
+    </mat-dialog-actions>
+  </div>

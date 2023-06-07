@@ -51,6 +51,7 @@ import { SafePipe } from 'src/app/shared/pipe/safe.pipe';
 import { CumplimientoFiscalComponent } from './espacio-trabajo/cumplimiento-fiscal/cumplimiento-fiscal.component';
 import { DetalleCumplimientoComponent } from './espacio-trabajo/cumplimiento-fiscal/detalle-cumplimiento/detalle-cumplimiento.component';
 import { DeclaracionesComponent } from './espacio-trabajo/declaraciones/declaraciones.component';
+import { DetalleDeclaracionComponent } from './espacio-trabajo/declaraciones/detalle-declaracion/detalle-declaracion.component';
 
 
 @NgModule({
@@ -78,6 +79,7 @@ import { DeclaracionesComponent } from './espacio-trabajo/declaraciones/declarac
     CumplimientoFiscalComponent,
     DetalleCumplimientoComponent,
     DeclaracionesComponent,
+    DetalleDeclaracionComponent,
   ],
   imports: [
     CommonModule,

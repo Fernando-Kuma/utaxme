@@ -1,1 +1,152 @@
-<p>declaraciones works!</p>
+<alert></alert>
+<div class="home-container" style="margin-top: 30px;">
+    <div class="row w100m0p0">
+        <div class="col-1"></div>
+        <div class="col-5 d-flex align-items-center">
+            <div class="image-back" style="width: 30px;fill: #0B112A;">&nbsp;</div>
+            <span style="font-weight: 400; font-size: 24px; color: #0B112A;">DECLARACIONES PENDIENTES</span>
+        </div>
+        <div class="col-5" style="text-align: right; font-weight: 600;">
+            <p>¡Buen día, {{ nombreCliente }}!</p>
+        </div>
+        <div class="col-1"></div>
+    </div>
+    <div class="row w100m0p0">
+        <div class="col-1"></div>
+        <div class="col-3 d-flex align-items-center">
+            <span style="font-weight: 400; font-size: 16px; color: #7B8AA0;">Sube las declaraciones correspondientes al periodo fiscal de tus clientes.</span>
+        </div>
+        <div class="col-5">
+        </div>
+    </div>
+</div>
+
+<div class="home-container-cliente" style="margin-top: 30px;">
+    <div class="row w100m0p0">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <div class="cuadro-contenido">
+                <div class="row" style="margin: 10px;">
+                    <div class="row">
+                        <div class="col-4" style="margin-top: 32px;">
+                            <span style="font-weight: 400; font-size: 24px; color: #0B112A;">LISTA DE DECLARACIONES PENDIENTES</span>
+                        </div>
+                    </div>
+                    <div class="row" style="display: flex;justify-content: end;margin-bottom: -40px;">
+                        <div class="col-8"></div>
+                        <div class="col-3 clientes-table">
+                            <form [formGroup]="formBuscador" style="margin: 0;" autocomplete="off" autocorrect="off" autocapitalize="off"
+                              spellcheck="false">
+                              <mat-form-field class="tamano-option" appearance="outline" style="width: 100%; font-size: 16px;">
+                                <mat-label>Buscar clientes</mat-label>
+                                <input matInput formControlName="busqueda" (keyup)="onKeyDownEvent($event)"/>
+                                <mat-icon class="image-workspace-search" matPrefix style="margin-top: 8px!important;margin-left: -5px!important;"></mat-icon>
+                              </mat-form-field>
+                            </form>
+                          </div>
+                          <div class="col-1" style="display: flex;">
+                            <button mat-button class="btn-utaxme-secondary enviar-notificacion" (click)="sendMassiveNotification()"
+                              style="max-width: 30px; height:45px; font-size: 14px; line-height: 40px;float: right; margin-top: 10px;">
+                              <mat-icon class="image-send-massive-notification"></mat-icon>
+                            </button>
+                          </div>
+                    </div>
+                    <div class="row">
+                        <div class="row" style="margin-top: 3% !important; min-height: 250px;">
+                            <!-- <div class="col-12 tableFixHead disable-scrollbars" style=" overflow-x: auto;" *ngIf="tablaLista?.length> 0"> -->
+                                <div class="col-12 tableFixHead disable-scrollbars" style=" overflow-x: auto;">
+                            <mat-divider></mat-divider>
+                            <table aria-describedby="tabla" class="table table-responsive table-striped">
+                                <thead style="margin-bottom: 10px;">
+                                <tr class="textoM">
+                                    <th class="punta-tittle" style="width: 275px;">
+                                    <span style="cursor:default!important;">
+                                        razón social
+                                    </span>
+                                    </th>
+                                    <th class="punta-tittle txt-tab" style="width: 180px;">
+                                    <span style="cursor:default!important;">
+                                        rfc
+                                    </span>
+                                    </th>
+                                    <th class="punta-tittle  txt-tab" style="width: 100px;">
+                                    <span style="cursor:default!important;">
+                                        fecha de declaración
+                                    </span>
+                                    </th>
+                                    <th class="punta-tittle txt-tab" style="width: 70px;">
+                                    <span style="cursor:default!important;">
+                                        monto a pagar
+                                    </span>
+                                    </th>
+                                    <th class="punta-tittle txt-tab" style="width: 100px;">
+                                    <span style="cursor:default!important;">
+                                        contador asignado
+                                    </span>
+                                    </th>
+                                    <th class="punta-tittle txt-tab" style="width: 80px;">
+                                    <span style="cursor:default!important;">
+                                        estaus mensual
+                                    </span>
+                                    </th>
+                                    <th class="punta-tittle txt-tab" style="width: 110px;">
+                                    <span style="cursor:default!important;">
+                                        acciones
+                                    </span>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody class="table-scroll" style="border: solid 1px #ffffff; ">
+                                <tr *ngFor="let item of tablaLista">
+                                    <td style="justify-content: center;">
+                                    <span>{{item.razonSocial}}</span>
+                                    </td>
+                                    <td class="txt-tab" >
+                                    <span>{{item.rfc}}</span>
+                                    </td>
+                                    <td class="txt-tab">
+                                    <span>{{item.fechaDeclaracion }}</span>
+                                    </td>
+                                    <td class="txt-tab" >
+                                        {{item.monto }}
+                                    </td>
+                                    <td class="txt-tab">
+                                        {{item.contadorAsignado }}
+                                    </td>
+                                    <td class="txt-tab">
+                                    {{item.estatus }}
+                                    </td>
+                                    <td>
+                                        <div class="d-flex justify-content-center">
+                                          <div class="card-accion" (click)="detalleDeclaracion(item)">
+                                            <mat-icon class="img-accion-editar"></mat-icon>
+                                          </div>
+                                        </div>
+                                      </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            </div>
+                            <div class="col-12" style="margin-top: 20px;display: flex;justify-content: center;" *ngIf="!tablaLista">
+                                <mat-spinner></mat-spinner>
+                            </div>
+                        </div>
+                        <div class="row w100m0p0" style="margin-top: 30px!important; min-height: 50px;" *ngIf="tablaLista?.length> 0">
+                            <div class="col-6 textoM"
+                              style="margin: 0; padding: 0; font-weight: 600; font-size: 10px; letter-spacing: 3px; color: #7B8AA0; padding-top: 7px;">
+                              Mostrando pág {{ this.pager?.current }} de {{ this.pager?.total }} de
+                              {{ this.pager?.data.length }} resultados
+                            </div>
+                  
+                            <div class="col-6" style="margin: 0; padding: 0;" >
+                              <app-pager [pageModel]="pager" (paged)="onPaged($event)" style="float: right;"></app-pager>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="col-1"></div>
+</div>
+

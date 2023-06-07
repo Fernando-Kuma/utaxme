@@ -30,5 +30,6 @@ export const NAV = {
   administraConceptos: 'administrar-conceptos',
   cumplimientoFiscal: 'cumplimiento-fiscal',
   invitarPersona: 'invitar-persona',
-  detalleEquipo: 'detalle-equipo'
+  detalleEquipo: 'detalle-equipo',
+  declaraciones: 'declaraciones'
 };

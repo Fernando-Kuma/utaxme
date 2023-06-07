@@ -30,6 +30,7 @@ import { ListaConceptosComponent } from 'src/app/components/admin/home/espacio-t
 import { BandejaEntradaAdminComponent } from 'src/app/components/admin/home/bandeja-entrada/bandeja-entrada.component';
 import { CumplimientoFiscalComponent } from 'src/app/components/admin/home/espacio-trabajo/cumplimiento-fiscal/cumplimiento-fiscal.component';
 import { InvitarComponent } from 'src/app/components/admin/home/espacio-trabajo/equipo/invitar/invitar.component';
+import { DeclaracionesComponent } from 'src/app/components/admin/home/espacio-trabajo/declaraciones/declaraciones.component';
 
 
 
@@ -169,6 +170,10 @@ export const appRoutes: Routes = [
       {
         path: NAV.cumplimientoFiscal,
         component: CumplimientoFiscalComponent,
+      },
+      {
+        path: NAV.declaraciones,
+        component: DeclaracionesComponent,
       },
    ], 
   },

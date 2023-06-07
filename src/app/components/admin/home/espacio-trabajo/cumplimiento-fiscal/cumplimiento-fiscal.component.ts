@@ -121,19 +121,6 @@ export class CumplimientoFiscalComponent implements OnInit {
     );
   }
 
-  openDetalleDialog() {
-    const dialogRef = this.dialog.open(
-      NuevoClienteComponent,{
-        height: '860px ',
-        disableClose: true
-      }
-    );
-
-    dialogRef.afterClosed().subscribe((_) => {
-      /* this.obtenerClientes(); */
-    });
-  }
-
   onKeyDownEvent(event: any){
     let filtro = event.target.value;
     let busquedaTabla = this.tablaListaCumplimientos.filter( item =>

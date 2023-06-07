@@ -268,13 +268,13 @@ export class ListaConceptosComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       data => {
         if(data){
-          /* this.espacioTrabajoService.eliminarConcepto(concepto.idConceptoCliente)
+          this.espacioTrabajoService.eliminarConcepto(concepto.idConceptoCliente)
             .subscribe((resp) => {
               console.log(resp)
               this.listaConceptos()
             },(_error) => {
               console.log("::Entro al error Datos fiscales: ", _error);
-            }); */
+            });
         }
       }
     );

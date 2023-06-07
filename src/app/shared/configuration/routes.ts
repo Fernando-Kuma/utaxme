@@ -165,7 +165,8 @@ export const appRoutes: Routes = [
       {
         path: NAV.detalleEquipo,
         component: InvitarComponent
-      }      {
+      },
+      {
         path: NAV.cumplimientoFiscal,
         component: CumplimientoFiscalComponent,
       },

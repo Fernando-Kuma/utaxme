@@ -98,12 +98,12 @@ export class ConceptosComponent implements OnInit {
       data => {
         if(data){
           console.log(data)
-          /* this.espacioTrabajoService.eliminarConcepto(concepto.idConceptoCliente)
+          this.espacioTrabajoService.eliminarConcepto(concepto.idConceptoCliente)
             .subscribe((resp) => {
               this.listaConceptos()
             },(_error) => {
               console.log("::Entro al error Datos fiscales: ", _error);
-            }); */
+            });
         }
       }
     );

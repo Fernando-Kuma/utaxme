@@ -148,4 +148,13 @@ export class DialogService {
     return this.dialogConfig;
 }
 
+  editarDetalleCumplimiento(item: any): MatDialogConfig {
+    this.dialogConfig.restoreFocus = false;
+    this.dialogConfig.autoFocus = false;
+    this.dialogConfig.data = {
+      cumplimiento: item,
+    }
+    return this.dialogConfig;
+  }
+
 }

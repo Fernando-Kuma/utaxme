@@ -26,7 +26,7 @@ export class AdministracionComponent implements OnInit {
   }
 
   cumplimientoFiscal(){
-    console.log('')
+    this.router.navigateByUrl(NAV.homeAdmin +'/cumplimiento-fiscal');
   }
 
   administracionPagos(){

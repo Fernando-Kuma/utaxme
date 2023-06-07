@@ -28,6 +28,7 @@ export const NAV = {
   admnistracionPagos: 'admnistracion-pagos',
   clientes: 'clientes',
   administraConceptos: 'administrar-conceptos',
+  cumplimientoFiscal: 'cumplimiento-fiscal',
   invitarPersona: 'invitar-persona',
   detalleEquipo: 'detalle-equipo'
 };

@@ -48,6 +48,8 @@ import { InvitarComponent } from './espacio-trabajo/equipo/invitar/invitar.compo
 import { HeaderHomeModule } from 'src/app/shared/utils/header-home';
 import { HeaderAdminModule } from 'src/app/shared/utils/header-admin/header-admin.module';
 import { SafePipe } from 'src/app/shared/pipe/safe.pipe';
+import { CumplimientoFiscalComponent } from './espacio-trabajo/cumplimiento-fiscal/cumplimiento-fiscal.component';
+import { DetalleCumplimientoComponent } from './espacio-trabajo/cumplimiento-fiscal/detalle-cumplimiento/detalle-cumplimiento.component';
 
 
 @NgModule({
@@ -72,6 +74,8 @@ import { SafePipe } from 'src/app/shared/pipe/safe.pipe';
     ListaConceptosComponent,
     EquipoComponent,
     InvitarComponent,
+    CumplimientoFiscalComponent,
+    DetalleCumplimientoComponent,
   ],
   imports: [
     CommonModule,

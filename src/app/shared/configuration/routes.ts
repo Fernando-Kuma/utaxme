@@ -28,6 +28,7 @@ import { PagosComponent } from 'src/app/components/admin/home/espacio-trabajo/pa
 import { GenerarFacturaComponent } from 'src/app/components/admin/home/espacio-trabajo/pagos/generar-factura/generar-factura.component';
 import { ListaConceptosComponent } from 'src/app/components/admin/home/espacio-trabajo/pagos/lista-conceptos/lista-conceptos.component';
 import { BandejaEntradaAdminComponent } from 'src/app/components/admin/home/bandeja-entrada/bandeja-entrada.component';
+import { CumplimientoFiscalComponent } from 'src/app/components/admin/home/espacio-trabajo/cumplimiento-fiscal/cumplimiento-fiscal.component';
 
 
 
@@ -155,7 +156,11 @@ export const appRoutes: Routes = [
       {
         path: NAV.bandejaEntrada,
         component: BandejaEntradaAdminComponent,
-      }
+      },
+      {
+        path: NAV.cumplimientoFiscal,
+        component: CumplimientoFiscalComponent,
+      },
     ], 
   },
 

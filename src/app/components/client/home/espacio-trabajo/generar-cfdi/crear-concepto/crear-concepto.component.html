@@ -177,7 +177,7 @@
                 </ng-container>
               </div>
             </div>
-            <div class="col-12" style="margin-top: 3%;">
+            <div class="col-12" style="margin-top: 3%;" *ngIf="!usuarioAdmin">
               <div class="row w100m0p0">
                 <div class="col-12">
                   <mat-checkbox class="example-margin" formControlName="impuestoR">Impuesto retenido</mat-checkbox>
@@ -217,7 +217,7 @@
                 </ng-container>
               </div>
             </div>
-            <div class="col-12" style="margin-top: 3%;">
+            <div class="col-12" style="margin-top: 3%;" *ngIf="!usuarioAdmin">
               <div class="row w100m0p0">
                 <div class="col-12">
                   <mat-checkbox class="example-margin" formControlName="impuestoL">Impuesto local</mat-checkbox>

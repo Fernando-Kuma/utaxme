@@ -5,6 +5,7 @@ import { CrearConceptoComponent } from 'src/app/components/client/home/espacio-t
 import { Conceptos } from 'src/app/shared/model/espacio-trabajo.model';
 import { AuthService } from 'src/app/shared/service/auth.service';
 import { DialogService } from 'src/app/shared/service/dialog.service';
+import { EspacioTrabajoService } from 'src/app/shared/service/espacio-trabajo.service';
 import { AlertService } from 'src/app/shared/utils/alertas';
 import { ConfirmDialogComponent } from 'src/app/shared/utils/confirm-dialog/confirm-dialog.component';
 import { ConfirmDialogService } from 'src/app/shared/utils/confirm-dialog/confirm-dialog.service';
@@ -28,7 +29,8 @@ export class ConceptosComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialog: MatDialog,
     private formBuilder: FormBuilder,
-    private auth: AuthService
+    private auth: AuthService,
+    private espacioTrabajoService: EspacioTrabajoService
   ) { }
 
   ngOnInit(): void {
@@ -108,12 +110,8 @@ export class ConceptosComponent implements OnInit {
   }
 
   listaConceptos(){
-    this.tablaListaConceptos = this.data.conceptos
-    this.tablaLista = this.tablaListaConceptos
-
-
-    /* let request = {
-      rfc: this.auth.usuario.cliente.rfc
+    let request = {
+      rfc: this.auth.adminClave.rfc
     }
     this.espacioTrabajoService.obtenerListaConceptos(request).subscribe((resp) => {
       resp.listaConceptos.forEach(element => {
@@ -137,7 +135,7 @@ export class ConceptosComponent implements OnInit {
       this.tablaLista = this.tablaListaConceptos
     },(_error) => {
       console.log("::Entro al error Datos fiscales: ", _error);
-    }); */
+    });
   }
 
   returnFilter(){

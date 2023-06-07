@@ -160,7 +160,8 @@ export class ListaConceptosComponent implements OnInit {
     private dialogServiceConfirm: ConfirmDialogService,
     public router: Router, 
     private auth: AuthService, 
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private espacioTrabajoService: EspacioTrabajoService
   ) { }
 
   ngOnInit(): void {
@@ -202,11 +203,12 @@ export class ListaConceptosComponent implements OnInit {
   }
 
   listaConceptos(){
-    this.paginador(this.tablaListaConceptos);
-    /* let request = {
-      rfc: this.auth.usuario.cliente.rfc
+    //this.paginador(this.tablaListaConceptos);
+    let request = {
+      rfc: this.auth.adminClave.rfc
     }
     this.espacioTrabajoService.obtenerListaConceptos(request).subscribe((resp) => {
+      console.log(resp)
       resp.listaConceptos.forEach(element => {
         element.descuento = 0
         element.importe = 0
@@ -215,7 +217,7 @@ export class ListaConceptosComponent implements OnInit {
       this.paginador(resp.listaConceptos);
     },(_error) => {
       console.log("::Entro al error Datos fiscales: ", _error);
-    }); */
+    });
   }
 
   onKeyDownEvent(event: any){

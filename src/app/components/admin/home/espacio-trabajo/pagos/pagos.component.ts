@@ -8,6 +8,8 @@ import { DetallePagoComponent } from './detalle-pago/detalle-pago.component';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogService } from 'src/app/shared/service/dialog.service';
 import { AdministrarPagosService } from 'src/app/shared/service/administrar-pagos.service';
+import { MassiveNotificationDialogComponent } from 'src/app/shared/utils/massive-notification-dialog';
+import { AlertService } from 'src/app/shared/utils/alertas';
 
 @Component({
   selector: 'app-pagos',
@@ -65,6 +67,7 @@ export class PagosComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,  
+    private alertService: AlertService,
     private dialogService: DialogService,
     public router: Router,
     private auth: AuthService,
@@ -180,6 +183,16 @@ export class PagosComponent implements OnInit {
   }
   
   enviarNotificaciones(){
-    console.log('abrir modal de notificacion')
+    const dialogRef = this.dialog.open(
+      MassiveNotificationDialogComponent, 
+      this.dialogService.sendMassiveNotification()
+    );
+    dialogRef.afterClosed().subscribe(
+      data => {
+        if(data == true){
+          this.alertService.info('<b>¡Se ha enviado la notificación correctamente!</b>');
+        }
+      }
+    );
   }
 }

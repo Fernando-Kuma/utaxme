@@ -89,8 +89,8 @@
                       <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                         <mat-label class="textoM">Régimen Fiscal</mat-label>
                         <mat-select formControlName="regimenFiscal" id="regimenFiscal" name="regimenFiscal">
-                          <mat-option *ngFor="let item of regimenFiscal" [value]="item.idSat">
-                            {{item.descripcionRegimen}}
+                          <mat-option *ngFor="let item of catalogos?.catalogoSatRegimenFiscales" [value]="item.clave">
+                            {{item.descripcion}}
                           </mat-option>
                         </mat-select>
                         <mat-error *ngIf="formulario.regimenFiscal.invalid && 

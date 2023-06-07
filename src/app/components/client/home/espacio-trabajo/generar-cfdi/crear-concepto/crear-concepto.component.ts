@@ -184,7 +184,8 @@ export class CrearConceptoComponent {
         claveUnidad: this.form.controls['clavaUnidad'].value.trim().toUpperCase(),
         claveImpuestoSat: "002", //ok  fijo
         tasa: this.form.controls['impuestoT'].value ? this.form.controls['iva'].value : null,
-      
+        idCliente: this.auth.adminClave.idCliente,
+        rfc: this.auth.adminClave.rfc,
         unidad: this.form.controls['unidad'].value,
         valorUnitario: this.form.controls['valorUnitario'].value,
         claveImpuestoLocal: this.form.controls['impuestoL'].value ? this.form.controls['impuestoLocal'].value : null,
@@ -200,16 +201,15 @@ export class CrearConceptoComponent {
       }else{
         request.idConceptoCliente = this.data.concepto.idConceptoCliente
       }
-      console.log(request)
-      this.dialogRef.close(true);
 
-      /* this.clienteService.actualizarConcepto(request)
+      this.clienteService.actualizarConcepto(request)
       .subscribe((resp) => {
+        console.log(resp)
         //agregar alerta de listo
         this.dialogRef.close(true);
       },(_error) => {
         console.log("::Entro al error Datos fiscales: ", _error);
-      }); */
+      });
 
     }else{
       let request = {

@@ -48,6 +48,7 @@ import { InvitarComponent } from './espacio-trabajo/equipo/invitar/invitar.compo
 import { HeaderHomeModule } from 'src/app/shared/utils/header-home';
 import { HeaderAdminModule } from 'src/app/shared/utils/header-admin/header-admin.module';
 import { SafePipe } from 'src/app/shared/pipe/safe.pipe';
+import { DeclaracionesComponent } from './espacio-trabajo/declaraciones/declaraciones.component';
 
 
 @NgModule({
@@ -72,6 +73,7 @@ import { SafePipe } from 'src/app/shared/pipe/safe.pipe';
     ListaConceptosComponent,
     EquipoComponent,
     InvitarComponent,
+    DeclaracionesComponent,
   ],
   imports: [
     CommonModule,

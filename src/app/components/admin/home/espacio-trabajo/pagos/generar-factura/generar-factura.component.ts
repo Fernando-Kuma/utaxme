@@ -67,7 +67,7 @@ export class GenerarFacturaComponent implements OnInit {
 
     this.nombreCliente = this.auth.administrador.nombreCompleto;
     this.requestDashboard = {
-      rfc: 'xxxx'
+      rfc: this.auth.adminClave.rfc
     }
 
     this.crearForm()

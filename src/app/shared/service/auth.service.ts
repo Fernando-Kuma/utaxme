@@ -16,6 +16,7 @@ export class AuthService {
   private _user: Usuario;
 
   private _admin: any;
+  private _adminClave: any;
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -109,6 +110,16 @@ export class AuthService {
     } else if ( this._admin == null && sessionStorage.getItem('root-user') != null) {
       this._admin = JSON.parse(sessionStorage.getItem('root-user')) as any;
       return this._admin;
+    }
+    return null;
+  }
+
+  public get adminClave(): any {
+    if (this._adminClave != null) {
+      return this._adminClave;
+    } else if ( this._adminClave == null && sessionStorage.getItem('root-user-rfc') != null) {
+      this._adminClave = JSON.parse(sessionStorage.getItem('root-user-rfc')) as any;
+      return this._adminClave;
     }
     return null;
   }

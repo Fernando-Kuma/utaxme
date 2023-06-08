@@ -77,13 +77,17 @@ export class LoginComponentAdmin implements OnInit {
         next: (response) => {
           this.spinner.hide();
           if(response.httpStatus == 200 ){
-            this.authService.getIp()
-            response.data.nombreCompleto = response.data.tbUsuario.nombreCompleto.toLowerCase()
-            let datoCliente = response.data
-            sessionStorage.setItem('root-user', JSON.stringify(datoCliente.tbUsuario));
-            delete datoCliente.tbUsuario;
-            sessionStorage.setItem('root-user-rfc', JSON.stringify(datoCliente));
-            this.router.navigateByUrl(NAV.homeAdmin);
+            if(response.data != null){
+              this.authService.getIp()
+              response.data.nombreCompleto = response.data.tbUsuario.nombreCompleto.toLowerCase()
+              let datoCliente = response.data
+              sessionStorage.setItem('root-user', JSON.stringify(datoCliente.tbUsuario));
+              delete datoCliente.tbUsuario;
+              sessionStorage.setItem('root-user-rfc', JSON.stringify(datoCliente));
+              this.router.navigateByUrl(NAV.homeAdmin);
+            }else{
+              this.openDialog()
+            }
           }else{
             this.selectMessageError(response.message);
           }

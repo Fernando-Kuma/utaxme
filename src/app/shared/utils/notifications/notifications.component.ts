@@ -78,18 +78,31 @@ export class NotificationsComponent implements OnInit {
     this.actualizarNotificacion(notificacion)
     localStorage.setItem('menu', '5');
     localStorage.setItem('id-notificacion',String(notificacion.idNotificacion));
-    this.router.navigateByUrl(NAV.bandejaEntrada);
+    if(this.auth.usuario != null){
+      this.router.navigateByUrl(NAV.bandejaEntrada);
+    }else{
+      this.router.navigateByUrl(NAV.homeAdmin +'/'+ NAV.bandejaEntrada);
+    }
     this.close.emit(true);
 
     if(this.router.url === '/bandeja-entrada'){
       window.location.reload();
     }
+    if(this.router.url === '/home/bandeja-entrada'){
+      window.location.reload();
+    }
   }
 
   fillnotifications(){
+    let rfc: string;
+    if(this.auth.usuario != null){
+      rfc = this.auth.usuario.cliente.rfc
+    }else{
+      rfc = this.auth.adminClave.rfc
+    }
     this.sinResultados = false;
     this.notifications = [];
-    this.notificationService.obtenerNotificacion(this.auth.usuario.cliente.rfc).subscribe({
+    this.notificationService.obtenerNotificacion(rfc).subscribe({
       next: (result) => {
         if(result.codigo == "200"){
           if(result.notificaciones.length > 0){
@@ -139,9 +152,15 @@ export class NotificationsComponent implements OnInit {
   }
 
   actualizarNotificacion(notificacion){
+    let _rfc: string;
+    if(this.auth.usuario != null){
+      _rfc = this.auth.usuario.cliente.rfc
+    }else{
+      _rfc = this.auth.adminClave.rfc
+    }
     let request = {
       idNotificacion : notificacion.idNotificacion,
-      rfc: this.auth.usuario.cliente.rfc
+      rfc: _rfc
     }
     this.notificationService.marcarLeidoNotificacion(request).subscribe({
       next: (result) => {

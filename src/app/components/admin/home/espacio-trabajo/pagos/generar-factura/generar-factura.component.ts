@@ -73,7 +73,6 @@ export class GenerarFacturaComponent implements OnInit {
     this.crearForm()
     this.obtenerDatosFiscales()
     this.obtenerCatalogos()
-    this.obtenerRegimenFiscal()
     this.obtenerListaClientesFrecuentes()
     this.setTipoFactura("UTAXME", "UTAXME");
     
@@ -117,12 +116,22 @@ export class GenerarFacturaComponent implements OnInit {
   }
 
   obtenerDatosFiscales(): void {
-    this.dashboardService.obtenerDatosFiscales(this.requestDashboard).subscribe((resp) => {
+    this.datosFiscales = {
+      calle: this.auth.administrador.tbDomicilio.calle,
+      numeroExterior: this.auth.administrador.tbDomicilio.numeroExterior,
+      colonia: this.auth.administrador.tbDomicilio.tbCatEntidadesFed.colonia,
+      cp: this.auth.administrador.tbDomicilio.tbCatEntidadesFed.codigoPostal,
+      municipio: this.auth.administrador.tbDomicilio.tbCatEntidadesFed.municipio,
+      ciudad: this.auth.administrador.tbDomicilio.ciudad,
+      rfc: this.auth.adminClave.rfc,
+      razonSocial: this.auth.adminClave.razonSocial,
+      }
+   /*  this.dashboardService.obtenerDatosFiscales(this.requestDashboard).subscribe((resp) => {
       this.datosFiscales = resp.datosFiscales;
     },(_error) => {
       console.log("::Entro al error Datos fiscales: ", _error);
     }
-    );
+    ); */
   }
 
   obtenerCatalogos(){
@@ -135,15 +144,6 @@ export class GenerarFacturaComponent implements OnInit {
     );
   }
 
-  obtenerRegimenFiscal(){
-    this.espacioTrabajoService.obtenerRegimenFiscal(this.requestDashboard)
-    .subscribe((response) => {
-      this.regimenFiscal =  response.lista
-    },(_error) => {
-      console.log("::Entro al error Datos fiscales: ", _error);
-    }
-    );
-  }
 
   obtenerListaClientesFrecuentes(){
     this.espacioTrabajoService.obtenerListaFrecuentes(this.requestDashboard)
@@ -237,36 +237,18 @@ export class GenerarFacturaComponent implements OnInit {
       if(element.cantidad){
         let valorTotal =  element.valorUnitario * element.cantidad
         this.costoFactura.ivaT = Number((((valorTotal - element.descuento) * (element.tasa/100)) + this.costoFactura.ivaT).toFixed(2))
-        this.costoFactura.isrR = Number(((valorTotal * (element.isrRet/100)) + this.costoFactura.isrR).toFixed(2))
-        this.costoFactura.ivaR = Number(((valorTotal * (element.ivaRet/100)) + this.costoFactura.ivaR).toFixed(2))
-
         this.costoFactura.ieps = Number(((valorTotal * (element.ieps/100)) + this.costoFactura.ieps).toFixed(2))
-        
-        this.costoFactura.localTraslado = Number(((valorTotal * (element.tasaLocal/100)) + this.costoFactura.localTraslado).toFixed(2))
+
         this.costoFactura.descuento = Number(element.descuento)+ this.costoFactura.descuento
         this.costoFactura.subtotalSinDescuento = element.descuento ?
         this.costoFactura.subtotalSinDescuento + valorTotal : this.costoFactura.subtotalSinDescuento
         this.costoFactura.subtotal = Number((element.importe + this.costoFactura.subtotal).toFixed(4))
         this.costoFactura.total = 
-        Number((this.costoFactura.subtotal + this.costoFactura.ivaT + this.costoFactura.ieps - this.costoFactura.isrR - this.costoFactura.ivaR).toFixed(2))
+        Number((this.costoFactura.subtotal + this.costoFactura.ivaT + this.costoFactura.ieps).toFixed(2))
       }
     });
   }
 
-  crearCliente(){
-    const dialogRef = this.dialog.open(
-      NuevoClienteComponent, 
-      this.dialogService.crearCliente()
-    );
-    dialogRef.afterClosed().subscribe(
-      data => {
-        if(data){
-          this.dialog.open( ConfirmDialogComponent, this.confirmDialogService.nuevoCliente() );
-          this.obtenerListaClientesFrecuentes();
-        }
-      }
-    );
-  }
 
   confirmarGenerarCFDI() {
     let validacion = true;
@@ -325,7 +307,7 @@ export class GenerarFacturaComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       data => {
         if(data){
-          /* this.generarServicioCFDI() */
+          this.generarServicioCFDI()
         }
       }
     );
@@ -334,8 +316,8 @@ export class GenerarFacturaComponent implements OnInit {
 
   generarServicioCFDI() {
     let _emisor = {
-      regimenFiscal: this.datosFiscales.idSat,
-      razonSocial: this.datosFiscales.razonSocial, // Es del cliente o el usuario
+      /* regimenFiscal: this.datosFiscales.idSat, */
+      razonSocial: this.datosFiscales.razonSocial,
       rfc: this.datosFiscales.rfc,
     };
     let _receptor = {
@@ -345,14 +327,6 @@ export class GenerarFacturaComponent implements OnInit {
       emailPrincipal: this.form.controls['correo'].value,
       regimenFiscal: this.form.controls['regimenFiscalCliente'].value,
       usoCfdi: this.form.controls['usoCFDI'].value
-    };
-    let _informacionGlobal = null
-    if(this.formularioAvanzado.configuracionGeneral){
-      _informacionGlobal = {
-        periodicidad: this.formularioAvanzado.periodicidad,
-        meses: this.formularioAvanzado.meses,
-        anio: this.formularioAvanzado.anio
-      }
     };
 
     let _conceptos = [];
@@ -382,28 +356,6 @@ export class GenerarFacturaComponent implements OnInit {
             tasa: element.ieps == null ? "remove" : element.ieps.toFixed(2),
             base: _subtotal,
             total: ((_subtotal * element.ieps)/100).toFixed(2),
-            isRetencion: "false",
-          },
-
-          {
-            nombreImpuesto: "ISR",
-            tasa: element.isrRet == null ? "remove" : element.isrRet.toFixed(2),
-            base: _subtotal,
-            total: ((_subtotal * element.isrRet)/100).toFixed(2),
-            isRetencion: "true",
-          },
-          {
-            nombreImpuesto: "IVA",
-            tasa: element.ivaRet == null ? "remove" : element.ivaRet.toFixed(2),
-            base: _subtotal,
-            total: ((_subtotal * element.ivaRet)/100).toFixed(2),
-            isRetencion: "true",
-          },
-          {
-            nombreImpuesto: "ISH",
-            tasa: element.tasaLocal == null ? "remove" : element.tasaLocal.toFixed(2),
-            base: _subtotal,
-            total: ((_subtotal * element.tasaLocal)/100).toFixed(2),
             isRetencion: "false",
           },
         ],
@@ -439,17 +391,17 @@ export class GenerarFacturaComponent implements OnInit {
       total: String(this.costoFactura.total),
       emisor: _emisor,
       receptor: _receptor,
-      informacionGlobal: _informacionGlobal,
       conceptos: _conceptos
     }
 
+    console.log(requestDashboard)/* 
     this.espacioTrabajoService.emitirCFDI(requestDashboard)
       .subscribe((response) => {
         this.alertService.error('<b>Se genero tu CFDI.</b>');
       },(_error) => {
         this.alertService.error('<b>Hubo un error al generar tu CFDI, inténtelo de nuevo.</b>');
         console.log("Error en emitit el cfdi: ", _error);
-      });
+      }); */
   }
 
   publicoGeneral(value: boolean){

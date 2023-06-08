@@ -76,7 +76,7 @@ export class BandejaEntradaAdminComponent implements OnInit {
       this.estatus = "noleidas";
     }
 
-    /* this.notificationService.obtenerNotificacion(this.auth.usuario.cliente.rfc).subscribe({
+    this.notificationService.obtenerNotificacion(this.auth.adminClave.rfc).subscribe({
       next: (result) => {
         if(result.notificaciones.length > 0){
           if(this.estatus === "leidas"){
@@ -110,7 +110,7 @@ export class BandejaEntradaAdminComponent implements OnInit {
         console.log('error')
         this.mostrarData = true;
       }
-    }); */
+    });
 
   }
 
@@ -124,7 +124,7 @@ export class BandejaEntradaAdminComponent implements OnInit {
   actualizarNotificacion(notificacion){
     let request = {
       idNotificacion : notificacion.idNotificacion,
-      rfc: this.auth.usuario.cliente.rfc
+      rfc: this.auth.adminClave.rfc
     }
     this.notificationService.marcarLeidoNotificacion(request).subscribe({
       next: (result) => {

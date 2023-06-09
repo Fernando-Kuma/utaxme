@@ -28,7 +28,7 @@ export class HeaderAdminComponent implements OnInit {
 
   ngOnInit(): void {
     this.user.name = this.auth.administrador.nombreCompleto
-    this.user.rol = this.auth.administrador.tbCatPerfile.descripcion.toLowerCase()
+    this.user.rol = this.auth.administrador.perfil.descripcion.toLowerCase()
   }
 
   cambiarMenu(numeroMenu:number){

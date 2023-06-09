@@ -79,9 +79,9 @@ export class LoginComponentAdmin implements OnInit {
           if(response.httpStatus == 200 ){
             if(response.data != null){
               this.authService.getIp()
-              response.data.nombreCompleto = response.data.tbUsuario.nombreCompleto.toLowerCase()
+              response.data.nombreCompleto = response.data.nombreCompleto.toLowerCase()
               let datoCliente = response.data
-              sessionStorage.setItem('root-user', JSON.stringify(datoCliente.tbUsuario));
+              sessionStorage.setItem('root-user', JSON.stringify(datoCliente));
               delete datoCliente.tbUsuario;
               sessionStorage.setItem('root-user-rfc', JSON.stringify(datoCliente));
               this.router.navigateByUrl(NAV.homeAdmin);

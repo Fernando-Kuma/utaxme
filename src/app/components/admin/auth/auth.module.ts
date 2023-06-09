@@ -14,12 +14,18 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDialogModule } from '@angular/material/dialog';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { OnboardingComponent } from './onboarding/onboarding.component';
+import { RegistrarAdminComponent } from './onboarding/registrar-admin/registrar-admin.component';
+import { CodigoVerificacionComponent } from './onboarding/codigo-verificacion/codigo-verificacion.component';
 
 
 
 @NgModule({
   declarations: [
-    LoginComponentAdmin
+    LoginComponentAdmin,
+    OnboardingComponent,
+    RegistrarAdminComponent,
+    CodigoVerificacionComponent
   ],
   imports: [
     CommonModule,

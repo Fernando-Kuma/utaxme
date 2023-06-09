@@ -31,5 +31,9 @@ export const NAV = {
   cumplimientoFiscal: 'cumplimiento-fiscal',
   invitarPersona: 'invitar-persona',
   detalleEquipo: 'detalle-equipo',
-  declaraciones: 'declaraciones'
+  declaraciones: 'declaraciones',
+
+  verificacion: 'verificacion',
+  registrarAdmin: 'registrar-admin',
+  codigoValidacion: 'codigo.-validacion',
 };

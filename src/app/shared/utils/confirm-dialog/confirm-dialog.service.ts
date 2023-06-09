@@ -215,7 +215,22 @@ reactivarMiembro(): MatDialogConfig {
   }
   /* this.dialogConfig.backdropClass = "backdropBackground" */
   return this.dialogConfig;
-}
+  }
+
+  cuentaRegistrada(): MatDialogConfig {
+    this.dialogConfig.restoreFocus = false;
+    this.dialogConfig.autoFocus = false;
+    this.dialogConfig.data = {
+        title: "¡Tu cuenta ya fue registrada!",
+        subtitle: "Ya puedes inciar sesión en el SMC y comenzar a disfrutar de sus beneficios.",
+        cancelMessage: "Cancelar",
+        confirmMessage: "Iniciar sesión",
+        type: "success",
+        showCancelMessage: false
+    }
+    return this.dialogConfig;
+  }
+
 
   constructor() { }
 }

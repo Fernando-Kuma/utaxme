@@ -31,6 +31,9 @@ import { BandejaEntradaAdminComponent } from 'src/app/components/admin/home/band
 import { CumplimientoFiscalComponent } from 'src/app/components/admin/home/espacio-trabajo/cumplimiento-fiscal/cumplimiento-fiscal.component';
 import { InvitarComponent } from 'src/app/components/admin/home/espacio-trabajo/equipo/invitar/invitar.component';
 import { DeclaracionesComponent } from 'src/app/components/admin/home/espacio-trabajo/declaraciones/declaraciones.component';
+import { OnboardingComponent } from 'src/app/components/admin/auth/onboarding/onboarding.component';
+import { RegistrarAdminComponent } from 'src/app/components/admin/auth/onboarding/registrar-admin/registrar-admin.component';
+import { CodigoVerificacionComponent } from 'src/app/components/admin/auth/onboarding/codigo-verificacion/codigo-verificacion.component';
 
 
 
@@ -176,6 +179,25 @@ export const appRoutes: Routes = [
         component: DeclaracionesComponent,
       },
    ], 
+  },
+  {
+    path: NAV.verificacion,
+    pathMatch: 'prefix',
+    component: OnboardingComponent,
+    children: [
+      {
+        path: '',
+        component: RegistrarAdminComponent,
+      },
+      {
+        path: NAV.registrarAdmin,
+        component: RegistrarAdminComponent,
+      },
+      {
+        path: NAV.codigoValidacion,
+        component: CodigoVerificacionComponent,
+      },
+    ],
   },
 
 ];

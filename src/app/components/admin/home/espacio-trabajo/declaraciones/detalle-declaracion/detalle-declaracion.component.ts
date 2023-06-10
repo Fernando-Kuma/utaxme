@@ -47,7 +47,7 @@ export class DetalleDeclaracionComponent implements OnInit {
     this.formDeclaraciones = this.formBuilder.group({
       declaracion: [null, [Validators.required]],
       monto: [null, [Validators.required]],
-      observaciones: [null, [Validators.required]],
+      observaciones: [null],
     });
   }
 
@@ -138,6 +138,25 @@ export class DetalleDeclaracionComponent implements OnInit {
       if(Number(event.target.value) != 0){
         this.formDeclaraciones.get('observaciones')?.setErrors({ incorrectText: true });
       }
+    }
+  }
+
+  validarForm(){
+    let validacion = true;
+    if(this.formDeclaraciones.invalid){
+      Object.keys(this.formDeclaraciones.controls).forEach((field) => {
+          const control = this.formDeclaraciones.get(field);
+          if (!control.valid) {
+              control.markAsTouched({ onlySelf: true });
+          }
+      });
+      validacion = false
+    }
+
+    if(validacion){
+      console.log("Formulario lleno");
+    }else{
+      console.log("Formulario no lleno")
     }
   }
 

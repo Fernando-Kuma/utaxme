@@ -96,7 +96,7 @@
 
                                 <mat-form-field appearance="outline"  class="periodo-calendario input-mobile" style="width: 380px;">
                                   <mat-label class="textoM">periodo fiscal</mat-label>
-                                  <input matInput readonly [matDatepicker]="dp" [formControl]="date" [max]="maxDate" class="font-blue">
+                                  <input matInput readonly [matDatepicker]="dp" [formControl]="date" [max]="maxDate">
                                   <mat-datepicker-toggle matPrefix [for]="dp"></mat-datepicker-toggle>
                                   <mat-datepicker #dp
                                                   startView="year"
@@ -150,7 +150,7 @@
           </div> -->
           <div class="row">
             <div class="col-12 d-flex justify-content-center">
-              <button mat-button class="btn-utaxme" style="max-width: 460px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;" *ngIf="showForm">
+              <button mat-button class="btn-utaxme" style="max-width: 460px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;" (click)="validarForm()" >
                 Subir Certificados
               </button>
             </div>

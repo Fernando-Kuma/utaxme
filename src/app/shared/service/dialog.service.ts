@@ -133,11 +133,11 @@ export class DialogService {
     return this.dialogConfig;
   }
 
-  editarPagoCliente(idUsuario: any): MatDialogConfig {
+  editarPagoCliente(usuario: any): MatDialogConfig {
     this.dialogConfig.restoreFocus = false;
     this.dialogConfig.autoFocus = false;
     this.dialogConfig.data = {
-      idUsuario: idUsuario,
+      usuarioCliente: usuario,
     }
     return this.dialogConfig;
   }

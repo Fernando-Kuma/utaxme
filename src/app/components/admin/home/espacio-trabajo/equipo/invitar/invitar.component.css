@@ -136,3 +136,10 @@
   background-position: center;
   background-repeat: no-repeat;
 }
+
+.image-dash-check{
+  background-image: url("src\assets\img\icon\dash-check.svg");
+  background-size: 15px 15px;
+  background-position: center;
+  background-repeat: no-repeat;
+}

@@ -33,7 +33,13 @@ export class ClienteService {
   }
 
   obtenerConceptosCliente(request: any): Observable<any> {
-    return request
+    return this.http
+      .post<any>(`${API.listaConceptos}`, request)
+      .pipe(
+        catchError((e) => {
+          return throwError(e);
+        })
+      );
   }
 
   actualizarConcepto(request: any): Observable<any> {

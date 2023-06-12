@@ -8,6 +8,7 @@ import { ServiceErrorDialogComponent } from 'src/app/shared/utils/service-error-
 import { NuevoClienteComponent } from '../espacio-trabajo/clientes/nuevo-cliente/nuevo-cliente.component';
 import { AccesosDirectosService } from 'src/app/shared/service/accesos-directos.service';
 import { AccesoDirecto } from 'src/app/shared/model/accesos.model';
+import { NAV } from 'src/app/shared/configuration/navegacion';
 
 @Component({
   selector: 'app-accesos-directos',
@@ -133,8 +134,12 @@ export class AccesosDirectosComponent implements OnInit {
   }
 
   goToAccesoDirecto(ruta: string){
-    localStorage.setItem('back-return', 'home');
-    this.router.navigateByUrl(ruta);
+    if(ruta === 'nuevo-cliente-informacion'){
+      
+    }else{
+      localStorage.setItem('back-return', 'home');
+      this.router.navigateByUrl(NAV.homeAdmin +'/'+ ruta);
+    }
   }
 
   openDialog(): void {

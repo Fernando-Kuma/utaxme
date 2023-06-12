@@ -33,12 +33,12 @@
         <div class="row" style="margin-top: 4% !important;">
           <form [formGroup]="form" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
             <div class="col-12 d-flex justify-content-end">
-              <mat-form-field appearance="outline" style="min-width: 360px;">
+              <mat-form-field appearance="outline" style="min-width: 360px; margin-right: 50px;">
                 <mat-label>Buscar clientes</mat-label>
                 <input matInput formControlName="buscar" id="buscar" name="buscar" (keyup)="onKeyDownEvent($event)" [matAutocomplete]="auto"/>
                 <mat-icon class="image-workspace-buscardor" matPrefix></mat-icon>
-                <mat-icon matSuffix class="optionchecks"
-                matTooltip="Mostrar opciones de búsqueda" ></mat-icon>
+                <!-- <mat-icon matSuffix class="optionchecks"
+                matTooltip="Mostrar opciones de búsqueda" ></mat-icon> -->
               </mat-form-field>
 
               <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" class="ejemplo">
@@ -55,10 +55,10 @@
               </mat-autocomplete>
 
 
-              <button type="button" class="btn-utaxme" style="max-width: 260px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: space-evenly; margin: 0 20px;" (click)="tablaConceptos()">
+              <!-- <button type="button" class="btn-utaxme" style="max-width: 260px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: space-evenly; margin: 0 20px;" (click)="tablaConceptos()">
                 <mat-icon class="image-workspace-agregar image-invert-color"></mat-icon>
                 Administrar conceptos
-              </button>
+              </button> -->
 
               <button type="button" class="btn-utaxme-secondary" style="max-width: 50px; max-height: 50px; border-radius: 8px !important;" (click)="enviarNotificaciones()">
                 <mat-icon class="image-agregar-notificacion"></mat-icon>

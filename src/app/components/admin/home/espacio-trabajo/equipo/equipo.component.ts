@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Paginator } from 'array-paginator';
 import { NAV } from 'src/app/shared/configuration/navegacion';
+import { AuthService } from 'src/app/shared/service/auth.service';
+import { EquipoService } from 'src/app/shared/service/equipo.service';
 
 @Component({
   selector: 'app-equipo',
@@ -21,18 +23,27 @@ export class EquipoComponent implements OnInit {
   public form: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
-    public router: Router
+    private equipoService: EquipoService,
+    public router: Router,
+    private auth: AuthService,
     ) { }
 
     ngOnInit(): void {
       this.usuario = 1;
-      localStorage.removeItem('equipoId');
-      localStorage.removeItem('pendiente');
       this.form = this.formBuilder.group({      
         busqueda: ['']
       });
-      
-      
+      this.listaEquipo()
+
+    }
+    
+    listaEquipo(){
+      let _idUsuario = this.auth.administrador.idUsuario
+      this.equipoService.obtenerEquipo(_idUsuario).subscribe((response) => {
+        console.log(response)
+      },(_error) => {
+        console.log("Error en obtener clientes: ", _error);
+      });
       this.paginador(this.tablaListaConceptos);
     }
   
@@ -51,6 +62,7 @@ export class EquipoComponent implements OnInit {
 
     invitarPersona(){
       localStorage.removeItem('equipoId');
+      localStorage.removeItem('pendiente');
       this.router.navigateByUrl(NAV.homeAdmin + '/' + NAV.invitarPersona);
     }
   

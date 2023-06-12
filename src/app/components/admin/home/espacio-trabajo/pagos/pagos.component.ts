@@ -163,7 +163,7 @@ export class PagosComponent implements OnInit {
   detallePagoCliente(item){
     const dialogRef = this.dialog.open(
       DetallePagoComponent, 
-      this.dialogService.editarPagoCliente(item.id)
+      this.dialogService.editarPagoCliente(item)
     );
     dialogRef.afterClosed().subscribe(
       data => {

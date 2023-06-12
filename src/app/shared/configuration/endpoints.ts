@@ -91,6 +91,7 @@ export const API = {
       estados:  environment.apicatalogos + 'estados',
       formaPago:  environment.apicatalogos + 'formaPago',
       accesosDirectos: environment.apicatalogos + 'accesoDirecto',
+      perfilesUsuario: environment.apicatalogos + 'perfiles',
     },
     cliente: {
       nuevoCliente:  environment.apiCliente + 'nuevo',
@@ -104,6 +105,10 @@ export const API = {
     },
     conceptos:{
 
+    },
+    equipo:{
+      listaEquipo: environment.apiUsuarios + 'perfiles',
+      actualizarEquipo: environment.apiUsuarios,
     }
   }
   

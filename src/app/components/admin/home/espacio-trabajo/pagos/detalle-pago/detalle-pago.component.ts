@@ -8,6 +8,7 @@ import { DialogService } from 'src/app/shared/service/dialog.service';
 import { ConceptosComponent } from '../conceptos/conceptos.component';
 import { Router } from '@angular/router';
 import { NAV } from 'src/app/shared/configuration/navegacion';
+import { ClienteService } from 'src/app/shared/service/cliente.service';
 
 @Component({
   selector: 'app-detalle-pago',
@@ -16,7 +17,10 @@ import { NAV } from 'src/app/shared/configuration/navegacion';
 })
 export class DetallePagoComponent implements OnInit {
 
-  tablaListaConceptos: any = [
+  razonSocial: string;
+  clienteRFC: string;
+
+  tablaListaConceptos: any /* = [
     {
         "idConceptoCliente": 1134,
         "idCliente": 435,
@@ -113,9 +117,13 @@ export class DetallePagoComponent implements OnInit {
         "importe": 0,
         "estatus": true
     }
-]
+] */
   public form: FormGroup;
   costoFactura: TotalFactura = new  TotalFactura;
+
+  fecha: any = new Date();
+  mes: any;
+
 
   constructor(
     public dialogRef: MatDialogRef<DetallePagoComponent>,
@@ -125,9 +133,17 @@ export class DetallePagoComponent implements OnInit {
     public router: Router,
     private dialogService: DialogService,
     public dialog: MatDialog,
+    private clienteService: ClienteService
   ) { }
 
   ngOnInit(): void {
+    let fechaCorta = this.fecha.toLocaleDateString('es-MX', { month: 'long', year: 'numeric' })
+    this.mes = fechaCorta.toUpperCase()
+    this.razonSocial = this.data.usuarioCliente.razonSocial
+    this.clienteRFC = this.data.usuarioCliente.rfc
+
+    this.obtenerConceptos()
+  
   }
 
   crearForm(){
@@ -147,6 +163,24 @@ export class DetallePagoComponent implements OnInit {
   generarCFDI(){
     this.dialogRef.close(false);
     this.router.navigateByUrl(NAV.homeAdmin +'/'+ NAV.generarCfdi)
+  }
+
+  obtenerConceptos(){
+    console.log(this.data)
+    let _request = {
+      rfc: this.data.usuarioCliente.rfc,
+      facturaPorDefault: true
+
+    }
+    this.clienteService.obtenerConceptosCliente(_request)
+    .subscribe((response) => {
+      console.log(response)
+      if(response.codigo == 200){
+        this.tablaListaConceptos = response.listaConceptos
+      }
+    },(_error) => {
+      console.log("Error en obtener clientes: ", _error);
+    });
   }
 
   listaConcepto(){

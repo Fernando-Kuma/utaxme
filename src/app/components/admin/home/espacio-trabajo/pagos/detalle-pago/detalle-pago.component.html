@@ -24,8 +24,8 @@
                   <mat-icon class="img-usuario image-invert-color"></mat-icon>
                 </div>
                 <div class="usuario-titulo">
-                  <span class="titulo">Paco de Miguel Lozano Real</span><br>
-                  <span class="subtitulo">RFC: JUL1232432AS</span>
+                  <span class="titulo">{{ razonSocial }}</span><br>
+                  <span class="subtitulo">RFC: {{ clienteRFC }}</span>
                 </div>
               </div>
               <div class="col-1 d-flex">
@@ -41,7 +41,7 @@
             </div>
           </div>
           <div class="col-12 titulo-fecha" style="margin: 20px 0 10px">
-            <span>Conceptos del mes - Mayo 2023</span>
+            <span>Conceptos del mes - {{mes}}</span>
           </div>
           <mat-divider></mat-divider>
           <div class="col-12 d-flex justify-content-between" style="margin: 20px 0 15px">

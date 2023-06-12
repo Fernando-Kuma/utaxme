@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { NAV } from 'src/app/shared/configuration/navegacion';
+import { EquipoService } from 'src/app/shared/service/equipo.service';
 import { ConfirmDialogComponent } from 'src/app/shared/utils/confirm-dialog/confirm-dialog.component';
 import { ConfirmDialogService } from 'src/app/shared/utils/confirm-dialog/confirm-dialog.service';
 
@@ -21,12 +22,13 @@ export class InvitarComponent implements OnInit {
   public form: FormGroup;
   public pendiente: boolean;
   public usuario: any;
-  public perfiles: any[];
+  public perfiles: any = [];
   public perfilRol: any;
 
   constructor(private formBuilder: FormBuilder,
     private router: Router,
     private dialog: MatDialog,
+    private equipoService: EquipoService,
     private dialogService: ConfirmDialogService) { }
   
   ngOnInit(): void {
@@ -50,8 +52,22 @@ export class InvitarComponent implements OnInit {
   }
 
   servicioPerfiles(){
-    this.perfiles = [];
-    this.perfilRol = []
+    this.equipoService.obtenerPerfiles().subscribe((response) => {
+      response.forEach(element => {
+        if(element.descripcion == 'ADMINISTRADOR' || element.descripcion == 'BACK_OFFICE'){
+          this.perfiles.push(element)
+          if(element.descripcion == 'ADMINISTRADOR'){
+            element.informacion = 'Tiene acceso completo para gestionar, editar y hacer cambios dentro del aplicativo, incluyendo puntas y clientes.'
+          }
+          if(element.descripcion == 'BACK_OFFICE'){
+            element.informacion = 'Tiene acceso para administrar y editar clientes pero no puede configurar nuevos paquetes ni enviar notificaciones a clientes.'
+          }
+        }
+      });
+      console.log(this.perfiles)
+    },(_error) => {
+      console.log("Error en obtener clientes: ", _error);
+    });
   }
 
 
@@ -79,9 +95,14 @@ export class InvitarComponent implements OnInit {
   }
 
   edit(){
-    this.usuario.tbCatPerfil.idCatPerfil = this.perfilRol.idCatPerfil;
-
-    localStorage.removeItem('equipoId');
+    /* let _idUsuario = 0
+    let body = []
+    this.equipoService.editarEquipo(_idUsuario, body).subscribe((response) => {
+      localStorage.removeItem('equipoId');
+      console.log(response)
+    },(_error) => {
+      console.log("Error en obtener clientes: ", _error);
+    }); */
     this.router.navigateByUrl(NAV.homeAdmin + "/" + NAV.espacioTrabajo+")");
   }
 
@@ -93,6 +114,13 @@ export class InvitarComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       _data => {
         if(_data == true){
+          /* let _idUsuario = 0
+          this.equipoService.eliminarEquipo(_idUsuario).subscribe((response) => {
+            localStorage.removeItem('equipoId');
+            console.log(response)
+          },(_error) => {
+            console.log("Error en obtener clientes: ", _error);
+          }); */
           this.router.navigateByUrl(NAV.homeAdmin + "/" + NAV.espacioTrabajo+")");
         }
       }

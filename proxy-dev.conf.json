@@ -34,6 +34,13 @@
     "pathRewrite": { "^/msutaxme-admin/configuraciones": "" }
   },
 
+  "/msutaxme-admin/user": {
+    "target": "http://3.16.240.122:9080/msutaxme-admin/user/",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": { "^/msutaxme-admin/user": "" }
+  },
+
   "/msutaxme-admin": {
     "target": "http://3.16.240.122:9080/msutaxme-admin",
     "secure": false,

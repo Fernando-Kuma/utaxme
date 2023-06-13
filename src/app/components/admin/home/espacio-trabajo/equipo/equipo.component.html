@@ -38,13 +38,13 @@
                         <mat-icon class="img-equipo-option-user image-invert-color"></mat-icon>
                     </div>
                     <div class="equipo-title">
-                        <ng-container *ngIf="user?.idCatEstatus == 3"> {{ user.nombreCompleto | slice:0:10 }}<span *ngIf="user.nombreCompleto.length > 10">..</span><div class="border-warning badge text-warning warning-text" *ngIf="user?.tbCatEstatus?.idCatEstatus == 3">PENDIENTE</div></ng-container>
-                        <ng-container *ngIf="user?.idCatEstatus != 3">{{ user.nombreCompleto | slice:0:25 }}<span *ngIf="user.nombreCompleto.length > 25">...</span></ng-container>
+                        <ng-container *ngIf="user?.idCatEstatus == 3"> {{ user?.nombreCompleto | slice:0:10 }}<span *ngIf="user?.nombreCompleto?.length > 10">..</span><div class="border-warning badge text-warning warning-text" *ngIf="user?.tbCatEstatus?.idCatEstatus == 3">PENDIENTE</div></ng-container>
+                        <ng-container *ngIf="user?.idCatEstatus != 3">{{ user?.nombreCompleto | slice:0:25 }}<span *ngIf="user?.nombreCompleto?.length > 25">...</span></ng-container>
                         <p class="equipo-subtitle">
                             {{ user?.idCatEstatus | slice:0:30 }}
                         </p>
                         <a style="color: #285CED; line-height: 20px; text-decoration: underline;">
-                            {{ user.username | slice:0:28 }}<span *ngIf="user.username.length > 25">...</span>
+                            {{ user?.username | slice:0:28 }}<span *ngIf="user?.username?.length > 25">...</span>
                         </a>
                     </div>
                     <div class="equipo-detail" (click)="cambiarRol(user)" style="cursor: pointer;">

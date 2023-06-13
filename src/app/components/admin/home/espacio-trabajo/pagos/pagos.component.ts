@@ -130,7 +130,6 @@ export class PagosComponent implements OnInit {
             }
           });
           this.listadoPagos = response.data
-          console.log("Clientes: ",this.listadoPagos);
           this.paginador(this.listadoPagos)
         }
       },(_error) => {
@@ -143,7 +142,6 @@ export class PagosComponent implements OnInit {
     let busquedaTabla = this.listadoPagos.filter( item =>
       item?.razonSocial?.toLowerCase().includes(filtro.toLowerCase())
       );
-      console.log(busquedaTabla)
     this.paginador(busquedaTabla);
     if(filtro.length > 0) {
       this.showAutocomplete = false;
@@ -153,7 +151,6 @@ export class PagosComponent implements OnInit {
   }
 
   opcionFiltro(condicion: any){
-    console.log(condicion)
     let busquedaTabla = this.listadoPagos.filter( item =>
       item.estatusMensual == condicion
     );
@@ -161,7 +158,6 @@ export class PagosComponent implements OnInit {
   }
 
   detallePagoCliente(item){
-    console.log(item)
     localStorage.setItem('rfc-cliente', item.rfc)
     const dialogRef = this.dialog.open(
       DetallePagoComponent, 

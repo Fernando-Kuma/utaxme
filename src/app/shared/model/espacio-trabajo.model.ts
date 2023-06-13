@@ -24,6 +24,7 @@ export class Conceptos{
     descuento?: number;
 
     taxObject?:any;
+    facturaPorDefault?:boolean;
 }
 
 

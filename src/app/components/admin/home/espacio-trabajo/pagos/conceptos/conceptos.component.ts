@@ -45,7 +45,7 @@ export class ConceptosComponent implements OnInit {
   }
 
   closeDialog() {
-    this.dialogRef.close(this.data.conceptos);
+    this.dialogRef.close();
   }
 
   confirmDialog() {

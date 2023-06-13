@@ -108,6 +108,8 @@ export const API = {
 
     },
     equipo:{
+      agregarMiembro: environment.apiUsuarios + 'agregar-miembro-equipo',
+      reenvioMiembro: environment.apiUsuarios + 'reenviar-invitacion',
       listaEquipo: environment.apiUsuarios + 'perfilesAdmins',
       actualizarEquipo: environment.apiUsuarios,
     }

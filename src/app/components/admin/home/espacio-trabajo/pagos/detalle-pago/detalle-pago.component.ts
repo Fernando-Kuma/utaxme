@@ -20,7 +20,7 @@ export class DetallePagoComponent implements OnInit {
   razonSocial: string;
   clienteRFC: string;
 
-  tablaListaConceptos: any /* = [
+  tablaListaConceptos: any = [] /* = [
     {
         "idConceptoCliente": 1134,
         "idCliente": 435,
@@ -123,6 +123,7 @@ export class DetallePagoComponent implements OnInit {
 
   fecha: any = new Date();
   mes: any;
+  conceptosDefault: any = [];
 
 
   constructor(
@@ -157,7 +158,19 @@ export class DetallePagoComponent implements OnInit {
   }
 
   confirmDialog() {
-    this.dialogRef.close(true);
+    this.guardarConceptos()
+  }
+
+  guardarConceptos(){
+    this.tablaListaConceptos.forEach(element => {
+      this.clienteService.actualizarConcepto(element)
+      .subscribe((response) => {
+        console.log(response)
+        this.dialogRef.close(true);
+      },(_error) => {
+        console.log("Error en obtener clientes: ", _error);
+      });
+    });
   }
 
   generarCFDI(){
@@ -166,7 +179,6 @@ export class DetallePagoComponent implements OnInit {
   }
 
   obtenerConceptos(){
-    console.log(this.data)
     let _request = {
       rfc: this.data.usuarioCliente.rfc,
       facturaPorDefault: true
@@ -174,9 +186,16 @@ export class DetallePagoComponent implements OnInit {
     }
     this.clienteService.obtenerConceptosCliente(_request)
     .subscribe((response) => {
-      console.log(response)
-      if(response.codigo == 200){
-        this.tablaListaConceptos = response.listaConceptos
+      if(response.listaConceptos != null){
+        response.listaConceptos.forEach(element => {
+          if(element.cantidad > 0){
+            element.importe = Number((element.cantidad * element.valorUnitario).toFixed(2))
+            element.importe = Number((element.importe - element.descuento).toFixed(2))
+          }
+        });
+        this.tablaListaConceptos = response.listaConceptos.filter( item => item.facturaPorDefault)
+        this.conceptosDefault = response.listaConceptos.filter( item => item.facturaPorDefault)
+        this.calcularTotal()
       }
     },(_error) => {
       console.log("Error en obtener clientes: ", _error);
@@ -191,7 +210,10 @@ export class DetallePagoComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       data => {
         if(data){
-          this.tablaListaConceptos = data;
+          data.forEach(item => {
+            item.facturaPorDefault = true
+            this.tablaListaConceptos.push(item)
+          });
         }
       }
     );
@@ -227,14 +249,18 @@ export class DetallePagoComponent implements OnInit {
 
   eliminarConcepto(concepto: any){
     let index = this.tablaListaConceptos.findIndex(element => element.idConceptoCliente == concepto)
-    this.tablaListaConceptos.splice(index, 1)
+    if(this.conceptosDefault[index] != null){
+      this.tablaListaConceptos[index].facturaPorDefault = false
+    }else{
+      this.tablaListaConceptos.splice(index, 1)
+    }
     this.calcularTotal()
   }
 
   calcularTotal(){
     this.costoFactura = new  TotalFactura;
     this.tablaListaConceptos.forEach(element => {
-      if(element.cantidad){
+      if(element.cantidad && element.facturaPorDefault){
         let valorTotal =  element.valorUnitario * element.cantidad
         this.costoFactura.ivaT = Number((((valorTotal - element.descuento) * (element.tasa/100)) + this.costoFactura.ivaT).toFixed(2))
         this.costoFactura.ieps = Number(((valorTotal * (element.ieps/100)) + this.costoFactura.ieps).toFixed(2))
@@ -245,9 +271,11 @@ export class DetallePagoComponent implements OnInit {
         this.costoFactura.descuento = Number(element.descuento)+ this.costoFactura.descuento
         this.costoFactura.subtotalSinDescuento = element.descuento ?
         this.costoFactura.subtotalSinDescuento + valorTotal : this.costoFactura.subtotalSinDescuento
+        
         this.costoFactura.subtotal = Number((element.importe + this.costoFactura.subtotal).toFixed(4))
+        
         this.costoFactura.total = 
-        Number((this.costoFactura.subtotal + this.costoFactura.ivaT + this.costoFactura.ieps - this.costoFactura.isrR - this.costoFactura.ivaR).toFixed(2))
+        Number((this.costoFactura.subtotal + this.costoFactura.ivaT + this.costoFactura.ieps).toFixed(2))
       }
     });
   }

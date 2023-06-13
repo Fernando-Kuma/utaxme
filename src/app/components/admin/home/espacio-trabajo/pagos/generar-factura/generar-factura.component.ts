@@ -18,6 +18,7 @@ import { ConfiguracionAvanzadaComponent } from 'src/app/components/client/home/e
 import { ModificarValorComponent } from 'src/app/components/client/home/espacio-trabajo/generar-cfdi/modificar-valor/modificar-valor.component';
 import { ConfirmDialogComponent } from 'src/app/shared/utils/confirm-dialog/confirm-dialog.component';
 import { NuevoClienteComponent } from '../../clientes/nuevo-cliente/nuevo-cliente.component';
+import { ClienteService } from 'src/app/shared/service/cliente.service';
 
 @Component({
   selector: 'app-generar-factura',
@@ -51,6 +52,7 @@ export class GenerarFacturaComponent implements OnInit {
 
   costoFactura: TotalFactura = new  TotalFactura;
   datosFiscalesCliente: any;
+  conceptosDefault: any;
 
   constructor(
     private alertService: AlertService,
@@ -61,7 +63,8 @@ export class GenerarFacturaComponent implements OnInit {
     private auth: AuthService, 
     private formBuilder: FormBuilder, 
     private dashboardService: DashboardService,
-    private espacioTrabajoService: EspacioTrabajoService) {
+    private espacioTrabajoService: EspacioTrabajoService,
+    private clienteService: ClienteService) {
       }
 
   ngOnInit(): void {
@@ -72,9 +75,33 @@ export class GenerarFacturaComponent implements OnInit {
     this.obtenerDatosFiscalesAdministrador()
     this.obtenerDatosFiscalesCliente()
     this.obtenerCatalogos()
+    this.conceptosCliente()
     /* this.obtenerListaClientesFrecuentes() */
     this.setTipoFactura("UTAXME", "UTAXME");
     
+  }
+
+  conceptosCliente(){
+    let _request = {
+      rfc: localStorage.getItem('rfc-cliente'),
+      facturaPorDefault: true
+    }
+    this.clienteService.obtenerConceptosCliente(_request)
+    .subscribe((response) => {
+      if(response.listaConceptos != null){
+        response.listaConceptos.forEach(element => {
+          if(element.cantidad > 0){
+            element.importe = Number((element.cantidad * element.valorUnitario).toFixed(2))
+            element.importe = Number((element.importe - element.descuento).toFixed(2))
+          }
+        });
+        this.tablaListaConceptos = response.listaConceptos.filter( item => item.facturaPorDefault)
+        this.conceptosDefault = response.listaConceptos.filter( item => item.facturaPorDefault)
+        this.calcularTotal()
+      }
+    },(_error) => {
+      console.log("Error en obtener clientes: ", _error);
+    });
   }
 
   crearForm(){
@@ -172,7 +199,10 @@ export class GenerarFacturaComponent implements OnInit {
       dialogRef.afterClosed().subscribe(
         data => {
           if(data){
-            this.tablaListaConceptos = data;
+            data.forEach(item => {
+              item.facturaPorDefault = true
+              this.tablaListaConceptos.push(item)
+            });
           }
         }
       );
@@ -191,7 +221,12 @@ export class GenerarFacturaComponent implements OnInit {
 
   eliminarConcepto(concepto: any){
     let index = this.tablaListaConceptos.findIndex(element => element.idConceptoCliente == concepto)
-    this.tablaListaConceptos.splice(index, 1)
+    if(this.conceptosDefault[index] != null){
+      this.tablaListaConceptos[index].facturaPorDefault = false
+    }else{
+      this.tablaListaConceptos.splice(index, 1)
+    }
+
     this.calcularTotal()
   }
 
@@ -311,11 +346,22 @@ export class GenerarFacturaComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       data => {
         if(data){
+          this.guardarConceptos()
           this.generarServicioCFDI()
         }
       }
     );
 
+  }
+
+  guardarConceptos(){
+    this.tablaListaConceptos.forEach(element => {
+      this.clienteService.actualizarConcepto(element)
+      .subscribe((response) => {
+      },(_error) => {
+        console.log("Error en obtener clientes: ", _error);
+      });
+    });
   }
 
   generarServicioCFDI() {

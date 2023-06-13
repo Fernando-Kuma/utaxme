@@ -198,18 +198,24 @@ export class CrearConceptoComponent {
       }
       if(this.opcionCrear){
         delete request.idConceptoCliente
+        this.espacioTrabajoService.crearNuevoConcepto(request)
+        .subscribe((resp) => {
+          //agregar alerta de listo
+          this.dialogRef.close(true);
+        },(_error) => {
+          console.log("::Entro al error Datos fiscales: ", _error);
+        });        
       }else{
         request.idConceptoCliente = this.data.concepto.idConceptoCliente
+        this.espacioTrabajoService.actualizarConcepto(request)
+        .subscribe((resp) => {
+          //agregar alerta de listo
+          this.dialogRef.close(true);
+        },(_error) => {
+          console.log("::Entro al error Datos fiscales: ", _error);
+        });
       }
 
-      this.clienteService.actualizarConcepto(request)
-      .subscribe((resp) => {
-        console.log(resp)
-        //agregar alerta de listo
-        this.dialogRef.close(true);
-      },(_error) => {
-        console.log("::Entro al error Datos fiscales: ", _error);
-      });
 
     }else{
       let request = {

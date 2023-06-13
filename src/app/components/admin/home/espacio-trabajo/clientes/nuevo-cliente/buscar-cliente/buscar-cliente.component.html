@@ -1,0 +1,102 @@
+<div class="modal-detalle-pago">
+    <mat-dialog-content>
+        <div class="container" style="width: 100%; margin: 0; padding: 0; overflow: hidden;">
+            <div class="row" style="width: 100%; margin: 0; padding: 0;">
+              <div class="col-10"  style="padding: 0; display: flex; align-items: center;">
+                <span class="dialog-titulo">Clientes con pagos online</span> 
+              </div>
+              <div class="col-2">
+                <button mat-icon-button style="float: right; position: relative;" (click)="closeDialog()">
+                    <mat-icon class="img-close image-invert-color"></mat-icon>
+                </button>
+              </div>
+            </div>
+        </div>
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+        <div class="container" style="margin: 0; padding: 10px 30px;"> 
+            <form [formGroup]="form" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                <div class="row w100m0p0" style="margin-top: 3% !important;">
+                    <div class="col-7">
+                        <div class="col-10">
+                            Selecciona el cliente que ha realizado un pago online para darlo de alta dentro de la plataforma
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <mat-form-field appearance="outline" style="font-size: 12px; height: 48px;width: 100%;">
+                            <mat-label>Buscar concepto</mat-label>
+                            <input matInput formControlName="busqueda" id="busqueda" name="busqueda" minlength="3" (keyup)="onKeyDownEvent($event)"/>
+                            <mat-icon class="image-workspace-search" matSuffix></mat-icon>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </form>
+                <div class="row w100m0p0" style="margin-top: 3% !important;">
+                    <div class="px-4">
+                        <div class="table-wrapper">
+                            <mat-divider></mat-divider>
+                          <table class="table table-striped">
+                            <thead>
+                              <tr class="textoM">
+                                <th class="punta-tittle">
+                                    <span style="cursor:default!important;">
+                                    </span>
+                                </th>
+                                <th class="punta-tittle">
+                                    <span style="cursor:default!important;">
+                                        FOLIO
+                                    </span>
+                                </th>
+                                <th class="punta-tittle">
+                                    <span style="cursor:default!important;">
+                                        NOMBRE
+                                    </span>
+                                </th>
+                                <th class="punta-tittle">
+                                    <span style="cursor:default!important;">
+                                        CORREO ELECTRONICO
+                                    </span>
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr class="boder" style="cursor: pointer;" *ngFor="let item of tablaLista; let i = index" (click)="selectDispositivo(item,i);">
+                                <td><mat-checkbox [(ngModel)]="item.cambio" [disabled]="true"></mat-checkbox></td>
+                                <td>{{item.folio}}</td>
+                                <td>{{item.nombre}}</td>
+                                <td>{{item.correo}}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                        <div class="row w100m0p0" style="margin-top: 30px!important; min-height: 50px;"*ngIf="tablaLista?.length> 0">
+                            <div class="col-6 textoM"
+                                style="margin: 0; padding: 0; font-weight: 600; font-size: 10px; letter-spacing: 3px; color: #7B8AA0; padding-top: 7px;">
+                                Mostrando pág {{ this.pager?.current }} de {{ this.pager?.total }} de
+                                {{ this.pager?.data.length }} resultados
+                            </div>
+        
+                            <div class="col-6" style="margin: 0; padding: 0;">
+                                <app-pager [pageModel]="pager" (paged)="onPaged($event)" style="float: right;"></app-pager>
+                            </div>
+                        </div>
+        
+                        <div class="row" style="margin-top: 3% !important; display: flex; padding: 0 40px; min-height: 400px; align-items: center;" *ngIf="tablaLista?.length == 0">
+                            <app-filter-error (clickReturn)="returnFilter()"></app-filter-error>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin: 20px 0px 0px !important; width: 100%; padding: 0;">
+                    <div class="col-12 d-flex justify-content-end">
+                      <button type="button" class="btn-utaxme-secondary" (click)="closeDialog()" style="max-width: 120px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;">
+                        Cancelar
+                      </button>
+                      <button type="button" class="btn-utaxme" (click)="confirmDialog()" style="max-width: 225px; font-size: 16px; font-weight: 600; height: 48px;display: flex; align-items: center; justify-content: center; margin: 20px;">
+                        Crear nuevo cliente
+                      </button>
+                    </div>
+                  </div>
+        </div>
+    </mat-dialog-actions>
+</div>

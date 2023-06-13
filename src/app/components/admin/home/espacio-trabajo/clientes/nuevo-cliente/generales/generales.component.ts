@@ -21,6 +21,13 @@ export class GeneralesComponent implements OnInit {
       this.validarGeneralesTab();
     }
   }
+
+  _dataCliente:any;
+  @Input() set dataCliente(val: any) {
+      console.log("Data:",val)
+      this._dataCliente = val;
+      this.setearValoresCliente();
+  }
   
   @ViewChild('selectDispositivo') selectDispositivo;
   @ViewChild('selectDispositivo') matRef: MatSelect;
@@ -222,5 +229,23 @@ export class GeneralesComponent implements OnInit {
     let texto = event.target.value;
     console.log(texto.trim());
     this.formGenerales.get('contrasena').setValue(texto.trim());
+  }
+
+  setearValoresCliente(){
+
+    if(this._dataCliente){
+      this.formGenerales.get('correo').setValue(this._dataCliente.correo);
+      this.formGenerales.get('contrasena').setValue(this._dataCliente.password);
+      this.formGenerales.get('folio').setValue(this._dataCliente.folio);
+      this.formGenerales.get('correo').disable();
+      this.formGenerales.get('contrasena').disable();
+      this.formGenerales.get('folio').disable();
+    }else{
+      this.formGenerales.get('correo').enable();
+      this.formGenerales.get('contrasena').enable();
+      this.formGenerales.get('folio').enable();
+    }
+
+
   }
 }

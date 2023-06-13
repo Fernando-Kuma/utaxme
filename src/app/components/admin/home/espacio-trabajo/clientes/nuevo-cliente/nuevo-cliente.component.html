@@ -24,6 +24,16 @@
                       </mat-error>
                     </mat-form-field>
                   </div>
+                  <div class="col-2">
+                  </div>
+                  <div class="col-4">
+                    <div class="row">
+                      ¿El nuevo cliente ya realizo su pago online?
+                    </div>
+                    <div class="row" style="margin-top: 10px;" (click)="openBusquedaDialog()">
+                      <span style="text-decoration: underline #285CED;color: #285CED;cursor: pointer;">Ver clientes con pagos online</span>
+                    </div>
+                  </div>
             </div>
         </div>
       </form>
@@ -32,7 +42,7 @@
     <div class="row w100m0p0">
         <div class="col-12">
             <mat-tab-group [selectedIndex]="indexTab" (selectedIndexChange)="onTabChanged($event)">
-                <mat-tab label="Generales*"> <app-generales (selectTab)="obtenerValor($event)" [tabs]="changeTab"></app-generales> </mat-tab>
+                <mat-tab label="Generales*"> <app-generales (selectTab)="obtenerValor($event)" [tabs]="changeTab" [dataCliente]="dataCliente"></app-generales> </mat-tab>
                 <mat-tab label="Domicilio*"> <app-domicilio (validForm)="validarFormulario()" [tabs]="changeTab"></app-domicilio> </mat-tab>
                 <mat-tab label="Membresia"> <app-membresia (validForm)="validarFormulario()" [tabs]="changeTab"></app-membresia> </mat-tab>
                 <mat-tab label="Certificados"> <app-certificados (validForm)="validarFormulario()" [tabs]="changeTab"></app-certificados> </mat-tab>

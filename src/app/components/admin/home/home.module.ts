@@ -52,6 +52,7 @@ import { CumplimientoFiscalComponent } from './espacio-trabajo/cumplimiento-fisc
 import { DetalleCumplimientoComponent } from './espacio-trabajo/cumplimiento-fiscal/detalle-cumplimiento/detalle-cumplimiento.component';
 import { DeclaracionesComponent } from './espacio-trabajo/declaraciones/declaraciones.component';
 import { DetalleDeclaracionComponent } from './espacio-trabajo/declaraciones/detalle-declaracion/detalle-declaracion.component';
+import { BuscarClienteComponent } from './espacio-trabajo/clientes/nuevo-cliente/buscar-cliente/buscar-cliente.component';
 
 
 @NgModule({
@@ -80,6 +81,7 @@ import { DetalleDeclaracionComponent } from './espacio-trabajo/declaraciones/det
     DetalleCumplimientoComponent,
     DeclaracionesComponent,
     DetalleDeclaracionComponent,
+    BuscarClienteComponent,
   ],
   imports: [
     CommonModule,

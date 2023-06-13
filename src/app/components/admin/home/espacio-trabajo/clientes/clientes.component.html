@@ -1,9 +1,11 @@
 <alert></alert>
 <div class="home-container" style="margin-top: 30px;">
     <div class="row w100m0p0">
-        <div class="col-1"></div>
-        <div class="col-5 d-flex align-items-center">
-            <div class="image-administrator-workspace" style="width: 30px">&nbsp;</div>
+        <div class="col-1" style="margin: 10px; padding: 0;">
+            <div class="image-workspace-back" style="width: 30px; height: 20px; float: right; cursor: pointer;"
+        (click)="regresar()"></div>
+        </div>
+        <div class="col-4 d-flex align-items-center">
             <span style="font-weight: 400; font-size: 24px; color: #0B112A;">ADMINISTRTACIÓN DE CLIENTES</span>
         </div>
         <div class="col-5" style="text-align: right; font-weight: 600;">
@@ -64,7 +66,7 @@
                             <table aria-describedby="tabla" class="table table-responsive table-striped">
                                 <thead style="margin-bottom: 10px;">
                                 <tr class="textoM">
-                                    <th class="punta-tittle" style="width: 300px;">
+                                    <th class="punta-tittle" style="width: 300px;vertical-align: middle;">
                                     <span style="cursor:default!important;">
                                         razón social
                                     </span>
@@ -103,7 +105,7 @@
                                 </thead>
                                 <tbody class="table-scroll" style="border: solid 1px #ffffff; ">
                                 <tr *ngFor="let item of tablaLista">
-                                    <td style="justify-content: center;">
+                                    <td style="justify-content: center;vertical-align: middle;">
                                     <span>{{item.razonSocial}}</span>
                                     </td>
                                     <td class="txt-tab" >
@@ -115,22 +117,26 @@
                                     <td class="txt-tab" >
                                     <div class="row">
                                         <div class="col-12" style="display: flex;justify-content: center;">
-                                            <span style="border: 1px solid #0B112A;border-radius: 5px;font-size:9px;padding: 2px;">Declaracion</span> <span style="border: 1px solid #0B112A;border-radius: 5px;font-size:9px;padding: 2px;margin-left: 5px;">Factura</span>
+                                            <span style="border: 1px solid #0B112A;border-radius: 5px;font-size:9px;padding: 2px;" *ngIf="!item.idDeclaracionMensual">Declaracion</span> <span style="border: 1px solid #0B112A;border-radius: 5px;font-size:9px;padding: 2px;margin-left: 5px;" *ngIf="!item.idFactura">Factura</span>
                                         </div>
                                         <div class="col-12" style="display: flex;justify-content: center;margin-top: 2px;">
-                                            <span style="border: 1px solid #0B112A;border-radius: 5px;font-size:9px;padding: 2px;">Cumplimiento fiscal</span>
+                                            <span style="border: 1px solid #0B112A;border-radius: 5px;font-size:9px;padding: 2px;" *ngIf="!item.idOpinionCumplimiento">Cumplimiento fiscal</span>
                                         </div>
                                     </div>
                                     </td>
                                     <td class="txt-tab">
-                                        <div class="row">
-                                            <div class="col-12" style="display: flex;justify-content: center;">
+                                            <!-- <div class="col-12" style="display: flex;justify-content: center;">
                                                 <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+                                            </div> -->
+                                            <div class="progress"
+                                                style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); height: 9px; border-radius: 2.1px;">
+                                                <div class="progress-bar" style="background-color: #285CED !important"
+                                                [style.width]="validarPorcentaje(item)" aria-valuemax="100"></div>
                                             </div>
-                                        </div>
                                     </td>
                                     <td class="txt-tab">
-                                    {{item.estatus }}
+                                        <span style="background: #FEEAD6;padding: 5px 10px 5px 10px;border-radius: 2px;" *ngIf="item.estatus == 'SUSPENDIDO EN EL SISTEMA'">Suspendido</span>
+                                        <span style="background: #E6EDF6;padding: 5px 10px 5px 10px;border-radius: 2px;" *ngIf="item.estatus == 'ACTIVO EN EL SISTEMA'">Activo</span>
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-center">

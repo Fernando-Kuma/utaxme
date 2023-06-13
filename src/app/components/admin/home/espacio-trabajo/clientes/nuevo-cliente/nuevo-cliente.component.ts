@@ -10,6 +10,7 @@ import { AlertService } from 'src/app/shared/utils/alertas';
 import { ConfirmDialogComponent } from 'src/app/shared/utils/confirm-dialog/confirm-dialog.component';
 import { ConfirmDialogService } from 'src/app/shared/utils/confirm-dialog/confirm-dialog.service';
 import { ServiceErrorDialogComponent } from 'src/app/shared/utils/service-error-dialog/service-error-dialog.component';
+import { BuscarClienteComponent } from './buscar-cliente/buscar-cliente.component';
 
 @Component({
   selector: 'app-nuevo-cliente',
@@ -31,6 +32,7 @@ export class NuevoClienteComponent implements OnInit {
   formValidados = [];
   changeTab: number = -1;
   _reintento: number = 1;
+  dataCliente:any;
 
   constructor(private formBuilder: FormBuilder,
     private dialog: MatDialog,
@@ -261,6 +263,25 @@ export class NuevoClienteComponent implements OnInit {
       })
     }
     return contadores;
+  }
+
+  openBusquedaDialog() {
+    const dialogRef = this.dialog.open(
+      BuscarClienteComponent,{
+        height: '560px ',
+        width: '800px',
+        disableClose: true
+      }
+    );
+
+    dialogRef.afterClosed().subscribe((_) => {
+      if(_ == false){
+        console.log("Data:",_);
+      }else{
+        console.log("Data:",_);
+        this.dataCliente = _;
+      }
+    });
   }
 
 }

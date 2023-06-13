@@ -8,6 +8,8 @@ import { AuthService } from 'src/app/shared/service/auth.service';
 import { MassiveNotificationDialogComponent } from 'src/app/shared/utils/massive-notification-dialog';
 import { MassiveNotificationDialogService } from 'src/app/shared/utils/massive-notification-dialog/massive-notification-dialog.service';
 import { AlertService } from 'src/app/shared/utils/alertas';
+import { NAV } from 'src/app/shared/configuration/navegacion';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-clientes',
@@ -26,6 +28,7 @@ export class ClientesComponent implements OnInit {
     private dialogService: MassiveNotificationDialogService,
     private auth: AuthService,
     private formBuilder: FormBuilder,
+    public router: Router,
     private clienteService: ClienteService) { }
 
   ngOnInit(): void {
@@ -104,5 +107,23 @@ export class ClientesComponent implements OnInit {
         }
       }
     );
+  }
+
+  regresar(){
+    this.router.navigateByUrl(NAV.homeAdmin + '/' + NAV.espacioTrabajo);
+  }
+
+  validarPorcentaje(item){
+    let valores = [];
+    if(item.idDeclaracionMensual){
+      valores.push(item.idDeclaracionMensual)
+    }
+    if(item.idFactura){
+      valores.push(item.idFactura)
+    }
+    if(item.idOpinionCumplimiento){
+      valores.push(item.idOpinionCumplimiento)
+    }
+    return (valores.length*100)/3 + '%';
   }
 }

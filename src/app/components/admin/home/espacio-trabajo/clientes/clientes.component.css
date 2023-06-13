@@ -29,6 +29,7 @@
 }
 .txt-tab{
   text-align: center;
+  vertical-align: middle;
 }
 
 .img-accion-borrar {
@@ -67,4 +68,3 @@
       cursor: pointer;
       margin: 0 10px;
       }
-  

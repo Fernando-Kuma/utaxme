@@ -98,6 +98,7 @@ export const API = {
       obtenerClientes:  environment.apiCliente + 'listadoClientesActividadesPendientes',
       obtenerClientesPago: environment.apiCliente + 'listadoClientesPagos',
       configurarConceptos: environment.apiCliente + 'conceptos',
+      obtenerClientesActivos: environment.apiAdministrador + 'adminClient',
     },
     config: {
       agregarAccesos: environment.apiConfiguraciones + 'agregarUsuarioAccesoDirecto',
@@ -107,7 +108,7 @@ export const API = {
 
     },
     equipo:{
-      listaEquipo: environment.apiUsuarios + 'perfiles',
+      listaEquipo: environment.apiUsuarios + 'perfilesAdmins',
       actualizarEquipo: environment.apiUsuarios,
     }
   }

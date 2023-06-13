@@ -34,9 +34,10 @@ export class InvitarComponent implements OnInit {
   ngOnInit(): void {
     this.servicioPerfiles();
     this.createFormCreate();
-    if(localStorage.getItem('equipoId')){
+    if(localStorage.getItem('dataUser')){
       this.pageTitle = 'DETALLE DE EQUIPO';
-      this.usuario = ['prueba']
+      this.usuario = JSON.parse(localStorage.getItem('dataUser'));
+      console.log(this.usuario)
     }
 
   }

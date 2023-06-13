@@ -8,7 +8,7 @@ export const environment = {
   apiConfiguraciones: '/msutaxme-admin/configuraciones/',
   apicatalogos: '/msutaxme-admin/catalogs/',
   apiCliente: '/msutaxme-admin/adminClient/',
-  apiUsuarios: '/msutaxme-admin/user/',
+  apiUsuarios: '/msutaxme-admin/users/',
   smcAppUser: 'app-web',
   smcAppPass: 'password123',
 };

@@ -10,6 +10,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { MatChipInputEvent } from '@angular/material/chips';
+import { NotificacionesService } from '../../service/notificaciones.service';
 
 
 
@@ -43,6 +44,7 @@ export class MassiveNotificationDialogComponent implements OnInit {
     public spinner: NgxSpinnerService, 
     private alertService: AlertService, 
     private router: Router,
+    private notificacionesService: NotificacionesService,
     public dialogRef: MatDialogRef<MassiveNotificationDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) {
@@ -61,16 +63,11 @@ export class MassiveNotificationDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.dialogRef.disableClose = true;
-    /* this.clientesService.obtenerClientes().subscribe({
-      next: (result) => {
-        this.clientList = result.data;
-        this.spinner.hide();
-      },
-      error: () => {
-        this.alertService.error('<b>Error al obtener datos del cliente</b>');
-        this.spinner.hide();
-      }
-    }); */
+    this.notificacionesService.obtenerClientesActivos().subscribe((response) => {
+        console.log(response)
+      },(_error) => {
+        console.log("Error en obtener clientes: ", _error);
+      });
     /* this.clientesService.obtenerClientesFavoritas(this.idUsuario).subscribe({
       next: (result) => {
         this.clientListFav = result.data;

@@ -30,6 +30,16 @@ export class DialogService {
     return this.dialogConfig;
   }
 
+  tablaConceptosAdministrador(data: any, cliente: any): MatDialogConfig {
+    this.dialogConfig.restoreFocus = false;
+    this.dialogConfig.autoFocus = false;
+    this.dialogConfig.data = {
+        conceptos: data,
+        cliente: cliente
+    }
+    return this.dialogConfig;
+  }
+
   crearConceto(): MatDialogConfig {
     this.dialogConfig.restoreFocus = false;
     this.dialogConfig.autoFocus = false;

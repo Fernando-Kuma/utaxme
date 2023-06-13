@@ -148,14 +148,14 @@
                     <div class="col-6">
                       <mat-form-field class="espacio-card" appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                         <mat-label class="textoM">RFC Receptor</mat-label>
-                        <input matInput formControlName="rfc" [matAutocomplete]="auto" id="rfc" name="rfc" minlength="12"  maxlength="13" (keypress)="caracteresValidosRFC($event)" (keyup)="setMayusculas($event, 'rfc')">
+                        <input matInput formControlName="rfc" id="rfc" name="rfc" minlength="12"  maxlength="13" (keypress)="caracteresValidosRFC($event)" (keyup)="setMayusculas($event, 'rfc')">
                         <mat-icon class="image-workspace-buscardor" matPrefix></mat-icon>
-                        <mat-icon class="image-workspace-select" matSuffix></mat-icon>
-                        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                        <!-- <mat-icon class="image-workspace-select" matSuffix></mat-icon> -->
+                        <!-- <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
                           <mat-option *ngFor="let item of filteredOptions | async" [value]="item.rfcReceptor" (click)="selecionarCliente(item)">
                             {{item.rfcReceptor}}
                           </mat-option>
-                        </mat-autocomplete>
+                        </mat-autocomplete> -->
                         <mat-error *ngIf="formulario.rfc.invalid && formulario.rfc.touched && formulario.rfc.errors">
                           <ng-container *ngIf="formulario.rfc.errors.required">
                             El RFC es requerido
@@ -187,8 +187,8 @@
                       <mat-form-field appearance="outline" style="width: 100%; font-size: 16px; height: 80px;">
                         <mat-label class="textoM">régimen fiscal receptor</mat-label>
                         <mat-select formControlName="regimenFiscalCliente" id="regimenFiscalCliente" name="regimenFiscalCliente">
-                          <mat-option *ngFor="let item of catalogos?.catalogoSatRegimenFiscales" [value]="item.clave">
-                            {{item.descripcion}}
+                          <mat-option *ngFor="let item of datosFiscalesCliente?.regimenes" [value]="item.idSat">
+                            {{item.descripcionRegimen}}
                           </mat-option>
                         </mat-select>
                         <mat-error *ngIf="formulario.regimenFiscalCliente.invalid && formulario.regimenFiscalCliente.touched && formulario.regimenFiscalCliente.errors">

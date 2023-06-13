@@ -16,7 +16,7 @@ export class EquipoComponent implements OnInit {
   metodoFormulario: string;
   usuario:any;
 
-  tablaListaConceptos: any[] = []
+  tablaListaEquipo: any[] = []
   tablaLista: any[]
   
   public pager:any;
@@ -38,13 +38,14 @@ export class EquipoComponent implements OnInit {
     }
     
     listaEquipo(){
-      let _idUsuario = this.auth.administrador.idUsuario
-      this.equipoService.obtenerEquipo(_idUsuario).subscribe((response) => {
-        console.log(response)
+      this.equipoService.obtenerEquipo().subscribe((response) => {
+        if(response.length > 0){
+          this,this.tablaListaEquipo = response
+        }
+        this.paginador(this.tablaListaEquipo);
       },(_error) => {
         console.log("Error en obtener clientes: ", _error);
       });
-      this.paginador(this.tablaListaConceptos);
     }
   
     onPaged(page) {
@@ -61,20 +62,20 @@ export class EquipoComponent implements OnInit {
     }
 
     invitarPersona(){
-      localStorage.removeItem('equipoId');
+      localStorage.removeItem('dataUser');
       localStorage.removeItem('pendiente');
       this.router.navigateByUrl(NAV.homeAdmin + '/' + NAV.invitarPersona);
     }
   
     cambiarRol(equipo: any){
-      localStorage.setItem('equipoId', equipo.idUsuario);
+      localStorage.setItem('dataUser', JSON.stringify(equipo));
       this.router.navigateByUrl(NAV.homeAdmin + '/' + NAV.detalleEquipo);
     }
 
     onKeyDownEvent(event: any){
       let filtro = event.target.value;
-      let busquedaTabla = this.tablaListaConceptos.filter( item =>
-        item?.productoServicio?.toLowerCase().includes(filtro.toLowerCase()) || item?.descripcion?.toLowerCase().includes(filtro.toLowerCase())
+      let busquedaTabla = this.tablaListaEquipo.filter( item =>
+        item?.nombreCompleto?.toLowerCase().includes(filtro.toLowerCase())
       );
       this.paginador(busquedaTabla);
   
@@ -84,7 +85,7 @@ export class EquipoComponent implements OnInit {
 
     returnFilter(){
       this.form.reset();
-      this.paginador(this.tablaListaConceptos);
+      this.paginador(this.tablaListaEquipo);
     }
   
 

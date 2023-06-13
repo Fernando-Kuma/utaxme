@@ -20,9 +20,9 @@ export class EquipoService {
       );
   }
 
-  obtenerEquipo(idUsuario: any): Observable<any> {
+  obtenerEquipo(): Observable<any> {
     return this.http
-      .get<any>(`${API.admin.equipo.listaEquipo}/${idUsuario}`)
+      .get<any>(`${API.admin.equipo.listaEquipo}`)
       .pipe(catchError((e) => {
           return throwError(e);
         })

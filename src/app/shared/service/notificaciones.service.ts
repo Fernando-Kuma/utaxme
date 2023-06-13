@@ -23,18 +23,15 @@ export class NotificacionesService {
   }
 
   marcarLeidoNotificacion(request: any): Observable<any> {
-
     let parametros = new HttpParams();
     parametros = parametros.append('idNotificacion',request.idNotificacion);
     parametros = parametros.append('rfc',request.rfc);
-
     const opciones = {
       headers: new HttpHeaders({
         'content-type': 'application/x-www-form-urlencoded'
       }),
       params: parametros
     };
-
     return this.http
       .post<any>(`${API.notificationLeida}`, request, opciones)
       .pipe(
@@ -113,6 +110,16 @@ export class NotificacionesService {
     };
     return this.http
       .post<any>(`${API.eliminarNotificacion}`, request, opciones)
+      .pipe(
+        catchError((e) => {
+          return throwError(e);
+        })
+      );
+  }
+
+  obtenerClientesActivos(): Observable<any> {
+    return this.http
+      .get<any>(`${API.admin.cliente.obtenerClientesActivos}`)
       .pipe(
         catchError((e) => {
           return throwError(e);

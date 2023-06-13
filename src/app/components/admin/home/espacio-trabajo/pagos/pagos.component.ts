@@ -161,6 +161,8 @@ export class PagosComponent implements OnInit {
   }
 
   detallePagoCliente(item){
+    console.log(item)
+    localStorage.setItem('rfc-cliente', item.rfc)
     const dialogRef = this.dialog.open(
       DetallePagoComponent, 
       this.dialogService.editarPagoCliente(item)

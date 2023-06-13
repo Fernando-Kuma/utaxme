@@ -50,6 +50,7 @@ export class GenerarFacturaComponent implements OnInit {
   checkPlataformas: boolean = true;
 
   costoFactura: TotalFactura = new  TotalFactura;
+  datosFiscalesCliente: any;
 
   constructor(
     private alertService: AlertService,
@@ -66,14 +67,12 @@ export class GenerarFacturaComponent implements OnInit {
   ngOnInit(): void {
 
     this.nombreCliente = this.auth.administrador.nombreCompleto;
-    this.requestDashboard = {
-      rfc: this.auth.adminClave.rfc
-    }
-
+    
     this.crearForm()
-    this.obtenerDatosFiscales()
+    this.obtenerDatosFiscalesAdministrador()
+    this.obtenerDatosFiscalesCliente()
     this.obtenerCatalogos()
-    this.obtenerListaClientesFrecuentes()
+    /* this.obtenerListaClientesFrecuentes() */
     this.setTipoFactura("UTAXME", "UTAXME");
     
   }
@@ -96,10 +95,12 @@ export class GenerarFacturaComponent implements OnInit {
   }
 
   selecionarCliente(cliente: any){
+    console.log(cliente)
+    this.form.get('rfc').setValue(cliente.rfc);
     this.form.get('razonSocial').setValue(cliente.razonSocial);
-    this.form.get('regimenFiscalCliente').setValue(cliente.regimenFiscal);
-    this.form.get('codigoPostal').setValue(cliente.codigoPostal);
-    this.form.get('correo').setValue(cliente.correoElectronico);
+    /* this.form.get('regimenFiscalCliente').setValue(cliente.regimenFiscal); */
+    this.form.get('codigoPostal').setValue(cliente.cp);
+    this.form.get('correo').setValue(cliente.emailPrincipal);
   }
 
   regresar(){
@@ -115,23 +116,26 @@ export class GenerarFacturaComponent implements OnInit {
     this.tablaListaConceptos = []
   }
 
-  obtenerDatosFiscales(): void {
-    this.datosFiscales = {
-      calle: this.auth.administrador.tbDomicilio.calle,
-      numeroExterior: this.auth.administrador.tbDomicilio.numeroExterior,
-      colonia: this.auth.administrador.tbDomicilio.tbCatEntidadesFed.colonia,
-      cp: this.auth.administrador.tbDomicilio.tbCatEntidadesFed.codigoPostal,
-      municipio: this.auth.administrador.tbDomicilio.tbCatEntidadesFed.municipio,
-      ciudad: this.auth.administrador.tbDomicilio.ciudad,
-      rfc: this.auth.adminClave.rfc,
-      razonSocial: this.auth.adminClave.razonSocial,
-      }
-   /*  this.dashboardService.obtenerDatosFiscales(this.requestDashboard).subscribe((resp) => {
-      this.datosFiscales = resp.datosFiscales;
-    },(_error) => {
-      console.log("::Entro al error Datos fiscales: ", _error);
+  obtenerDatosFiscalesAdministrador(): void {  
+    let _request = {
+      rfc: this.auth.administrador.rfc
     }
-    ); */
+    this.dashboardService.obtenerDatosFiscales(_request).subscribe((resp) => {
+        this.datosFiscales = resp.datosFiscales;
+      },(_error) => {
+        console.log("::Entro al error Datos fiscales: ", _error);
+      }); 
+  }
+  obtenerDatosFiscalesCliente(): void {  
+    let _request = {
+      rfc: localStorage.getItem('rfc-cliente')
+    }
+    this.dashboardService.obtenerDatosFiscales(_request).subscribe((resp) => {
+        this.datosFiscalesCliente = resp.datosFiscales;
+        this.selecionarCliente(resp.datosFiscales)
+      },(_error) => {
+        console.log("::Entro al error Datos fiscales: ", _error);
+      }); 
   }
 
   obtenerCatalogos(){

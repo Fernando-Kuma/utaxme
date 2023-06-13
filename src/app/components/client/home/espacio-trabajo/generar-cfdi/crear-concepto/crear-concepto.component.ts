@@ -185,7 +185,7 @@ export class CrearConceptoComponent {
         claveImpuestoSat: "002", //ok  fijo
         tasa: this.form.controls['impuestoT'].value ? this.form.controls['iva'].value : null,
         idCliente: this.auth.adminClave.idCliente,
-        rfc: this.auth.adminClave.rfc,
+        rfc: localStorage.getItem('rfc-cliente'),
         unidad: this.form.controls['unidad'].value,
         valorUnitario: this.form.controls['valorUnitario'].value,
         claveImpuestoLocal: this.form.controls['impuestoL'].value ? this.form.controls['impuestoLocal'].value : null,

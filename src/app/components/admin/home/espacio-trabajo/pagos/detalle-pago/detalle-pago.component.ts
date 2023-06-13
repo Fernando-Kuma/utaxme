@@ -161,8 +161,8 @@ export class DetallePagoComponent implements OnInit {
   }
 
   generarCFDI(){
-    this.dialogRef.close(false);
     this.router.navigateByUrl(NAV.homeAdmin +'/'+ NAV.generarCfdi)
+    this.dialogRef.close(false);
   }
 
   obtenerConceptos(){
@@ -186,7 +186,7 @@ export class DetallePagoComponent implements OnInit {
   listaConcepto(){
     const dialogRef = this.dialog.open(
       ConceptosComponent, 
-      this.dialogService.tablaConceptos(this.tablaListaConceptos)
+      this.dialogService.tablaConceptosAdministrador(this.tablaListaConceptos, this.data.usuarioCliente)
     );
     dialogRef.afterClosed().subscribe(
       data => {

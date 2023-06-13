@@ -110,15 +110,18 @@ export class ConceptosComponent implements OnInit {
   }
 
   listaConceptos(){
+    console.log(this.data)
     let request = {
-      rfc: this.auth.adminClave.rfc
+      rfc: this.data.cliente.rfc,
+      facturaPorDefault: false
     }
     this.espacioTrabajoService.obtenerListaConceptos(request).subscribe((resp) => {
-      resp.listaConceptos.forEach(element => {
+      console.log(resp)
+      /* resp.listaConceptos.forEach(element => {
         element.cantidad = 0;
         element.descuento = 0;
         element.importe = 0;
-      });
+      }); */
       this.tablaListaConceptos = resp.listaConceptos;
       if(this.data.conceptos != null){
         this.tablaListaConceptos.forEach(element => {
